@@ -77,9 +77,6 @@ define('WP_HOME', $domain_name);
 define('WP_CONTENT_URL', $domain_name . '/content');
 define('WP_CONTENT_DIR', $domain_dir . '/content');
 
-/** Uploads directory */
-define('UPLOADS', '../content/uploads');
-
 
 /** Set the database table prefix */
 $table_prefix  = 'wp_';
