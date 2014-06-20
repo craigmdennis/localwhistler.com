@@ -1,8 +1,20 @@
 <?php
 
-  // Add Business post type -------------------------------------------------- //
+  // -------------------------------------------------------------------------- //
+  // All actions are called at the top.
+  // They should be self explanitory and in the order in which the functions
+  // appear in the file.
+  // ---------------------------------------------------------------------------//
 
   add_action( 'init', 'create_businesses' );
+  add_filter( 'post_updated_messages', 'create_business_messages' );
+  add_action( 'contextual_help', 'create_business_help', 10, 3 );
+  add_action( 'init', 'create_business_locations', 0 );
+  add_action( 'init', 'create_business_types', 0 );
+  add_filter( 'enter_title_here', 'change_business_placeholder' );
+
+
+  // Add Business post type -------------------------------------------------- //
 
   function create_businesses() {
   	$labels = array(
@@ -34,7 +46,7 @@
   		'has_archive'        => true,
   		'hierarchical'       => false,
   		'menu_position'      => null,
-  		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' )
+  		'supports'           => array( 'title', 'thumbnail', 'excerpt' )
   	);
 
   	register_post_type( 'business', $args );
@@ -63,8 +75,6 @@
     );
     return $messages;
   }
-
-  add_filter( 'post_updated_messages', 'create_business_messages' );
 
 
 
@@ -99,6 +109,87 @@
 
     return $contextual_help;
   }
-  add_action( 'contextual_help', 'create_business_help', 10, 3 );
+
+
+
+  // Add Business locations -------------------------------------------------- //
+
+  function create_business_locations() {
+
+    $labels = array(
+      'name'              => _x( 'Location', 'location' ), // Deliberately singular
+      'singular_name'     => _x( 'Location', 'location' ),
+      'search_items'      => __( 'Search Locations' ),
+      'all_items'         => __( 'Location' ),
+      // 'parent_item'       => __( 'Parent Location' ),
+      // 'parent_item_colon' => __( 'Parent Location:' ),
+      'edit_item'         => __( 'Edit Location' ),
+      'update_item'       => __( 'Update Location' ),
+      'add_new_item'      => __( 'Add New Location' ),
+      'new_item_name'     => __( 'New Location' ),
+      'menu_name'         => __( 'Locations' )
+    );
+
+    $rewrite = array(
+      'slug'              => 'location', // This controls the base slug that will display before each term
+      'with_front'        => false, // Don't display the category base before "/locations/"
+      'hierarchical'      => false // This will allow URL's like "/locations/boston/cambridge/"
+    );
+
+    $args = array(
+      'labels'            => $labels,
+      'rewrite'           => $rewrite,
+      'hierarchical'      => false
+    );
+
+    register_taxonomy( 'business_location', 'business', $args );
+  }
+
+
+
+  // Add Business types ------------------------------------------------------ //
+
+  function create_business_types() {
+
+    $labels = array(
+      'name'              => _x( 'Business Types', 'types' ),
+      'singular_name'     => _x( 'Business Type', 'type' ),
+      'search_items'      => __( 'Search Business Types' ),
+      'all_items'         => __( 'Business Types' ),
+      // 'parent_item'       => __( 'Parent Location' ),
+      // 'parent_item_colon' => __( 'Parent Location:' ),
+      'edit_item'         => __( 'Edit Type' ),
+      'update_item'       => __( 'Update Type' ),
+      'add_new_item'      => __( 'Add New Business Type' ),
+      'new_item_name'     => __( 'New Business Type' ),
+      'menu_name'         => __( 'Business Types' ),
+    );
+
+    $rewrite = array(
+      'slug'              => 'type', // This controls the base slug that will display before each term
+      'with_front'        => false, // Don't display the category base before "/locations/"
+      'hierarchical'      => false // This will allow URL's like "/locations/boston/cambridge/"
+    );
+
+    $args = array(
+      'labels'            => $labels,
+      'rewrite'           => $rewrite,
+      'hierarchical'      => false
+    );
+
+    register_taxonomy( 'business_type', 'business', $args );
+  }
+
+
+
+  // Custom placeholder text -------------------------------------------------- //
+
+  function change_business_placeholder( $title ){
+     $screen = get_current_screen();
+
+     if  ( $screen->post_type == 'business' ) {
+          return 'Enter business name here';
+     }
+  }
 
 ?>
