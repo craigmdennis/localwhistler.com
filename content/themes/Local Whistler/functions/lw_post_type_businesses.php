@@ -11,7 +11,9 @@
   add_action( 'contextual_help', 'create_business_help', 10, 3 );
   add_action( 'init', 'create_business_locations', 0 );
   add_action( 'init', 'create_business_types', 0 );
-  add_filter( 'enter_title_here', 'change_business_placeholder' );
+  add_filter( 'enter_title_here', 'change_business_placeholder' ); // Too WET
+  add_action( 'admin_head', 'remove_mediabuttons' ); // Too WET
+
 
 
   // Add Business post type -------------------------------------------------- //
@@ -46,7 +48,7 @@
   		'has_archive'        => true,
   		'hierarchical'       => false,
   		'menu_position'      => null,
-  		'supports'           => array( 'title', 'thumbnail', 'excerpt' )
+  		'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' )
   	);
 
   	register_post_type( 'business', $args );
@@ -108,6 +110,7 @@
     }
 
     return $contextual_help;
+
   }
 
 
@@ -143,6 +146,7 @@
     );
 
     register_taxonomy( 'business_location', 'business', $args );
+
   }
 
 
@@ -178,18 +182,33 @@
     );
 
     register_taxonomy( 'business_type', 'business', $args );
+
   }
 
 
 
-  // Custom placeholder text -------------------------------------------------- //
+  // Custom placeholder text ------------------------------------------------- //
 
   function change_business_placeholder( $title ){
-     $screen = get_current_screen();
 
-     if  ( $screen->post_type == 'business' ) {
-          return 'Enter business name here';
-     }
+    $screen = get_current_screen();
+
+    if  ( $screen->post_type == 'business' ) {
+      return 'Enter business name here';
+    }
+
+  }
+
+  // Remove `Add Media` button ----------------------------------------------- //
+
+  function remove_mediabuttons() {
+
+    $screen = get_current_screen();
+
+    if( $screen->post_type == 'business' ) {
+      remove_action( 'media_buttons', 'media_buttons' );
+    }
+
   }
 
 ?>
