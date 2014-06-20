@@ -58,11 +58,3 @@ namespace :deploy do
   end
 
 end
-
-namespace :localwhistler do
-    task :symlink, :roles => :app do
-        run "ln -nfs shared/uploads content/uploads"
-    end
-end
-
-after "deploy:symlink", "localwhistler:symlink"
