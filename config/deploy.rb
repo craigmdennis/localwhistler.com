@@ -8,7 +8,7 @@ set :repo_url, 'git@bitbucket.org:simplebitdesign/localwhistler.com.git'
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # Default deploy_to directory is /var/www/my_app
-# set :deploy_to, '/home/152547/users/.home/domains/dev.simplebitdesign.com/'
+# set :deploy_to, '/var/www/my_app'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -58,3 +58,11 @@ namespace :deploy do
   end
 
 end
+
+namespace :localwhistler do
+    task :symlink, :roles => :app do
+        run "ln -nfs shared/uploads content/uploads"
+    end
+end
+
+after "deploy:symlink", "localwhistler:symlink"
