@@ -7,7 +7,7 @@ define('DB_NAME', 'db152547_localwhistler_dev');
 define('DB_USER', 'db152547_dev');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'oHxtAXIqYilnr44A');
+define('DB_PASSWORD', '4P999>H3i)3#3747');
 
 /** MySQL hostname */
 define('DB_HOST', $_ENV['DATABASE_SERVER']);
