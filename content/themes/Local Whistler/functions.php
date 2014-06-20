@@ -5,7 +5,7 @@
 
   // Custom post types
   require_once('functions/lw_post_type_businesses.php');
-  require_once('functions/lw_post_type_products.php');
+  // require_once('functions/lw_post_type_products.php');
 
   // Custom dashboard widgets
   require_once('functions/lw_dashboard.php');

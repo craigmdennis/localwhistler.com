@@ -1,27 +1,27 @@
 <?php
 
-  add_action( 'init', 'create_businesses' );
+  add_action( 'init', 'create_products' );
   /**
    * Register a book post type.
    *
    * @link http://codex.wordpress.org/Function_Reference/register_post_type
    */
-  function create_businesses() {
+  function create_products() {
   	$labels = array(
-  		'name'               => _x( 'Businesses' ),
-  		'singular_name'      => _x( 'Business' ),
-  		'menu_name'          => _x( 'Businesses' ),
-  		'name_admin_bar'     => _x( 'Business'),
-  		'add_new'            => _x( 'Add New', 'business' ),
-  		'add_new_item'       => __( 'Add New Business' ),
-  		'new_item'           => __( 'New Business' ),
-  		'edit_item'          => __( 'Edit Business' ),
-  		'view_item'          => __( 'View Business' ),
-  		'all_items'          => __( 'All Businesses' ),
-  		'search_items'       => __( 'Search Businesses' ),
-  		'parent_item_colon'  => __( 'Parent Businesses:' ),
-  		'not_found'          => __( 'No businesses found.' ),
-  		'not_found_in_trash' => __( 'No businesses found in Trash.' )
+  		'name'               => _x( 'Products', 'products' ),
+  		'singular_name'      => _x( 'Product' ),
+  		'menu_name'          => _x( 'Products' ),
+  		'name_admin_bar'     => _x( 'Product'),
+  		'add_new'            => _x( 'Add New', 'products' ),
+  		'add_new_item'       => __( 'Add New Product' ),
+  		'new_item'           => __( 'New Product' ),
+  		'edit_item'          => __( 'Edit Products' ),
+  		'view_item'          => __( 'View Products' ),
+  		'all_items'          => __( 'All Products' ),
+  		'search_items'       => __( 'Search Products' ),
+  		'parent_item_colon'  => __( 'Parent Products:' ),
+  		'not_found'          => __( 'No products found.' ),
+  		'not_found_in_trash' => __( 'No products found in Trash.' )
   	);
 
   	$args = array(
@@ -31,7 +31,7 @@
   		'show_ui'            => true,
   		'show_in_menu'       => true,
   		'query_var'          => true,
-  		'rewrite'            => array( 'slug' => 'business' ),
+  		'rewrite'            => array( 'slug' => 'product' ),
   		'capability_type'    => 'post',
   		'has_archive'        => true,
   		'hierarchical'       => false,
@@ -39,7 +39,7 @@
   		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' )
   	);
 
-  	register_post_type( 'business', $args );
+  	register_post_type( 'product', $args );
   }
 
 ?>
