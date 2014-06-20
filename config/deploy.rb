@@ -44,6 +44,11 @@ namespace :deploy do
     end
   end
 
+  desc "Backup MySQL Database"
+  task :mysqlbackup, :roles => :app do
+    run "mysqldump -u#{db_username} -p#{db_password} #{db_database} > #{shared_path}/backups/#{release_name}.sql"
+  end
+
   after 'deploy:publishing', 'gridserver:create_relative_symlinks'
 
   after :publishing, :restart
