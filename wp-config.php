@@ -23,8 +23,8 @@ if ( file_exists( $domain_dir . '/local-config.php') ) {
     /** If it does exist, then use it */
     include( $domain_dir . '/local-config.php');
 
-    /** Not in production environment */
-    define( 'WP_PRODUCTION', false );
+    /** Environment variable */
+    define('WP_ENV', 'local');
 
     /* For developers: WordPress debugging mode. */
     define('WP_DEBUG', true);
@@ -36,8 +36,8 @@ else if ( file_exists( $domain_dir . '/staging-config.php') ) {
     /** If it does exist, then use it */
     include( $domain_dir . '/staging-config.php');
 
-    /** Not in production environment */
-    define( 'WP_PRODUCTION', false );
+    /** Environment variable */
+    define('WP_ENV', 'staging');
 
     /* For developers: WordPress debugging mode. */
     define('WP_DEBUG', false);
@@ -48,8 +48,8 @@ else {
 
     // ** MySQL settings - You can get this info from your web host ** //
 
-    /** In the production environment */
-    define( 'WP_PRODUCTION', true );
+    /** Environment variable */
+    define('WP_ENV', 'production');
 
     /** The name of the database for WordPress */
     define('DB_NAME', '');
