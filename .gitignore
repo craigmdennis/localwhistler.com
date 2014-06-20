@@ -1,7 +1,8 @@
 # Wordpress
 .htaccess
 content/uploads/
-!wp-content/uploads/.htaccess
+shared/
+!content/uploads/.htaccess
 wp-content/uploads/
 wp-content/blogs.dir/
 wp-content/upgrade/
