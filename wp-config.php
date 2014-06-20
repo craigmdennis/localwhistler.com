@@ -67,9 +67,6 @@ else {
     /** Server name (your url) */
     $domain_name = 'http://localwhistler.com';
 
-    /** Uploads directory */
-    define('UPLOADS', '../content/uploads');
-
     /* For developers: WordPress debugging mode. */
     define('WP_DEBUG', false);
 
@@ -79,6 +76,9 @@ define('WP_SITEURL', $domain_name . '/wp');
 define('WP_HOME', $domain_name);
 define('WP_CONTENT_URL', $domain_name . '/content');
 define('WP_CONTENT_DIR', $domain_dir . '/content');
+
+/** Uploads directory */
+define('UPLOADS', '../content/uploads');
 
 
 /** Set the database table prefix */
