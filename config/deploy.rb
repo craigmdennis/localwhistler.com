@@ -47,7 +47,7 @@ namespace :localwhister do
   desc 'Point uploads directory to shared folder'
   task :symlink do
     on roles(:app), in: :groups do
-      execute "cd '#{release_path}/content' && ln -nfs '#{shared_path}/uploads' 'uploads'"
+      execute "cd '#{release_path}/content' && ln -nfs '../../../shared/uploads' 'uploads'"
     end
   end
 
