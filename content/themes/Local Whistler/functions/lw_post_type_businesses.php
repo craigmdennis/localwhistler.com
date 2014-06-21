@@ -11,8 +11,8 @@
   add_action( 'contextual_help', 'create_business_help', 10, 3 );
   add_action( 'init', 'create_business_locations', 0 );
   add_action( 'init', 'create_business_types', 0 );
-  add_filter( 'enter_title_here', 'change_business_placeholder' ); // Too WET
-  add_action( 'admin_head', 'remove_mediabuttons' ); // Too WET
+  add_action( 'init', 'create_business_filters', 0 );
+  add_action( 'admin_menu' , 'remove_meta' );
 
 
 
@@ -20,38 +20,40 @@
 
   function create_businesses() {
   	$labels = array(
-  		'name'               => _x( 'Businesses', 'businesses' ),
-  		'singular_name'      => _x( 'Business', 'business' ),
-  		'menu_name'          => _x( 'Businesses', 'businesses' ),
-  		'name_admin_bar'     => _x( 'Business', 'business'),
-  		'add_new'            => _x( 'Add New', 'business' ),
-  		'add_new_item'       => __( 'Add New Business' ),
-  		'new_item'           => __( 'New Business' ),
-  		'edit_item'          => __( 'Edit Business' ),
-  		'view_item'          => __( 'View Business' ),
-  		'all_items'          => __( 'All Businesses' ),
-  		'search_items'       => __( 'Search Businesses' ),
-  		'parent_item_colon'  => __( 'Parent Businesses:' ),
-  		'not_found'          => __( 'No businesses found.' ),
-  		'not_found_in_trash' => __( 'No businesses found in Trash.' )
+  		'name'                 => _x( 'Businesses', 'businesses' ),
+  		'singular_name'        => _x( 'Business', 'business' ),
+  		'menu_name'            => _x( 'Businesses', 'businesses' ),
+  		'name_admin_bar'       => _x( 'Business', 'business'),
+  		'add_new'              => _x( 'Add New', 'business' ),
+  		'add_new_item'         => __( 'Add New Business' ),
+  		'new_item'             => __( 'New Business' ),
+  		'edit_item'            => __( 'Edit Business' ),
+  		'view_item'            => __( 'View Business' ),
+  		'all_items'            => __( 'All Businesses' ),
+  		'search_items'         => __( 'Search Businesses' ),
+  		'parent_item_colon'    => __( 'Parent Businesses:' ),
+  		'not_found'            => __( 'No businesses found.' ),
+  		'not_found_in_trash'   => __( 'No businesses found in Trash.' )
   	);
 
   	$args = array(
-  		'labels'             => $labels,
-  		'public'             => true,
-  		'publicly_queryable' => true,
-  		'show_ui'            => true,
-  		'show_in_menu'       => true,
-  		'query_var'          => true,
-  		'rewrite'            => array( 'slug' => 'business' ),
-  		'capability_type'    => 'post',
-  		'has_archive'        => true,
-  		'hierarchical'       => false,
-  		'menu_position'      => null,
-  		'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' )
+  		'labels'               => $labels,
+  		'public'               => true,
+  		'publicly_queryable'   => true,
+  		'show_ui'              => true,
+  		'show_in_menu'         => true,
+  		'query_var'            => true,
+  		'rewrite'              => array( 'slug' => 'business' ),
+  		'capability_type'      => 'post',
+  		'has_archive'          => true,
+  		'hierarchical'         => false,
+  		'menu_position'        => null,
+  		'supports'             => array( 'title', 'editor', 'thumbnail'),
+      'menu_position'        => 5
   	);
 
   	register_post_type( 'business', $args );
+
   }
 
 
@@ -63,16 +65,16 @@
     global $post, $post_ID;
 
     $messages['business'] = array(
-      0 => '',
-      1 => sprintf( __('Business updated. <a href="%s">View business</a>'), esc_url( get_permalink($post_ID) ) ),
-      2 => __('Custom field updated.'),
-      3 => __('Custom field deleted.'),
-      4 => __('Business updated.'),
-      5 => isset($_GET['revision']) ? sprintf( __('Business restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-      6 => sprintf( __('Business published. <a href="%s">View business</a>'), esc_url( get_permalink($post_ID) ) ),
-      7 => __('Business saved.'),
-      8 => sprintf( __('Business submitted. <a target="_blank" href="%s">Preview business</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
-      9 => sprintf( __('Business scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview business</a>'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
+      0  => '',
+      1  => sprintf( __('Business updated. <a href="%s">View business</a>'), esc_url( get_permalink($post_ID) ) ),
+      2  => __('Custom field updated.'),
+      3  => __('Custom field deleted.'),
+      4  => __('Business updated.'),
+      5  => isset($_GET['revision']) ? sprintf( __('Business restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+      6  => sprintf( __('Business published. <a href="%s">View business</a>'), esc_url( get_permalink($post_ID) ) ),
+      7  => __('Business saved.'),
+      8  => sprintf( __('Business submitted. <a target="_blank" href="%s">Preview business</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+      9  => sprintf( __('Business scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview business</a>'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
       10 => sprintf( __('Business draft updated. <a target="_blank" href="%s">Preview business</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
     );
     return $messages;
@@ -88,22 +90,22 @@
 
       // Add my_help_tab if current screen is My Admin Page
       $screen->add_help_tab( array(
-          'id'	=> 'editing_businesses',
-          'title'	=> __('Editing Businesses'),
+          'id'	     => 'editing_businesses',
+          'title'	  => __('Editing Businesses'),
           'content'	=> '<h2>' . __('Editing businesses') . '</h2><p>' . __('This page allows you to view / modify business details. Please make sure to fill out the available boxes with the appropriate details. Optional fields are marked and if they are left blank will not show up on the main business page.') . '</p>'
       ));
 
       // Add my_help_tab if current screen is My Admin Page
       $screen->add_help_tab( array(
-          'id'	=> 'tagging_businesses',
-          'title'	=> __('Tagging Businesses'),
+          'id'	     => 'tagging_businesses',
+          'title'	  => __('Tagging Businesses'),
           'content'	=> '<h2>' . __('Tagging businesses') . '</h2><p>' . __('People will filter the business based on the tags you add. The more tags, the better the search and filtering will be.') . '</p>'
       ));
 
       // Add my_help_tab if current screen is My Admin Page
       $screen->add_help_tab( array(
-          'id'	=> 'categorising_businesses',
-          'title'	=> __('Categorising Businesses'),
+          'id'	     => 'categorising_businesses',
+          'title'  	=> __('Categorising Businesses'),
           'content'	=> '<h2>' . __('Categorising businesses') . '</h2><p>' . __('Businesses can be in multiple categories of on type and location. For example Rowland\'s Creekside pub would have a `type` of `Food &amp; Drink` and a `location` of `Creekside`. Each business should only have one location but can have multiple types.') . '</p>'
       ));
 
@@ -124,8 +126,8 @@
       'singular_name'     => _x( 'Location', 'location' ),
       'search_items'      => __( 'Search Locations' ),
       'all_items'         => __( 'Location' ),
-      // 'parent_item'       => __( 'Parent Location' ),
-      // 'parent_item_colon' => __( 'Parent Location:' ),
+      'parent_item'       => __( 'Parent Location' ),
+      'parent_item_colon' => __( 'Parent Location:' ),
       'edit_item'         => __( 'Edit Location' ),
       'update_item'       => __( 'Update Location' ),
       'add_new_item'      => __( 'Add New Location' ),
@@ -142,7 +144,7 @@
     $args = array(
       'labels'            => $labels,
       'rewrite'           => $rewrite,
-      'hierarchical'      => false
+      'hierarchical'      => true
     );
 
     register_taxonomy( 'business_location', 'business', $args );
@@ -160,8 +162,6 @@
       'singular_name'     => _x( 'Business Type', 'type' ),
       'search_items'      => __( 'Search Business Types' ),
       'all_items'         => __( 'Business Types' ),
-      // 'parent_item'       => __( 'Parent Location' ),
-      // 'parent_item_colon' => __( 'Parent Location:' ),
       'edit_item'         => __( 'Edit Type' ),
       'update_item'       => __( 'Update Type' ),
       'add_new_item'      => __( 'Add New Business Type' ),
@@ -170,9 +170,9 @@
     );
 
     $rewrite = array(
-      'slug'              => 'type', // This controls the base slug that will display before each term
-      'with_front'        => false, // Don't display the category base before "/locations/"
-      'hierarchical'      => false // This will allow URL's like "/locations/boston/cambridge/"
+      'slug'              => 'type',
+      'with_front'        => false,
+      'hierarchical'      => false
     );
 
     $args = array(
@@ -187,28 +187,50 @@
 
 
 
-  // Custom placeholder text ------------------------------------------------- //
+  // Add Business filters ------------------------------------------------------ //
 
-  function change_business_placeholder( $title ){
+  function create_business_filters() {
 
-    $screen = get_current_screen();
+    $labels = array(
+      'name'                        => _x( 'Filters', 'filters' ),
+      'singular_name'               => _x( 'Filter', 'filter' ),
+      'search_items'                => __( 'Search Filters' ),
+      'all_items'                   => __( 'Filters' ),
+      'edit_item'                   => __( 'Edit Filter' ),
+      'update_item'                 => __( 'Update Filter' ),
+      'add_new_item'                => __( 'Add New Filter' ),
+      'new_item_name'               => __( 'New Filter' ),
+      'menu_name'                   => __( 'Filters' ),
+      'separate_items_with_commas'  => __( 'Separate filters with commas' ),
+      'popular_items'               => __( 'Popular filters' ),
+      'choose_from_most_used'       => __( 'Choose from the most used filters' ),
+      'add_or_remove_items'         => __( 'Add or remove filters' ),
+      'not_found'                   => __( 'No filters found' ),
+    );
 
-    if  ( $screen->post_type == 'business' ) {
-      return 'Enter business name here';
-    }
+    $rewrite = array(
+      'slug'                        => 'filter',
+      'with_front'                  => false,
+      'hierarchical'                => false
+    );
+
+    $args = array(
+      'labels'                      => $labels,
+      'rewrite'                     => $rewrite,
+      'hierarchical'                => false
+    );
+
+    register_taxonomy( 'business_filter', 'business', $args );
 
   }
 
-  // Remove `Add Media` button ----------------------------------------------- //
 
-  function remove_mediabuttons() {
 
-    $screen = get_current_screen();
+  // Remove unwanted meta boxes ---------------------------------------------- //
 
-    if( $screen->post_type == 'business' ) {
-      remove_action( 'media_buttons', 'media_buttons' );
-    }
-
+  function remove_meta() {
+    remove_meta_box( 'tagsdiv-business_type', 'business', 'side' );
+    remove_meta_box( 'business_locationdiv', 'business', 'side' );
   }
 
 ?>
