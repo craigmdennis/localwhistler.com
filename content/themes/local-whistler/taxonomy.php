@@ -5,7 +5,13 @@
 
 <?php $term =	$wp_query->queried_object; ?>
 
-<h1>Businesses in <?php echo $term->name; ?></h1>
+<h1>
+<?php if ( is_tax( 'business_location' ) ) : ?>
+	Businesses in <?php echo $term->name; ?>
+<?php else : ?>
+	Businesses offering <?php echo $term->name; ?>
+<?php endif; ?>
+</h1>
 
 
 <?php
@@ -19,7 +25,7 @@
 	 * If you want to overload this in a child theme then include a file
 	 * called loop-archives.php and that will be used instead.
 	 */
-	 get_template_part( 'loop', 'archive' );
+	 get_template_part( 'partials/loop', 'archive' );
 ?>
 
 <?php endif; ?>

@@ -24,3 +24,6 @@ bower_components/
 # dist/
 .tmp/
 .sass-cache/
+
+# Misc
+timber-starter-theme/
