@@ -23,3 +23,4 @@ bower_components/
 # build/
 # dist/
 .tmp/
+.sass-cache/

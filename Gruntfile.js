@@ -92,9 +92,9 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= config.dist.base %>/{,*/}*.php',
-          '.tmp/styles/{,*/}*.css',
-          '.tmp/scripts/{,*/}*.js',
-          '<%= config.app.img %>/{,*/}*'
+          '<%= config.dist.base %>style.css',
+          '<%= config.dist.scripts %>/script.js',
+          '<%= config.dist.img %>/{,*/}*'
         ]
       }
     },
@@ -111,8 +111,7 @@ module.exports = function (grunt) {
         options: {
           open: '<%= config.local %>',
           base: [
-            '.tmp',
-            '<%= config.app.base %>'
+            '<%= config.dist.base %>'
           ]
         }
       },
