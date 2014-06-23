@@ -1,17 +1,20 @@
 require "breakpoint"
 require "susy"
 
+# Custom Variables
+theme_directory = 'content/themes/local-whistler'
+
 http_path = "/"
-sass_dir = 'app/styles'
-css_dir = '.tmp/styles'
-generatedImagesDir = ".tmp/images/generated",
-images_dir = "app/images"
-javascriptsDir = "app/scripts"
-fonts_dir = "app/fonts"
-importPath = "app/bower_components"
-httpImagesPath = "dist/assets/images",
-httpGeneratedImagesPath = "dist/assets/images/generated"
-httpFontsPath = "dist/assets/fonts"
+sass_dir = theme_directory + '/app/styles'
+css_dir = theme_directory + '/.tmp/styles'
+generatedImagesDir = theme_directory + "/.tmp/images/generated"
+images_dir = theme_directory + "/app/images"
+javascriptsDir = theme_directory + "/app/scripts"
+fonts_dir = theme_directory + "/app/fonts"
+importPath = theme_directory + "/app/bower_components"
+httpImagesPath = theme_directory + "/assets/images"
+httpGeneratedImagesPath = theme_directory + "/assets/images/generated"
+httpFontsPath = theme_directory + "/assets/fonts"
 relativeAssets = false
 assetCacheBuster = false
 bundleExec = true
