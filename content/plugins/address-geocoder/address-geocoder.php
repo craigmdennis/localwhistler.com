@@ -33,7 +33,7 @@ class Address_Geocoder
         $excluded = array( 'attachment', 'revision', 'nav_menu_item' );
         $this->available_post_types = array_diff( $post_types, $excluded );
         $this->options = get_option( 'address_geocoder_options' );
-        
+
         // Set some default options if none are already set
         if( !$this->options ) {
             $this->options = $this->available_post_types;
@@ -102,7 +102,7 @@ class Address_Geocoder
      */
     function add_meta_boxes( $post_type ) {
         if ( in_array( $post_type, $this->available_post_types ) && 'exclude' != $this->options[ $post_type ] ) {
-            add_meta_box( 'martygeocoder', 'Geocoder', array( $this, 'meta_box_html' ), $post_type, 'normal', 'high' );
+            add_meta_box( 'martygeocoder', 'Business Address', array( $this, 'meta_box_html' ), $post_type, 'normal', 'high' );
         }
     }
 
@@ -114,19 +114,17 @@ class Address_Geocoder
 
         wp_nonce_field( 'save_latlng', 'geocoder_nonce' );
 ?>
-        <div style="overflow:hidden; width:100%">
-            <div id="geocodepreview" style="float:right; width:240px; height:180px; border:1px solid #DFDFDF"></div>
-            <div style="margin-right:215px">
-                <p>
-                    <label for="martygeocoderaddress">Address</label><br />
-                    <input style="width:300px" type="text" name="martygeocoderaddress" id="martygeocoderaddress" value="<?php echo esc_attr( get_post_meta( $object->ID, 'martygeocoderaddress', true ) ); ?>" />
+        <div style="overflow:hidden; width:100%; padding-top: 6px;">
+            <div id="geocodepreview" style="float:right; width:240px; height:180px; border:1px solid #DFDFDF;"></div>
+            <div style="margin-right:260px">
+                <p class="label" style="font-size: 12px; line-height: 1.5em; margin: 0 0 1em; padding: 0; color: #666666; text-shadow: 0 1px 0 #FFFFFF;">
+                    <label style="color: #333333; font-size: 13px; line-height: 1.5em; font-weight: bold; padding: 0; margin: 0 0 3px; display: block; vertical-align: text-bottom;" for="martygeocoderaddress">Full Address</label>
+                    The address field will be displayed as well as the map.
                 </p>
+                <input style="width:100%;" type="text" name="martygeocoderaddress" id="martygeocoderaddress" value="<?php echo esc_attr( get_post_meta( $object->ID, 'martygeocoderaddress', true ) ); ?>" />
+                <input style="width:300px" type="hidden" name="martygeocoderlatlng" id="martygeocoderlatlng" value="<?php echo esc_attr( get_post_meta( $object->ID, 'martygeocoderlatlng', true ) ); ?>" />
                 <p>
-                    <label for="martygeocoderlatlng">Lat/Lng</label><br />
-                    <input style="width:300px" type="text" name="martygeocoderlatlng" id="martygeocoderlatlng" value="<?php echo esc_attr( get_post_meta( $object->ID, 'martygeocoderlatlng', true ) ); ?>" />
-                </p>
-                <p>
-                    <a id="geocode" class="button">Geocode Address</a>
+                    <a id="geocode" class="button">Lookup Address</a>
                 </p>
             </div>
         </div>
@@ -144,7 +142,7 @@ class Address_Geocoder
         }
 ?>
 
-<div class="wrap">    
+<div class="wrap">
     <h2><?php _e( 'Address Geocoder' ); ?></h2>
     <form method="post" action="options.php">
         <?php settings_fields( 'address_geocoder_options' ); ?>
@@ -154,7 +152,7 @@ class Address_Geocoder
         <?php $checked = ( 'exclude' != $status ) ? ' checked="checked"' : ''; ?>
         <p>
             <input type="checkbox" id="geocoder-type-<?php echo $post_type; ?>" name="address_geocoder_options[<?php echo $post_type ?>]" value="enabled" <?php echo $checked; ?> />
-            <label class="description" for="geocoder-type-<?php echo $post_type; ?>"><?php echo $post_type; ?></label> 
+            <label class="description" for="geocoder-type-<?php echo $post_type; ?>"><?php echo $post_type; ?></label>
         </p>
         <?php endforeach; ?>
 
@@ -240,5 +238,5 @@ function get_geocode_lng( $post_id ) {
 }
 
 function get_geocode_address( $post_id ) {
-    return get_post_meta( $post_id, 'martygeocoderaddress', true ); 
+    return get_post_meta( $post_id, 'martygeocoderaddress', true );
 }

@@ -48,9 +48,10 @@
 
         map = new google.maps.Map(document.getElementById('geocodepreview'), {
             mapTypeControl: false,
-            zoom: 11,
+            zoom: 15,
             center: latlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false
         });
         setMarker(latlng);
     });

@@ -1,5 +1,4 @@
 # Wordpress
-.htaccess
 content/uploads/
 shared/
 wp-content/uploads/
@@ -21,6 +20,6 @@ local-config.php
 # Yeoman
 node_modules/
 bower_components/
-build/
-dist/
+# build/
+# dist/
 .tmp/
