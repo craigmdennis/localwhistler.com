@@ -28,9 +28,11 @@ module.exports = function (grunt) {
     config: {
       base: 'content/themes/local-whistler',
       tmp: '<%= config.base %>/.tmp',
+
       // Configurable paths
       app: {
         base: '<%= config.base %>/app',
+        bower: '<%= config.app.base %>/bower_components',
         scripts: '<%= config.app.base %>/scripts',
         styles: '<%= config.app.base %>/styles',
         templates: '<%= config.app.base %>/templates',
@@ -351,6 +353,11 @@ module.exports = function (grunt) {
             // Copy Sass Map
             src: '<%= cssmin.all.dest %>.map',
             dest: '<%= config.dist.base %>/style.css.map',
+          },
+          {
+            // Copy jQuery as self-hosted fallback
+            src: '<%= config.bower %>/jquery/dist/jquery.min.js',
+            dest: '<%= config.dist.scripts %>/vendor/jquery.min.js'
           }
         ]
       }
