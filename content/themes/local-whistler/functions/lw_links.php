@@ -25,7 +25,7 @@
 
           // For scripts
           case '.js':
-            echo '<script src="' . get_bloginfo('template_directory') . '/' . $directory . '/' . $filename . '"/>';
+            echo '<script src="' . get_bloginfo('template_directory') . '/' . $directory . '/' . $filename . '"></script>';
           break;
 
         } // END switch

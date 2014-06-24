@@ -27,11 +27,11 @@ module.exports = function (grunt) {
     // Project settings
     config: {
       base: 'content/themes/local-whistler',
-      tmp: '<%= config.base %>/.tmp',
+      tmp: '.tmp',
 
       // Configurable paths
       app: {
-        base: '<%= config.base %>/app',
+        base: 'app',
         bower: '<%= config.app.base %>/bower_components',
         scripts: '<%= config.app.base %>/scripts',
         styles: '<%= config.app.base %>/styles',
@@ -41,8 +41,7 @@ module.exports = function (grunt) {
       },
 
       dist: {
-        base: 'content/themes/local-whistler',
-        assets: '<%= config.dist.base %>/assets',
+        assets: 'assets',
         scripts: '<%= config.dist.assets %>/scripts',
         img: '<%= config.dist.assets %>/images'
       },
@@ -97,8 +96,8 @@ module.exports = function (grunt) {
         files: [
           '<%= config.tmp %>/{,*/}*.css',
           '<%= config.tmp %>/{,*/}*.js',
-          '<%= config.dist.base %>/{,*/}*.php',
-          // '<%= config.dist.base %>/style.css',
+          '{,*/}*.php',
+          // style.css',
           // '<%= config.dist.scripts %>/script.js',
           '<%= config.app.img %>/{,*/}*'
         ]
@@ -132,7 +131,6 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '<%= config.tmp %>',
-            // '<%= config.dist.base %>/*',
             '<%= config.dist.assets %>/*',
             '<%= cssmin.all.dest %>'
           ]
@@ -150,13 +148,13 @@ module.exports = function (grunt) {
     //       {
     //         expand: true,
     //         cwd: '<%= config.app.templates %>/',
-    //         dest: '<%= config.dist.base %>',
+    //         dest: '/',
     //         src: '*.jade',
     //         ext: '.php'
     //       },{
     //         expand: true,
     //         cwd: '<%= config.app.partials %>/',
-    //         dest: '<%= config.dist.base %>',
+    //         dest: '/',
     //         src: '*.jade',
     //         ext: '.php'
     //       }
@@ -282,7 +280,7 @@ module.exports = function (grunt) {
       },
       all: {
         src: '<%= config.tmp %>/styles/{,*/}*.css',
-        dest: '<%= config.dist.base %>/style.css'
+        dest: 'style.css'
       }
     },
 
@@ -305,7 +303,7 @@ module.exports = function (grunt) {
             expand: true,
             dot: true,
             cwd: '<%= config.app.base %>',
-            dest: '<%= config.dist.base %>',
+            dest: '/',
             src: [
               '*.{ico,png,txt,svg,php,md}',
               '.htaccess',
@@ -352,7 +350,7 @@ module.exports = function (grunt) {
           {
             // Copy Sass Map
             src: '<%= cssmin.all.dest %>.map',
-            dest: '<%= config.dist.base %>/style.css.map',
+            dest: 'style.css.map',
           },
           {
             // Copy jQuery as self-hosted fallback
@@ -425,10 +423,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'copy:server',
       'autoprefixer',
-      'copy:dist',
-      'newer:concat',
-      'newer:uglify',
-      'newer:cssmin'
+      'copy:dist'
     ]);
   });
 
