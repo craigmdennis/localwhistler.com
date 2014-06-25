@@ -64,7 +64,7 @@ class Address_Geocoder
 
         // Load scripts only when necessary
         if ( $this->is_geocoder_needed() ) {
-            wp_register_script( 'googlemaps', '//maps.googleapis.com/maps/api/js?key=AIzaSyBUUGSskO3GEjKLHjT4EIV-H2_Xs3MfPiA&sensor=false' );
+            wp_register_script( 'googlemaps', '//maps.googleapis.com/maps/api/js?key=AIzaSyCMXKbvuj1knT8E8nzZPUjADUIfR34jtZg&sensor=false' );
             wp_register_script( 'marty_geocode_js', plugins_url( '/address-geocoder.js', __FILE__ ) );
 
             wp_enqueue_script( 'googlemaps' );

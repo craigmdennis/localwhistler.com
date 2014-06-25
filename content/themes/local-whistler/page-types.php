@@ -4,6 +4,11 @@
 
 <h1>Filter by business type</h1>
 
-<?php get_template_part( 'partials/filter', 'types' ); ?>
+<ul>
+  <li>Food &amp; Drink</li>
+  <li>Health &amp; Wellness</li>
+  <li>Activities</li>
+  <li>Retail Shops</li>
+</ul>
 
 <?php get_footer(); ?>

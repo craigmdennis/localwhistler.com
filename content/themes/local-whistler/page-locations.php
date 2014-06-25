@@ -4,6 +4,11 @@
 
 <h1>Filter by business location</h1>
 
-<?php get_template_part( 'partials/filter', 'locations' ); ?>
+<ul>
+  <li>Function Junction</li>
+  <li>Nesters</li>
+  <li>Whistler Village</li>
+  <li>Whistler Creekside</li>
+</ul>
 
 <?php get_footer(); ?>
