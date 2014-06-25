@@ -3,28 +3,61 @@
 
 <?php
 
-  if (isset( GET['search'] ) ) {
+  // todo: get url variables
+
+  if (isset( $_GET['search'] ) ) {
     // Set the search input value
   }
 
-  if (isset( GET['location'] ) ) {
+  if (isset( $_GET['business_location'] ) ) {
     // Set the location 'selected' option
   }
 
-  if (isset( GET['type'] ) ) {
+  if (isset( $_GET['business_type'] ) ) {
     // Set the type 'selected' option
   }
 
-  // Then we can chang the URL to ?location=creekside&type=food-drink&search=some%20words
+  // for each taxonomy
+  // if $_GET set
+    // use get in query $args
+  // if ! set
+    // omit that loop for the query $args
+
+  // todo: Create the following query by looping through each taxonomy.
+  // todo: Build a function to loop through each taxonomy and apply run callbacks
+  $args = array(
+    'post_type' => array('business'),
+    'tax_query' => array(
+      'relation' => 'OR',
+       array(
+         'taxonomy' => 'business_type',
+         'terms' => 'health', // Use $_GET variable if isset
+         'field' => 'slug'
+       ),
+       array(
+         'taxonomy' => 'business_location',
+         'terms' => 'village', // Use $_GET variable if isset
+         'field' => 'slug'
+       ),
+    )
+  );
+
+  echo '<pre>';
+  print_r( query_posts($args) );
+  echo '</pre>';
+
+  // todo: change the URL to ?business_location=creekside&business_type=food-drink,health&search=some%20words
 
 ?>
 
 <?php if ( have_posts() ) : the_post(); ?>
 
-  <div id="filterSearchArea" class="filter__wrapper">
+  <div id="filterSearchArea" class="form__row">
     <label for="filterSearch">Search by keyword</label>
     <input id="filterSearch" type="search" placeholder="e.g. Yam Fries">
   </div>
+
+  <?php // echo '<pre>'; print_r( $wp_query ); echo '</pre>'; ?>
 
 
   <?php
@@ -56,9 +89,9 @@
         <!--  Skip the business filters -->
         <?php if ( $taxonomy->name == 'business_filter' ) : continue; endif; ?>
 
-        <div class="filter__wrapper">
+        <div class="form__row">
           <label for="filter<?php echo $taxonomySlugCapital; ?>"><?php echo $taxonomyName; ?></label>
-          <select id="filter<?php echo $taxonomySlugCapital; ?>" class="filter__<?php echo $taxonomySlug; ?>">
+          <select id="filter<?php echo $taxonomySlugCapital; ?>" class="js__filter-<?php echo $taxonomySlug; ?>">
             <option value="">Any</option>
             <?php foreach ( $terms as $term ) : ?>
 
@@ -85,25 +118,28 @@
   <?php endif; // END if $taxonomies ?>
 
   <!-- Hard coded sort options -->
-  <div class="filter__wrapper">
+  <div class="form__row">
     <label for="filterSort">Select Sort Order</label>
-    <select id="filterSort">
+    <select id="filterSort" class="js__filter-sort">
       <option data-sort-target="result__title" data-sort-order="asc">A-Z</option>
       <option data-sort-target="result__title" data-sort-order="desc">Z-A</option>
       <option data-sort-target="result__date-published", data-sort-order="asc">Newest First</option>
       <option data-sort-target="result__date-published", data-sort-order="desc">Oldest First</option>
-      <!-- <option value="">Popular</option> Not sure how to do this yet -->
+      <!-- <option value="">Popular</option> todo: work out how to sort popular -->
     </select>
+  </div>
+
+  <!-- todo: make sure filter form works with no js -->
+  <div class="form__row">
+    <input id="filterSubmit" type="submit" value="Filter" />
   </div>
 
   <div id="results">
   </div>
 
-  <!-- Initial loading in case JS fails-->
-  <!-- <noscript>
-    <?php query_posts('post_type=business&order=asc'); ?>
+  <!-- todo: disable initial filter.js function and write the page normally -->
 
-    <?php if ( have_posts() ) : ?>
+    <!-- <?php if ( have_posts() ) : ?>
 
       <div id="results">
         <ul id="results__list">
@@ -122,9 +158,7 @@
         </ul>
       </div>
 
-    <?php endif; ?>
-  <noscript> -->
-
+    <?php endif; ?> -->
 
   <?php rewind_posts(); ?>
 

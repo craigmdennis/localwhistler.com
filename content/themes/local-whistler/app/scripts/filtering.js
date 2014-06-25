@@ -43,9 +43,9 @@ $(document).ready( function(){
   var settings = {
 
     filter_criteria: {
-      location: ['#filterLocation .TYPE.any', 'taxonomy_business_location.ARRAY.slug'],
-      type: ['.filter__type .TYPE.any', 'taxonomy_business_type.ARRAY.slug'],
-      // filters: ['.filter__promoted input:checkbox', 'taxonomy_business_filter.ARRAY.slug']
+      location: ['.js__filter-location .TYPE.any', 'taxonomy_business_location.ARRAY.slug'],
+      type: ['.js__filter-type .TYPE.any', 'taxonomy_business_type.ARRAY.slug'],
+      // filters: ['.js__filter-promoted input:checkbox', 'taxonomy_business_filter.ARRAY.slug']
     },
 
     search: {
@@ -62,17 +62,49 @@ $(document).ready( function(){
 
       after_filter: function( result ){
 
+        var pathArray = window.location.pathname.split( '/' );
+        var host = window.location.host;
+        var protocol = window.location.protocol;
+
         var $currentType = $('#filterType :selected').val()
         var $currentLocation = $('#filterLocation :selected').val()
-        // var $currentTypeText = // Get the current type from the URL to start
+        var $currentTypeText = $('#filterType :selected').text()
         var $currentLocationText = $('#filterLocation :selected').text()
 
-        // window.history.pushState('', $currentLocationText + ' | ' + $currentType, 'http://localwhistler.local/' + $currentType + '/' + $currentLocation + '/');
+        var pushTitle = '';
+        var pushUrl = 'http://' + host + pathArray[0] +'/';
 
-        // Update a google map
+        var pushData = {};
+
+        if ( $currentLocation !== '' && $currentType == '' ) {
+          pushTitle = $currentLocationText;
+          pushUrl += 'location/' + $currentLocation + '/';
+        }
+
+        else if ( $currentLocation == '' && $currentType !== '' ) {
+          pushTitle = $currentTypeText;
+          pushUrl += 'location/' + $currentType + '/';
+        }
+
+        // Generate a URL scheme that we can $_GET
+        // Might be able to rewrite it to /location/creekside/type/food-drink/activities/
+        else {
+          pushTitle = 'Filtering';
+          pushUrl += '?business_location=' + $currentLocation + '&business_type=' + $currentType; // Plus search string
+        }
+
+        pushTitle += ' | Local Whistler';
+
+        // todo: use history.js
+        // Check if it's safe to use pushstate
+        if ( history.replaceState ) {
+          // window.history.replaceState( pushData, pushTitle, pushUrl );
+        }
+
+        // todo: Google map integration
         // googleMap.updateMarkers(result);
 
-        // Tinysort integration
+        // todo: tiny sort integration
         // $('a[data-fjs]').tsort('.fs_price:visible', {order: 'asc'})
 
         if ( !result.length ){
