@@ -1,10 +1,10 @@
 <?php
 
-  // -------------------------------------------------------------------------- //
+  // ------------------------------------------------------------------------- //
   // All actions are called at the top.
   // They should be self explanitory and in the order in which the functions
   // appear in the file.
-  // ---------------------------------------------------------------------------//
+  // --------------------------------------------------------------------------//
 
   add_action( 'init', 'create_businesses' );
   add_filter( 'post_updated_messages', 'create_business_messages' );

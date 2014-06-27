@@ -19,7 +19,10 @@
   // Custom theme options
 
   // Misc Functions
+  require_once('functions/lw_comments.php');
+  require_once('functions/lw_sidebar.php');
   require_once('functions/lw_links.php');
+  require_once('functions/lw_query_utilities.php');
   require_once('functions/lw_thumbnails.php');
   require_once('functions/lw_security.php');
   require_once('functions/lw_menus.php');

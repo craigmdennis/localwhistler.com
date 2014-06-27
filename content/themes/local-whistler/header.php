@@ -61,12 +61,25 @@
 <body <?php body_class( 'device-' . $deviceType ); ?> id="top">
 
   <header role="banner">
-    <a href="<?php echo esc_url( home_url( '/.DS_Store' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" class="logo"><?php bloginfo( 'name' ); ?></a>
-    <p class="desc">
-  <?php bloginfo( 'description' ); ?>
-    </p>
-    <nav role="navigation">
-      <?php $args = array( 'menu' => 'mainnav', 'container' => false, 'menu_id' => false, 'menu_class' => false); wp_nav_menu($args); ?>
-    </nav>
-    <?php get_search_form(); ?>
+    <div class="header">
+      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" class="logo"><?php bloginfo( 'name' ); ?></a>
+      <p class="desc"><?php bloginfo( 'description' ); ?></p>
+
+      <nav role="navigation">
+        <div class="nav">
+          <?php
+
+            $args = array(
+              'menu' => 'mainnav',
+              'container' => false,
+              'menu_id' => false,
+              'menu_class' => false);
+
+            wp_nav_menu($args);
+
+          ?>
+        </div>
+      </nav>
+
+    </div>
   </header>
