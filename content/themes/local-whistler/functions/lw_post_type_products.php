@@ -39,8 +39,11 @@
   		'show_ui'            => true,
   		'show_in_menu'       => true,
   		'query_var'          => true,
-  		'rewrite'            => array( 'slug' => 'product' ),
-  		'capability_type'    => 'post',
+  		'rewrite'              => array(
+        'slug' => 'product',
+        'with_front' => false
+      ),
+  		'capability_type'    => 'page',
   		'has_archive'        => true,
   		'hierarchical'       => false,
   		'menu_position'      => null,

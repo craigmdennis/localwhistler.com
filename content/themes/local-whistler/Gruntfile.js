@@ -61,13 +61,18 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
+      options: {
+        spawn: false,
+        interrupt: true,
+        livereloadOnError: false
+      },
       // jadeTemplates: {
       //   files: ['<%= config.app.templates %>/*.jade', '<%= config.app.partials %>/*.jade'],
       //   tasks: ['jadephp:dist']
       // },
       coffee: {
         files: ['<%= config.app.scripts %>/{,*/}*.{coffee,litcoffee,coffee.md}'],
-        tasks: ['coffee', 'jshint:server']
+        tasks: ['coffee', 'jshint:server'],
       },
       sassConfig: {
         files: ['config.rb'],
@@ -79,7 +84,10 @@ module.exports = function (grunt) {
       },
       gruntfile: {
         files: ['Gruntfile.js'],
-        tasks: ['jshint:gruntfile', 'default']
+        tasks: ['jshint:gruntfile', 'default'],
+        options: {
+          livereload: true
+        }
       },
       compass: {
         files: ['<%= config.app.styles %>/{,*/}*.{scss,sass}'],
@@ -89,18 +97,17 @@ module.exports = function (grunt) {
         files: ['<%= config.app.styles %>/{,*/}*.css'],
         tasks: ['newer:copy:all', 'autoprefixer']
       },
-      livereload: {
+      php: {
+        files: ['{,*/}*.php'],
         options: {
-          livereload: '<%= connect.options.livereload %>'
-        },
-        files: [
-          '<%= config.tmp %>/{,*/}*.css',
-          '<%= config.tmp %>/{,*/}*.js',
-          '{,*/}*.php',
-          // style.css',
-          // '<%= config.dist.scripts %>/script.js',
-          '<%= config.app.img %>/{,*/}*'
-        ]
+          livereload: true
+        }
+      },
+      tmp: {
+        files: ['<%= config.tmp %>/styles/*.css', '<%= config.tmp %>/scripts/*.js'],
+        options: {
+          livereload: true
+        }
       }
     },
 
@@ -207,12 +214,12 @@ module.exports = function (grunt) {
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
-        config: 'config.rb',
-        sourcemap: true
+        config: 'config.rb'
       },
       dist: {
         options: {
-          debugInfo: false
+          debugInfo: false,
+          sourcemap: true
         }
       },
       server: {

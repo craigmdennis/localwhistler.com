@@ -9,3 +9,12 @@
   clip: rect(0,0,0,0);
   border: 0;
 }
+
+%unstyled {
+  list-style: none;
+  padding:0;
+}
+
+.js .hide-with-js {
+  // @extend %sr-only;
+}

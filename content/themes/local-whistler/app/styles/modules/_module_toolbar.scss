@@ -1,0 +1,19 @@
+.toolbar {
+  @include clearfix;
+  border-left: 1px solid #EEE;
+  border-right: 1px solid #EEE;
+  padding: $baseline*4;
+}
+
+.toolbar__actions {
+  @extend %unstyled;
+  float: right;
+}
+
+.toolbar__item {
+  display: inline-block;
+}
+
+.toolbar__count {
+  float: left;
+}

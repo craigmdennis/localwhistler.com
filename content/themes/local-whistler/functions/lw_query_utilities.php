@@ -28,8 +28,8 @@
 
       foreach ( $_GET as $key => $value ) :
 
-        // if ($value == 'any') {
-        //   continue;
+        // if ( $value == 'any' ) {
+        //   $value = '';
         // }
 
         // If the slug isn't in the $exclusions array
@@ -63,8 +63,18 @@
 
     else :
 
-      // Get the variable from Wordpress
-      $result = get_query_var( $queryVar );
+      // If ?order= isn't set
+      if ( $queryVar == 'order') :
+
+        // Set the default order to newest first
+        $result = 'date-desc';
+
+      else:
+
+        // Get the variable from Wordpress
+        $result = get_query_var( $queryVar );
+
+      endif;
 
     endif;
 
@@ -79,9 +89,42 @@
   function add_query_vars_filter( $vars ){
 
     $vars[] = 'order';
+    $vars[] = 'view';
 
     return $vars;
 
   }
+
+
+
+  // Return the current view for filters (default: list) --------------------- //
+
+  function get_view_type() {
+
+    $viewType = 'list';
+
+    if ( isset( $_GET['view'] ) ) {
+      $viewType = $_GET['view'];
+    }
+
+    return $viewType;
+
+  }
+
+
+
+  // Remove key => value pairs from $_GET param ------------------------------ //
+
+  // function remove_querystring_var( $url, $key ) {
+  //
+  //   if ( $url == '') {
+  //     $url = '?'
+  //   }
+  //
+  //   $url = preg_replace('/(.*)(?|&)' . $key . '=[^&]+?(&)(.*)/i', '$1$2$4', $url . '&');
+  //   $url = substr($url, 0, -1);
+  //   return $url;
+  //
+  // }
 
 ?>

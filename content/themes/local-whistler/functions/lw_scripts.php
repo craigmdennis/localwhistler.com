@@ -7,7 +7,6 @@
   // --------------------------------------------------------------------------//
 
   add_action( 'wp_enqueue_scripts', 'lw_deregister_jquery' );
-  // add_action( 'wp_enqueue_scripts', 'abcd' );
 
 
 
@@ -20,12 +19,5 @@
 
 
   // Add the liverelaod script if we're in the local environment ------------- //
-
-  // function abcd() {
-    // if ( WP_ENV == 'local' ) {
-    //   wp_register_script('livereload', get_template_directory_uri() . '/node_modules/grunt-contrib-watch/tasks/lib/livereload.js', null, '1', false);
-    //   wp_enqueue_script('livereload');
-    // }
-  // }
 
 ?>

@@ -31,6 +31,9 @@
   <!-- END Production -->
 <?php endif; // End if local ?>
 
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBWcRdeBybFQUpx5tyfIw1QbwskiRuFsdc&sensor=true"
+      type="text/javascript"></script>
+
 <?php if ( is_singular() ) wp_print_scripts( 'comment-reply' ); ?>
 
 </body>

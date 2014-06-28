@@ -1,17 +1,11 @@
-<?php
-
-  // Allow access to device types from functions.php
-  global $device;
-  global $deviceType;
-
-?>
-
 <!DOCTYPE html>
 <html l<?php language_attributes(); ?>>
 <head>
-  <title><?php
-    global $page, $paged;
-    wp_title( '|', true, 'right' );
+  <title>
+    <?php
+      global $page, $paged;
+
+      wp_title( '|', true, 'right' );
       bloginfo( 'name' );
       $site_description = get_bloginfo( 'description', 'display' );
       if ( $site_description && ( is_home() || is_front_page() ) )
@@ -58,10 +52,14 @@
 
 </head>
 
-<body <?php body_class( 'device-' . $deviceType ); ?> id="top">
+<?php global $deviceType; ?>
+
+<body <?php body_class( 'device-' . $deviceType . ' view-' . get_view_type() ); ?> id="top">
 
   <header role="banner">
+
     <div class="header">
+
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" class="logo"><?php bloginfo( 'name' ); ?></a>
       <p class="desc"><?php bloginfo( 'description' ); ?></p>
 
@@ -69,13 +67,15 @@
         <div class="nav">
           <?php
 
-            $args = array(
+            $navArgs = array(
               'menu' => 'mainnav',
-              'container' => false,
+              'container' => 'div',
+              'container_class' => 'menu',
               'menu_id' => false,
-              'menu_class' => false);
+              'menu_class' => 'menu__list'
+            );
 
-            wp_nav_menu($args);
+            wp_nav_menu( $navArgs );
 
           ?>
         </div>

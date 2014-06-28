@@ -18,7 +18,7 @@
           <?php elseif ( is_category() ) : ?><?php echo single_cat_title(); ?>
           <?php elseif ( is_search() ) : ?><?php printf( __( 'Search Results for: %s' ), '<span>' . get_search_query() . '</span>' ); ?>
           <?php elseif ( is_home() ) : ?>
-            Latest Posts<
+            Latest Posts
           <?php else : ?>
         <?php endif; ?>
     </h1>

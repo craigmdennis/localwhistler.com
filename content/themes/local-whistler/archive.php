@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+<!-- archive.php -->
+
 <?php
 	if ( have_posts() )
 		the_post();

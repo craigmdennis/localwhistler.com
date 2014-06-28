@@ -17,10 +17,12 @@
 @import "vars/vars_brand";
 @import "vars/vars_type";
 
+
 /** PARTIALS **/
 @import "root";
 @import "helpers";
 @import "structure";
+@import "navigation";
 @import "type";
 @import "img";
 @import "links";
@@ -28,6 +30,8 @@
 @import "icons";
 
 /* MODULES */
-@import "module_media";
+@import "modules/module_media";
+@import "modules/module_forms";
+@import "modules/module_toolbar";
 
 /** INBOX - Styles that are yet to be organised **/

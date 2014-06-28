@@ -42,12 +42,15 @@
   		'show_ui'              => true,
   		'show_in_menu'         => true,
   		'query_var'            => true,
-  		'rewrite'              => array( 'slug' => 'business' ),
-  		'capability_type'      => 'post',
+  		'rewrite'              => array(
+        'slug' => 'business',
+        'with_front' => false
+      ),
+  		'capability_type'      => 'page',
   		'has_archive'          => true,
   		'hierarchical'         => false,
   		'menu_position'        => null,
-  		'supports'             => array( 'title', 'editor', 'thumbnail'),
+  		'supports'             => array( 'title', 'editor', 'thumbnail', 'excerpt'),
       'menu_position'        => 5
   	);
 
@@ -176,7 +179,7 @@
     $rewrite = array(
       'slug'              => 'type',
       'with_front'        => false,
-      'hierarchical'      => false
+      'hierarchical'      => true
     );
 
     $args = array(
