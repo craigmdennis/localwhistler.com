@@ -271,10 +271,10 @@ module.exports = function (grunt) {
       options: {
         compress: true,
         mangle: true,
-        sourceMap: true
+        sourceMap: true,
       },
       all: {
-        src: '<%= concat.dest =>',
+        src: '<%= concat.all.dest %>',
         dest: '<%= config.dist.scripts %>/script.js'
       }
     },
@@ -374,9 +374,9 @@ module.exports = function (grunt) {
       devFile: '<%= config.app.base %>/bower_components/modernizr/modernizr.js',
       outputFile: '<%= config.dist.scripts %>/modernizr-custom.js',
       files: [
-        '<%= config.dist.scripts %>/{,*/}*.js',
-        '<%= config.dist.styles %>/{,*/}*.css',
-        '!<%= config.dist.scripts %>/vendor/*'
+        '<%= config.tmp %>/scripts/concat/script.js',
+        // '<%= config.tmp %>/styles/{,*/}*.css',
+        // '!<%= config.tmp %>/scripts/vendor/*'
       ],
       uglify: true,
       extra: {
@@ -453,12 +453,13 @@ module.exports = function (grunt) {
     // 'jadephp:dist',
     'concurrent:dist',
     'jshint',
+    'copy:server',
     'autoprefixer',
-    'copy:dist',
     'concat',
-    'uglify',
-    'cssmin',
     'modernizr',
+    'cssmin',
+    'copy:dist',
+    'uglify',
     'connect:dist'
   ]);
 
