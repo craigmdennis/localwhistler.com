@@ -16,8 +16,10 @@
 
   // Get the two parts of the order if they exist
   if ( strpos( $getOrder, '-' ) ) {
-    $order = explode( '-', $getOrder )[1];
-    $orderBy = explode( '-', $getOrder )[0];
+    $order = explode( '-', $getOrder );
+    $order = $order[1];
+    $orderBy = explode( '-', $getOrder );
+    $order = $order[0];
   }
 
   // Add order to the generated query
