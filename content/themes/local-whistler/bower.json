@@ -1,7 +1,7 @@
 {
   "name": "localwhister-com",
   "description": "A local business directory",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "jquery": "1.11.1",
