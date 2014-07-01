@@ -28,6 +28,7 @@
   require_once('functions/lw_menus.php');
   require_once('functions/lw_scripts.php');
   require_once('functions/lw_overrides.php');
+  require_once('functions/lw_taxonomies.php');
 
   // SANDBOX - Things that haven't been organised yet
 

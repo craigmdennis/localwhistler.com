@@ -1,0 +1,16 @@
+%btn {
+  display: inline-block;
+  padding: $baseline $baseline*2;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+
+.btn--primary {
+  @extend %btn;
+  border-color: #333;
+}
+
+.btn--secondary {
+
+}

@@ -16,8 +16,4 @@
     wp_deregister_script('jquery');
   }
 
-
-
-  // Add the liverelaod script if we're in the local environment ------------- //
-
 ?>

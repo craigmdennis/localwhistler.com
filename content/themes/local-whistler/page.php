@@ -11,9 +11,6 @@
 
         <?php the_content(); ?>
 
-        <?php edit_post_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
-        <?php comments_template( '', true ); ?>
-
         <?php endwhile; ?>
     </article>
 

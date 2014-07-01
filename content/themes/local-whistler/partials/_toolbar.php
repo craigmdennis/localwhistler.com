@@ -20,11 +20,11 @@
         <span class="toolbar__button-text">List</span>
         <i class="toolbar__ion icon-list"></i>
       </a>
-      </li>
-    <li class="toolbar__item">
+    </li>
+    <li class="toolbar__item show-with-js">
       <a href="<?php echo add_query_arg( 'view', 'map' ); ?>" class="toolbar__button">
         <span class="toolbar__button-text">Map</span>
-        <i class="toolbar__ion icon-map"></i>
+        <i class="toolbar__ion icon-list"></i>
       </a>
     </li>
   </ul>

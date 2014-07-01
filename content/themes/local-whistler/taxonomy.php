@@ -20,30 +20,27 @@
     $orderBy = explode( '-', $getOrder )[0];
   }
 
-  // If the params are empty add a ?
-  // If the params contain 'view'
-    // Remove view param and value
-
-  // if ( isset( $_GET['view'] ) ) {
-  //   $urlQueryString = substr_replace( $urlQueryString, '', 'view=' . $_GET['view'] );
-  // }
-  // // If there are no $_GET paramaters or there is no ?, add one
-  // if ( $urlQueryString == '' || !strpos( '?', $urlQueryString ) ) {
-  //   $urlQueryString = '?' . $urlQueryString;
-  // }
-
   // Add order to the generated query
   query_posts( $query_string . '&order=' . $order . '&orderby=' . $orderBy . '&post_type=business' );
 
 ?>
 
-  <?php require_once('partials/_filters.php'); ?>
+  <!-- <div class="hero--spaced">
+    <img class="hero__image" src="http://p-hold.com/happy/960/600/blur" />
+    <div class="hero__overlay">
+      <h2 class="hero__title">Health &amp; Wellness</h2>
+    </div>
+  </div> -->
 
-  <?php if ( have_posts() ) : ?>
+    <?php require_once('partials/_filters.php'); ?>
 
-    <?php require_once('partials/_toolbar.php'); ?>
+    <?php if ( have_posts() ) : ?>
 
-  <?php endif; // End have_posts() ?>
+      <?php require_once('partials/_toolbar.php'); ?>
+
+    <?php endif; // End have_posts() ?>
+
+  <?php rewind_posts(); ?>
 
   <!-- todo: break the results and the filters into seperate files -->
   <!-- todo: create custom templates for maps, list and gallery views -->
@@ -52,20 +49,6 @@
   <div id="results">
 
     <?php if ( have_posts() ) : ?>
-
-      <?php if ( isset($_GET['view']) && ( $_GET['view'] == ('map') ) ) : ?>
-
-        <div id="resultsMap">
-
-          <?php while ( have_posts() ) : the_post(); ?>
-
-            <?php include('partials/_module_map.php'); ?>
-
-          <?php endwhile; ?>
-
-        </div>
-
-      <?php else : ?>
 
         <ol id="resultsList" class="media__list">
 
@@ -76,8 +59,6 @@
           <?php endwhile; ?>
 
         </ol>
-
-      <?php endif; ?>
 
     <?php endif; ?>
 

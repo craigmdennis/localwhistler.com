@@ -3,10 +3,10 @@
   <form id="filterForm" method="GET" action="/">
 
     <!-- possible to set by cookies -->
-    <input type="hidden" name="view" value="<?php echo get_view_type(); ?>">
+    <input id="filterView" type="hidden" name="view" value="<?php echo get_view_type(); ?>">
 
     <div id="filterSearchArea" class="form__row">
-      <label for="filterSearch" class="form__label">Search by keyword</label>
+      <label for="filterSearch" class="form__label form__label--search">Search by keyword</label>
       <input id="filterSearch" class="form__text" type="search" placeholder="e.g. Organic" name="s" value="<?php the_search_query(); ?>">
     </div>
 
@@ -22,7 +22,7 @@
 
           <?php
 
-            $taxonomyName = $taxonomy->labels->name;
+            $taxonomyName = $taxonomy->name;
             $taxonomySlug =  $taxonomy->rewrite['slug'];
             $taxonomySlugCapital = ucfirst( $taxonomySlug );
 
@@ -31,8 +31,8 @@
           <!--  Skip the business filters -->
           <?php if ( $taxonomy->name == 'business_filter' ) : continue; endif; ?>
 
-          <div class="form__row">
-            <label for="filter<?php echo $taxonomySlugCapital; ?>" class="form__label"><?php echo $taxonomy->name; ?></label>
+          <div class="form__row--<?php echo $taxonomySlug; ?>">
+            <label for="filter<?php echo $taxonomySlugCapital; ?>" class="form__label"><?php echo $taxonomyName; ?></label>
             <select id="filter<?php echo $taxonomySlugCapital; ?>" class="form__select js__filter-<?php echo $taxonomySlug; ?>" name="business_<?php echo $taxonomySlug; ?>">
               <option value="">Any</option>
 
@@ -64,7 +64,7 @@
     <?php endif; // END if $taxonomies ?>
 
     <!-- Hard coded sort options -->
-    <div class="form__row">
+    <div class="form__row--sort">
       <label for="filterOrder" class="form__label">Sort Order</label>
       <select id="filterOrder" class="form__select js__filter-sort" name="order">
 
@@ -73,25 +73,25 @@
           // Put the sorting into an array so we can loop over it
           $orderOptions = array(
             array(
-              'data-sort-target' => 'result__title',
+              'data-sort-target' => 'media__title',
               'data-sort-order' => 'asc',
               'value' => 'asc',
               'text' => 'A-Z'
             ),
             array(
-              'data-sort-target' => 'result__title',
+              'data-sort-target' => 'media__title',
               'data-sort-order' => 'desc',
               'value' => 'desc',
               'text' => 'Z-A'
             ),
             array(
-              'data-sort-target' => 'result__date-published',
+              'data-sort-target' => 'media__date',
               'data-sort-order' => 'desc',
               'value' => 'date-desc',
               'text' => 'Newest First'
             ),
             array(
-              'data-sort-target' => 'result__date-published',
+              'data-sort-target' => 'media__date',
               'data-sort-order' => 'asc',
               'value' => 'date-asc',
               'text' => 'Oldest First'

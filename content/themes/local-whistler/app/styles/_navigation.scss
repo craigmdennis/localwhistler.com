@@ -1,19 +1,33 @@
 .menu__list {
   @extend %unstyled;
   display:table;
-  table-layout: fixed;
+  // table-layout: fixed;
   padding: 0;
-  margin: 0;
+  margin: 0 0 $baseline*2;
   width: 100%;
+  border-right: 1px solid #CCC;
 
   li {
     background-color: #FFF;
     position: relative;
+    z-index: 99;
   }
 
   > li {
+    border: 1px solid #CCC;
+    border-right: 0;
     display: table-cell;
     width: 2%; /* Safari 6 bug */
+
+    &:hover,
+    &:focus {
+      background-color: #F2F2F2;
+    }
+
+    > a {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     ul {
       @extend %unstyled;
@@ -23,18 +37,38 @@
 
     &:hover,
     &:focus {
+
       ul {
-        left: 0;
+        // left: 0;
+        left: -1px;
+      }
+    }
+  }
+
+  .menu-item-has-children:after {
+    content: "▾";
+    display: block;
+    position: absolute;
+    right: $baseline*2;
+    top: 0.6em;
+  }
+
+  .sub-menu {
+    border: 1px solid rgba(0,0,0,0.2);
+    border-top-color: #CCC;
+
+    a {
+      &:hover,
+      &:focus {
+        background-color: #F2F2F2;
       }
     }
   }
 
   a {
-    padding: $baseline;
+    font-size: 0.8rem;
+    padding: $baseline*2;
     display: block;
-    border: 1px solid #CCC;
-    text-overflow: ellipsis;
-    overflow: hidden;
     white-space: nowrap;
   }
 }

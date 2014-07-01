@@ -2,18 +2,30 @@ $media-border-color: #EEE;
 $media-title-color: #333;
 
 /* Media Oject */
-.media__list {
-  padding: 0;
-  border-bottom: 1px solid $media-border-color;
-}
-
 .media {
+  background-color: #FFF;
   position: relative;
   border: 1px solid $media-border-color;
   list-style: none;
   padding: $baseline*4;
   border-bottom: 0;
+
+  &.last-visible {
+    border-radius: 0 0 3px 3px;
+    border: 1px solid $media-border-color;
+  }
 }
+
+.media__list {
+  padding: 0;
+}
+
+.view-map {
+  .media__list {
+    display: none;
+  }
+}
+
 
 .media__link--title {
   color: $media-title-color;

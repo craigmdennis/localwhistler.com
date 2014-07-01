@@ -1,5 +1,6 @@
 .toolbar {
   @include clearfix;
+  background-color: #FFF;
   border-left: 1px solid #EEE;
   border-right: 1px solid #EEE;
   padding: $baseline*4;
@@ -10,7 +11,8 @@
   float: right;
 }
 
-.toolbar__item {
+.toolbar__item,
+.toolbar__item.show-with-js {
   display: inline-block;
 }
 

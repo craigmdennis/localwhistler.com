@@ -64,7 +64,7 @@ module.exports = function (grunt) {
       options: {
         spawn: false,
         interrupt: true,
-        livereloadOnError: false
+        // livereloadOnError: false
       },
       // jadeTemplates: {
       //   files: ['<%= config.app.templates %>/*.jade', '<%= config.app.partials %>/*.jade'],
@@ -104,7 +104,7 @@ module.exports = function (grunt) {
         }
       },
       tmp: {
-        files: ['<%= config.tmp %>/styles/*.css', '<%= config.tmp %>/scripts/*.js'],
+        files: ['<%= config.tmp %>/styles/style.css', '<%= config.tmp %>/scripts/*.js'],
         options: {
           livereload: true
         }

@@ -1,4 +1,3 @@
-// Only display content to screen readers
 %sr-only {
   position: absolute;
   width: 1px;
@@ -16,5 +15,14 @@
 }
 
 .js .hide-with-js {
-  // @extend %sr-only;
+  @extend %sr-only;
+}
+
+
+.show-with-js {
+  display: none;
+}
+
+.js .show-with-js {
+  display: block;
 }

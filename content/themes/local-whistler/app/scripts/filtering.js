@@ -1,12 +1,11 @@
 $(document).ready( function( ){
 
   // Only initialise sorting when there are results
-  if ( $("#resultsList").length ) {
-    // filter.init();
+  if ( $("#results").length ) {
+    filter.init();
   }
 
 });
-
 
 var filter;
 
@@ -17,6 +16,8 @@ filter = {};
   'use strict';
 
   return filter = {
+
+    filterCount: 0,
 
     apiLocation: '/api/get_posts/?post_type=business',
 
@@ -37,26 +38,51 @@ filter = {};
           else { return current_value == option; }
         }
       },
+
       streaming: {
         data_url: filter.apiLocation,
         stream_after: 1,
         batch_size: 50,
       },
+
       callbacks: {
         after_filter: function( result ){
 
-          // googleMap.updateMarkers( result );
-          filter.push_history(); // Need to stop sending every keystroke
-          filter.result_count( result );
-          filter.result_sort();
+          // Update the map
+
+          if ( $('body').hasClass('view-map') ) {
+            googleMap.update_markers( result );
+          }
+
+          // Don't run after the first filter (on init)
+          if ( filter.filterCount > 0) {
+
+            // Change the URL and store data
+            filter.push_history();
+
+            // Show the current count
+            filter.result_count( result );
+
+          }
+
+          // Add styling hooks
+          filter.update_styles();
+
+          // Increment the count
+          filter.filterCount++;
+
         }
       }
     },
 
     init: function(){
 
+      if ( $('body').hasClass('view-map') ) {
+        googleMap.init();
+      }
+
       filter.bind();
-      filter.remove_existing_results();
+      filter.create_results();
 
       return FilterJS( filter.get_api_data( filter.apiLocation ).posts, "#resultsList", filter.view, filter.settings );
 
@@ -65,7 +91,7 @@ filter = {};
     bind: function(){
 
       if (Modernizr.history) {
-        window.onpopstate = filter.set_current_state();
+        window.onpopstate = filter.set_current_state;
       }
 
       // Stop the form from being manually submitted
@@ -77,13 +103,36 @@ filter = {};
 
     },
 
-    remove_existing_results: function(){
+    create_results: function(){
 
-      // If we have results
-      if ( $("#resultsList").length ) {
-        // Remove them form the DOM
-        $('#resultsList').html('');
+      // If we don't have results, create the ol
+      if ( !$('#resultsList ').length ) {
+
+        $("#results").html(
+          '<ol id="resultsList" class="media__list"></ol>'
+        )
+
       }
+
+      // If we do have results, remove any HTML before injeting JS templates
+      else {
+        $("#resultsList").html('');
+      }
+
+    },
+
+    update_styles: function(){
+
+      var $first = 'first',
+          $last = 'last',
+          $visible = 'visible',
+          $media = $('.media');
+
+      $('.' + $first + '-' + $visible).removeClass( $first + '-' + $visible );
+      $('.' + $last + '-' + $visible).removeClass( $last + '-' + $visible );
+
+      $media.filter(':' + $visible + ':' + $first).addClass( $first + '-' + $visible );
+      $media.filter(':' + $visible + ':' + $last).addClass( $last + '-' + $visible );
 
     },
 
@@ -128,12 +177,23 @@ filter = {};
       else { return false; }
     },
 
+    is_view: function( name ){
+
+      if (name == '') {
+        name = list;
+      }
+
+      if ( get_view_type() == name) { return true; }
+      else { return false; }
+    },
+
     get_current_state: function(){
 
       var $type = $('#filterType :selected'),
           $location = $('#filterLocation :selected'),
           $order = $('#filterOrder :selected'),
-          $search = $('#filterSearch');
+          $search = $('#filterSearch'),
+          $view = $('#filterView');
 
       var current = {
             type: $type.val(),
@@ -142,7 +202,8 @@ filter = {};
             search: $search.val(),
             typeText: $type.text(),
             orderText: $order.text(),
-            locationText: $location.text()
+            locationText: $location.text(),
+            view: $view.val()
           }
 
       return current;
@@ -151,16 +212,15 @@ filter = {};
 
     set_current_state: function(){
 
-      console.log( 'History state changed' );
       console.log( history.state );
+      console.log( event );
+
+      // $('#filterLocation').val('function')
 
       // for each form control
         // for each option
           // if $_GET var matches option value
             // Add :selected
-
-      // call the filter again
-      // fJS.filter();
 
     },
 
@@ -215,6 +275,8 @@ filter = {};
       if ( Modernizr.history) {
         if ( !$('#filterSearch').is(':focus') ) {
           console.log('Search does not have focus');
+
+          // Needs to be replaceState for the first push or not to change the url until the change event is called
           window.history.pushState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
         } else {
           console.log('Search has focus');
@@ -228,17 +290,13 @@ filter = {};
       // Tinysort
       // $('a[data-fjs]').tsort('.fs_price:visible', {order: 'asc'};
 
-      console.log( this );
-      window.event.preventDefault();
+      var $this = $(this).find('option:selected');
+      var sortBy = '.' + $this.attr('data-sort-target');
+      var sortOrder = $this.attr('data-sort-order');
 
-      // var $this = $(this).find('option:selected');
-      // var sortBy = '.' + $this.attr('data-sort-target');
-      // var sortOrder = $this.attr('data-sort-order');
-      //
-      // console.log( "sort order", sortOrder );
-      // console.log( "sort by", sortBy );
-      //
-      // $('ul#results__list>li').tsort( sortBy, {order: sortOrder} );
+      $('ol .media').tsort( sortBy, {order: sortOrder} );
+
+      filter.push_history();
 
     },
 
@@ -268,10 +326,6 @@ filter = {};
       });
 
       return data;
-
-    },
-
-    googleMap: function( result ) {
 
     },
 
@@ -312,7 +366,7 @@ filter = {};
           monthName = monthNames[month]
 
       var dateArray = {
-        iso: date.toISOString,
+        iso: date.toISOString(),
         pretty: monthName + ' ' + day + ', ' + year
       }
 
@@ -325,6 +379,10 @@ filter = {};
       var datetime = filter.format_date( post.date ).iso,
           prettyDate = filter.format_date( post.date ).pretty;
 
+      if ( $('body').hasClass('view-map') ) {
+        googleMap.add_marker( post );
+      }
+
       // todo: use Mustache templates
       return  '<li class="media">' +
                 filter.get_logo( post ) +
@@ -334,8 +392,8 @@ filter = {};
                   '</h2>' +
                   post.excerpt +
                 '</div>' +
-                '<div class="media__footer>"' +
-                  '<time datetime="' + datetime + '" class="media__date">' + prettyDate + '</time>' +
+                '<div class="media__footer">' +
+                  '<time class="media__date" datetime="' + datetime + '" class="media__date">' + prettyDate + '</time>' +
                 '</div>' +
                 filter.get_tags( post ) +
               '</li>'
