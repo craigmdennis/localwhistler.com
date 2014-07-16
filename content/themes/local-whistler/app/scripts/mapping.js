@@ -20,12 +20,14 @@ googleMap = {};
         center: new google.maps.LatLng(this.center_lat_lng[0], this.center_lat_lng[1]),
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        maxZoom: 17
+        maxZoom: 17,
+        suppressInfoWindows: true
       };
 
       this.create_map();
 
       this.map = new google.maps.Map(document.getElementById("resultsMap"), options);
+      this.infowindow = new google.maps.InfoWindow({ maxWidth: 300 });
 
     },
 
@@ -54,9 +56,16 @@ googleMap = {};
       marker.setMap( this.map );
 
       // Set the info windows
-      marker.info_window_content = post.title;
+      marker.info_window_content = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">' + post.title + '</h1>'+
+        '<div id="bodyContent">'+ post.excerpt + ' <br><a href="' + post.url + '">More info</a></div>'+
+        '</div>'
+
       this.markers[post.id] = marker;
 
+      // WIP
       google.maps.event.addListener(marker, 'click', function() {
         that.infowindow.setContent(marker.info_window_content)
         that.infowindow.open(that.map,marker);
@@ -73,28 +82,34 @@ googleMap = {};
         this.setMap(null);
       });
 
-      // Add new markers
-      $.each( result, function(i, id){
+      if ( result.length ) {
 
-        // Update the map with new pins
-        googleMap.markers[id].setMap( googleMap.map );
+        // Add new markers
+        $.each( result, function(i, id){
 
-        // Add the locations to the bounds
-        googleMap.bounds.extend( new google.maps.LatLng( googleMap.markers[id].position.k, googleMap.markers[id].position.A ) );
+          // Update the map with new pins
+          googleMap.markers[id].setMap( googleMap.map );
 
-      });
+          // Add the locations to the bounds
+          googleMap.bounds.extend( new google.maps.LatLng( googleMap.markers[id].position.k, googleMap.markers[id].position.B ) );
 
-      //Set map center
-      if( result.length) {
-        this.set_center_point();
+        });
+
       }
+
+      // If no results use the default coords to set the bounds
+      else {
+
+        googleMap.bounds.extend( new google.maps.LatLng( googleMap.center_lat_lng[0], googleMap.center_lat_lng[1] ) );
+
+      }
+
+      this.set_center_point();
+
     },
 
     set_center_point: function(){
 
-      // todo: If no markers, center on Whistler, zoom 15
-
-      // console.log( this.bounds.getCenter() );
       this.map.setCenter( this.bounds.getCenter() );
       this.map.fitBounds( this.bounds );
 

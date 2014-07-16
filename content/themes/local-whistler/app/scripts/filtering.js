@@ -5,6 +5,10 @@ $(document).ready( function( ){
     filter.init();
   }
 
+  // On click of the map filter
+  // preventDefault();
+  // mapping.init();
+
 });
 
 var filter;
@@ -53,6 +57,9 @@ filter = {};
           if ( $('body').hasClass('view-map') ) {
             googleMap.update_markers( result );
           }
+
+          // Send custom analytics events
+          filter.push_analytics();
 
           // Don't run after the first filter (on init)
           if ( filter.filterCount > 0) {
@@ -215,6 +222,7 @@ filter = {};
       console.log( history.state );
       console.log( event );
 
+      // WIP
       // $('#filterLocation').val('function')
 
       // for each form control
@@ -274,21 +282,29 @@ filter = {};
 
       if ( Modernizr.history) {
         if ( !$('#filterSearch').is(':focus') ) {
-          console.log('Search does not have focus');
-
-          // Needs to be replaceState for the first push or not to change the url until the change event is called
+          // Search does not have focus
           window.history.pushState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
         } else {
-          console.log('Search has focus');
+          // Search has focus
           window.history.replaceState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
         }
       }
 
     },
 
+    push_analytics: function(){
+
+      ga('send', 'event', 'filters', 'filter', {
+        'type': filter.get_current_state.typeText,
+        'location': filter.get_current_state.locationText,
+        'order': filter.get_current_state.orderText,
+        'search': filter.get_current_state.search,
+        'nonInteraction': 1
+      });
+
+    },
+
     result_sort: function(){
-      // Tinysort
-      // $('a[data-fjs]').tsort('.fs_price:visible', {order: 'asc'};
 
       var $this = $(this).find('option:selected');
       var sortBy = '.' + $this.attr('data-sort-target');
