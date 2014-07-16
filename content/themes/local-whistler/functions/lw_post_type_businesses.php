@@ -129,7 +129,7 @@
   function create_business_locations() {
 
     $labels = array(
-      'name'              => _x( 'Location', 'location' ), // Deliberately singular
+      'name'              => _x( 'Locations', 'locations' ), // Deliberately singular
       'singular_name'     => _x( 'Location', 'location' ),
       'search_items'      => __( 'Search Locations' ),
       'all_items'         => __( 'Location' ),

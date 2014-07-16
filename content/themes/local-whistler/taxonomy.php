@@ -16,10 +16,9 @@
 
   // Get the two parts of the order if they exist
   if ( strpos( $getOrder, '-' ) ) {
-    $order = explode( '-', $getOrder );
-    $order = $order[1];
-    $orderBy = explode( '-', $getOrder );
-    $order = $order[0];
+    $orderArray = explode( '-', $getOrder );
+    $order = $orderArray[1];
+    $orderBy = $orderArray[0];
   }
 
   // Add order to the generated query
@@ -27,22 +26,11 @@
 
 ?>
 
-  <!-- <div class="hero--spaced">
-    <img class="hero__image" src="http://p-hold.com/happy/960/600/blur" />
-    <div class="hero__overlay">
-      <h2 class="hero__title">Health &amp; Wellness</h2>
-    </div>
-  </div> -->
+<?php require_once('partials/_filters.php'); ?>
 
-    <?php require_once('partials/_filters.php'); ?>
+<?php require_once('partials/_toolbar.php'); ?>
 
-    <?php if ( have_posts() ) : ?>
-
-      <?php require_once('partials/_toolbar.php'); ?>
-
-    <?php endif; // End have_posts() ?>
-
-  <?php rewind_posts(); ?>
+<?php rewind_posts(); ?>
 
   <!-- todo: break the results and the filters into seperate files -->
   <!-- todo: create custom templates for maps, list and gallery views -->
