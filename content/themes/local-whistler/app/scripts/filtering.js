@@ -1,16 +1,3 @@
-$(document).ready( function( ){
-
-  // Only initialise sorting when there are results
-  if ( $("#results").length ) {
-    filter.init();
-  }
-
-  // On click of the map filter
-  // preventDefault();
-  // mapping.init();
-
-});
-
 var filter;
 
 filter = {};
@@ -30,7 +17,6 @@ filter = {};
       filter_criteria: {
         location: ['.js__filter-location .TYPE.any', 'taxonomy_business_location.ARRAY.slug'],
         type: ['.js__filter-type .TYPE.any', 'taxonomy_business_type.ARRAY.slug'],
-        // filters: ['.js__filter-promoted input:checkbox', 'taxonomy_business_filter.ARRAY.slug']
       },
       search: {
         input: '#filterSearch',
