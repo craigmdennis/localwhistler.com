@@ -22,7 +22,7 @@
 
           <?php
 
-            $taxonomyName = $taxonomy->name;
+            $taxonomyName = $taxonomy->labels->singular_name;
             $taxonomySlug =  $taxonomy->rewrite['slug'];
             $taxonomySlugCapital = ucfirst( $taxonomySlug );
 

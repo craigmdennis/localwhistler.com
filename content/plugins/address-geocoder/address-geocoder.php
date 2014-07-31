@@ -1,13 +1,13 @@
 <?php
 /*
-Plugin Name: Address Geocoder
-Plugin URI: http://martyspellerberg.com/address-geocode-wordpress-plugin/
+Plugin Name: Local Whistler Geocoder
 Description: A simple plugin for saving location data with posts. Conveniently converts addresses to lat/lng from the Post/Page Edit screen.
-Version: 0.8
-Contributors: martyspellerberg, mgibbs189
-Author: Marty Spellerberg
-Author URI: http://martyspellerberg.com
+Version: 99.99
+Contributors: martyspellerberg, mgibbs189, craigmdennis
+Author: Craig Dennis
+Author URI: http://simplebitdesign.com
 License: GPLv2+
+Notes: Customised for Local Whistler by Craig Dennis.
 */
 
 class Address_Geocoder

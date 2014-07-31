@@ -32,10 +32,6 @@
 
 <?php rewind_posts(); ?>
 
-  <!-- todo: break the results and the filters into seperate files -->
-  <!-- todo: create custom templates for maps, list and gallery views -->
-  <!-- todo: append a $_GET variable for view -->
-
   <div id="results">
 
     <?php if ( have_posts() ) : ?>
