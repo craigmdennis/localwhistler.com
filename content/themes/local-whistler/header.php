@@ -35,6 +35,7 @@
   <?php if (WP_ENV == 'local') : ?>
     <!-- Development -->
 
+    <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/app/bower_components/bxslider-4/jquery.bxslider.css" />
     <?php list_directory( '.tmp/styles', '.css'); // Load developement styles ?>
 
     <!-- Load development version of modernizr -->

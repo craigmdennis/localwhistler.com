@@ -35,7 +35,27 @@
               </div>
             </header>
 
-            <?php the_post_thumbnail('business_hero');?>
+            <?php $attachments = new Attachments( 'premium_gallery' ); /* pass the instance name */ ?>
+
+            <?php if( $attachments->exist() ) : ?>
+
+              <ul class="bxslider">
+
+                <li><?php the_post_thumbnail('business_hero'); ?></li>
+
+                <?php while( $attachment = $attachments->get() ) : ?>
+                  <li>
+                    <?php echo $attachments->image( 'business_hero' ); ?>
+                  </li>
+
+                <?php endwhile; ?>
+              </ul>
+
+            <?php else: ?>
+
+              <?php the_post_thumbnail('business_hero');?>
+
+            <?php endif; ?>
 
             <?php if (( $url_logo_src && $url_website ) !== "" ) : ?>
 

@@ -12,6 +12,7 @@
 
   <script src="<?php bloginfo('template_directory'); ?>/app/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="<?php bloginfo('template_directory'); ?>/app/bower_components/tinysort/dist/jquery.tinysort.js"></script>
+  <script src="<?php bloginfo('template_directory'); ?>/app/bower_components/bxslider-4/jquery.bxslider.js"></script>
 
   <?php list_directory( '.tmp/scripts', '.js'); // Load developement scripts ?>
 
