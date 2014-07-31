@@ -1,3 +1,11 @@
-.bx-wrapper .bx-viewport {
-  left: 0;
+.bx-wrapper {
+
+  .bx-viewport {
+    left: 0;
+  }
+
+  img {
+    width: 100%; // Ensure the image is full width
+  }
+
 }
