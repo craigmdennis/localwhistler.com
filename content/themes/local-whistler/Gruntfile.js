@@ -41,9 +41,8 @@ module.exports = function (grunt) {
       },
 
       dist: {
-        assets: 'assets',
-        scripts: '<%= config.dist.assets %>/scripts',
-        img: '<%= config.dist.assets %>/images'
+        scripts: 'scripts',
+        img: 'images'
       },
 
       local: 'http://localwhistler.local',
@@ -51,10 +50,10 @@ module.exports = function (grunt) {
       live: 'http://localwhistler.com',
 
       wpBanner: '/*' +
-                'Theme Name: <%= pkg.title %>' +
-                'Author: <%= pkg.author %>' +
-                'Author URI: <%= pkg.authorURI %>' +
-                'Description: <%= pkg.description %>' +
+                'Theme Name: <%= pkg.title %> ' +
+                'Author: <%= pkg.author %> ' +
+                'Author URI: <%= pkg.authorURI %> ' +
+                'Description: <%= pkg.description %> ' +
               '*/',
 
     },
@@ -80,7 +79,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= config.app.scripts %>/{,*/}*.js'],
-        tasks: ['newer:copy:server', 'jshint:server']
+        tasks: ['copy:server', 'jshint:server']
       },
       gruntfile: {
         files: ['Gruntfile.js'],
@@ -95,7 +94,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['<%= config.app.styles %>/{,*/}*.css'],
-        tasks: ['newer:copy:all', 'autoprefixer']
+        tasks: ['copy:all', 'autoprefixer']
       },
       php: {
         files: ['{,*/}*.php'],
@@ -104,7 +103,11 @@ module.exports = function (grunt) {
         }
       },
       tmp: {
-        files: ['<%= config.tmp %>/styles/style.css', '<%= config.tmp %>/scripts/*.js'],
+        files: [
+          '<%= config.tmp %>/styles/{,*/}*.css',
+          '<%= config.tmp %>/scripts/{,*/}*.js',
+          '<%= config.app %>/{,*/}*.{gif,svg,jpg,png,webp}'
+        ],
         options: {
           livereload: true
         }
@@ -138,36 +141,13 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '<%= config.tmp %>',
-            '<%= config.dist.assets %>/*',
-            '<%= cssmin.all.dest %>'
+            '<%= config.dist.img %>/*',
+            '<%= config.dist.scripts %>/*',
+            'style.css'
           ]
         }]
       }
     },
-
-    // Compile Jade to HTML
-    // jadephp: {
-    //   options: {
-    //     pretty: true
-    //   },
-    //   dist: {
-    //     files: [
-    //       {
-    //         expand: true,
-    //         cwd: '<%= config.app.templates %>/',
-    //         dest: '/',
-    //         src: '*.jade',
-    //         ext: '.php'
-    //       },{
-    //         expand: true,
-    //         cwd: '<%= config.app.partials %>/',
-    //         dest: '/',
-    //         src: '*.jade',
-    //         ext: '.php'
-    //       }
-    //     ]
-    //   },
-    // },
 
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
@@ -249,7 +229,7 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= config.app.partials %>/{,*/}*.jade'],
         ignorePath: '<%= config.app.base %>/',
-        exclude: ['<%= config.app.base %>/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap.js', ],
+        exclude: ['<%= config.app.bower %>/bootstrap-sass/vendor/assets/javascripts/bootstrap.js', ],
       },
       sass: {
         src: ['<%= config.app.styles %>/{,*/}*.{scss,sass}'],
@@ -261,7 +241,11 @@ module.exports = function (grunt) {
       options: {
         stripBanners: true
       },
-      all: {
+      server: {
+        src: '<%= config.tmp %>/scripts/{,*/}*.js',
+        dest: '<%= config.dist.scripts %>/script.js'
+      },
+      dist: {
         src: '<%= config.tmp %>/scripts/{,*/}*.js',
         dest: '<%= config.tmp %>/scripts/concat/script.js'
       }
@@ -274,7 +258,7 @@ module.exports = function (grunt) {
         sourceMap: true,
       },
       all: {
-        src: '<%= concat.all.dest %>',
+        src: '<%= concat.dist.dest %>',
         dest: '<%= config.dist.scripts %>/script.js'
       }
     },
@@ -296,6 +280,12 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.app.img %>/',
+          src: '{,*/}*.{gif,jpeg,jpg,png}',
+          dest: '<%= config.dist.img %>'
+        },
+        {
+          expand: true,
+          cwd: '<%= config.app.bower %>/bxslider-4/images/',
           src: '{,*/}*.{gif,jpeg,jpg,png}',
           dest: '<%= config.dist.img %>'
         }]
@@ -337,7 +327,38 @@ module.exports = function (grunt) {
             cwd: '<%= config.app.styles %>/',
             dest: '<%= config.tmp %>',
             src: '{,*/}*.css'
-          }
+          },
+          {
+            expand: true,
+            cwd: '<%= config.app.bower %>/bxslider-4/images',
+            src: '{,*/}*.{gif,jpeg,jpg,png}',
+            dest: '<%= config.dist.img %>'
+          },
+          {
+            // Copy BX Slider CSS to the .tmp directory
+            src: '<%= config.app.bower %>/bxslider-4/jquery.bxslider.js',
+            dest: '<%= config.tmp %>/scripts/jquery.bxslider.js'
+          },
+          {
+            // Copy BX Slider CSS to the .tmp directory
+            src: '<%= config.app.bower %>/bxslider-4/jquery.bxslider.css',
+            dest: '<%= config.tmp %>/styles/jquery.bxslider.css'
+          },
+          {
+            // Copy bxslinder CSS to the .tmp directry
+            src: '<%= config.app.bower %>/bxslider-4/images/',
+            dest: '<%= config.dist.img %>'
+          },
+          {
+            // Copy tinysort to the .tmp directry
+            src: '<%= config.app.bower %>/tinysort/dist/jquery.tinysort.js',
+            dest: '<%= config.tmp %>/scripts/jquery.tinysort.js'
+          },
+          {
+            // Copy BX Slider CSS to the .tmp directory
+            src: '<%= config.app.bower %>/normalize-css/normalize.css',
+            dest: '<%= config.tmp %>/styles/normalize.css'
+          },
         ]
       },
 
@@ -348,7 +369,7 @@ module.exports = function (grunt) {
             expand: true,
             dot: true,
             cwd: '<%= config.app.base %>',
-            dest: '<%= config.dist.assets %>',
+            dest: '',
             src: [
               'images/{,*/}*.{webp,svg}',
               'fonts/{,*/}*.*'
@@ -356,7 +377,7 @@ module.exports = function (grunt) {
           },
           {
             // Copy Sass Map
-            src: '<%= cssmin.all.dest %>.map',
+            src: '.tmp/style.css.map',
             dest: 'style.css.map',
           },
           {
@@ -371,12 +392,12 @@ module.exports = function (grunt) {
     // Generates a custom Modernizr build that includes only the tests you
     // reference in your app
     modernizr: {
-      devFile: '<%= config.app.base %>/bower_components/modernizr/modernizr.js',
+      devFile: '<%= config.app.bower %>/modernizr/modernizr.js',
       outputFile: '<%= config.dist.scripts %>/modernizr-custom.js',
       files: [
         '<%= config.tmp %>/scripts/concat/script.js',
-        // '<%= config.tmp %>/styles/{,*/}*.css',
-        // '!<%= config.tmp %>/scripts/vendor/*'
+        '<%= config.tmp %>/styles/{,*/}*.css',
+        '!<%= config.tmp %>/scripts/vendor/*'
       ],
       uglify: true,
       extra: {
@@ -426,11 +447,12 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean',
-      // 'jadephp:dist',
       'concurrent:server',
       'copy:server',
       'autoprefixer',
-      'copy:dist'
+      'concat:server',
+      'cssmin',
+      'copy:dist',
     ]);
   });
 
@@ -450,12 +472,11 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean',
-    // 'jadephp:dist',
     'concurrent:dist',
     'jshint',
     'copy:server',
     'autoprefixer',
-    'concat',
+    'concat:dist',
     'modernizr',
     'cssmin',
     'copy:dist',

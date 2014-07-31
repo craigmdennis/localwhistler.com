@@ -5,16 +5,17 @@
 
     // Detect if plugin functions exist and assign values
     if ( function_exists( 'get_geocode_latlng' ) ) {
-      $map_address = get_geocode_address( $post->ID );
+      $map_address = str_replace(" ", "+", get_geocode_address( $post->ID ) );
+      $map_latlng = get_geocode_latlng( $post->ID );
       $map_zoom = '&zoom=15';
       $map_size   = '&size=960x300';
-      $map_markers = '&markers=red|' . $map_address;
-      $map_center = '&center=' . $map_address;
+      $map_markers = '&markers=red|' . $map_latlng;
+      $map_center = '&center=' . $map_latlng;
 
       $map_name_address = 'q=' . $map_address; // Used when leaving to web maps
       $map_string = $map_center . $map_zoom . $map_size . $map_markers; // Used when leaving to app maps
 
-      $map_base   = ( $detect->isiOS() ? ( $detect->isAndroidOS() ? 'geo:' . $map_latlng . '&daddr=' . $map_name_address : 'http://maps.apple.com/?' . $map_name_address) : 'https://maps.google.com/?' . $map_name_address );
+      $map_app   = ( $detect->isiOS() ? ( $detect->isAndroidOS() ? 'geo:' . $map_latlng . '&daddr=' . $map_name_address : 'http://maps.apple.com/?' . $map_name_address) : 'https://maps.google.com/?' . $map_name_address );
     }
 
     if ( function_exists( 'get_field' ) ) {
@@ -81,7 +82,8 @@
 
               <div class="map--static">
                 <img class="map__image-static" src="http://maps.googleapis.com/maps/api/staticmap?scale=2<?php echo $map_string ?>">
-                <a class="map__link" href="<?php echo $map_base; ?>" target="_blank">Open in maps</a>
+                <!-- <img class="map__image-static" src="http://maps.googleapis.com/maps/api/staticmap?scale=2<?php echo $map_string; ?>"> -->
+                <a class="map__link" href="<?php echo $map_app; ?>" target="_blank">Open in maps</a>
               </div>
 
             <?php endif; ?>

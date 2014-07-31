@@ -31,24 +31,12 @@
     <link rel="author" type="text/plain" href="<?php echo bloginfo('template_directory'); ?>/humans.txt" />
   <!-- The little things -->
 
+  <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 
   <?php if (WP_ENV == 'local') : ?>
-    <!-- Development -->
-
-    <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/app/bower_components/bxslider-4/jquery.bxslider.css" />
-    <?php list_directory( '.tmp/styles', '.css'); // Load developement styles ?>
-
-    <!-- Load development version of modernizr -->
-    <script src="<?php bloginfo('template_directory'); ?>/app/bower_components/modernizr/modernizr.js"></script>
-
-  <!-- END Development -->
-  <?php else : ?>
-    <!-- Production -->
-
-    <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-    <script src="<?php bloginfo('template_directory'); ?>/assets/scripts/modernizr-custom.js"></script>
-
-    <!-- ENDProduction -->
+    <script src="<?php echo bloginfo('template_directory'); ?>/app/bower_components/modernizr/modernizr.js"></script>
+  <?php else: ?>
+    <script src="<?php echo bloginfo('template_directory'); ?>/scripts/modernizr-custom.js"></script>
   <?php endif; ?>
 
 </head>
