@@ -63,7 +63,11 @@ module.exports = function (grunt) {
       options: {
         spawn: false,
         interrupt: true,
-        // livereloadOnError: false
+        dateFormat: function(time) {
+          grunt.log.writeln('The watch finished in ' + time + 'ms on ' + (new Date()).toString());
+          grunt.log.writeln('Waiting for more changes...');
+        },
+        livereloadOnError: false
       },
       // jadeTemplates: {
       //   files: ['<%= config.app.templates %>/*.jade', '<%= config.app.partials %>/*.jade'],
@@ -79,14 +83,11 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= config.app.scripts %>/{,*/}*.js'],
-        tasks: ['copy:server', 'jshint:server']
+        tasks: ['newer:copy:server', 'jshint:server']
       },
       gruntfile: {
         files: ['Gruntfile.js'],
         tasks: ['jshint:gruntfile', 'default'],
-        options: {
-          livereload: true
-        }
       },
       compass: {
         files: ['<%= config.app.styles %>/{,*/}*.{scss,sass}'],
@@ -96,41 +97,25 @@ module.exports = function (grunt) {
         files: ['<%= config.app.styles %>/{,*/}*.css'],
         tasks: ['copy:all', 'autoprefixer']
       },
-      php: {
-        files: ['{,*/}*.php'],
+      livereload: {
         options: {
           livereload: true
-        }
-      },
-      tmp: {
+        },
         files: [
+          '{,*/}*.php',
           '<%= config.tmp %>/styles/{,*/}*.css',
           '<%= config.tmp %>/scripts/{,*/}*.js',
-          '<%= config.app %>/{,*/}*.{gif,svg,jpg,png,webp}'
-        ],
-        options: {
-          livereload: true
-        }
+          '<%= config.app %>/images/{,*/}*.*'
+        ]
       }
     },
 
     // The actual grunt server settings
     connect: {
-      options: {
-        port: 9000,
-        livereload: 35729,
-        hostname: '0.0.0.0'
-      },
-      livereload: {
-        options: {
-          open: '<%= config.local %>'
-        }
-      },
       dist: {
-        options: {
-          open: '<%= config.local %>',
-          livereload: false
-        }
+        port: 9000,
+        hostname: '*',
+        open: '<%= config.local %>'
       }
     },
 
@@ -166,7 +151,7 @@ module.exports = function (grunt) {
         options: {
           force: true
         },
-        src: '<%= config.tmp %>/scripts/{,*/}.js'
+      src: '<%= config.tmp %>/scripts/{,*/}*.js'
       },
 
       // Use the same source as server but fail the task
@@ -219,21 +204,9 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= config.tmp %>/styles/',
           src: '{,*/}*.css',
-          dest: '<%= config.tmp %>/styles/'
+          dest: '<%= config.tmp %>/styles/',
+          ext: '.css'
         }]
-      }
-    },
-
-    // Automatically inject Bower components into the HTML file
-    bowerInstall: {
-      app: {
-        src: ['<%= config.app.partials %>/{,*/}*.jade'],
-        ignorePath: '<%= config.app.base %>/',
-        exclude: ['<%= config.app.bower %>/bootstrap-sass/vendor/assets/javascripts/bootstrap.js', ],
-      },
-      sass: {
-        src: ['<%= config.app.styles %>/{,*/}*.{scss,sass}'],
-        ignorePath: '<%= config.app.base %>/bower_components/'
       }
     },
 
@@ -267,7 +240,8 @@ module.exports = function (grunt) {
       options: {
         banner: '<%= config.wpBanner %>',
         compress: true,
-        keepSpecialComments: false
+        keepSpecialComments: false,
+        report: 'min'
       },
       all: {
         src: '<%= config.tmp %>/styles/{,*/}*.css',
@@ -365,7 +339,7 @@ module.exports = function (grunt) {
       dist: {
         files: [
           {
-            // Copy all optimised images and fonts directly to the dist folder
+            // Copy remaining images and fonts directly to the dist folder
             expand: true,
             dot: true,
             cwd: '<%= config.app.base %>',
@@ -384,7 +358,13 @@ module.exports = function (grunt) {
             // Copy jQuery as self-hosted fallback
             src: '<%= config.bower %>/jquery/dist/jquery.min.js',
             dest: '<%= config.dist.scripts %>/vendor/jquery.min.js'
+          },
+          {
+            // Copy jQuery map
+            src: '<%= config.bower %>/jquery/dist/jquery.min.map',
+            dest: '<%= config.dist.scripts %>/vendor/jquery.min.map'
           }
+
         ]
       }
     },
@@ -392,17 +372,22 @@ module.exports = function (grunt) {
     // Generates a custom Modernizr build that includes only the tests you
     // reference in your app
     modernizr: {
-      devFile: '<%= config.app.bower %>/modernizr/modernizr.js',
-      outputFile: '<%= config.dist.scripts %>/modernizr-custom.js',
-      files: [
-        '<%= config.tmp %>/scripts/concat/script.js',
-        '<%= config.tmp %>/styles/{,*/}*.css',
-        '!<%= config.tmp %>/scripts/vendor/*'
-      ],
-      uglify: true,
-      extra: {
-        shiv: false,
-        load: false
+      dist: {
+        devFile: '<%= config.app.bower %>/modernizr/modernizr.js',
+        outputFile: '<%= config.dist.scripts %>/modernizr-custom.js',
+        files: {
+          src: [
+            '<%= config.tmp %>/scripts/concat/script.js',
+            '<%= config.tmp %>/styles/{,*/}*.css',
+            '!<%= config.tmp %>/scripts/vendor/*'
+          ]
+        },
+        matchCommunityTests: true,
+        uglify: true,
+        extra: {
+          shiv: false,
+          load: false
+        }
       }
     },
 
@@ -425,6 +410,35 @@ module.exports = function (grunt) {
       }
     },
 
+    // Wordpress management with Grunt
+    wordpressdeploy: {
+      options: {
+        backup_dir: 'backups/',
+      },
+      local: {
+        'title': 'Local',
+        'database': 'localwhistler_wp',
+        'user': 'localwhistler',
+        'pass': '7eTPHyBWnbAYYQj7',
+        'host': '127.0.0.1',
+        'url': 'http://localwhistler.local',
+        'path': '/Users/craigmdennis/Sites/localwhistler.com'
+      },
+      staging: {
+        'title': 'Staging',
+        'database': 'db152547_localwhistler_dev',
+        'user': 'db152547_dev',
+        'pass': '4P999>H3i)3#3747',
+        'host': 'external-db.s152547.gridserver.com',
+        'url': 'http://lw-dev.simplebitdesign.com',
+        'path': '/home/152547/users/.home/domains/lw-dev.simplebitdesign.com/',
+        'ssh_host': 'simplebitdesign.com@s152547.gridserver.com'
+      },
+      production: {
+
+      }
+    },
+
     // Run some tasks in parallel to speed up build process
     concurrent: {
       options: {
@@ -443,32 +457,25 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('default', function () {
-
-    grunt.task.run([
-      'clean',
-      'concurrent:server',
-      'copy:server',
-      'autoprefixer',
-      'concat:server',
-      'cssmin',
-      'copy:dist',
-    ]);
+  grunt.event.on('watch', function(action, filepath, target) {
+    grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
   });
 
-  grunt.registerTask('serve', function () {
+  grunt.registerTask('default', [
+    'clean',
+    'concurrent:server',
+    'copy:server',
+    'autoprefixer',
+    'concat:server',
+    'cssmin',
+    'copy:dist',
+  ]);
 
-    grunt.task.run([
-      'default',
-      'connect:livereload',
-      'watch'
-    ]);
-  });
-
-  grunt.registerTask('server', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run([target ? ('serve:' + target) : 'serve']);
-  });
+  grunt.registerTask('serve', [
+    'default',
+    'connect',
+    'watch'
+  ]);
 
   grunt.registerTask('build', [
     'clean',
@@ -481,7 +488,7 @@ module.exports = function (grunt) {
     'cssmin',
     'copy:dist',
     'uglify',
-    'connect:dist'
+    'connect'
   ]);
 
 };
