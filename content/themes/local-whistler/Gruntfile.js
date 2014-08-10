@@ -49,12 +49,12 @@ module.exports = function (grunt) {
       staging: 'http://lw-dev.simplebitdeign.com',
       live: 'http://localwhistler.com',
 
-      wpBanner: '/*' +
-                'Theme Name: <%= pkg.title %> ' +
-                'Author: <%= pkg.author %> ' +
-                'Author URI: <%= pkg.authorURI %> ' +
-                'Description: <%= pkg.description %> ' +
-              '*/',
+      wpBanner: '/*\n' +
+                'Theme Name: <%= pkg.title %>\n'+
+                'Author: <%= pkg.author %>\n' +
+                'Author URI: <%= pkg.authorURI %>\n' +
+                'Description: <%= pkg.description %>\n' +
+                '*/\n'
 
     },
 
