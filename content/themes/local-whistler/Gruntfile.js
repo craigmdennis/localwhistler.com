@@ -408,33 +408,33 @@ module.exports = function (grunt) {
     },
 
     // Wordpress management with Grunt
-    wordpressdeploy: {
-      options: {
-        backup_dir: 'backups/',
-      },
-      local: {
-        'title': 'Local',
-        'database': 'localwhistler_wp',
-        'user': 'localwhistler',
-        'pass': '7eTPHyBWnbAYYQj7',
-        'host': '127.0.0.1',
-        'url': 'http://localwhistler.local',
-        'path': '/Users/craigmdennis/Sites/localwhistler.com'
-      },
-      staging: {
-        'title': 'Staging',
-        'database': 'db152547_localwhistler_dev',
-        'user': 'db152547_dev',
-        'pass': '4P999>H3i)3#3747',
-        'host': 'external-db.s152547.gridserver.com',
-        'url': 'http://lw-dev.simplebitdesign.com',
-        'path': '/home/152547/users/.home/domains/lw-dev.simplebitdesign.com/',
-        'ssh_host': 'simplebitdesign.com@s152547.gridserver.com'
-      },
-      production: {
-
-      }
-    },
+    // wordpressdeploy: {
+    //   options: {
+    //     backup_dir: 'backups/',
+    //   },
+    //   local: {
+    //     'title': 'Local',
+    //     'database': 'localwhistler_wp',
+    //     'user': 'localwhistler',
+    //     'pass': '7eTPHyBWnbAYYQj7',
+    //     'host': '127.0.0.1',
+    //     'url': 'http://localwhistler.local',
+    //     'path': '/Users/craigmdennis/Sites/localwhistler.com'
+    //   },
+    //   staging: {
+    //     'title': 'Staging',
+    //     'database': 'db152547_localwhistler_dev',
+    //     'user': 'db152547_dev',
+    //     'pass': '4P999>H3i)3#3747',
+    //     'host': 'external-db.s152547.gridserver.com',
+    //     'url': 'http://lw-dev.simplebitdesign.com',
+    //     'path': '/home/152547/users/.home/domains/lw-dev.simplebitdesign.com/',
+    //     'ssh_host': 'simplebitdesign.com@s152547.gridserver.com'
+    //   },
+    //   production: {
+    //
+    //   }
+    // },
 
     // Run some tasks in parallel to speed up build process
     concurrent: {
