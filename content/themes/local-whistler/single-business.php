@@ -19,16 +19,26 @@
     }
 
     if ( function_exists( 'get_field' ) ) {
-      $url_logo_src = get_field('logo');
-      $url_website  = get_field('website');
-      $directions   = get_field('directions');
+      $url_logo_src   = get_field('logo');
+      $url_website    = get_field('website');
+      $directions     = get_field('directions');
+      $alert          = get_field('alert_message');
+      $opening_hours  = array(
+        'monday' => get_field('monday'),
+        'tuesday' => get_field('tuesday'),
+        'wednesday' => get_field('wednesday'),
+        'thursday' => get_field('thursday'),
+        'friday' => get_field('friday'),
+        'saturday' => get_field('saturday'),
+        'sunday' => get_field('sunday'),
+      );
     }
 
   ?>
 
   <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
-        <article role="main" class="business" id="post-<?php the_ID(); ?>">
+        <div role="main" class="business" id="post-<?php the_ID(); ?>">
 
             <header>
               <div class="header" id="name">
@@ -58,6 +68,14 @@
 
             <?php endif; ?>
 
+            <?php if ( $alert != '' ) : ?>
+
+              <div class="alert">
+                <?php echo $alert; ?>
+              </div>
+
+            <?php endif; ?>
+
             <?php if (( $url_logo_src && $url_website ) !== "" ) : ?>
 
               <div class="business__logo">
@@ -82,7 +100,6 @@
 
               <div class="map--static">
                 <img class="map__image-static" src="http://maps.googleapis.com/maps/api/staticmap?scale=2<?php echo $map_string ?>">
-                <!-- <img class="map__image-static" src="http://maps.googleapis.com/maps/api/staticmap?scale=2<?php echo $map_string; ?>"> -->
                 <a class="map__link" href="<?php echo $map_app; ?>" target="_blank">Open in maps</a>
               </div>
 
@@ -96,20 +113,35 @@
 
             <?php endif; ?>
 
+            <?php // if ( $opening_hours != '' ) : // Need some better detection ?>
+
+              <div class="business__hours">
+                <ul>
+                <?php foreach ( $opening_hours as $day => $time ) : ?>
+                  <li>
+                    <span class="business__hours__day"><?php echo ucfirst( $day ); ?>: </span>
+                    <span class="business__hours__time"><?php echo $time; ?></span>
+                  </li>
+                <?php endforeach; ?>
+                </ul>
+              </div>
+
+            <?php // endif; ?>
+
             <div class="business__tags">
               <?php the_taxonomies(); ?>
             </div>
 
-            <footer>
+            <!-- <footer>
               <div class="footer business__meta">
 
               <p>Posted <strong><?php echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago'; ?></strong> on <time datetime="<?php the_time('l, F jS, Y') ?>" pubdate><?php the_time('l, F jS, Y') ?></time> &middot; <a href="<?php the_permalink(); ?>">Permalink</a></p>
 
               </div>
-            </footer>
+            </footer> -->
 
             <?php endwhile; // end of the loop. ?>
 
-        </article>
+        </div>
 
 <?php get_footer(); ?>
