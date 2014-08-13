@@ -69,10 +69,7 @@ module.exports = function (grunt) {
         },
         livereloadOnError: false
       },
-      // jadeTemplates: {
-      //   files: ['<%= config.app.templates %>/*.jade', '<%= config.app.partials %>/*.jade'],
-      //   tasks: ['jadephp:dist']
-      // },
+
       coffee: {
         files: ['<%= config.app.scripts %>/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['coffee', 'jshint:server'],
