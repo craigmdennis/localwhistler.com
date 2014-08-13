@@ -99,7 +99,7 @@
       $screen->add_help_tab( array(
           'id'	     => 'filters',
           'title'	  => __('Filters'),
-          'content'	=> '<h2>' . __('Filters') . '</h2><p>' . __('Filters are tags for each business. You can use as many as you like and can <a href="./post.php?post=48&action=edit#acf_47">select which filters appear as checkboxes</a> on the search pages.') . '</p>'
+          'content'	=> '<h2>' . __('Filters') . '</h2><p>' . __('Filters are tags for each business. You can use as many as you like.') . '</p>'
       ));
 
       $screen->add_help_tab( array(
