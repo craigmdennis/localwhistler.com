@@ -24,8 +24,8 @@ filter = {};
       },
       filter_types: {
         any: function( current_value, option ){
-          if ( current_value == '') { return true; }
-          else { return current_value == option; }
+          if ( current_value === '') { return true; }
+          else { return current_value === option; }
         }
       },
 
@@ -101,15 +101,15 @@ filter = {};
       // If we don't have results, create the ol
       if ( !$('#resultsList ').length ) {
 
-        $("#results").html(
+        $('#results').html(
           '<ol id="resultsList" class="media__list"></ol>'
-        )
+        );
 
       }
 
       // If we do have results, remove any HTML before injeting JS templates
       else {
-        $("#resultsList").html('');
+        $('#resultsList').html('');
       }
 
     },
@@ -148,35 +148,25 @@ filter = {};
 
     is_location: function(){
 
-      if ( filter.get_current_state().location != '' ) { return true; }
+      if ( filter.get_current_state().location !== '' ) { return true; }
       else { return false; }
 
     },
 
     is_type: function(){
 
-      if ( filter.get_current_state().type != '' ) { return true; }
+      if ( filter.get_current_state().type !== '' ) { return true; }
       else { return false; }
 
     },
 
     is_search: function(){
-      if ( filter.get_current_state().search != '' ) { return true; }
+      if ( filter.get_current_state().search !== '' ) { return true; }
       else { return false; }
     },
 
     is_order: function(){
-      if ( filter.get_current_state().order != '' ) { return true; }
-      else { return false; }
-    },
-
-    is_view: function( name ){
-
-      if (name == '') {
-        name = list;
-      }
-
-      if ( get_view_type() == name) { return true; }
+      if ( filter.get_current_state().order !== '' ) { return true; }
       else { return false; }
     },
 
@@ -197,7 +187,7 @@ filter = {};
             orderText: $order.text(),
             locationText: $location.text(),
             view: $view.val()
-          }
+          };
 
       return current;
 
@@ -341,7 +331,7 @@ filter = {};
         $.each( post.attachments, function( $key, $value ){
 
           // Make sure we get the logo and not any old attachment
-          if ( post.custom_fields.logo[0] == $value['id'] ) {
+          if ( post.custom_fields.logo[0] === $value['id'] ) {
             logo =  '<a class="media__link--logo media__link--left media__thumb" href="' + post.url + '">' +
                       '<img class="media__logo" src="' + post.attachments[$key].url + '" alt="' + post.title + ' Logo" />' +
                     '</a>';
@@ -355,22 +345,35 @@ filter = {};
     },
 
     get_tags: function( post ){
-
+      // console.log(post);
     },
 
     format_date: function( dateString ) {
 
-      var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
-          date = new Date( dateString ),
-          day = date.getDate(),
-          month = date.getMonth(),
-          year = date.getFullYear(),
-          monthName = monthNames[month]
+      var monthNames = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ],
+        date = new Date( dateString ),
+        day = date.getDate(),
+        month = date.getMonth(),
+        year = date.getFullYear(),
+        monthName = monthNames[month];
 
       var dateArray = {
         iso: date.toISOString(),
         pretty: monthName + ' ' + day + ', ' + year
-      }
+      };
 
       return dateArray;
 
@@ -382,7 +385,7 @@ filter = {};
           prettyDate = filter.format_date( post.date ).pretty;
 
       if ( $('body').hasClass('view-map') ) {
-        googleMap.add_marker( post );
+        window.googleMap.add_marker( post );
       }
 
       // todo: use Mustache templates
@@ -398,9 +401,11 @@ filter = {};
                   '<time class="media__date" datetime="' + datetime + '" class="media__date">' + prettyDate + '</time>' +
                 '</div>' +
                 filter.get_tags( post ) +
-              '</li>'
+              '</li>';
 
-    },
-  }
+    }
+  };
+
+  return filter;
 
 })(jQuery, window, document);
