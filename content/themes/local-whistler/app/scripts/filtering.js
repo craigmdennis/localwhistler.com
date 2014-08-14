@@ -195,16 +195,37 @@ filter = {};
 
     set_current_state: function(){
 
-      console.log( history.state );
-      console.log( event );
+      // Replace the current text to match the hostory state
+      $('#filterSearch').val( history.state.search );
 
-      // WIP
-      // $('#filterLocation').val('function')
+      // Get all the select boxes
+      var $selects = $('#filterForm').find('select');
 
-      // for each form control
-        // for each option
-          // if $_GET var matches option value
-            // Add :selected
+      // Iterate through the selects
+      $selects.each( function(){
+
+        // Remove all selected attributes
+        $(this).find('option:selected').removeAttr('selected');
+
+        // Get all the options in the selects
+        var $options = $(this).find('option');
+
+        $options.each( function(){
+
+          // Get the value
+          var value = $(this).val();
+
+          // if option value matches history state value
+          if ( (value === history.state.location) || (value === history.state.type) || (value === history.state.order ) ) {
+
+            // Set this as the selected option
+            $(this).attr('selected', 'selected');
+
+          }
+
+        });
+
+      });
 
     },
 
