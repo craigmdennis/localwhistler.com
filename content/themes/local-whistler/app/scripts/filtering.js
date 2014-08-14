@@ -2,11 +2,11 @@ var filter;
 
 filter = {};
 
-(function($, window, document) {
+(function($, window) {
 
   'use strict';
 
-  return filter = {
+  filter = {
 
     filterCount: 0,
 
