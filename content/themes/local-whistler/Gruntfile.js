@@ -61,18 +61,14 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       options: {
-        spawn: false,
+        spawn: true,
         interrupt: true,
-        dateFormat: function(time) {
-          grunt.log.writeln('The watch finished in ' + time + 'ms on ' + (new Date()).toString());
-          grunt.log.writeln('Waiting for more changes...');
-        },
         livereloadOnError: false
       },
 
       coffee: {
         files: ['<%= config.app.scripts %>/{,*/}*.{coffee,litcoffee,coffee.md}'],
-        tasks: ['coffee', 'jshint:server'],
+        tasks: ['coffee', 'jshint:server', 'concat:server'],
       },
       sassConfig: {
         files: ['config.rb'],
@@ -80,7 +76,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= config.app.scripts %>/{,*/}*.js'],
-        tasks: ['newer:copy:server', 'jshint:server']
+        tasks: ['newer:copy:server', 'jshint:server', 'concat:server']
       },
       gruntfile: {
         files: ['Gruntfile.js'],
@@ -88,7 +84,7 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= config.app.styles %>/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+        tasks: ['compass:server', 'autoprefixer', 'cssmin']
       },
       styles: {
         files: ['<%= config.app.styles %>/{,*/}*.css'],
@@ -148,7 +144,10 @@ module.exports = function (grunt) {
         options: {
           force: true
         },
-      src: '<%= config.tmp %>/scripts/{,*/}*.js'
+        src: [
+          '<%= config.tmp %>/scripts/*.js',
+          '!<%= config.tmp %>/scripts/vendor/*.js'
+        ]
       },
 
       // Use the same source as server but fail the task
@@ -484,8 +483,7 @@ module.exports = function (grunt) {
     'modernizr',
     'cssmin',
     'copy:dist',
-    'uglify',
-    'connect'
+    'uglify'
   ]);
 
 };
