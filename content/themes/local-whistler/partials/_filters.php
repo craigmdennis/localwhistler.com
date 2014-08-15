@@ -1,3 +1,16 @@
+<?php
+
+  // Get the search term or the taonomy term
+  $searchFilter = '';
+
+  if ( (get_search_query() == '') && (get_query_var( 'taxonomy' ) == 'business_filter') ) :
+    $searchFilter = single_term_title('', false);
+  else :
+    $searchFilter = get_search_query();
+  endif;
+
+?>
+
 <div class="form--filters">
 
   <form id="filterForm" method="GET" action="/">
@@ -7,7 +20,7 @@
 
     <div id="filterSearchArea" class="form__row">
       <label for="filterSearch" class="form__label form__label--search">Search by keyword</label>
-      <input id="filterSearch" class="form__text" type="search" placeholder="e.g. Organic" name="s" value="<?php the_search_query(); ?>">
+      <input id="filterSearch" class="form__text" type="search" placeholder="e.g. Organic" name="s" value="<?php echo $searchFilter ?>">
     </div>
 
     <?php $taxonomies = get_taxonomies( array('public'   => true, '_builtin' => false) , 'object', 'and' ); ?>

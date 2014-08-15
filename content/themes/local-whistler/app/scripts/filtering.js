@@ -16,11 +16,11 @@ filter = {};
       filter_on_init: true,
       filter_criteria: {
         location: ['.js__filter-location .TYPE.any', 'taxonomy_business_location.ARRAY.slug'],
-        type: ['.js__filter-type .TYPE.any', 'taxonomy_business_type.ARRAY.slug'],
+        type: ['.js__filter-type .TYPE.any', 'taxonomy_business_type.ARRAY.slug']
       },
       search: {
         input: '#filterSearch',
-        search_in: '.media__title, .media__body'
+        search_in: '.media__title, .media__body, .tag__link'
       },
       filter_types: {
         any: function( current_value, option ){
@@ -365,8 +365,30 @@ filter = {};
 
     },
 
-    get_tags: function( post ){
-      // console.log(post);
+    get_tags: function( post ) {
+
+      var tags = ['<ul>'];
+      var elem;
+
+      if ( post.taxonomy_business_filter !== '' ) {
+
+        // Iterate over each attachment in the array
+        $.each( post.taxonomy_business_filter, function(){
+
+          // Make sure we get the logo and not any old attachment
+          elem = '<li class="tag__item"><a class="tag__link" href="/filter/' + this.slug + '">' + this.title + '</a>';
+          tags.push( elem );
+
+        });
+
+        elem = '</ul>';
+        tags.push( elem );
+        tags = tags.join(',') + '';
+        tags = tags.replace(/,/g, '');
+      }
+
+      return tags;
+
     },
 
     format_date: function( dateString ) {
@@ -402,8 +424,8 @@ filter = {};
 
     view: function( post ){
 
-      var datetime = filter.format_date( post.date ).iso,
-          prettyDate = filter.format_date( post.date ).pretty;
+      // var datetime = filter.format_date( post.date ).iso,
+      //     prettyDate = filter.format_date( post.date ).pretty;
 
       if ( $('body').hasClass('view-map') ) {
         window.googleMap.add_marker( post );
@@ -419,9 +441,8 @@ filter = {};
                   post.excerpt +
                 '</div>' +
                 '<div class="media__footer">' +
-                  '<time class="media__date" datetime="' + datetime + '" class="media__date">' + prettyDate + '</time>' +
+                  filter.get_tags( post ) +
                 '</div>' +
-                filter.get_tags( post ) +
               '</li>';
 
     }
