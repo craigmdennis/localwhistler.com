@@ -1,0 +1,23 @@
+.card {
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+}
+
+.card__image img {
+  max-width: 100%;
+  display: block;
+}
+
+.card__heading {
+  position: absolute;
+  top: $baseline;
+  left: $baseline;
+  z-index: 2;
+}
+
+.card__body {
+  padding: $baseline*2;
+}

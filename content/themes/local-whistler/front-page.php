@@ -2,36 +2,74 @@
 
 <?php
 
-  // If pinned blog post exists
-    // Get the first pinned post
-    // Show featured image
-    // Show category with link
-    // Show title
-    // Show excerpt
-    // If image credit exists
-      // Show image credit (need to add image credit field to featured image picker)
-  // Else
-    // Get latest blog post
-    // Show the same as above
+  $args = array(
+  	'posts_per_page' => 1,
+  	'post__in'  => get_option( 'sticky_posts' )
+  );
 
 ?>
 
-<img src="http://placehold.it/960x500" />
-<a href="#">Category</a>
-<h1>Post title</h1>
-<p>This is the excerpt</p>
+<?php query_posts( $args ); ?>
 
-<hr>
-
-<?php query_posts( $query_string . '&post_type=post' ); ?>
 <?php if ( have_posts() ) :  while ( have_posts() ) : the_post(); ?>
 
-  <div>
-    <figure><?php the_post_thumbnail(); ?></figure>
-    <h2><?php the_title(); ?></h2>
-    <p><?php the_excerpt(); ?></p>
+  <div class="hero">
+    <div class="hero__image">
+      <?php the_post_thumbnail('full'); ?>
+    </div>
+    <div class="hero__body">
+      <?php the_category(); ?>
+      <h1 class="hero__title"><?php the_title(); ?></h1>
+      <?php the_excerpt(); ?>
+    </div>
   </div>
 
 <?php endwhile; endif; ?>
+
+<?php
+
+  $args = array(
+    'post_per_page' => 3,
+    'post_type' => 'post',
+    'post__not_in'  => get_option( 'sticky_posts' )
+  );
+
+?>
+
+<?php query_posts( $args ); ?>
+
+<div class="container">
+
+  <?php if ( have_posts() ) : ?>
+
+    <div class="row">
+
+      <?php while ( have_posts() ) : the_post(); ?>
+
+      <div class="span-4">
+        <div class="card">
+          <div class="card__image">
+            <figure>
+              <!-- <?php the_post_thumbnail(); ?> -->
+              <img src="http://placehold.it/300">
+            </figure>
+          </div>
+          <div class="card__heading">
+            <?php the_category(); ?>
+            <h2 class="card__title"><?php the_title(); ?></h2>
+          </div>
+          <div class="card__body">
+            <p><?php the_excerpt(); ?></p>
+          </div>
+        </div>
+      </div>
+
+      <?php endwhile; ?>
+
+    </div>
+
+  <?php endif; ?>
+
+</div>
 
 <?php get_footer(); ?>

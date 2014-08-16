@@ -5,17 +5,19 @@
 
 .hero {
   position: relative;
+  margin-bottom: $baseline*2;
+  max-height: 600px;
   overflow: hidden;
-  height: 0;
-  padding-bottom: 32%;
+  // height: 0;
+  // padding-bottom: 32%;
 
-  .hero__image {
-    position: absolute;
-    top: -15%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
+  // .hero__image {
+  //   position: absolute;
+  //   // top: -15%;
+  //   bottom: 0;
+  //   left: 0;
+  //   right: 0;
+  // }
 }
 
 .hero--spaced {
@@ -33,6 +35,14 @@
   bottom: $baseline*4;
   left: $baseline*4;
 }
+
+.hero__body {
+  position: absolute;
+  top: $baseline*4;
+  left: $baseline*4;
+}
+
+
 
 .hero__title {
   color: #FFF;

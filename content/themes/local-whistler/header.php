@@ -49,11 +49,8 @@
 
     <div class="header">
 
-      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" class="logo"><?php bloginfo( 'name' ); ?></a>
-      <p class="desc"><?php bloginfo( 'description' ); ?></p>
-
       <nav role="navigation">
-        <div class="nav">
+        <div class="container">
           <?php
 
             $navArgs = array(
