@@ -2,12 +2,7 @@
 // All your SASS are belong to us
 // ===================================================
 
-
-/** COMPASS EXTENSIONS / GLOBAL **/
-@import "compass";
-@import "memo";
-@import "breakpoint";
-// @import "modular-scale";
+@import "susy";
 
 //- bower:scss
 @import "../bower_components/breakpoint-sass/stylesheets/_breakpoint.scss";
@@ -17,6 +12,8 @@
 @import "vars/vars_brand";
 @import "vars/vars_type";
 @import "vars/vars_breakpoints";
+/** MIXINS **/
+@import "mixins/_helpers";
 
 
 /** PARTIALS **/
