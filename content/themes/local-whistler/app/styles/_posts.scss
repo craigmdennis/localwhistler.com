@@ -4,7 +4,9 @@
 }
 
 .home .content {
-  margin-top: -52px;
+  @include breakpoint( $bp5 ) {
+    margin-top: -52px;
+  }
 }
 
 .post-categories {
