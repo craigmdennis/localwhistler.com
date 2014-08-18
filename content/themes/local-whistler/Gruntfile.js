@@ -194,8 +194,11 @@ module.exports = function (grunt) {
       },
       dist: {
         files: [{
-          src: 'style.css',
-          dest: 'style.css'
+          expand: true,
+          cwd: '.tmp',
+          src: '.tmp/styles/{,*/}*.css',
+          dest: '.tmp/styles',
+          ext: '.css'
         }]
       }
     },
@@ -445,7 +448,7 @@ module.exports = function (grunt) {
     'clean',
     'concurrent:server',
     'copy:server',
-    // 'autoprefixer',
+    'autoprefixer',
     'concat:server',
     'cssmin',
     'copy:dist',

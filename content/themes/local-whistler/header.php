@@ -47,23 +47,25 @@
 
   <header role="banner">
 
-    <div class="header">
+    <div class="header container">
 
-      <nav role="navigation">
-        <?php
+      <div class="span-12">
+        <nav role="navigation">
+          <?php
 
-          $navArgs = array(
-            'menu' => 'mainnav',
-            'container' => 'div',
-            'container_class' => 'menu',
-            'menu_id' => false,
-            'menu_class' => 'menu__list'
-          );
+            $navArgs = array(
+              'menu' => 'mainnav',
+              'container' => 'div',
+              'container_class' => 'menu',
+              'menu_id' => false,
+              'menu_class' => 'menu__list'
+            );
 
-          wp_nav_menu( $navArgs );
+            wp_nav_menu( $navArgs );
 
-        ?>
-      </nav>
+          ?>
+        </nav>
+      </div>
 
     </div>
   </header>

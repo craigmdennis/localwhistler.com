@@ -9,44 +9,53 @@
   color: #FFF;
 }
 
+%overlay--position {
+  clear: left;
+  display: block;
+  float: left;
+  padding: $baseline/2 $baseline;
+  margin-bottom: $baseline/2;
+}
+
 .hero {
   position: relative;
   margin-bottom: $baseline*2;
-  max-height: 600px;
-  overflow: hidden;
 }
 
 .hero__image {
-  width: $bp7;
   margin-left: auto;
   margin-right: auto;
   background-position: center center;
   background-size: cover;
+  position: relative;
+  z-index: -1;
 
   @include breakpoint( $bp5 ) {
-    margin-top: $baseline*2;
+    margin-top: -32px;
+    padding-top: 32px;
+    height: 532px;
   }
 }
 
 .hero__body {
+  @include span(12);
+  min-height: 400px;
 
-  @include breakpoint( $bp4 ) {
-    height: 500px;
+  @include breakpoint( $bp5 ) {
+    min-height: 500px;
   }
 
   .post-categories {
     overflow: hidden;
     list-style: none;
     padding: 0;
-    margin-bottom: $baseline/2;
+    margin-top: $baseline*3;
 
     li {
-      float: left;
 
       a {
         @extend %overlay--secondary;
-        display: block;
-        padding: $baseline $baseline*2;
+        @extend %overlay--position;
       }
     }
   }
@@ -54,8 +63,12 @@
 
 .hero__title {
   @extend %overlay--primary;
-  display: inline-block;
-  padding: $baseline $baseline*2
+  @extend %overlay--position;
+}
+
+.hero__subtitle {
+  @extend %overlay--primary;
+  @extend %overlay--position;
 }
 
 .hero__link--title {

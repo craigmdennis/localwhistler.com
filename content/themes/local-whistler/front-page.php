@@ -20,10 +20,14 @@
   <div class="hero">
     <div class="hero__image" style="background-image: url(<?php echo $url; ?>);">
 
-      <div class="hero__body">
-        <?php the_category(); ?>
-        <h1 class="hero__title"><?php the_title(); ?></h1>
-        <?php the_excerpt(); ?>
+      <div class="container">
+        <div class="hero__body">
+          <?php the_category(); ?>
+          <h1 class="hero__title"><?php the_title(); ?></h1>
+          <div class="hero__subtitle">
+            <?php the_excerpt(); ?>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -43,38 +47,36 @@
 
 <?php query_posts( $args ); ?>
 
-<div class="container">
+<div class="container content">
 
   <?php if ( have_posts() ) : ?>
 
-      <?php while ( have_posts() ) : the_post(); ?>
+    <?php while ( have_posts() ) : the_post(); ?>
 
-        <?php if (get_the_post_thumbnail() == '') : continue; ?>
+      <?php if (get_the_post_thumbnail() == '') : continue; ?>
 
-        <?php else : ?>
+      <?php else : ?>
 
-          <div class="span-4">
-            <div class="card">
-              <div class="card__image">
-                <figure>
-                  <?php the_post_thumbnail('small'); ?>
-                </figure>
-              </div>
-              <div class="card__heading">
-                <?php the_category(); ?>
-                <h2 class="card__title"><?php the_title(); ?></h2>
-              </div>
-              <div class="card__body">
-                <p><?php the_excerpt(); ?></p>
-              </div>
+        <div class="span-4">
+          <div class="card">
+            <div class="card__image">
+              <figure>
+                <?php the_post_thumbnail('small'); ?>
+              </figure>
+            </div>
+            <div class="card__heading">
+              <?php the_category(); ?>
+              <h2 class="card__title"><?php the_title(); ?></h2>
+            </div>
+            <div class="card__body">
+              <p><?php the_excerpt(); ?></p>
             </div>
           </div>
+        </div>
 
-        <?php endif; ?>
+      <?php endif; ?>
 
-      <?php endwhile; ?>
-
-    </div>
+    <?php endwhile; ?>
 
   <?php endif; ?>
 
