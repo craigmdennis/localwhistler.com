@@ -13,14 +13,19 @@
 
 <?php if ( have_posts() ) :  while ( have_posts() ) : the_post(); ?>
 
+  <?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' ); ?>
+  <?php $url = $thumb['0']; ?>
+
+
   <div class="hero">
-    <div class="hero__image">
-      <?php the_post_thumbnail('full'); ?>
-    </div>
-    <div class="hero__body">
-      <?php the_category(); ?>
-      <h1 class="hero__title"><?php the_title(); ?></h1>
-      <?php the_excerpt(); ?>
+    <div class="hero__image" style="background-image: url(<?php echo $url; ?>);">
+
+      <div class="hero__body">
+        <?php the_category(); ?>
+        <h1 class="hero__title"><?php the_title(); ?></h1>
+        <?php the_excerpt(); ?>
+      </div>
+
     </div>
   </div>
 
@@ -42,27 +47,30 @@
 
   <?php if ( have_posts() ) : ?>
 
-    <div class="row">
-
       <?php while ( have_posts() ) : the_post(); ?>
 
-      <div class="span-4">
-        <div class="card">
-          <div class="card__image">
-            <figure>
-              <!-- <?php the_post_thumbnail(); ?> -->
-              <img src="http://placehold.it/300">
-            </figure>
+        <?php if (get_the_post_thumbnail() == '') : continue; ?>
+
+        <?php else : ?>
+
+          <div class="span-4">
+            <div class="card">
+              <div class="card__image">
+                <figure>
+                  <?php the_post_thumbnail('small'); ?>
+                </figure>
+              </div>
+              <div class="card__heading">
+                <?php the_category(); ?>
+                <h2 class="card__title"><?php the_title(); ?></h2>
+              </div>
+              <div class="card__body">
+                <p><?php the_excerpt(); ?></p>
+              </div>
+            </div>
           </div>
-          <div class="card__heading">
-            <?php the_category(); ?>
-            <h2 class="card__title"><?php the_title(); ?></h2>
-          </div>
-          <div class="card__body">
-            <p><?php the_excerpt(); ?></p>
-          </div>
-        </div>
-      </div>
+
+        <?php endif; ?>
 
       <?php endwhile; ?>
 

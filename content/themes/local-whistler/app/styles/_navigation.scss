@@ -1,85 +1,108 @@
 .menu {
-  padding-top: $baseline*2;
+  @include breakpoint( $bp5 ) {
+    padding-top: $baseline*2;
+  }
 }
 
 .menu__list {
   @extend %unstyled;
-  display:table;
-  // table-layout: fixed;
+
   margin: 0;
   padding: 0;
   width: 100%;
-  border-right: 1px solid #CCC;
-  border-top: 1px solid #CCC;
-  border-radius: 3px 0 0 3px;
 
   li {
     background-color: #FFF;
     position: relative;
     z-index: 99;
-  }
-
-  > li {
-    border-left: 1px solid #CCC;
-    display: table-cell;
-    width: 2%; /* Safari 6 bug */
-
-    &:hover,
-    &:focus {
-      background-color: #F2F2F2;
-    }
-
-    > a {
-      text-align: center;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    ul {
-      @extend %unstyled;
-      position: absolute;
-      left: -9999em; // So it's still readable by screen readers
-    }
-
-    &:hover,
-    &:focus {
-
-      ul {
-        // left: 0;
-        left: -1px;
-      }
-    }
-  }
-
-  .menu-item-has-children {
-    padding-right: $baseline*2;
-
-    &:after {
-      content: "▾";
-      display: block;
-      position: absolute;
-      right: $baseline*3;
-      top: 1em;
-    }
-}
-
-  .sub-menu {
-    border: 1px solid rgba(0,0,0,0.2);
-    border-top-color: #CCC;
+    margin-left: 0;
 
     a {
-      padding: $baseline*2;
       &:hover,
       &:focus {
         background-color: #F2F2F2;
       }
     }
+
+    ul {
+      height: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+  }
+
+  > li {
+
+    > a {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
   }
 
   a {
-    font-size: 0.8rem;
-    padding: $baseline*3 $baseline*2;
+    padding: $baseline $baseline*2;
     display: block;
     white-space: nowrap;
+  }
+
+  @include breakpoint( $bp4 ) {
+    border-right: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    display:table;
+    // table-layout: fixed;
+    // border-radius: 3px 0 0 3px;
+
+    > li {
+      border-left: 1px solid #CCC;
+      display: table-cell;
+      width: 2%; /* Safari 6 bug */
+
+      ul {
+        position: absolute;
+        left: -9999em; // So it's still readable by screen readers
+      }
+
+      > a {
+        text-align: center;
+      }
+
+      &:hover,
+      &:focus {
+
+        ul {
+          left: -1px;
+        }
+      }
+    }
+
+    .menu-item-has-children {
+      > a {
+        padding-right: $baseline*5;
+
+        &:after {
+          content: "▾";
+          display: block;
+          position: absolute;
+          right: $baseline*2;
+          top: $baseline*3;
+        }
+
+      }
+    }
+
+    .sub-menu {
+      border: 1px solid rgba(0,0,0,0.2);
+      border-top-color: #CCC;
+
+      a {
+        padding: $baseline*2;
+      }
+    }
+
+    a {
+      padding: $baseline*3 $baseline*2;
+    }
   }
 }

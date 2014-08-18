@@ -1,4 +1,8 @@
 .admin-bar {
+  @include breakpoint( max-width 782px ) {
+    margin-top: 46px;
+  }
+
   margin-top:32px;
 }
 

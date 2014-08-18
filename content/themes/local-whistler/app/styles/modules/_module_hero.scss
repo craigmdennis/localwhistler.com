@@ -1,6 +1,12 @@
-%overlay-background {
-  background-color: #333;
-  background-color: rgba(0,0,0,0.8);
+%overlay--primary {
+  background-color: $brand-orange;
+  color: #FFF;
+}
+
+%overlay--secondary {
+  background-color: #000;
+  background-color: rgba(0,0,0,0.75);
+  color: #FFF;
 }
 
 .hero {
@@ -8,44 +14,46 @@
   margin-bottom: $baseline*2;
   max-height: 600px;
   overflow: hidden;
-  // height: 0;
-  // padding-bottom: 32%;
-
-  // .hero__image {
-  //   position: absolute;
-  //   // top: -15%;
-  //   bottom: 0;
-  //   left: 0;
-  //   right: 0;
-  // }
 }
 
-.hero--spaced {
-  @extend .hero;
-  margin-bottom: $baseline*2;
-}
+.hero__image {
+  width: $bp7;
+  margin-left: auto;
+  margin-right: auto;
+  background-position: center center;
+  background-size: cover;
 
-.hero__link--image {
-  display: block;
-}
-
-.hero__overlay {
-  @extend %overlay-background;
-  position: absolute;
-  bottom: $baseline*4;
-  left: $baseline*4;
+  @include breakpoint( $bp5 ) {
+    margin-top: $baseline*2;
+  }
 }
 
 .hero__body {
-  position: absolute;
-  top: $baseline*4;
-  left: $baseline*4;
+
+  @include breakpoint( $bp4 ) {
+    height: 500px;
+  }
+
+  .post-categories {
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    margin-bottom: $baseline/2;
+
+    li {
+      float: left;
+
+      a {
+        @extend %overlay--secondary;
+        display: block;
+        padding: $baseline $baseline*2;
+      }
+    }
+  }
 }
 
-
-
 .hero__title {
-  color: #FFF;
+  @extend %overlay--primary;
   display: inline-block;
   padding: $baseline $baseline*2
 }

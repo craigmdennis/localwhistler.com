@@ -50,21 +50,19 @@
     <div class="header">
 
       <nav role="navigation">
-        <div class="container">
-          <?php
+        <?php
 
-            $navArgs = array(
-              'menu' => 'mainnav',
-              'container' => 'div',
-              'container_class' => 'menu',
-              'menu_id' => false,
-              'menu_class' => 'menu__list'
-            );
+          $navArgs = array(
+            'menu' => 'mainnav',
+            'container' => 'div',
+            'container_class' => 'menu',
+            'menu_id' => false,
+            'menu_class' => 'menu__list'
+          );
 
-            wp_nav_menu( $navArgs );
+          wp_nav_menu( $navArgs );
 
-          ?>
-        </div>
+        ?>
       </nav>
 
     </div>
