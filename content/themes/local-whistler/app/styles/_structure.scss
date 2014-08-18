@@ -6,6 +6,15 @@
   margin-top:32px;
 }
 
+.header {
+  @include breakpoint( max-width $bp5 ) {
+    padding: 0;
+    .span-12 {
+      padding: 0;
+    }
+  }
+}
+
 .footer {
   clear: both;
 }
