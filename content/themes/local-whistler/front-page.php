@@ -54,41 +54,43 @@
 <div class="container">
 
   <div class="span-12">
-    <div class="content">
+    <div class="border">
+      <div class="content">
 
-      <?php if ( have_posts() ) : ?>
+        <?php if ( have_posts() ) : ?>
 
-        <?php while ( have_posts() ) : the_post(); ?>
+          <?php while ( have_posts() ) : the_post(); ?>
 
-          <?php if (get_the_post_thumbnail() == '') : continue; ?>
+            <?php if (get_the_post_thumbnail() == '') : continue; ?>
 
-          <?php else : ?>
+            <?php else : ?>
 
-            <div class="span-4">
-              <div class="card">
-                <div class="card__image">
-                  <figure>
-                    <?php the_post_thumbnail('small'); ?>
-                  </figure>
-                </div>
-                <div class="card__heading">
-                  <?php the_category(); ?>
-                  <h2 class="card__title"><?php the_title(); ?></h2>
-                </div>
-                <div class="card__body">
-                  <p><?php the_excerpt(); ?></p>
+              <div class="span-4">
+                <div class="card">
+                  <div class="card__image">
+                    <figure>
+                      <?php the_post_thumbnail('small'); ?>
+                    </figure>
+                  </div>
+                  <div class="card__heading">
+                    <?php the_category(); ?>
+                    <h2 class="card__title"><?php the_title(); ?></h2>
+                  </div>
+                  <div class="card__body">
+                    <p><?php the_excerpt(); ?></p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-          <?php endif; ?>
+            <?php endif; ?>
 
-        <?php endwhile; ?>
+          <?php endwhile; ?>
 
-      <?php endif; ?>
+        <?php endif; ?>
+
+      </div>
 
     </div>
-
   </div>
 </div>
 

@@ -4,14 +4,15 @@
   padding: $baseline*2 $baseline 0;
 }
 
+.border {
+  @include menuborder;
+  @include boxshadow;
+}
+
 .home .content {
   position: relative;
   z-index: 2;
-
-  @include breakpoint( $bp5 ) {
-    margin-top: -52px;
-    border-radius: 5px;
-  }
+  margin-top: -64px;
 }
 
 .post-categories {

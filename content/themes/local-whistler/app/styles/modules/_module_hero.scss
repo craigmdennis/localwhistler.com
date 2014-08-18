@@ -24,17 +24,36 @@
 }
 
 .hero--home {
+  position: relative;
+  width: 100%;
+  overflow:hidden;
+
+  @include breakpoint( $bp5 ) {
+    margin-top: -32px;
+    padding-top: 32px;
+    max-height: 550px;
+  }
 
   .hero__image {
     position: absolute;
     z-index: 1;
+    top: 0;
+    width:600px;
+    left: 50%;
+    margin-left: -300px;
 
     a {
       display: block;
     }
 
-    @include breakpoint( $bp5 ) {
-      margin-top: -90px;
+    @include breakpoint( $bp3 ) {
+      width:800px;
+      margin-left: -400px;
+    }
+
+    @include breakpoint( $bp4 ) {
+      width:1200px;
+      margin-left: -600px;
     }
   }
 
@@ -42,13 +61,15 @@
 
 .hero__body {
   @include span(12);
-  min-height: 400px;
+  padding-bottom: $baseline*4;
+  padding-top: $baseline*4;
   position: relative;
   z-index: 2;
+  padding-top: $baseline*3;
+  min-height: 350px;
 
   @include breakpoint( $bp5 ) {
-    padding-top: $baseline*3;
-    min-height: 500px;
+    min-height: 450px;
   }
 }
 
