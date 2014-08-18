@@ -6,3 +6,23 @@
 .home .content {
   margin-top: -52px;
 }
+
+.post-categories {
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+
+  li {
+
+    a {
+      @extend %overlay--secondary;
+      @extend %overlay--position;
+      margin-right: 5px;
+
+      &:hover,
+      &:focus {
+        color: $brand-orange;
+      }
+    }
+  }
+}

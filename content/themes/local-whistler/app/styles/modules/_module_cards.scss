@@ -20,7 +20,13 @@
   position: absolute;
   top: $baseline;
   left: $baseline;
+  right: $baseline;
   z-index: 2;
+}
+
+.card__title {
+  @extend %overlay--primary;
+  @extend %overlay--position;
 }
 
 .card__body {

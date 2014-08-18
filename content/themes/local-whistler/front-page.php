@@ -17,7 +17,7 @@
   <?php $url = $thumb['0']; ?>
 
 
-  <div class="hero">
+  <div class="hero--home">
     <div class="hero__image" style="background-image: url(<?php echo $url; ?>);">
 
       <div class="container">
