@@ -29,7 +29,7 @@
     background-position: center center;
     background-size: cover;
     position: relative;
-    z-index: -1;
+    z-index: 1;
 
     @include breakpoint( $bp5 ) {
       margin-top: -90px;
