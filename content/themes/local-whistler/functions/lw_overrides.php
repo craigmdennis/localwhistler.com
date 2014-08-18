@@ -41,7 +41,7 @@
 
     $screen = get_current_screen();
 
-    if ( $screen->post_type == 'business' || 'product' ) {
+    if ( $screen->post_type === 'business' ) {
       remove_action( 'media_buttons', 'media_buttons' );
     }
 
