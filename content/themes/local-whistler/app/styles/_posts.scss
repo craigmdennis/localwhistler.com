@@ -1,11 +1,16 @@
 .content {
+  @include clearfix;
   background-color: #FFF;
   padding: $baseline*2 $baseline 0;
 }
 
 .home .content {
+  position: relative;
+  z-index: 2;
+
   @include breakpoint( $bp5 ) {
     margin-top: -52px;
+    border-radius: 5px;
   }
 }
 
