@@ -10,7 +10,6 @@
 }
 
 %overlay--position {
-  clear: left;
   display: block;
   float: left;
   padding: $baseline/2 $baseline;
@@ -22,51 +21,41 @@
   margin-bottom: $baseline*2;
 }
 
-.hero__image {
-  margin-left: auto;
-  margin-right: auto;
-  background-position: center center;
-  background-size: cover;
-  position: relative;
-  z-index: -1;
+.hero--home {
 
-  @include breakpoint( $bp5 ) {
-    margin-top: -32px;
-    padding-top: 32px;
-    height: 532px;
+  .hero__image {
+    margin-left: auto;
+    margin-right: auto;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    z-index: -1;
+
+    @include breakpoint( $bp5 ) {
+      margin-top: -90px;
+      padding-top: 90px;
+      height: 590px;
+    }
   }
+
 }
 
 .hero__body {
   @include span(12);
-  min-height: 400px;
 
   @include breakpoint( $bp5 ) {
-    min-height: 500px;
-  }
-
-  .post-categories {
-    overflow: hidden;
-    list-style: none;
-    padding: 0;
     margin-top: $baseline*3;
-
-    li {
-
-      a {
-        @extend %overlay--secondary;
-        @extend %overlay--position;
-      }
-    }
   }
 }
 
 .hero__title {
+  clear: left;
   @extend %overlay--primary;
   @extend %overlay--position;
 }
 
 .hero__subtitle {
+  clear: left;
   @extend %overlay--primary;
   @extend %overlay--position;
 }

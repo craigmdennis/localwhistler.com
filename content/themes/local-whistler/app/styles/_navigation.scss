@@ -48,6 +48,7 @@
   }
 
   a {
+    color: $body-copy-color;
     padding: $baseline;
     display: block;
     white-space: nowrap;
@@ -94,7 +95,7 @@
           display: block;
           position: absolute;
           right: $baseline*2;
-          top: $baseline*3;
+          top: $baseline*2;
         }
 
       }
