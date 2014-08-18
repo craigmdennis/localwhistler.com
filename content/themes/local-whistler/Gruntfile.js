@@ -70,10 +70,6 @@ module.exports = function (grunt) {
         files: ['<%= config.app.scripts %>/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['coffee', 'jshint:server', 'concat:server'],
       },
-      sassConfig: {
-        files: ['config.rb'],
-        tasks: ['compass:server']
-      },
       js: {
         files: ['<%= config.app.scripts %>/{,*/}*.js'],
         tasks: ['newer:copy:server', 'jshint:server', 'concat:server']
@@ -82,13 +78,13 @@ module.exports = function (grunt) {
         files: ['Gruntfile.js'],
         tasks: ['jshint:gruntfile', 'default'],
       },
-      compass: {
+      sass: {
         files: ['<%= config.app.styles %>/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer', 'cssmin']
+        tasks: ['sass', 'autoprefixer', 'cssmin']
       },
       styles: {
         files: ['<%= config.app.styles %>/{,*/}*.css'],
-        tasks: ['copy:all', 'autoprefixer']
+        tasks: ['copy:all']
       },
       livereload: {
         options: {
@@ -173,19 +169,21 @@ module.exports = function (grunt) {
     },
 
     // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
+    sass: {
       options: {
-        config: 'config.rb'
+        style: 'expanded',
+        sourcemap: false,
+        quiet: true,
+        require: 'susy'
       },
       dist: {
-        options: {
-          debugInfo: false
-        }
-      },
-      server: {
-        options: {
-          debugInfo: true
-        }
+        files: [{
+          expand: true,
+          cwd: '<%= config.app.styles %>/',
+          src: '{,*/}*.scss',
+          dest: '.tmp/styles',
+          ext: '.css'
+        }]
       }
     },
 
@@ -197,9 +195,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= config.tmp %>/styles/',
-          src: '{,*/}*.css',
-          dest: '<%= config.tmp %>/styles/',
+          cwd: '.tmp',
+          src: '.tmp/styles/{,*/}*.css',
+          dest: '.tmp/styles',
           ext: '.css'
         }]
       }
@@ -304,7 +302,7 @@ module.exports = function (grunt) {
             dest: '<%= config.dist.img %>'
           },
           {
-            // Copy BX Slider CSS to the .tmp directory
+            // Copy BX Slider JS to the .tmp directory
             src: '<%= config.app.bower %>/bxslider-4/jquery.bxslider.js',
             dest: '<%= config.tmp %>/scripts/jquery.bxslider.js'
           },
@@ -314,7 +312,7 @@ module.exports = function (grunt) {
             dest: '<%= config.tmp %>/styles/jquery.bxslider.css'
           },
           {
-            // Copy bxslinder CSS to the .tmp directry
+            // Copy BX Slider Images to the .tmp directry
             src: '<%= config.app.bower %>/bxslider-4/images/',
             dest: '<%= config.dist.img %>'
           },
@@ -345,19 +343,9 @@ module.exports = function (grunt) {
             ]
           },
           {
-            // Copy Sass Map
-            src: '.tmp/style.css.map',
-            dest: 'style.css.map',
-          },
-          {
             // Copy jQuery as self-hosted fallback
             src: '<%= config.bower %>/jquery/dist/jquery.min.js',
             dest: '<%= config.dist.scripts %>/vendor/jquery.min.js'
-          },
-          {
-            // Copy jQuery map
-            src: '<%= config.bower %>/jquery/dist/jquery.min.map',
-            dest: '<%= config.dist.scripts %>/vendor/jquery.min.map'
           }
 
         ]
@@ -441,11 +429,11 @@ module.exports = function (grunt) {
         limit: 5
       },
       server: [
-        'compass:server',
-        'newer:coffee',
+        'sass',
+        'newer:coffee'
       ],
       dist: [
-        'compass:dist',
+        'sass',
         'coffee',
         'imagemin'
       ]

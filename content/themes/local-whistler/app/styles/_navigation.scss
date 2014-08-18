@@ -1,85 +1,116 @@
 .menu {
-  padding-top: $baseline*2;
+  @include breakpoint( $bp5 ) {
+    margin-top: $baseline*2;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 2px 2px rgba(0,0,0,0.08);
+  }
 }
 
 .menu__list {
   @extend %unstyled;
-  display:table;
-  // table-layout: fixed;
+
   margin: 0;
   padding: 0;
   width: 100%;
-  border-right: 1px solid #CCC;
-  border-top: 1px solid #CCC;
-  border-radius: 3px 0 0 3px;
 
   li {
-    background-color: #FFF;
     position: relative;
     z-index: 99;
-  }
+    margin-left: 0;
 
-  > li {
-    border-left: 1px solid #CCC;
-    display: table-cell;
-    width: 2%; /* Safari 6 bug */
-
-    &:hover,
-    &:focus {
-      background-color: #F2F2F2;
-    }
-
-    > a {
-      text-align: center;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    a {
+      background-color: #F8F8F8;
+      &:hover,
+      &:focus {
+        background: #FFF;
+      }
     }
 
     ul {
-      @extend %unstyled;
-      position: absolute;
-      left: -9999em; // So it's still readable by screen readers
+      height: 0;
+      padding-left: 0;
+      list-style: none;
     }
 
-    &:hover,
-    &:focus {
-
-      ul {
-        // left: 0;
-        left: -1px;
-      }
-    }
   }
 
-  .menu-item-has-children {
-    padding-right: $baseline*2;
+  > li {
 
-    &:after {
-      content: "▾";
-      display: block;
-      position: absolute;
-      right: $baseline*3;
-      top: 1em;
-    }
-}
+    > a {
+      overflow: hidden;
+      text-overflow: ellipsis;
 
-  .sub-menu {
-    border: 1px solid rgba(0,0,0,0.2);
-    border-top-color: #CCC;
-
-    a {
-      padding: $baseline*2;
-      &:hover,
-      &:focus {
-        background-color: #F2F2F2;
+      @include breakpoint( $bp5 ) {
+        background-image: linear-gradient(to bottom, #FFF 50%, #EEE 100%);
       }
     }
+
   }
 
   a {
-    font-size: 0.8rem;
-    padding: $baseline*3 $baseline*2;
+    padding: $baseline;
     display: block;
     white-space: nowrap;
+  }
+
+  @include breakpoint( $bp4 ) {
+    display:table;
+    // table-layout: fixed;
+    // border-radius: 3px 0 0 3px;
+
+    > li {
+      border-left: 1px solid #CCC;
+      display: table-cell;
+      width: 2%; /* Safari 6 bug */
+
+      &:first-child {
+        border: 0;
+      }
+
+      ul {
+        position: absolute;
+        left: -9999em; // So it's still readable by screen readers
+      }
+
+      > a {
+        text-align: center;
+      }
+
+      &:hover,
+      &:focus {
+
+        ul {
+          left: -1px;
+        }
+      }
+    }
+
+    .menu-item-has-children {
+      > a {
+        padding-right: $baseline*5;
+
+        &:after {
+          content: "▾";
+          display: block;
+          position: absolute;
+          right: $baseline*2;
+          top: $baseline*3;
+        }
+
+      }
+    }
+
+    .sub-menu {
+      border: 1px solid rgba(0,0,0,0.2);
+      border-top-color: #CCC;
+
+      a {
+        padding: $baseline*2;
+      }
+    }
+
+    a {
+      padding: $baseline*2;
+    }
   }
 }

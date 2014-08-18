@@ -1,0 +1,13 @@
+$bp1: 20em; // 320px
+$bp2: 30em; // 480px
+$bp3: 37.5em; // 600px
+$bp4: 48em; // 768px
+$bp5: 56.25em; // 900px
+$bp6: 68.75em; // 1100px
+$bp7: 81.25em; // 1300px
+
+$susy: (
+  columns: 12,
+  gutter-position: inside,
+  gutter: 1em
+);

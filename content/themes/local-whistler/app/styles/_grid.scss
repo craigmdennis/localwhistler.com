@@ -1,21 +1,22 @@
-$gutter-width: $baseline*2;
-
 .container {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 55em;
-  padding-left: $gutter-width;
-  padding-right: $gutter-width;
-}
+  @include container;
 
-.row {
-  margin-left: -$gutter-width/2;
-  margin-right: -$gutter-width/2;
+  padding-left: $baseline;
+  padding-right: $baseline;
+
+  @include breakpoint( $bp4 ) {
+    @include container( 1100px );
+  }
 }
 
 .span-4 {
-  width: 33.333%;
-  float: left;
-  padding-left: $gutter-width/2;
-  padding-right: $gutter-width/2;
+  @include span(12);
+
+  @include breakpoint( $bp4 ) {
+    @include span(4);
+  }
+}
+
+.span-12 {
+  @include span(12);
 }

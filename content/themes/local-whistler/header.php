@@ -47,10 +47,10 @@
 
   <header role="banner">
 
-    <div class="header">
+    <div class="header container">
 
-      <nav role="navigation">
-        <div class="container">
+      <div class="span-12">
+        <nav role="navigation">
           <?php
 
             $navArgs = array(
@@ -64,8 +64,8 @@
             wp_nav_menu( $navArgs );
 
           ?>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
     </div>
   </header>
