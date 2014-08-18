@@ -18,18 +18,22 @@
 
 
   <div class="hero--home">
-    <div class="hero__image" style="background-image: url(<?php echo $url; ?>);">
-
-      <div class="container">
-        <div class="hero__body">
-          <?php the_category(); ?>
-          <h1 class="hero__title"><?php the_title(); ?></h1>
-          <div class="hero__subtitle">
-            <?php the_excerpt(); ?>
-          </div>
+    <div class="hero__image"><?php the_post_thumbnail('full'); ?></div>
+    <div class="container">
+      <div class="hero__body">
+        <?php the_category(); ?>
+        <h1 class="hero__title">
+          <a href="<?php the_permalink(); ?>">
+            <?php the_title(); ?>
+          </a>
+        </h1>
+        <div class="hero__subtitle">
+          <?php the_excerpt(); ?>
         </div>
+        <!-- <a class="hero__overlay-link" href="<?php the_permalink(); ?>">
+          <span><?php the_title(); ?></span>
+        </a> -->
       </div>
-
     </div>
   </div>
 
@@ -47,39 +51,45 @@
 
 <?php query_posts( $args ); ?>
 
-<div class="container content">
+<div class="container">
 
-  <?php if ( have_posts() ) : ?>
+  <div class="span-12">
+    <div class="content">
 
-    <?php while ( have_posts() ) : the_post(); ?>
+      <?php if ( have_posts() ) : ?>
 
-      <?php if (get_the_post_thumbnail() == '') : continue; ?>
+        <?php while ( have_posts() ) : the_post(); ?>
 
-      <?php else : ?>
+          <?php if (get_the_post_thumbnail() == '') : continue; ?>
 
-        <div class="span-4">
-          <div class="card">
-            <div class="card__image">
-              <figure>
-                <?php the_post_thumbnail('small'); ?>
-              </figure>
+          <?php else : ?>
+
+            <div class="span-4">
+              <div class="card">
+                <div class="card__image">
+                  <figure>
+                    <?php the_post_thumbnail('small'); ?>
+                  </figure>
+                </div>
+                <div class="card__heading">
+                  <?php the_category(); ?>
+                  <h2 class="card__title"><?php the_title(); ?></h2>
+                </div>
+                <div class="card__body">
+                  <p><?php the_excerpt(); ?></p>
+                </div>
+              </div>
             </div>
-            <div class="card__heading">
-              <?php the_category(); ?>
-              <h2 class="card__title"><?php the_title(); ?></h2>
-            </div>
-            <div class="card__body">
-              <p><?php the_excerpt(); ?></p>
-            </div>
-          </div>
-        </div>
+
+          <?php endif; ?>
+
+        <?php endwhile; ?>
 
       <?php endif; ?>
 
-    <?php endwhile; ?>
+    </div>
 
-  <?php endif; ?>
-
+  </div>
 </div>
 
 <?php get_footer(); ?>

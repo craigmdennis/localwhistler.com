@@ -14,6 +14,8 @@
   float: left;
   padding: $baseline/2 $baseline;
   margin-bottom: $baseline/2;
+  position: relative;
+  z-index: 3;
 }
 
 .hero {
@@ -24,20 +26,15 @@
 .hero--home {
 
   .hero__image {
-    margin-left: auto;
-    margin-right: auto;
-    background-position: center center;
-    background-size: cover;
-    position: relative;
+    position: absolute;
     z-index: 1;
-    padding-bottom: $baseline*2;
-    padding-top: $baseline*2;
+
+    a {
+      display: block;
+    }
 
     @include breakpoint( $bp5 ) {
       margin-top: -90px;
-      padding-top: 90px;
-      padding-bottom: 0;
-      height: 590px;
     }
   }
 
@@ -45,16 +42,34 @@
 
 .hero__body {
   @include span(12);
+  min-height: 400px;
+  position: relative;
+  z-index: 2;
 
   @include breakpoint( $bp5 ) {
-    margin-top: $baseline*3;
+    padding-top: $baseline*3;
+    min-height: 500px;
+  }
+}
+
+.hero__overlay-link {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  span {
+    @extend %sr-only;
   }
 }
 
 .hero__title {
-  clear: left;
-  @extend %overlay--primary;
-  @extend %overlay--position;
+  a {
+    clear: left;
+    @extend %overlay--primary;
+    @extend %overlay--position;
+  }
 }
 
 .hero__subtitle {
