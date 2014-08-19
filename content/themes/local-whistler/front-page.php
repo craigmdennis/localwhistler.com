@@ -51,7 +51,7 @@
           </div>
           <div class="media__heading">
             <h2 class="media__title">
-              <a href="#">
+              <a href="/?s=Pizza&business_location=creekside&business_type=&order=date-desc">
                 <span>Pizza in Creekside</span>
               </a>
             </h2>
@@ -66,8 +66,8 @@
           </div>
           <div class="media__heading">
             <h2 class="media__title">
-              <a href="#">
-                <span>Shopping in The Village</span>
+              <a href="/?s=&business_location=village&business_type=shop&order=date-desc">
+                <span>Shopping in Whistler Village</span>
               </a>
             </h2>
           </div>
@@ -81,7 +81,7 @@
           </div>
           <div class="media__heading">
             <h2 class="media__title">
-              <a href="#">
+              <a href="/?s=&business_location=function&business_type=activity&order=date-desc">
                 <span>Activities in Function</span>
               </a>
             </h2>
