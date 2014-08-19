@@ -20,7 +20,7 @@
   <div class="container">
     <div class="media media--featured">
       <div class="media__image">
-        <?php the_post_thumbnail('full'); ?>
+        <?php the_post_thumbnail('media--featured'); ?>
       </div>
       <div class="media__heading">
         <?php the_category(); ?>
@@ -47,7 +47,7 @@
       <div class="span-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/335x223" />
+            <img src="http://placehold.it/670x446" />
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -62,7 +62,7 @@
       <div class="span-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/335x223" />
+            <img src="http://placehold.it/670x446" />
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -77,7 +77,7 @@
       <div class="span-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/335x223" />
+            <img src="http://placehold.it/670x446" />
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -114,7 +114,7 @@
             <div class="span-4">
               <div class="media media--card" data-url="<?php the_permalink(); ?>">
                 <div class="media__image">
-                  <?php the_post_thumbnail('small'); ?>
+                  <?php the_post_thumbnail('media--card'); ?>
                 </div>
                 <div class="media__heading">
                   <?php the_category(); ?>
