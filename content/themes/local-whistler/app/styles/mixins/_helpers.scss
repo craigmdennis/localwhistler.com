@@ -25,3 +25,37 @@
   border#{$pos}: 1px solid #EEE;
   border#{$pos}: 1px solid rgba(#000 ,0.15);
 }
+
+// The SASS mixin takes two variable that match the content dimensions
+@mixin intrinsic-ratio( $width, $height ) {
+  padding-bottom: percentage( $height / $width );
+  position: relative;
+  height: 0;
+}
+
+@mixin inline-text-padding($bg: $brand-orange, $outline-width: $outline-width ) {
+  outline: $outline-width solid $bg;
+  display: inline;
+
+  > span {
+    background-color: $bg;
+  }
+}
+
+%overlay--primary {
+  @include inline-text-padding;
+  color: #FFF;
+}
+
+%overlay--secondary {
+  background-color: #000;
+  background-color: rgba(0,0,0,0.75);
+  color: #FFF;
+}
+
+%overlay--position {
+  display: block;
+  float: left;
+  position: relative;
+  z-index: 3;
+}

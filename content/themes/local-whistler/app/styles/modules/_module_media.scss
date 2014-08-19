@@ -1,71 +1,160 @@
-$media-border-color: #EEE;
-$media-title-color: #333;
+// ===================================================
+// Media Module
+// ===================================================
+//
+// 1. Basic Media
+// 2. Featured Media
+// 3. Card Media
+//
 
-/* Media Oject */
+
+// Basic Media
+// ===================================================
 .media {
-  background-color: #FFF;
   position: relative;
-  border: 1px solid $media-border-color;
-  list-style: none;
-  padding: $baseline*4;
-  border-bottom: 0;
-
-  &.last-visible {
-    border-radius: 0 0 3px 3px;
-    border: 1px solid $media-border-color;
-  }
 }
 
-.media__list {
-  padding: 0;
-}
-
-.view-map {
-  .media__list {
-    display: none;
-  }
-}
-
-
-.media__link--title {
-  color: $media-title-color;
-  display: block;
-}
-
-.media__link--logo {
-  width: 200px;
-  overflow: hidden;
-  display: block;
-}
-
-.media__logo {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.media__link--left {
-  float: left;
-  margin-right: $baseline*2;
-}
-
-.media__thumb {
-  background-color: #FFF;
-  border: 1px solid #CCC;
-  padding: $baseline;
-  border-radius: 3px;
+%media-title {
+  display: inline;
+  clear: left;
+  margin-left: $outline-width;
+  line-height: normal;
+  margin-bottom: ($outline-width*2) + $baseline/2;
 }
 
 .media__body {
+  border: 1px solid #DDD;
+  border: 1px solid rgba(0,0,0,0.075);
+  border-top: 0;
+  padding: $baseline*2 $baseline*2 0;
+  transition: border-color $timing $easing;
+}
+
+.media__heading {
+  position: relative;
+  z-index: 2;
+}
+
+.media__image {
+  left: 0;
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  img {
+    transition: transform $timing $easing;
+  }
 }
 
-.media__tags {
-  @include clearfix;
-  padding: 0;
+.media__title {
+  @extend %overlay--position;
+  @extend %media-title;
+
+  a {
+    @extend %overlay--primary;
+  }
 }
 
-.media__tag {
-  display: block;
-  float: left;
-  margin-right: 0.5em;
+.media__subtitle {
+  @extend %overlay--position;
+  @extend %media-title;
+
+  p {
+    @extend %overlay--primary;
+  }
+}
+
+
+// Featured Media
+// ===================================================
+.media--featured {
+
+  @include breakpoint( $bp5 ) {
+    margin-top: -62px;
+    padding-top: 62px;
+  }
+
+  .media__heading {
+    margin-bottom: 0;
+    padding-bottom: 0;
+
+    min-height: 375px;
+
+    @include breakpoint( $bp5 ) {
+      min-height: 475px;
+      max-width: 55%;
+    }
+  }
+
+  .post-categories {
+    margin-bottom: $baseline*1.5;
+  }
+
+  .media__image {
+    height: 450px;
+    left: 50%;
+    margin-left: -300px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width:600px;
+    z-index: 1;
+
+    @include breakpoint( $bp3 ) {
+      height: 550px;
+      margin-left: -400px;
+      width:800px;
+    }
+
+    @include breakpoint( $bp4 ) {
+      width:1200px;
+      margin-left: -600px;
+    }
+  }
+
+}
+
+
+// Card Media
+// ===================================================
+.media--card {
+  margin-bottom: $baseline*2;
+
+  .media__heading {
+    @include intrinsic-ratio(2000, 1333);
+    padding-top: $baseline*2;
+    margin-bottom: -$baseline*2;
+  }
+
+  .media__body {
+    @include breakpoint( $bp5 ) {
+      height: 200px;
+      overflow: hidden;
+    }
+  }
+
+  .post-categories {
+    padding: 0 $baseline*2 $baseline/2;
+  }
+
+  .media__title,
+  .media__subtitle, {
+    margin: $baseline $baseline*3;
+  }
+}
+
+.js .media--card:hover,
+.js .media--card:focus {
+  cursor: pointer;
+
+  .media__image img {
+    transform: scale(1.2);
+  }
+
+  .media__body {
+    border-color: #CCC;
+    border-color: rgba(0,0,0,0.25);
+  }
 }
