@@ -20,7 +20,7 @@
   <div class="container">
     <div class="media media--featured">
       <div class="media__image">
-        <?php the_post_thumbnail('full'); ?>
+        <?php the_post_thumbnail('media--featured'); ?>
       </div>
       <div class="media__heading">
         <?php the_category(); ?>
@@ -47,11 +47,11 @@
       <div class="span-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/335x223" />
+            <img src="http://placehold.it/670x446" />
           </div>
           <div class="media__heading">
             <h2 class="media__title">
-              <a href="#">
+              <a href="/?s=Pizza&business_location=creekside&business_type=&order=date-desc">
                 <span>Pizza in Creekside</span>
               </a>
             </h2>
@@ -62,12 +62,12 @@
       <div class="span-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/335x223" />
+            <img src="http://placehold.it/670x446" />
           </div>
           <div class="media__heading">
             <h2 class="media__title">
-              <a href="#">
-                <span>Shopping in The Village</span>
+              <a href="/?s=&business_location=village&business_type=shop&order=date-desc">
+                <span>Shopping in Whistler Village</span>
               </a>
             </h2>
           </div>
@@ -77,11 +77,11 @@
       <div class="span-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/335x223" />
+            <img src="http://placehold.it/670x446" />
           </div>
           <div class="media__heading">
             <h2 class="media__title">
-              <a href="#">
+              <a href="/?s=&business_location=function&business_type=activity&order=date-desc">
                 <span>Activities in Function</span>
               </a>
             </h2>
@@ -114,7 +114,7 @@
             <div class="span-4">
               <div class="media media--card" data-url="<?php the_permalink(); ?>">
                 <div class="media__image">
-                  <?php the_post_thumbnail('small'); ?>
+                  <?php the_post_thumbnail('media--card'); ?>
                 </div>
                 <div class="media__heading">
                   <?php the_category(); ?>

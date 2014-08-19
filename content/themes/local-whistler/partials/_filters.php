@@ -101,13 +101,13 @@
               'data-sort-target' => 'media__date',
               'data-sort-order' => 'desc',
               'value' => 'date-desc',
-              'text' => 'Newest First'
+              'text' => 'Oldest First'
             ),
             array(
               'data-sort-target' => 'media__date',
               'data-sort-order' => 'asc',
               'value' => 'date-asc',
-              'text' => 'Oldest First'
+              'text' => 'Newest First'
             ),
 
           );

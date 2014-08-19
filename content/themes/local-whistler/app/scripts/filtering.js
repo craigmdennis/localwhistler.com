@@ -9,8 +9,9 @@ filter = {};
   filter = {
 
     filterCount: 0,
+    // page: '2', // Start paging form page 2
 
-    apiLocation: '/api/get_posts/?post_type=business',
+    apiLocation: '/api/get_posts/?post_type=business&count=-1',
 
     settings: {
       filter_on_init: true,
@@ -20,7 +21,7 @@ filter = {};
       },
       search: {
         input: '#filterSearch',
-        search_in: '.media__title, .media__body, .tag__link'
+        search_in: '.media__title, .media__body, .media__footer'
       },
       filter_types: {
         any: function( current_value, option ){
@@ -32,7 +33,7 @@ filter = {};
       streaming: {
         data_url: filter.apiLocation,
         stream_after: 1,
-        batch_size: 50,
+        batch_size: 10
       },
 
       callbacks: {
@@ -41,7 +42,7 @@ filter = {};
           // Update the map
 
           if ( $('body').hasClass('view-map') ) {
-            googleMap.update_markers( result );
+            window.googleMap.update_markers( result );
           }
 
           // Send custom analytics events
@@ -55,6 +56,11 @@ filter = {};
 
             // Show the current count
             filter.result_count( result );
+
+          } else {
+
+            // Update the sort only on the first filter
+            filter.result_sort();
 
           }
 
@@ -71,15 +77,31 @@ filter = {};
     init: function(){
 
       if ( $('body').hasClass('view-map') ) {
-        googleMap.init();
+        window.googleMap.init();
       }
 
       filter.bind();
       filter.create_results();
 
-      return FilterJS( filter.get_api_data( filter.apiLocation ).posts, "#resultsList", filter.view, filter.settings );
+      return FilterJS( filter.get_api_data( filter.apiLocation ).posts, '#resultsList', filter.view, filter.settings );
 
     },
+
+    // paging: function( data ){
+
+      // console.log(data.count);
+      // console.log(data.count_total);
+      // console.log(filter.apiLocation + '&page=' + filter.page);
+      //
+      // if (data.count <= data.totalCount) {
+      //
+      //   // Add the next page of data
+      //   filter.fjs.addData( filter.get_api_data( filter.apiLocation + '&page=' + filter.page ).posts );
+      //
+      //   filter.page = filter.page+1;
+      // }
+
+    // },
 
     bind: function(){
 
@@ -271,7 +293,7 @@ filter = {};
 
       title += ' | Local Whistler';
 
-      return title
+      return title;
 
     },
 
@@ -303,13 +325,17 @@ filter = {};
 
     result_sort: function(){
 
-      var $this = $(this).find('option:selected');
+      var $this = $('#filterOrder').find('option:selected');
       var sortBy = '.' + $this.attr('data-sort-target');
       var sortOrder = $this.attr('data-sort-order');
 
+      console.log(sortOrder);
+      console.log(sortBy);
       $('ol .media').tsort( sortBy, {order: sortOrder} );
 
-      filter.push_history();
+      if ( filter.filterCount > 0) {
+        filter.push_history();
+      }
 
     },
 
@@ -317,7 +343,7 @@ filter = {};
 
       // Needs to match exactly with taxonomy.php
       if ( !result.length ){
-        $('.js-result-count').text( "No businesses found" );
+        $('.js-result-count').text( 'No businesses found' );
       }
       else {
         $('.js-result-count').text( 'Found: ' + result.length );
@@ -335,6 +361,7 @@ filter = {};
         dataType: 'json',
         success: function( response ){
            data = response;
+          //  filter.paging( data );
         }
       });
 
@@ -344,15 +371,19 @@ filter = {};
 
     get_logo: function( post ) {
 
-      var logo = '';
+      var logo,
+          logo_id;
 
       if ( post.custom_fields.logo[0] !== '' ) {
+
+        // Conver the value to a number for comparison
+        logo_id = parseInt(post.custom_fields.logo[0]);
 
         // Iterate over each attachment in the array
         $.each( post.attachments, function( $key, $value ){
 
           // Make sure we get the logo and not any old attachment
-          if ( post.custom_fields.logo[0] === $value['id'] ) {
+          if ( logo_id === $value.id ) {
             logo =  '<a class="media__link--logo media__link--left media__thumb" href="' + post.url + '">' +
                       '<img class="media__logo" src="' + post.attachments[$key].url + '" alt="' + post.title + ' Logo" />' +
                     '</a>';
@@ -424,8 +455,11 @@ filter = {};
 
     view: function( post ){
 
-      // var datetime = filter.format_date( post.date ).iso,
-      //     prettyDate = filter.format_date( post.date ).pretty;
+      var datetime = filter.format_date( post.date ).iso,
+          prettyDate = filter.format_date( post.date ).pretty;
+
+          // Get todat
+          // If post is within the last week add a class of new
 
       if ( $('body').hasClass('view-map') ) {
         window.googleMap.add_marker( post );
@@ -440,6 +474,7 @@ filter = {};
                   '</h2>' +
                   post.excerpt +
                 '</div>' +
+                '<time class="media__date" datetime="' + datetime + '">' + prettyDate + '</time>' +
                 '<div class="media__footer">' +
                   filter.get_tags( post ) +
                 '</div>' +
