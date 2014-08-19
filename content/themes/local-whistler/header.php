@@ -32,6 +32,7 @@
   <!-- The little things -->
 
   <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 
   <?php if (WP_ENV == 'local') : ?>
     <script src="<?php echo bloginfo('template_directory'); ?>/app/bower_components/modernizr/modernizr.js"></script>
@@ -48,24 +49,20 @@
   <header role="banner">
 
     <div class="header container">
+      <nav role="navigation">
+        <?php
 
-      <div class="span-12">
-        <nav role="navigation">
-          <?php
+          $navArgs = array(
+            'menu' => 'mainnav',
+            'container' => 'div',
+            'container_class' => 'menu',
+            'menu_id' => false,
+            'menu_class' => 'menu__list'
+          );
 
-            $navArgs = array(
-              'menu' => 'mainnav',
-              'container' => 'div',
-              'container_class' => 'menu',
-              'menu_id' => false,
-              'menu_class' => 'menu__list'
-            );
+          wp_nav_menu( $navArgs );
 
-            wp_nav_menu( $navArgs );
-
-          ?>
-        </nav>
-      </div>
-
+        ?>
+      </nav>
     </div>
   </header>
