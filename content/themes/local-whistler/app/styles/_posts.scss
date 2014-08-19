@@ -9,7 +9,7 @@
   @include boxshadow;
 }
 
-.home .content {
+.home .border {
   position: relative;
   z-index: 2;
   margin-top: -64px;
@@ -21,11 +21,14 @@
   padding: 0;
 
   li {
+    float: left;
 
     a {
       @extend %overlay--secondary;
-      @extend %overlay--position;
+      display: block;
+      float: left;
       margin-right: 5px;
+      padding: $baseline/2 $baseline;
 
       &:hover,
       &:focus {
