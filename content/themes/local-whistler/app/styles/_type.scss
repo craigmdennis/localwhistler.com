@@ -3,7 +3,8 @@ html {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: $sans-font-family;
+  line-height: 1.5;
 }
 
 h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
@@ -15,7 +16,11 @@ h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
 
   // Add margin to bottom only
   h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
-    margin-bottom: $baseline;
+    margin-bottom: $baseline*1.5;
   }
 
+}
+
+.title--large {
+  font-size: 2.3em;
 }

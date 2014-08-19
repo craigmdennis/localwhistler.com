@@ -14,6 +14,8 @@
   add_filter( 'teeny_mce_plugins', 'loadPasteInTeeny' );
   add_filter( 'mce_buttons_2', 'removePasteAsPlainTextButton' );
   add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
+  
+  remove_filter('the_excerpt', 'wpautop');
 
 
 

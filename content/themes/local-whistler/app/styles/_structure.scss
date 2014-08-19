@@ -1,20 +1,20 @@
 .admin-bar {
   @include breakpoint( max-width 782px ) {
-    margin-top: 46px;
+    padding-top: 46px;
   }
 
-  margin-top:32px;
+  padding-top:32px;
 }
 
 .header {
   @include breakpoint( max-width $bp5 ) {
     padding: 0;
-    .span-12 {
-      padding: 0;
-    }
   }
 }
 
 .footer {
   clear: both;
+  background-color: #EEE;
+  padding: $baseline*5 0;
+  margin-top: $baseline*3;
 }
