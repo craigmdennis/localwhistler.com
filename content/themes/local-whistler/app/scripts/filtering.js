@@ -21,7 +21,7 @@ filter = {};
       },
       search: {
         input: '#filterSearch',
-        search_in: '.media__title, .media__body, .media__footer'
+        search_in: '.media__title, .media__footer'
       },
       filter_types: {
         any: function( current_value, option ){
