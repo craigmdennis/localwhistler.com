@@ -225,7 +225,7 @@ module.exports = function (grunt) {
       options: {
         compress: true,
         mangle: true,
-        sourceMap: true,
+        sourceMap: false,
       },
       all: {
         src: '<%= concat.dist.dest %>',

@@ -47,7 +47,7 @@
       <div class="span-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/670x446" />
+            <img width="800" height="533" src="http://localwhistler.local/content/uploads/2014/08/whistler-800x533.jpg" class="attachment-media--card wp-post-image" alt="whistler">
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -62,7 +62,7 @@
       <div class="span-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/670x446" />
+            <img width="800" height="533" src="http://localwhistler.local/content/uploads/2014/08/whistler-800x533.jpg" class="attachment-media--card wp-post-image" alt="whistler">
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -74,10 +74,10 @@
         </div>
       </div>
 
-      <div class="span-4">
+      <div class="span-4 last">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/670x446" />
+            <img width="800" height="533" src="http://localwhistler.local/content/uploads/2014/08/whistler-800x533.jpg" class="attachment-media--card wp-post-image" alt="whistler">
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -105,13 +105,26 @@
 
       <?php if ( have_posts() ) : ?>
 
+        <?php $count = 1; ?>
+
         <?php while ( have_posts() ) : the_post(); ?>
 
           <?php if (get_the_post_thumbnail() == '') : continue; ?>
 
           <?php else : ?>
 
-            <div class="span-4">
+            <?php
+
+              if ( $count < 3 ) {
+                $last = '';
+              }
+              else {
+                $last = 'last';
+              }
+
+            ?>
+
+            <div class="span-4 <?php echo $last; ?>">
               <div class="media media--card" data-url="<?php the_permalink(); ?>">
                 <div class="media__image">
                   <?php the_post_thumbnail('media--card'); ?>
@@ -129,6 +142,8 @@
                 </div>
               </div>
             </div>
+
+            <?php $count++; ?>
 
           <?php endif; ?>
 
