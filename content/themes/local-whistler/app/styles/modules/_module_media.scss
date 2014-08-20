@@ -134,9 +134,9 @@
   margin-bottom: $baseline*2;
 
   .media__heading {
-    @include intrinsic-ratio(800, 533);
+    height: 0;
+    padding-bottom: 60.8%;
     padding-top: $baseline*2;
-    margin-bottom: -$baseline*2;
   }
 
   .media__body {
