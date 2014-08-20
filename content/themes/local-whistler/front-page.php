@@ -47,7 +47,7 @@
       <div class="span-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/670x446" />
+            <img width="800" height="533" src="http://localwhistler.local/content/uploads/2014/08/whistler-800x533.jpg" class="attachment-media--card wp-post-image" alt="whistler">
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -62,7 +62,7 @@
       <div class="span-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/670x446" />
+            <img width="800" height="533" src="http://localwhistler.local/content/uploads/2014/08/whistler-800x533.jpg" class="attachment-media--card wp-post-image" alt="whistler">
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -77,7 +77,7 @@
       <div class="span-4 last">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img src="http://placehold.it/670x446" />
+            <img width="800" height="533" src="http://localwhistler.local/content/uploads/2014/08/whistler-800x533.jpg" class="attachment-media--card wp-post-image" alt="whistler">
           </div>
           <div class="media__heading">
             <h2 class="media__title">
