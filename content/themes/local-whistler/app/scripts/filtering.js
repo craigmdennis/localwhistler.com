@@ -257,12 +257,14 @@ filter = {};
           currentLocation = filter.get_current_state().location,
           currentOrder = filter.get_current_state().order,
           currentType = filter.get_current_state().type,
-          currentSearch = filter.get_current_state().search;
+          currentSearch = filter.get_current_state().search,
+          currentView = filter.get_current_state().view;
 
         url += '?s=' + currentSearch;
         url += '&business_location=' + currentLocation;
         url += '&business_type=' + currentType;
         url += '&order=' + currentOrder;
+        url += '&view=' + currentView;
 
       return url;
 
@@ -271,7 +273,6 @@ filter = {};
     generate_title: function(){
 
       var currentLocationText = filter.get_current_state().locationText,
-          currentOrderText = filter.get_current_state().orderText,
           currentTypeText = filter.get_current_state().typeText,
           title;
 

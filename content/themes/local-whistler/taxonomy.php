@@ -5,18 +5,16 @@
 
   global $query_string;
 
-  $getSearch = get_search_query();
-  $getLocation = get_taxonomy_from_url_or_wordpress('business_location');
-  $getType = get_taxonomy_from_url_or_wordpress('business_type');
-  $getOrder = get_taxonomy_from_url_or_wordpress('order');
-
-  // Default order by newest first
+  $search_term = get_search_query();
+  $business_location = get_taxonomy_from_url_or_wordpress('business_location');
+  $business_type = get_taxonomy_from_url_or_wordpress('business_type');
+  $order = get_taxonomy_from_url_or_wordpress('order');
   $orderBy = 'title';
-  $order = $getOrder;
+  $view = get_view_type();
 
   // Get the two parts of the order if they exist
-  if ( strpos( $getOrder, '-' ) ) {
-    $orderArray = explode( '-', $getOrder );
+  if ( strpos( $order, '-' ) ) {
+    $orderArray = explode( '-', $order );
     $order = $orderArray[1];
     $orderBy = $orderArray[0];
   }

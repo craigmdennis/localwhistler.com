@@ -56,10 +56,10 @@
                   $selected = '';
 
                   switch ( $term->slug ) :
-                    case $getType:
+                    case $business_type:
                       $selected = 'selected';
                       break;
-                    case $getLocation:
+                    case $business_location:
                       $selected = 'selected';
                       break;
                   endswitch;
@@ -122,7 +122,7 @@
             $selected = '';
 
             switch ( $orderOption['value'] ) :
-              case $getOrder:
+              case $order:
                 $selected = 'selected';
                 break;
             endswitch;
