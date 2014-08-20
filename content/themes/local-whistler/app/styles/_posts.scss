@@ -3,6 +3,10 @@
   background-color: #FFF;
   padding: $baseline*2 $baseline*1.5 0;
 
+  @include breakpoint( $bp4 ) {
+    padding: $baseline*2 $baseline*1 0;
+  }
+
   @include breakpoint( $bp5 ) {
     padding-left: $baseline;
     padding-right: $baseline;
