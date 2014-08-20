@@ -23,8 +23,8 @@
 }
 
 .media__body {
-  border: 1px solid #DDD;
-  border: 1px solid rgba(0,0,0,0.075);
+  @include menuborder;
+
   border-top: 0;
   padding: $baseline*2 $baseline*2 0;
   transition: border-color $timing $easing;
@@ -51,6 +51,7 @@
 .media__title {
   @extend %overlay--position;
   @extend %media-title;
+  @extend %textshadow;
 
   a {
     @extend %overlay--primary;
@@ -70,6 +71,7 @@
 // Featured Media
 // ===================================================
 .media--featured {
+  padding-top: $baseline*2;
 
   @include breakpoint( $bp5 ) {
     margin-top: -62px;
