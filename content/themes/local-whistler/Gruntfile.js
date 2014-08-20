@@ -82,6 +82,10 @@ module.exports = function (grunt) {
         files: ['<%= config.app.styles %>/{,*/}*.{scss,sass}'],
         tasks: ['sass', 'autoprefixer', 'cssmin']
       },
+      img: {
+        files: ['<%= config.app.img %>/{,*/}*.*'],
+        tasks: ['newer:copy:server']
+      },
       styles: {
         files: ['<%= config.app.styles %>/{,*/}*.css'],
         tasks: ['copy:all']
@@ -294,6 +298,14 @@ module.exports = function (grunt) {
             cwd: '<%= config.app.styles %>/',
             dest: '<%= config.tmp %>',
             src: '{,*/}*.css'
+          },
+          {
+            // Copy any images dist folder
+            expand: true,
+            dot: true,
+            cwd: '<%= config.app.img %>/',
+            dest: '<%= config.dist.img %>',
+            src: '{,*/}*.*'
           },
           {
             expand: true,
