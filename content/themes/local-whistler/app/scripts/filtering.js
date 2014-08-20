@@ -331,6 +331,7 @@ filter = {};
 
       console.log(sortOrder);
       console.log(sortBy);
+
       $('ol .media').tsort( sortBy, {order: sortOrder} );
 
       if ( filter.filterCount > 0) {
@@ -371,29 +372,15 @@ filter = {};
 
     get_logo: function( post ) {
 
-      var logo,
-          logo_id;
+      var logo = post.acf.logo;
 
-      if ( post.custom_fields.logo[0] !== '' ) {
-
-        // Conver the value to a number for comparison
-        logo_id = parseInt(post.custom_fields.logo[0]);
-
-        // Iterate over each attachment in the array
-        $.each( post.attachments, function( $key, $value ){
+      if ( logo !== '' ) {
 
           // Make sure we get the logo and not any old attachment
-          if ( logo_id === $value.id ) {
-            logo =  '<a class="media__link--logo media__link--left media__thumb" href="' + post.url + '">' +
-                      '<img class="media__logo" src="' + post.attachments[$key].url + '" alt="' + post.title + ' Logo" />' +
-                    '</a>';
-          }
-
-        });
-      }
-
-      return logo;
-
+          return  '<a class="media__link--logo media__link--left media__thumb" href="' + post.url + '">' +
+                    '<img class="media__logo" src="' + logo.sizes['media--thumb'] + '" alt="' + logo.description + ' Logo" />' +
+                  '</a>';
+        }
     },
 
     get_tags: function( post ) {

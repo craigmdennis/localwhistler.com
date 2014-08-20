@@ -1,7 +1,8 @@
 <li class="media hide-with-js">
-  <?php if ( get_field('logo') ) : ?>
+  <?php $logo = get_field('logo'); ?>
+  <?php if ( !empty($logo) ) : ?>
     <a class="media__link--logo media__link--left media__thumb" href="<?php the_permalink(); ?>">
-      <img class="media__logo" src="<?php the_field('logo'); ?>" />
+      <img class="media__logo" src="<?php echo $logo['sizes']['media--thumb']; ?>" alt="<?php echo $logo['alt']; ?>" />
     </a>
   <?php endif; ?>
   <div class="media__body context__copy">
@@ -17,4 +18,5 @@
       <?php the_terms($post->ID,'business_filter', '<li class="media__tag">','</li><li class="media__tag">','</li>'); ?>
     </ul>
   </div>
+
 </li>
