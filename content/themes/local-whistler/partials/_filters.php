@@ -84,6 +84,8 @@
         <?php
 
           // Put the sorting into an array so we can loop over it
+          // Weirdly the data-sort-order needs to be reversed
+          // when sorting by date
           $orderOptions = array(
             array(
               'data-sort-target' => 'media__title',
@@ -100,13 +102,13 @@
             array(
               'data-sort-target' => 'media__date',
               'data-sort-order' => 'desc',
-              'value' => 'date-desc',
+              'value' => 'date-asc',
               'text' => 'Oldest First'
             ),
             array(
               'data-sort-target' => 'media__date',
               'data-sort-order' => 'asc',
-              'value' => 'date-asc',
+              'value' => 'date-desc',
               'text' => 'Newest First'
             ),
 
