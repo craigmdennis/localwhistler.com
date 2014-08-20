@@ -1,12 +1,17 @@
 .content {
   @include clearfix;
   background-color: #FFF;
-  padding: $baseline*2 $baseline 0;
+  padding: $baseline*2 $baseline*1.5 0;
+
+  @include breakpoint( $bp5 ) {
+    padding-left: $baseline;
+    padding-right: $baseline;
+  }
 }
 
 .border {
   @include menuborder;
-  @include boxshadow;
+  @extend %boxshadow;
 }
 
 .home .border {

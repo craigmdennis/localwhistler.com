@@ -10,17 +10,6 @@
   }
 }
 
-@mixin menuhover {
-  &:hover,
-  &:focus {
-    background: lighten($brand-orange, 40%);
-  }
-}
-
-@mixin boxshadow {
-  box-shadow: 0 2px 2px rgba(0,0,0,0.08);
-}
-
 @mixin menuborder($pos: '') {
   border#{$pos}: 1px solid #EEE;
   border#{$pos}: 1px solid rgba(#000 ,0.15);
@@ -40,6 +29,23 @@
   > span {
     background-color: $bg;
   }
+}
+
+
+// Extendable Classes
+%menuhover {
+  &:hover,
+  &:focus {
+    background-color: lighten($brand-orange, 40%);
+  }
+}
+
+%boxshadow {
+  box-shadow: 0 2px 2px rgba(0,0,0,0.08);
+}
+
+%textshadow {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 %overlay--primary {
