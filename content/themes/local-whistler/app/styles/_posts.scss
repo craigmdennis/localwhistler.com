@@ -4,18 +4,13 @@
   padding: $baseline*2 $baseline*1.5 0;
 
   @include breakpoint( $bp4 ) {
-    padding: $baseline*2 $baseline*1 0;
+    padding: $baseline*2 $baseline 0;
   }
 
   @include breakpoint( $bp5 ) {
     padding-left: $baseline;
     padding-right: $baseline;
   }
-}
-
-.border {
-  @include menuborder;
-  @extend %boxshadow;
 }
 
 .home .border {

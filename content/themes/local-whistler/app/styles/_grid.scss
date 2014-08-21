@@ -1,8 +1,10 @@
 .container {
   @include container;
 
-  padding-left: $baseline;
-  padding-right: $baseline;
+  @include breakpoint( $bp5 ) {
+    padding-left: $baseline;
+    padding-right: $baseline;
+  }
 
   @include breakpoint( $bp4 ) {
     @include container( 1100px );

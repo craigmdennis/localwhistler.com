@@ -7,8 +7,17 @@ $(document).ready( function( ){
     window.filter.init();
   }
 
-  $('.bxslider').bxSlider({
-    adaptiveHeight: true
+  // Initialise slider on premium businesses
+  $('.bxslider').bxSlider();
+  
+  // Initialise Chosen
+  $('.js__chosen--block').chosen({
+    disable_search: true,
+    width: '100%'
+  });
+
+  $('.js__chosen--inline').chosen({
+    disable_search: true
   });
 
 });

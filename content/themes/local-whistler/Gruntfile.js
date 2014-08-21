@@ -90,6 +90,10 @@ module.exports = function (grunt) {
         files: ['<%= config.app.styles %>/{,*/}*.css'],
         tasks: ['copy:all']
       },
+      fonts: {
+        files: ['<%= config.app.base %>/fonts/{,*/}*.*'],
+        tasks: ['copy:dist']
+      },
       livereload: {
         options: {
           livereload: true
@@ -296,8 +300,9 @@ module.exports = function (grunt) {
             expand: true,
             dot: true,
             cwd: '<%= config.app.styles %>/',
-            dest: '<%= config.tmp %>',
-            src: '{,*/}*.css'
+            dest: '<%= config.tmp %>/styles',
+            src: '{,*/}*.css',
+            flatten: true
           },
           {
             // Copy any images dist folder
@@ -359,7 +364,6 @@ module.exports = function (grunt) {
             src: '<%= config.bower %>/jquery/dist/jquery.min.js',
             dest: '<%= config.dist.scripts %>/vendor/jquery.min.js'
           }
-
         ]
       }
     },
