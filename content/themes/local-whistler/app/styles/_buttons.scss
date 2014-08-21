@@ -1,16 +1,107 @@
-%btn {
+// ===================================================
+// Media Module
+// ===================================================
+
+
+// 1. Basic Button
+// 2. Colour Modifiers
+// 3. State Modifiers
+// 4. Type Modifiers
+// 5. Grouping
+
+
+// Basic Button
+// ===================================================
+.btn {
+  @extend %btnshadow;
+  border: 1px transparent;
   display: inline-block;
-  padding: $baseline $baseline*2;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 3px;
+  padding: 3px $baseline $baseline/2;
+  border-radius: $radius-base;
+  text-align: center;
+  background-clip: padding-box;
+
+  &:active {
+    @extend %insetshadow;
+  }
 }
+
+
+// Colour modifiers
+// ===================================================
+.btn--default {
+  @include menuborder;
+
+  background-color: #FFF;
+  color: $body-copy-color;
+
+  &:hover,
+  &:focus {
+    background-color: #F8F8F8;
+  }
+
+  &:active,
+  &.btn--active {
+    background-color: #F2F2F2;
+    color: #000;
+  }
+}
+
 
 .btn--primary {
-  @extend %btn;
-  border-color: #333;
+  background-color: $brand-blue;
+  color: #FFF;
 }
 
-.btn--secondary {
 
+.btn--secondary {
+  background-color: $brand-orange;
+  color: #FFF;
+}
+
+
+// State Modifiers
+// ===================================================
+.btn--active {
+  font-weight: bold;
+}
+
+
+// Type modifiers
+// ===================================================
+.btn--icon-only {
+  .btn__text {
+    @extend %sr-only;
+  }
+  .icon--after,
+  .icon--before {
+    padding: 0;
+  }
+}
+
+
+// Grouping
+// ===================================================
+.btn-group {
+  @include clearfix;
+
+  .btn {
+    display: block;
+    float: left;
+  }
+  .btn + .btn {
+    border-radius: 0;
+  }
+  .btn:first-child {
+    border-radius: $radius-base 0 0 $radius-base;
+    border-right: 0;
+  }
+  .btn:last-child {
+    border-radius: 0 $radius-base $radius-base 0;
+    border-left: 0;
+  }
+}
+
+.btn-group--inline {
+  display: inline-block;
 }
