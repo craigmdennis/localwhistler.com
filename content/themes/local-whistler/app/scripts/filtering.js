@@ -40,7 +40,6 @@ filter = {};
         after_filter: function( result ){
 
           // Update the map
-
           if ( $('body').hasClass('view-map') ) {
             window.googleMap.update_markers( result );
           }
@@ -48,21 +47,14 @@ filter = {};
           // Send custom analytics events
           filter.push_analytics();
 
-          // Don't run after the first filter (on init)
-          if ( filter.filterCount > 0) {
+          // Change the URL and store data
+          filter.push_history();
 
-            // Change the URL and store data
-            filter.push_history();
+          // Show the current count
+          filter.result_count( result );
 
-            // Show the current count
-            filter.result_count( result );
-
-          } else {
-
-            // Update the sort only on the first filter
-            filter.result_sort();
-
-          }
+          // Update the sort only on the first filter
+          filter.result_sort();
 
           // Add styling hooks
           filter.update_styles();
@@ -112,7 +104,7 @@ filter = {};
       // Stop the form from being manually submitted
       $('form').on('submit', filter.override );
 
-      $('#filterOrder').on('change.sort', filter.result_sort );
+      $('#filterOrder').on('change', filter.result_sort );
 
       // $('.sub-menu').on('click.submenu', 'a', filter.override );
 
@@ -217,8 +209,11 @@ filter = {};
 
     set_current_state: function(){
 
-      // Replace the current text to match the hostory state
-      $('#filterSearch').val( history.state.search );
+      // Replace the current text to match the history state
+      $('#filterSearch').attr('value', history.state.search );
+
+      // Trigger tinysort
+      filter.result_sort();
 
       // Get all the select boxes
       var $selects = $('#filterForm').find('select');
@@ -243,6 +238,11 @@ filter = {};
             // Set this as the selected option
             $(this).attr('selected', 'selected');
 
+            // Tell chosen to update
+            $(this).trigger('chosen:updated');
+
+            // // Tell the filter that something has changed
+            // $(this).trigger('change');
           }
 
         });
@@ -301,12 +301,12 @@ filter = {};
     push_history: function(){
 
       if ( Modernizr.history) {
-        if ( !$('#filterSearch').is(':focus') ) {
-          // Search does not have focus
-          window.history.pushState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
-        } else {
-          // Search has focus
+        if ( ($('#filterSearch').is(':focus')) || ( filter.filterCount === 0 ) ) {
+          // Replace current history state
           window.history.replaceState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
+        } else {
+          // Add a new history state
+          window.history.pushState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
         }
       }
 
@@ -335,20 +335,16 @@ filter = {};
 
       $('ol .media').tsort( sortBy, {order: sortOrder} );
 
-      if ( filter.filterCount > 0) {
-        filter.push_history();
-      }
-
     },
 
     result_count: function( result ) {
 
       // Needs to match exactly with taxonomy.php
       if ( !result.length ){
-        $('.js-result-count').text( 'No businesses found' );
+        $('.js__count').text( 'No matches' );
       }
       else {
-        $('.js-result-count').text( 'Found: ' + result.length );
+        $('.js__count').text( result.length + ' businesses match' );
       }
 
     },

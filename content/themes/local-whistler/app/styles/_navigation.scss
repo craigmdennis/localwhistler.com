@@ -3,12 +3,12 @@
 // ===================================================
 
 .menu {
-  @extend %boxshadow;
   position: relative;
   z-index: 4;
   border-bottom: 0;
 
   @include breakpoint( $bp5 ) {
+    @include menushadow;
     margin-bottom: $baseline*2;
     margin-top: $baseline*2;
   }
@@ -21,7 +21,9 @@
   width: 100%;
 
   @include breakpoint( $bp4 ) {
-    @include menuborder;
+    @include menuborder('-top');
+    @include menuborder('-bottom');
+
     border-bottom: 0;
     display: table;
   }
@@ -31,17 +33,16 @@
     position: relative;
     z-index: 99;
     margin-left: 0;
-    text-align: center;
 
     a {
-      @include menuborder('-bottom');
+      @include menuborder('-top');
       color: $body-copy-color;
       display: block;
       white-space: nowrap;
       padding: $baseline*2;
 
       @include breakpoint($bp4) {
-        border-bottom: 0;
+        border-top: 0;
       }
     }
 
@@ -68,30 +69,27 @@
       width: 2%; /* Safari 6 bug */
 
       &:first-child a {
-        border-left: 0;
-      }
-
-      &:last-child a {
-        border-bottom: 0;
+        @include menuborder('-left');
+        border-top: 0;
       }
 
       &:hover,
       &:focus {
         .sub-menu {
-          left: 0;
+          left: -1px;
         }
       }
 
     }
 
     > a {
+      text-align: center;
       overflow: hidden;
       text-overflow: ellipsis;
       padding: $baseline*1.5 $baseline*2;
 
       @include breakpoint( $bp4 ) {
-        @include menuborder('-left');
-        text-align: center;
+        @include menuborder('-right');
         padding: $baseline*2.5 $baseline*2;
       }
     }
@@ -174,7 +172,7 @@
   .menu-item {
     @include menuborder('-left');
     @include menuborder('-right');
-    @extend %boxshadow;
+    @include menushadow;
 
     &:first-child {
       margin-top:3px;

@@ -31,37 +31,6 @@
   }
 }
 
-
-// Extendable Classes
-%menuhover {
-  &:hover,
-  &:focus {
-    background-color: lighten($brand-orange, 40%);
-  }
-}
-
-%boxshadow {
+@mixin menushadow {
   box-shadow: 0 2px 2px rgba(0,0,0,0.08);
-}
-
-%textshadow {
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-%overlay--primary {
-  @include inline-text-padding;
-  color: #FFF;
-}
-
-%overlay--secondary {
-  background-color: #000;
-  background-color: rgba(0,0,0,0.75);
-  color: #FFF;
-}
-
-%overlay--position {
-  display: block;
-  float: left;
-  position: relative;
-  z-index: 3;
 }

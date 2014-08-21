@@ -2,23 +2,36 @@
 // All your SASS are belong to us
 // ===================================================
 
+
+// 1. External Libraries
+// 2. Variables
+// 3. Mixins
+// 4. Partials
+// 5. Modules
+// 6. Inbox
+
+// External
+// ===================================================
 @import "susy";
-
-//- bower:scss
 @import "../bower_components/breakpoint-sass/stylesheets/_breakpoint.scss";
-//- endbower
 
-/** VARIABLES **/
+
+// Variables
+// ===================================================
 @import "vars/vars_brand";
 @import "vars/vars_type";
 @import "vars/vars_grid";
 
-/** MIXINS **/
+
+// Mixins
+// ===================================================
 @import "mixins/_helpers";
 
 
-/** PARTIALS **/
+// Partials
+// ===================================================
 @import "root";
+@import "buttons";
 @import "grid";
 @import "helpers";
 @import "structure";
@@ -30,10 +43,15 @@
 @import "icons";
 @import "maps";
 @import "posts";
+@import "forms";
+@import "chosen";
 
-/* MODULES */
+
+//Modules
+// ===================================================
 @import "modules/module_media";
-@import "modules/module_forms";
 @import "modules/module_toolbar";
 
-/** INBOX - Styles that are yet to be organised **/
+
+// Inbox - Styles that are yet to be organised
+// ===================================================

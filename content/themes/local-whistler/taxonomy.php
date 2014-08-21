@@ -8,13 +8,13 @@
   $search_term = get_search_query();
   $business_location = get_taxonomy_from_url_or_wordpress('business_location');
   $business_type = get_taxonomy_from_url_or_wordpress('business_type');
-  $order = get_taxonomy_from_url_or_wordpress('order');
+  $order_raw = get_taxonomy_from_url_or_wordpress('order');
   $orderBy = 'title';
   $view = get_view_type();
 
   // Get the two parts of the order if they exist
-  if ( strpos( $order, '-' ) ) {
-    $orderArray = explode( '-', $order );
+  if ( strpos( $order_raw, '-' ) ) {
+    $orderArray = explode( '-', $order_raw );
     $order = $orderArray[1];
     $orderBy = $orderArray[0];
   }
@@ -25,9 +25,13 @@
 ?>
 
 <div class="container">
-  <?php require_once('partials/_filters.php'); ?>
 
-  <?php require_once('partials/_toolbar.php'); ?>
+  <form id="filterForm" method="GET" action="/">
+
+    <?php require_once('partials/_filters.php'); ?>
+    <?php require_once('partials/_toolbar.php'); ?>
+
+  </form>
 
   <?php rewind_posts(); ?>
 
