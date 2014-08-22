@@ -16,7 +16,7 @@
   @extend %btnshadow;
   border: 1px transparent;
   display: inline-block;
-  padding: 3px $baseline $baseline/2;
+  padding: $baseline $baseline*2;
   border-radius: $radius-base;
   text-align: center;
   background-clip: padding-box;
@@ -30,7 +30,7 @@
 // Colour modifiers
 // ===================================================
 .btn--default {
-  @include menuborder;
+  @include border;
 
   background-color: #FFF;
   color: $body-copy-color;
@@ -51,6 +51,12 @@
 .btn--primary {
   background-color: $brand-blue;
   color: #FFF;
+  border: 1px solid darken( $brand-blue, 20% );
+
+  &:hover,
+  &:focus {
+    background-color: lighten( $brand-blue, 5% );
+  }
 }
 
 
@@ -77,6 +83,10 @@
   .icon--before {
     padding: 0;
   }
+}
+
+.btn--control {
+  padding: 3px $baseline $baseline/2;
 }
 
 

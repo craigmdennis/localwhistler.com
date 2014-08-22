@@ -74,18 +74,18 @@ input[type="search"] {
   @include clearfix;
 
   background-color: $brand-orange;
-  padding: $baseline*2 $baseline;
+  padding: $baseline*2;
 
   @include breakpoint( $bp5 ) {
-    @include menuborder('-left');
-    @include menuborder('-right');
-    @include menuborder('-top');
+    @include border('-left');
+    @include border('-right');
+    @include border('-top');
     border-radius: $radius-top;
   }
 }
 
 .form__control {
-  @include menuborder;
+  @include border;
   border-radius: $radius-base;
   outline: 0;
   display: block;
@@ -94,6 +94,10 @@ input[type="search"] {
   padding: $baseline/2 $baseline;
   background-image: none;
   background-clip: padding-box;
+}
+
+select.form__control {
+  @extend %btnshadow;
 }
 
 .form__control--inset {

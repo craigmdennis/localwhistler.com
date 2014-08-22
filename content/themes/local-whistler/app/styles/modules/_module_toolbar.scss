@@ -1,14 +1,14 @@
 .toolbar {
   @include clearfix;
-  @include menuborder('-bottom');
+  @include border('-bottom');
 
   background-clip: padding-box;
   background-color: #FFF;
-  padding: $baseline*2 $baseline;
+  padding: $baseline*2;
 
   @include breakpoint( $bp5 ) {
-    @include menuborder('-left');
-    @include menuborder('-right');
+    @include border('-left');
+    @include border('-right');
     border-radius: $radius-bottom;
   }
 
@@ -21,7 +21,7 @@
   }
 
   .form__control {
-    @include menuborder;
+    @include border;
   }
 
   .show-with-js {
@@ -40,11 +40,16 @@
 
     @include breakpoint( $bp2 ) {
       clear: none;
+      margin-right: 0;
     }
   }
 
   .form__label {
     display: none;
+
+    @include breakpoint( $bp3 ) {
+      display: block;
+    }
   }
 
   @include breakpoint( $bp2 ) {

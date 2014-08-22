@@ -1,36 +1,24 @@
 .container {
-  @include container;
-
-  @include breakpoint( $bp5 ) {
-    padding-left: $baseline;
-    padding-right: $baseline;
-  }
-
-  @include breakpoint( $bp4 ) {
-    @include container( 1100px );
-  }
+  @include container-fixed();
+  max-width: $max-width;
 }
 
-.span-4 {
-  @include span(12);
+@include make-grid-columns();
 
-  @include breakpoint( $bp3 ) {
-    @include span(6);
-
-    &.last {
-      display: none; // Cheeky but hiding to make it look good.
-    }
-  }
-
-  @include breakpoint( $bp5 ) {
-    @include span(4);
-
-    &.last {
-      display: block;
-    }
-  }
+.row {
+  @include make-row();
 }
 
-.span-12 {
-  @include span(12);
+@include make-grid(xs);
+
+@media (min-width: $bp3) {
+  @include make-grid(sm);
+}
+
+@media (min-width: $bp4) {
+  @include make-grid(md);
+}
+
+@media (min-width: $bp5) {
+  @include make-grid(lg);
 }
