@@ -21,11 +21,15 @@
   width: 100%;
 
   @include breakpoint( $bp4 ) {
-    @include menuborder('-top');
-    @include menuborder('-bottom');
+    @include border('-top');
+    @include border('-bottom');
 
     border-bottom: 0;
     display: table;
+  }
+
+  @include breakpoint( $bp5 ) {
+    border-radius: $radius-base;
   }
 
   .menu-item {
@@ -35,7 +39,7 @@
     margin-left: 0;
 
     a {
-      @include menuborder('-top');
+      @include border('-top');
       color: $body-copy-color;
       display: block;
       white-space: nowrap;
@@ -61,16 +65,47 @@
 
   > .menu-item {
     @extend %menuhover;
+
+    background-clip: padding-box;
     background-color: #FFF;
 
     @include breakpoint($bp4) {
-      border-bottom: 3px solid $brand-orange;
       display: table-cell;
       width: 2%; /* Safari 6 bug */
+    }
 
-      &:first-child a {
-        @include menuborder('-left');
-        border-top: 0;
+    @include breakpoint( $bp5 ) {
+      border-bottom: 3px solid $brand-orange;
+    }
+
+    &:first-child {
+      @include breakpoint( $bp5 ) {
+        @include border('-left');
+        border-radius: $radius-left;
+      }
+
+      a {
+        @include breakpoint($bp4) {
+          border-left: 0;
+          border-top: 0;
+        }
+
+        @include breakpoint($bp5) {
+          border-radius: $radius-base 0 0 0;
+        }
+      }
+    }
+
+    @include breakpoint( $bp4 ) {
+
+      &:last-child {
+        @include border('-right');
+        border-radius: $radius-right;
+
+        a {
+          border-radius: 0 $radius-base 0 0;
+          border-right: 0;
+        }
       }
 
       &:hover,
@@ -89,7 +124,7 @@
       padding: $baseline*1.5 $baseline*2;
 
       @include breakpoint( $bp4 ) {
-        @include menuborder('-right');
+        @include border('-right');
         padding: $baseline*2.5 $baseline*2;
       }
     }
@@ -170,25 +205,37 @@
   position: absolute;
 
   .menu-item {
-    @include menuborder('-left');
-    @include menuborder('-right');
+    @include border('-left');
+    @include border('-right');
     @include menushadow;
 
     &:first-child {
-      margin-top:3px;
+
+      @include breakpoint( $bp5 ) {
+        border-top: 0;
+        margin-top:3px;
+      }
 
       a {
         border-top: 0;
         min-width: 200px;
+
+        @include breakpoint( $bp4 ) {
+          @include border('-top');
+        }
+
+        @include breakpoint( $bp5 ) {
+          border-top: 0;
+        }
       }
     }
 
     &:last-child {
-      @include menuborder('-bottom');
+      @include border('-bottom');
     }
 
     a {
-      @include menuborder('-top');
+      @include border('-top');
       @extend %menuhover;
 
       background-color: #FFF;

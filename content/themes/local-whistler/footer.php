@@ -1,21 +1,32 @@
-<?php get_sidebar(); ?>
+</div> <!-- END .container -->
 
-<footer role="contentinfo">
+<footer>
   <div class="footer">
     <div class="container">
-      <p>&copy;<?php echo date("Y"); ?> <a href="#top" title="Jump back to top">&#8593;</a></p>
+      <div class="row">
+        <div class="col-sx-12">
+          <p>&copy;<?php echo date("Y"); ?> <a href="#top" title="Jump back to top">&#8593;</a></p>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
 
 <?php wp_footer(); ?>
 
-<!--[if lt IE 9]>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<![endif]-->
-<!--[if !IE]> -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<!-- <![endif]-->
+<script>
+
+  if('querySelector' in document
+    && 'localStorage' in window
+    && 'addEventListener' in window) {
+    // Add jQuery 2.0+
+    document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"><\/script>')
+  } else {
+    // Add jQuery 1.9.0+
+    document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"><\/script>')
+  }
+
+</script>
 
 <script>!window.jQuery && document.write(unescape('%3Cscript src="<?php echo bloginfo('template_directory'); ?>/assets/scripts/vendor/jquery.min.js"%3E%3C/script%3E'))</script>
 

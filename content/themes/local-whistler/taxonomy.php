@@ -24,34 +24,30 @@
 
 ?>
 
-<div class="container">
+<form id="filterForm" method="GET" action="/">
 
-  <form id="filterForm" method="GET" action="/">
+  <?php require_once('partials/_filters.php'); ?>
+  <?php require_once('partials/_toolbar.php'); ?>
 
-    <?php require_once('partials/_filters.php'); ?>
-    <?php require_once('partials/_toolbar.php'); ?>
+</form>
 
-  </form>
+<?php rewind_posts(); ?>
 
-  <?php rewind_posts(); ?>
+<div id="results" class="row">
 
-    <div id="results">
+  <?php if ( have_posts() ) : ?>
 
-      <?php if ( have_posts() ) : ?>
+      <ol id="resultsList" class="media__list">
 
-          <ol id="resultsList" class="media__list">
+        <?php while ( have_posts() ) : the_post(); ?>
 
-            <?php while ( have_posts() ) : the_post(); ?>
+          <?php include('partials/_module_media.php'); ?>
 
-              <?php include('partials/_module_media.php'); ?>
+        <?php endwhile; ?>
 
-            <?php endwhile; ?>
+      </ol>
 
-          </ol>
-
-      <?php endif; ?>
-
-    </div>
+  <?php endif; ?>
 
 </div>
 

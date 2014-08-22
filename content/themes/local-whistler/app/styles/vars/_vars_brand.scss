@@ -17,6 +17,8 @@ $easing: ease;
 $radius-base: 3px;
 $radius-top: $radius-base $radius-base 0 0;
 $radius-bottom: 0 0 $radius-base $radius-base;
+$radius-left: $radius-base 0 0 $radius-base;
+$radius-right: 0 $radius-base $radius-base 0;
 
 $font-path: "fonts";
 $image-path: "images";

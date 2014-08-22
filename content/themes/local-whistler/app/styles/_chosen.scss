@@ -31,7 +31,7 @@
   position: relative;
 
   .chosen-single {
-    @include menuborder;
+    @include border;
 
     height: 34px;
     line-height: 33px;
@@ -81,15 +81,15 @@
   }
   &.chosen-container {
     .chosen-drop {
-      @include menuborder('-left');
-      @include menuborder('-right');
-      @include menuborder('-bottom');
+      @include border('-left');
+      @include border('-right');
+      @include border('-bottom');
       padding: 4px;
     }
   }
   &.chosen-with-drop {
     .chosen-single {
-      @include menuborder;
+      @include border;
       background: #FFF;
       background-clip: padding-box;
 

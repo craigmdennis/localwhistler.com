@@ -20,7 +20,6 @@
 
   // Misc Functions
   require_once('functions/lw_comments.php');
-  require_once('functions/lw_sidebar.php');
   require_once('functions/lw_links.php');
   require_once('functions/lw_attachments.php');
   require_once('functions/lw_query_utilities.php');
