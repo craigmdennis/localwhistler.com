@@ -46,23 +46,24 @@
 
 <body <?php body_class( 'device-' . $deviceType . ' view-' . get_view_type() ); ?> id="top">
 
-  <header role="banner">
+  <div class="container">
 
-    <div class="header container">
-      <nav role="navigation">
-        <?php
+    <nav role="navigation">
+      <div class="row">
+        <div class="col-xs-12">
+          <?php
 
-          $navArgs = array(
-            'menu' => 'mainnav',
-            'container' => 'div',
-            'container_class' => 'menu',
-            'menu_id' => false,
-            'menu_class' => 'menu__list'
-          );
+            $navArgs = array(
+              'menu' => 'mainnav',
+              'container' => 'div',
+              'container_class' => 'menu',
+              'menu_id' => false,
+              'menu_class' => 'menu__list'
+            );
 
-          wp_nav_menu( $navArgs );
+            wp_nav_menu( $navArgs );
 
-        ?>
-      </nav>
-    </div>
-  </header>
+          ?>
+        </div>
+      </div> <!-- END .row -->
+    </nav>

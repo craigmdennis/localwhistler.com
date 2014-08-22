@@ -5,18 +5,16 @@
 
   global $query_string;
 
-  $getSearch = get_search_query();
-  $getLocation = get_taxonomy_from_url_or_wordpress('business_location');
-  $getType = get_taxonomy_from_url_or_wordpress('business_type');
-  $getOrder = get_taxonomy_from_url_or_wordpress('order');
-
-  // Default order by newest first
+  $search_term = get_search_query();
+  $business_location = get_taxonomy_from_url_or_wordpress('business_location');
+  $business_type = get_taxonomy_from_url_or_wordpress('business_type');
+  $order_raw = get_taxonomy_from_url_or_wordpress('order');
   $orderBy = 'title';
-  $order = $getOrder;
+  $view = get_view_type();
 
   // Get the two parts of the order if they exist
-  if ( strpos( $getOrder, '-' ) ) {
-    $orderArray = explode( '-', $getOrder );
+  if ( strpos( $order_raw, '-' ) ) {
+    $orderArray = explode( '-', $order_raw );
     $order = $orderArray[1];
     $orderBy = $orderArray[0];
   }
@@ -26,30 +24,30 @@
 
 ?>
 
-<div class="container">
-  <?php require_once('partials/_filters.php'); ?>
+<form id="filterForm" method="GET" action="/">
 
+  <?php require_once('partials/_filters.php'); ?>
   <?php require_once('partials/_toolbar.php'); ?>
 
-  <?php rewind_posts(); ?>
+</form>
 
-    <div id="results">
+<?php rewind_posts(); ?>
 
-      <?php if ( have_posts() ) : ?>
+<div id="results" class="row">
 
-          <ol id="resultsList" class="media__list">
+  <?php if ( have_posts() ) : ?>
 
-            <?php while ( have_posts() ) : the_post(); ?>
+      <ol id="resultsList" class="media__list">
 
-              <?php include('partials/_module_media.php'); ?>
+        <?php while ( have_posts() ) : the_post(); ?>
 
-            <?php endwhile; ?>
+          <?php include('partials/_module_media.php'); ?>
 
-          </ol>
+        <?php endwhile; ?>
 
-      <?php endif; ?>
+      </ol>
 
-    </div>
+  <?php endif; ?>
 
 </div>
 

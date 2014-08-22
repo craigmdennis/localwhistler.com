@@ -1,0 +1,129 @@
+// ===================================================
+// Overrides for Chosen
+// ===================================================
+
+.chosen-container-single .chosen-single abbr,
+.chosen-container-single .chosen-single div b,
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close,
+.chosen-container .chosen-results-scroll-down span,
+.chosen-container .chosen-results-scroll-up span {
+  background-image: url('#{$image-path}/chosen-sprite.png') !important;
+}
+
+.chosen-container-single .chosen-search input[type="text"],
+.chosen-rtl .chosen-search input[type="text"] {
+  background-image: url('#{$image-path}/chosen-sprite.png') !important;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 144dpi) {
+  body .chosen-rtl .chosen-search input[type="text"],
+  body .chosen-container-single .chosen-single abbr,
+  body .chosen-container-single .chosen-single div b,
+  body .chosen-container-single .chosen-search input[type="text"],
+  body .chosen-container-multi .chosen-choices .search-choice .search-choice-close,
+  body .chosen-container .chosen-results-scroll-down span,
+  body .chosen-container .chosen-results-scroll-up span {
+    background-image: url('#{$image-path}/chosen-sprite@2x.png') !important;
+  }
+}
+
+.chosen-container-single {
+  position: relative;
+
+  .chosen-single {
+    @include border;
+
+    height: 34px;
+    line-height: 33px;
+    padding-left: 10px;
+    border-radius: $radius-base;
+    background: #FFF;
+    background-clip: padding-box;
+
+    div b {
+      background-position: 0px 6px;
+    }
+
+  }
+
+}
+
+.chosen-container {
+  .chosen-results {
+    margin: 0;
+    padding: 0;
+
+    li.highlighted {
+      background: $brand-blue;
+    }
+  }
+}
+
+.chosen-container-active {
+
+  &.chosen-container-multi {
+    &.chosen-with-drop {
+      .chosen-choices {
+        border-radius: $radius-base $radius-base 0 0;
+      }
+      .chosen-drop {
+        border-radius: 0 0 $radius-base $radius-base;
+      }
+    }
+    &.chosen-with-dropup {
+      .chosen-choices {
+        border-radius: 0 0 $radius-base $radius-base;
+      }
+      .chosen-drop {
+        border-radius: $radius-base $radius-base 0 0;
+      }
+    }
+  }
+  &.chosen-container {
+    .chosen-drop {
+      @include border('-left');
+      @include border('-right');
+      @include border('-bottom');
+      padding: 4px;
+    }
+  }
+  &.chosen-with-drop {
+    .chosen-single {
+      @include border;
+      background: #FFF;
+      background-clip: padding-box;
+
+      div b {
+        background-position: -18px 6px;
+      }
+    }
+  }
+
+}
+
+
+.chosen-container-multi {
+  .chosen-choices {
+    border-radius: $radius-base;
+    min-height: 30px; // Fix #14 IE8
+    padding: 4px 0 0 4px;
+
+    li.search-choice {
+      line-height: 12px;
+      margin: 0 4px 4px 0;
+      padding: 5px 20px 5px 5px;
+
+      .search-choice-close {
+        top: 6px;
+      }
+    }
+    li.search-field {
+      margin: 0 4px 4px 4px;
+
+      input[type="text"] {
+        height: 14px;
+        margin: 0;
+      }
+    }
+  }
+}

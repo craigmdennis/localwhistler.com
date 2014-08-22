@@ -1,5 +1,5 @@
 // ===================================================
-// Helper mixins
+// Library of mixins
 // ===================================================
 
 @mixin clearfix {
@@ -10,12 +10,33 @@
   }
 }
 
-@mixin menuborder($pos: '') {
-  border#{$pos}: 1px solid #EEE;
+@mixin fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@function black($opacity: 1) {
+  @return rgba(black, $opacity);
+}
+
+@function white($opacity: 1) {
+  @return rgba(white, $opacity);
+}
+
+@mixin border($pos: '') {
+  border#{$pos}: 1px solid #DDD;
   border#{$pos}: 1px solid rgba(#000 ,0.15);
 }
 
-// The SASS mixin takes two variable that match the content dimensions
 @mixin intrinsic-ratio( $width, $height ) {
   padding-bottom: percentage( $height / $width );
   position: relative;
@@ -31,37 +52,6 @@
   }
 }
 
-
-// Extendable Classes
-%menuhover {
-  &:hover,
-  &:focus {
-    background-color: lighten($brand-orange, 40%);
-  }
-}
-
-%boxshadow {
+@mixin menushadow {
   box-shadow: 0 2px 2px rgba(0,0,0,0.08);
-}
-
-%textshadow {
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-%overlay--primary {
-  @include inline-text-padding;
-  color: #FFF;
-}
-
-%overlay--secondary {
-  background-color: #000;
-  background-color: rgba(0,0,0,0.75);
-  color: #FFF;
-}
-
-%overlay--position {
-  display: block;
-  float: left;
-  position: relative;
-  z-index: 3;
 }

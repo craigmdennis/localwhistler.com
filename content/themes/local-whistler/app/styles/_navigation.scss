@@ -1,19 +1,16 @@
+// ===================================================
+// Navigation
+// ===================================================
+
 .menu {
-  @extend %boxshadow;
   position: relative;
   z-index: 4;
   border-bottom: 0;
 
   @include breakpoint( $bp5 ) {
+    @include menushadow;
     margin-bottom: $baseline*2;
     margin-top: $baseline*2;
-  }
-}
-
-.backgroundsize {
-  .menu-item-142 {
-    background-image: url('images/logo-hdpi.png') !important;
-    background-size: 50px 50px;
   }
 }
 
@@ -23,25 +20,122 @@
   padding: 0;
   width: 100%;
 
-  li {
+  @include breakpoint( $bp4 ) {
+    @include border('-top');
+    @include border('-bottom');
+
+    border-bottom: 0;
+    display: table;
+  }
+
+  @include breakpoint( $bp5 ) {
+    border-radius: $radius-base;
+  }
+
+  .menu-item {
     cursor: pointer; // Default cursor shows over the border
     position: relative;
     z-index: 99;
     margin-left: 0;
-    text-align: center;
 
-    ul {
+    a {
+      @include border('-top');
+      color: $body-copy-color;
+      display: block;
+      white-space: nowrap;
+      padding: $baseline*2;
+
+      @include breakpoint($bp4) {
+        border-top: 0;
+      }
+    }
+
+    .sub-menu {
       height: 0;
       padding-left: 0;
       list-style: none;
+
+      @include breakpoint( $bp4 ) {
+        position: absolute;
+        left: -9999em; // So it's still readable by screen readers
+      }
     }
 
   }
 
+  > .menu-item {
+    @extend %menuhover;
+
+    background-clip: padding-box;
+    background-color: #FFF;
+
+    @include breakpoint($bp4) {
+      display: table-cell;
+      width: 2%; /* Safari 6 bug */
+    }
+
+    @include breakpoint( $bp5 ) {
+      border-bottom: 3px solid $brand-orange;
+    }
+
+    &:first-child {
+      @include breakpoint( $bp5 ) {
+        @include border('-left');
+        border-radius: $radius-left;
+      }
+
+      a {
+        @include breakpoint($bp4) {
+          border-left: 0;
+          border-top: 0;
+        }
+
+        @include breakpoint($bp5) {
+          border-radius: $radius-base 0 0 0;
+        }
+      }
+    }
+
+    @include breakpoint( $bp4 ) {
+
+      &:last-child {
+        @include border('-right');
+        border-radius: $radius-right;
+
+        a {
+          border-radius: 0 $radius-base 0 0;
+          border-right: 0;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        .sub-menu {
+          left: -1px;
+        }
+      }
+
+    }
+
+    > a {
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: $baseline*1.5 $baseline*2;
+
+      @include breakpoint( $bp4 ) {
+        @include border('-right');
+        padding: $baseline*2.5 $baseline*2;
+      }
+    }
+
+  }
+
+  // Home menu item specific
   .menu-item-142 {
     background-image: url('images/logo.png');
     background-repeat: no-repeat;
-    background-position: center $baseline;
+    background-position: center $baseline*1.5;
 
     @include breakpoint( $bp4 ) {
       background-position: center center;
@@ -60,7 +154,7 @@
     }
 
     a {
-      padding-top: 65px;
+      padding-top: 70px;
 
       @include breakpoint( $bp4 ) {
         padding-top: 0;
@@ -74,118 +168,86 @@
     }
   }
 
-  > li {
-    @extend %menuhover;
-    background-color: #FFF;
+}
 
-    > a {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding: $baseline*1.5 $baseline*2;
+.menu-item-has-children {
 
+  &:hover > a:after {
+    @include breakpoint( $bp4 ) {
+      border: 5px solid transparent;
+      border-bottom-color: #333;
+      top: -2px;
+    }
+  }
+
+  > a {
+    @include breakpoint( $bp4 ) {
+      padding-right: $baseline*3.5;
+    }
+
+    &:after {
       @include breakpoint( $bp4 ) {
-        padding: $baseline*2.5 $baseline*1.7;
-      }
-    }
-
-  }
-
-  a {
-    color: $body-copy-color;
-    display: block;
-    white-space: nowrap;
-  }
-
-  @include breakpoint( $bp4 ) {
-    @include menuborder;
-    border-bottom: 0;
-    display:table;
-
-    > li {
-      border-bottom: 3px solid $brand-orange;
-      display: table-cell;
-      width: 2%; /* Safari 6 bug */
-
-      ul {
-        position: absolute;
-        left: -9999em; // So it's still readable by screen readers
-      }
-
-      > a {
-        @include menuborder('-left');
-        text-align: center;
-      }
-
-      &:first-child a {
-        border-left: 0;
-      }
-
-      &:hover,
-      &:focus {
-        ul {
-          left: 0;
-        }
-      }
-    }
-
-    .menu-item-has-children {
-
-      > a {
-        padding-right: $baseline*5;
-
-        &:after {
-          content: " ";
-          height: 0;
-          position: absolute;
-          width: 0;
-          border: 5px solid transparent;
-          border-top-color: #333;
-          right: $baseline*3;
-          top: $baseline*3.4;
-        }
-
-      }
-
-      &:hover > a:after {
+        content: " ";
+        height: 0;
+        display: inline-block;
+        width: 0;
         border: 5px solid transparent;
-        border-bottom-color: #333;
-        top: $baseline*2.9;
+        border-top-color: #333;
+        position: relative;
+        top: 3px;
+        margin-left: $baseline;
       }
-    }
-
-    a {
-      padding: $baseline*2;
     }
   }
 }
 
 .sub-menu {
+  position: absolute;
 
-  li {
-    @include menuborder('-left');
-    @include menuborder('-right');
-    @extend %boxshadow;
+  .menu-item {
+    @include border('-left');
+    @include border('-right');
+    @include menushadow;
 
     &:first-child {
-      margin-top:3px;
+
+      @include breakpoint( $bp5 ) {
+        border-top: 0;
+        margin-top:3px;
+      }
 
       a {
         border-top: 0;
         min-width: 200px;
+
+        @include breakpoint( $bp4 ) {
+          @include border('-top');
+        }
+
+        @include breakpoint( $bp5 ) {
+          border-top: 0;
+        }
       }
     }
 
     &:last-child {
-      @include menuborder('-bottom');
+      @include border('-bottom');
     }
 
     a {
-      @include menuborder('-top');
+      @include border('-top');
       @extend %menuhover;
 
       background-color: #FFF;
       padding: $baseline $baseline*2;
     }
   }
+}
 
+// Add retina image for logo
+.backgroundsize {
+  .menu-item-142 {
+    background-image: url('images/logo-hdpi.png') !important;
+    background-size: 50px 50px;
+  }
 }

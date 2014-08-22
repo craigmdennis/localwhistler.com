@@ -1,21 +1,63 @@
 .toolbar {
   @include clearfix;
+  @include border('-bottom');
+
+  background-clip: padding-box;
   background-color: #FFF;
-  border-left: 1px solid #EEE;
-  border-right: 1px solid #EEE;
-  padding: $baseline*4;
+  padding: $baseline*2;
+
+  @include breakpoint( $bp5 ) {
+    @include border('-left');
+    @include border('-right');
+    border-radius: $radius-bottom;
+  }
+
+  .form__label {
+    color: $body-copy-color;
+
+    @include breakpoint( $bp2 ) {
+      margin-bottom: 0;
+    }
+  }
+
+  .form__control {
+    @include border;
+  }
+
+  .show-with-js {
+    display: inline-block;
+  }
+
 }
 
 .toolbar__actions {
   @extend %unstyled;
-  float: right;
-}
+  float: left;
+  margin-right: 10px;
 
-.toolbar__item,
-.toolbar__item.show-with-js {
-  display: inline-block;
+  &.btn-group {
+    clear: left;
+
+    @include breakpoint( $bp2 ) {
+      clear: none;
+      margin-right: 0;
+    }
+  }
+
+  .form__label {
+    display: none;
+
+    @include breakpoint( $bp3 ) {
+      display: block;
+    }
+  }
+
+  @include breakpoint( $bp2 ) {
+    float: right;
+  }
 }
 
 .toolbar__count {
+  line-height: 35px;
   float: left;
 }

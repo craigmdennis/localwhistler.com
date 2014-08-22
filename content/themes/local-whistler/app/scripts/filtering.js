@@ -21,7 +21,7 @@ filter = {};
       },
       search: {
         input: '#filterSearch',
-        search_in: '.media__title, .media__body, .media__footer'
+        search_in: '.media__title, .media__footer'
       },
       filter_types: {
         any: function( current_value, option ){
@@ -40,7 +40,6 @@ filter = {};
         after_filter: function( result ){
 
           // Update the map
-
           if ( $('body').hasClass('view-map') ) {
             window.googleMap.update_markers( result );
           }
@@ -48,21 +47,14 @@ filter = {};
           // Send custom analytics events
           filter.push_analytics();
 
-          // Don't run after the first filter (on init)
-          if ( filter.filterCount > 0) {
+          // Change the URL and store data
+          filter.push_history();
 
-            // Change the URL and store data
-            filter.push_history();
+          // Show the current count
+          filter.result_count( result );
 
-            // Show the current count
-            filter.result_count( result );
-
-          } else {
-
-            // Update the sort only on the first filter
-            filter.result_sort();
-
-          }
+          // Update the sort only on the first filter
+          filter.result_sort();
 
           // Add styling hooks
           filter.update_styles();
@@ -112,7 +104,7 @@ filter = {};
       // Stop the form from being manually submitted
       $('form').on('submit', filter.override );
 
-      $('#filterOrder').on('change.sort', filter.result_sort );
+      $('#filterOrder').on('change', filter.result_sort );
 
       // $('.sub-menu').on('click.submenu', 'a', filter.override );
 
@@ -217,8 +209,11 @@ filter = {};
 
     set_current_state: function(){
 
-      // Replace the current text to match the hostory state
-      $('#filterSearch').val( history.state.search );
+      // Replace the current text to match the history state
+      $('#filterSearch').attr('value', history.state.search );
+
+      // Trigger tinysort
+      filter.result_sort();
 
       // Get all the select boxes
       var $selects = $('#filterForm').find('select');
@@ -243,6 +238,11 @@ filter = {};
             // Set this as the selected option
             $(this).attr('selected', 'selected');
 
+            // Tell chosen to update
+            $(this).trigger('chosen:updated');
+
+            // // Tell the filter that something has changed
+            // $(this).trigger('change');
           }
 
         });
@@ -257,12 +257,14 @@ filter = {};
           currentLocation = filter.get_current_state().location,
           currentOrder = filter.get_current_state().order,
           currentType = filter.get_current_state().type,
-          currentSearch = filter.get_current_state().search;
+          currentSearch = filter.get_current_state().search,
+          currentView = filter.get_current_state().view;
 
         url += '?s=' + currentSearch;
         url += '&business_location=' + currentLocation;
         url += '&business_type=' + currentType;
         url += '&order=' + currentOrder;
+        url += '&view=' + currentView;
 
       return url;
 
@@ -271,7 +273,6 @@ filter = {};
     generate_title: function(){
 
       var currentLocationText = filter.get_current_state().locationText,
-          currentOrderText = filter.get_current_state().orderText,
           currentTypeText = filter.get_current_state().typeText,
           title;
 
@@ -300,12 +301,12 @@ filter = {};
     push_history: function(){
 
       if ( Modernizr.history) {
-        if ( !$('#filterSearch').is(':focus') ) {
-          // Search does not have focus
-          window.history.pushState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
-        } else {
-          // Search has focus
+        if ( ($('#filterSearch').is(':focus')) || ( filter.filterCount === 0 ) ) {
+          // Replace current history state
           window.history.replaceState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
+        } else {
+          // Add a new history state
+          window.history.pushState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
         }
       }
 
@@ -331,11 +332,8 @@ filter = {};
 
       console.log(sortOrder);
       console.log(sortBy);
-      $('ol .media').tsort( sortBy, {order: sortOrder} );
 
-      if ( filter.filterCount > 0) {
-        filter.push_history();
-      }
+      $('ol .media').tsort( sortBy, {order: sortOrder} );
 
     },
 
@@ -343,10 +341,10 @@ filter = {};
 
       // Needs to match exactly with taxonomy.php
       if ( !result.length ){
-        $('.js-result-count').text( 'No businesses found' );
+        $('.js__count').text( 'No matches' );
       }
       else {
-        $('.js-result-count').text( 'Found: ' + result.length );
+        $('.js__count').text( result.length + ' businesses match' );
       }
 
     },
@@ -371,29 +369,15 @@ filter = {};
 
     get_logo: function( post ) {
 
-      var logo,
-          logo_id;
+      var logo = post.acf.logo;
 
-      if ( post.custom_fields.logo[0] !== '' ) {
-
-        // Conver the value to a number for comparison
-        logo_id = parseInt(post.custom_fields.logo[0]);
-
-        // Iterate over each attachment in the array
-        $.each( post.attachments, function( $key, $value ){
+      if ( logo !== '' ) {
 
           // Make sure we get the logo and not any old attachment
-          if ( logo_id === $value.id ) {
-            logo =  '<a class="media__link--logo media__link--left media__thumb" href="' + post.url + '">' +
-                      '<img class="media__logo" src="' + post.attachments[$key].url + '" alt="' + post.title + ' Logo" />' +
-                    '</a>';
-          }
-
-        });
-      }
-
-      return logo;
-
+          return  '<a class="media__link--logo media__link--left media__thumb" href="' + post.url + '">' +
+                    '<img class="media__logo" src="' + logo.sizes['media--thumb'] + '" alt="' + logo.description + ' Logo" />' +
+                  '</a>';
+        }
     },
 
     get_tags: function( post ) {

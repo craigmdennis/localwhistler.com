@@ -16,38 +16,40 @@
   <?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' ); ?>
   <?php $url = $thumb['0']; ?>
 
-
-  <div class="container">
-    <div class="media media--featured">
-      <div class="media__image">
-        <?php the_post_thumbnail('media--featured'); ?>
-      </div>
-      <div class="media__heading">
-        <?php the_category(); ?>
-        <h1 class="media__title title--large">
-          <a class="media__title__link" href="<?php the_permalink(); ?>">
-            <span><?php the_title(); ?></span>
-          </a>
-        </h1>
-        <div class="media__subtitle">
-          <p><span><?php the_excerpt(); ?></span></p>
+  <header>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="media media--featured">
+          <div class="media__image">
+            <?php the_post_thumbnail('media--featured'); ?>
+          </div>
+          <div class="media__heading">
+            <?php the_category(); ?>
+            <h1 class="media__title title--large">
+              <a class="media__title__link" href="<?php the_permalink(); ?>">
+                <span><?php the_title(); ?></span>
+              </a>
+            </h1>
+            <div class="media__subtitle">
+              <p><span><?php the_excerpt(); ?></span></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </header>
 
 <?php endwhile; endif; ?>
 
-<div class="container">
-  <div class="border">
-    <div class="content">
+  <div class="content" role="main">
+    <div class="row">
 
-      <!-- Predefined searches -->
+      <!-- WIP Predefined searches -->
 
-      <div class="span-4">
+      <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img width="800" height="533" src="http://localwhistler.local/content/uploads/2014/08/whistler-800x533.jpg" class="attachment-media--card wp-post-image" alt="whistler">
+            <?php the_post_thumbnail('media--card'); ?>
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -59,10 +61,10 @@
         </div>
       </div>
 
-      <div class="span-4">
+      <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img width="800" height="533" src="http://localwhistler.local/content/uploads/2014/08/whistler-800x533.jpg" class="attachment-media--card wp-post-image" alt="whistler">
+            <?php the_post_thumbnail('media--card'); ?>
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -74,10 +76,10 @@
         </div>
       </div>
 
-      <div class="span-4 last">
+      <div class="col-xs-12 col-sm-6 col-md-4 last">
         <div class="media media--card" data-url="<?php the_permalink(); ?>">
           <div class="media__image">
-            <img width="800" height="533" src="http://localwhistler.local/content/uploads/2014/08/whistler-800x533.jpg" class="attachment-media--card wp-post-image" alt="whistler">
+            <?php the_post_thumbnail('media--card'); ?>
           </div>
           <div class="media__heading">
             <h2 class="media__title">
@@ -88,8 +90,6 @@
           </div>
         </div>
       </div>
-
-
 
       <?php
 
@@ -124,7 +124,7 @@
 
             ?>
 
-            <div class="span-4 <?php echo $last; ?>">
+            <div class="col-xs-12 col-sm-6 col-md-4 <?php echo $last; ?>">
               <div class="media media--card" data-url="<?php the_permalink(); ?>">
                 <div class="media__image">
                   <?php the_post_thumbnail('media--card'); ?>
@@ -152,8 +152,7 @@
       <?php endif; ?>
 
 
-    </div> <!-- END .content -->
-  </div> <!-- END .border -->
-</div> <!-- END .container -->
+    </div> <!-- END .row -->
+  </div>
 
 <?php get_footer(); ?>

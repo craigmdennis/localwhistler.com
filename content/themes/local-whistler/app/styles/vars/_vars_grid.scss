@@ -6,8 +6,6 @@ $bp5: 56.25em; // 900px
 $bp6: 68.75em; // 1100px
 $bp7: 81.25em; // 1300px
 
-$susy: (
-  columns: 12,
-  gutter-position: inside,
-  gutter: 1em
-);
+$max-width: 1100px;
+$grid-gutter-width: $baseline*2;
+$grid-columns: 12;

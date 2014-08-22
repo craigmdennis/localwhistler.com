@@ -1,11 +1,11 @@
 // ===================================================
 // Media Module
 // ===================================================
-//
+
+
 // 1. Basic Media
 // 2. Featured Media
 // 3. Card Media
-//
 
 
 // Basic Media
@@ -24,7 +24,7 @@
 }
 
 .media__body {
-  @include menuborder;
+  @include border;
 
   border-top: 0;
   padding: $baseline*2 $baseline*2 0;
@@ -73,6 +73,7 @@
 // ===================================================
 .media--featured {
   padding-top: $baseline*2;
+  margin-bottom: -62px;
 
   @include breakpoint( $bp4 ) {
     margin-top: -62px;
@@ -133,13 +134,19 @@
 .media--card {
   margin-bottom: $baseline*2;
 
+  .media__image {
+    border-radius: $radius-top;
+  }
+
   .media__heading {
-    @include intrinsic-ratio(800, 533);
+    height: 0;
+    padding-bottom: 60.8%;
     padding-top: $baseline*2;
-    margin-bottom: -$baseline*2;
   }
 
   .media__body {
+    border-radius: $radius-bottom;
+
     @include breakpoint( $bp3 ) {
       height: 200px;
       overflow: hidden;
@@ -161,7 +168,7 @@
   cursor: pointer;
 
   .media__image img {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   .media__body {

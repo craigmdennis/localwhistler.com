@@ -1,21 +1,13 @@
 .content {
   @include clearfix;
+  @include border;
+
+  border-radius: $radius-base;
+  background-clip: padding-box;
   background-color: #FFF;
-  padding: $baseline*2 $baseline*1.5 0;
-
-  @include breakpoint( $bp4 ) {
-    padding: $baseline*2 $baseline*1 0;
-  }
-
-  @include breakpoint( $bp5 ) {
-    padding-left: $baseline;
-    padding-right: $baseline;
-  }
-}
-
-.border {
-  @include menuborder;
-  @extend %boxshadow;
+  padding: $baseline*2 $baseline*2 0 $baseline*2;
+  position: relative;
+  z-index: 1;
 }
 
 .home .border {

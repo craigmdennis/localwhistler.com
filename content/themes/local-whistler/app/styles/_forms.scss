@@ -1,0 +1,145 @@
+// ===================================================
+// Form Module
+// ===================================================
+
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
+  // so we reset that to ensure it behaves more like a standard block element.
+  // See https://github.com/twbs/bootstrap/issues/12359.
+  min-width: 0;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  line-height: inherit;
+  border: 0;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%; // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+
+// Normalize form controls
+//
+// While most of our form styles require extra classes, some basic normalization
+// is required to ensure optimum display with or without those classes to better
+// address browser inconsistencies.
+
+// Override content-box in Normalize (* isn't specific enough)
+input[type="search"] {
+  box-sizing: border-box;
+}
+
+// Position radios and checkboxes better
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 4px 0 0;
+  margin-top: 1px \9; // IE8-9
+  line-height: normal;
+}
+
+// Set the height of file controls to match text inputs
+input[type="file"] {
+  display: block;
+}
+
+// Make range inputs behave like textual form controls
+input[type="range"] {
+  display: block;
+  width: 100%;
+}
+
+// Make multiple select elements height not fixed
+select[multiple],
+select[size] {
+  height: auto;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+}
+
+// Custom styles
+.form--filters {
+  @include clearfix;
+
+  background-color: $brand-orange;
+  padding: $baseline*2;
+
+  @include breakpoint( $bp5 ) {
+    @include border('-left');
+    @include border('-right');
+    @include border('-top');
+    border-radius: $radius-top;
+  }
+}
+
+.form__control {
+  @include border;
+  border-radius: $radius-base;
+  outline: 0;
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: $baseline/2 $baseline;
+  background-image: none;
+  background-clip: padding-box;
+}
+
+select.form__control {
+  @extend %btnshadow;
+}
+
+.form__control--inset {
+  @extend %insetshadow;
+}
+
+.form__label {
+  color: #FFF;
+  display: inline-block;
+}
+
+.form__row--inline {
+  display: inline-block;
+  margin-right: $baseline*2;
+  height: 34px;
+
+  .chosen-container {
+    display: inline-block;
+  }
+
+  .form__label {
+    float: left;
+    line-height: 35px;
+    margin-right: $baseline;
+    margin-bottom: 0;
+  }
+
+  .form__label,
+  .form__control {
+    width: auto;
+    display: inline-block;
+  }
+}
+
+.form__row {}
+
+.view-map {
+  .form__row--sort {
+    display: none;
+  }
+}
+
+.form__group {
+  margin-bottom: $baseline*1.5;
+}
