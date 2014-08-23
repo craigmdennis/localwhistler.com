@@ -16,13 +16,18 @@
   @extend %btnshadow;
   border: 1px transparent;
   display: inline-block;
-  padding: $baseline $baseline*2;
+  padding: $baseline/2 $baseline;
   border-radius: $radius-base;
   text-align: center;
   background-clip: padding-box;
 
   &:active {
     @extend %insetshadow;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none !important;
   }
 }
 
