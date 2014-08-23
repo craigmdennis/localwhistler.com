@@ -9,3 +9,11 @@
   }
 
 }
+
+.thumb {
+  @include border;
+  @extend %btnshadow;
+
+  border-radius: $radius-base;
+  padding: $baseline;
+}

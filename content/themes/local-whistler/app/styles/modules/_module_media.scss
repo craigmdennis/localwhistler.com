@@ -14,15 +14,6 @@
   position: relative;
 }
 
-%media-title {
-  display: inline;
-  clear: left;
-  margin-left: $outline-width;
-  margin-right: $outline-width;
-  line-height: normal;
-  margin-bottom: ($outline-width*2) + $baseline/2;
-}
-
 .media__body {
   @include border;
 
@@ -36,6 +27,21 @@
   z-index: 2;
 }
 
+.media__title__link {
+  display: block;
+  color: #FFF;
+  background-color: $brand-orange;
+  padding: $baseline $baseline*3;
+  text-align: center;
+
+  @include breakpoint( $bp5 ) {
+    display: inline-block;
+    text-align: left;
+    padding: $baseline $baseline*4;
+    margin-bottom: $baseline*2;
+  }
+}
+
 .media__image {
   left: 0;
   overflow: hidden;
@@ -45,63 +51,59 @@
   z-index: 1;
 
   img {
+    width: 100%;
     transition: transform $timing $easing;
   }
 }
 
-.media__title {
+.title--overlay {
   @extend %overlay--position;
-  @extend %media-title;
-  @extend %textshadow;
+  display: inline;
+  clear: left;
+  margin-left: $outline-width;
+  margin-right: $outline-width;
+  line-height: normal;
+  margin-bottom: ($outline-width*2) + $baseline/2;
 
-  a {
-    @extend %overlay--primary;
-  }
-}
-
-.media__subtitle {
-  @extend %overlay--position;
-  @extend %media-title;
-
-  p {
-    @extend %overlay--primary;
+  a, p {
+    color: #FFF;
+    @include inline-text-padding;
   }
 }
 
 
 // Featured Media
 // ===================================================
-.media--featured {
-  padding-top: $baseline*2;
-  margin-bottom: -62px;
 
-  @include breakpoint( $bp4 ) {
-    margin-top: -62px;
-    padding-top: 82px;
+.media--featured {
+
+  .media__heading {
+    padding-top: $baseline*2;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
-  @include breakpoint( $bp5 ) {
-    padding-top: 62px;
+  .media__title {
+    padding-top: $outline-width;
+  }
+
+  .media__title__link {
+    padding: 0;
   }
 
   .media__heading {
-    margin-bottom: 0;
-    padding-bottom: 0;
+    padding-left: $baseline*2;
+    padding-right: $baseline*2;
+    min-height: 300px;
 
-    min-height: 375px;
-
-    @include breakpoint( $bp4 ) {
+    @include breakpoint( $bp5 ) {
       max-width: 70%;
     }
 
     @include breakpoint( $bp6 ) {
-      min-height: 475px;
+      min-height: 375px;
       max-width: 55%;
     }
-  }
-
-  .post-categories {
-    margin-bottom: $baseline*1.5;
   }
 
   .media__image {
@@ -121,9 +123,18 @@
     }
 
     @include breakpoint( $bp4 ) {
+      top: -62px;
       width:1200px;
       margin-left: -600px;
     }
+  }
+
+  .post-categories {
+    margin-bottom: $baseline*1.5;
+  }
+
+  .post-categories + .media__title {
+    padding-top: 0;
   }
 
 }
@@ -133,14 +144,16 @@
 // ===================================================
 .media--card {
   margin-bottom: $baseline*2;
+  position: relative;
 
   .media__image {
     border-radius: $radius-top;
+    position: relative;
+    overflow: hidden;
   }
 
   .media__heading {
-    height: 0;
-    padding-bottom: 60.8%;
+    @include fill;
     padding-top: $baseline*2;
   }
 

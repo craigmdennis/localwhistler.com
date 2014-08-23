@@ -17,6 +17,7 @@
   require_once('functions/lw_dashboard.php');
 
   // Custom theme options
+  require_once('functions/lw_sidebars.php');
 
   // Misc Functions
   require_once('functions/lw_comments.php');

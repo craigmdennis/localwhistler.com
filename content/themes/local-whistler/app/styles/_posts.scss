@@ -1,19 +1,43 @@
 .content {
   @include clearfix;
-  @include border;
+  @include border('-top');
 
-  border-radius: $radius-base;
   background-clip: padding-box;
   background-color: #FFF;
   padding: $baseline*2 $baseline*2 0 $baseline*2;
   position: relative;
   z-index: 1;
+
+  @include breakpoint( $bp5 ) {
+    @include border;
+
+    border-radius: $radius-base;
+  }
 }
 
-.home .border {
-  position: relative;
-  z-index: 2;
-  margin-top: -64px;
+// Add padding to make the line length shorter for readbility
+.content.context__copy {
+
+  @include breakpoint( $bp3 ) {
+    padding: $baseline*4 $baseline*4 $baseline*2 $baseline*4;
+  }
+
+  @include breakpoint( $bp5 ) {
+    padding: $baseline*4 $baseline*6 $baseline*4 $baseline*6;
+  }
+
+}
+
+.page-template-full-php .content.context__copy {
+
+  @include breakpoint( $bp4 ) {
+    padding: $baseline*6 $baseline*6 $baseline*4 $baseline*6;
+  }
+
+  @include breakpoint( $bp6 ) {
+    padding: $baseline*8 $baseline*14 $baseline*6 $baseline*14;
+  }
+
 }
 
 .post-categories {

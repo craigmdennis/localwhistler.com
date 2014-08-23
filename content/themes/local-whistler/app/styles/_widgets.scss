@@ -1,0 +1,85 @@
+// ===================================================
+// Widgets
+// ===================================================
+
+
+.fb_iframe_widget {
+  width: 47px;
+  overflow: hidden;
+  margin-bottom: $baseline*1.5;
+}
+
+.widget {
+  @include single-direction-margins;
+
+  padding: $baseline*2 $baseline*2 $baseline/2 $baseline*2;
+  position: relative;
+
+  @include breakpoint( $bp3 ) {
+    padding: $baseline*2 $baseline*4 $baseline/2 $baseline*4;
+  }
+
+  @include breakpoint ( $bp5 ) {
+    padding: $baseline*2 $baseline*2 $baseline/2  $baseline*2;
+  }
+
+  ul {
+    @extend %unstyled;
+    box-shadow: none;
+  }
+
+}
+
+.page-template-full-php .widget {
+  @include breakpoint( $bp4 ) {
+    padding: $baseline*2 $baseline*6 $baseline/2 $baseline*6;
+  }
+
+  @include breakpoint( $bp5 ) {
+    padding: $baseline*2;
+  }
+}
+
+.widget--inline {
+  @include border('-top');
+
+  @include breakpoint ( $bp5 ) {
+    border-top: 0;
+  }
+
+  &:before {
+    @include breakpoint( $bp5 ) {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -$baseline;
+      @include border('-left');
+      height: 99em;
+    }
+  }
+}
+
+.widget-col:first-child .widget {
+  border-top: 0;
+
+  &:before {
+    @include breakpoint( $bp5 ) {
+      left: 0;
+    }
+  }
+}
+
+.widget-col:last-child .widget {
+
+  &:after {
+    @include breakpoint( $bp5 ) {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      @include border('-right');
+      height: 99em;
+    }
+  }
+
+}
