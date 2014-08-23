@@ -6,9 +6,79 @@
   padding-top:32px;
 }
 
+.wrapper {
+  background-color: $background-blue;
+}
+
 .footer {
   clear: both;
-  background-color: #EEE;
-  padding: $baseline*5 $baseline*2;
-  margin-top: $baseline*3;
+  background-color: $wet-asphalt;
+  overflow: hidden;
+
+  @include breakpoint( $bp3 ) {
+    padding-bottom: $baseline*2;
+    padding-top: $baseline*2;
+  }
+
+  @include breakpoint( $bp5 ) {
+    margin-top: $baseline*3;
+    padding: 0;
+  }
+
+  .widget {
+    color: lighten( $wet-asphalt, 50%);
+    font-size: 0.875em;
+  }
+
+  a {
+    color: #FFF;
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+}
+
+.sidebar {
+  background-color: #FFF;
+  position: relative;
+  z-index: 2;
+
+  .sidebar__section {
+    @include border('-top');
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+  .widget {
+
+    @include breakpoint( $bp3 ) {
+      padding-left: $baseline*4;
+      padding-right: $baseline*4;
+    }
+
+    @include breakpoint( $bp5 ) {
+      padding-left: $baseline*6;
+      padding-right: $baseline*6;
+    }
+
+    @include breakpoint( $bp6 ) {
+      padding-left: $baseline*2;
+      padding-right: $baseline*2;
+    }
+  }
+
+  @include breakpoint( $bp5 ) {
+    @include border;
+    margin-top: $baseline*2;
+    border-radius: $radius-base;
+    background-clip: padding-box;
+  }
+
+  @include breakpoint( $bp6 ) {
+    margin-top: 0;
+  }
 }

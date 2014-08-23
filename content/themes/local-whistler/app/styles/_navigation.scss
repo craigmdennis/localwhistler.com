@@ -51,13 +51,12 @@
     }
 
     .sub-menu {
-      height: 0;
+      display: none;
       padding-left: 0;
       list-style: none;
 
       @include breakpoint( $bp4 ) {
         position: absolute;
-        left: -9999em; // So it's still readable by screen readers
       }
     }
 
@@ -70,12 +69,9 @@
     background-color: #FFF;
 
     @include breakpoint($bp4) {
+      border-bottom: 3px solid $brand-orange;
       display: table-cell;
       width: 2%; /* Safari 6 bug */
-    }
-
-    @include breakpoint( $bp5 ) {
-      border-bottom: 3px solid $brand-orange;
     }
 
     &:first-child {
@@ -96,7 +92,7 @@
       }
     }
 
-    @include breakpoint( $bp4 ) {
+    @include breakpoint( $bp5 ) {
 
       &:last-child {
         @include border('-right');
@@ -112,6 +108,7 @@
       &:focus {
         .sub-menu {
           left: -1px;
+          display: block;
         }
       }
 
@@ -211,9 +208,11 @@
 
     &:first-child {
 
-      @include breakpoint( $bp5 ) {
-        border-top: 0;
-        margin-top:3px;
+      @include breakpoint( $bp4 ) {
+        margin-top: 3px;
+        a {
+          border-top: 0;
+        }
       }
 
       a {

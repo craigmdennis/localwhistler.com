@@ -28,11 +28,12 @@
 @import "mixins/toolkit";
 @import "mixins/grid_framework";
 @import "mixins/grid";
+@import "mixins/type";
 
 
 // Partials
 // ===================================================
-@import "root";
+@import "reset";
 @import "buttons";
 @import "grid";
 @import "helpers";
@@ -47,6 +48,7 @@
 @import "posts";
 @import "forms";
 @import "chosen";
+@import "widgets";
 
 
 //Modules
@@ -57,3 +59,7 @@
 
 // Inbox - Styles that are yet to be organised
 // ===================================================
+
+#results {
+  min-height: 300px;
+}

@@ -11,16 +11,149 @@ h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
   margin: 0; // Remove all margin and padding
 }
 
+.title--large {
+  font-size: 2.3em;
+}
+
+.title--giant {
+  font-size: 3em;
+}
+
 // Define contexts for adding margins back
 .context__copy {
 
-  // Add margin to bottom only
-  h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
-    margin-bottom: $baseline*1.5;
+  > p:first-of-type {
+    font-size: 1.25em;
+    color: $heading-color;
   }
 
-}
+  @include single-direction-margins;
 
-.title--large {
-  font-size: 2.3em;
+  h1, h2, h3, h4, h5, h6 {
+    color: $heading-color;
+  }
+
+  h4, h5, h6 {
+    @include border('-bottom');
+    clear: both;
+    text-transform: uppercase;
+  }
+
+  h4 {
+    margin-bottom: 1.3455em*0.75;
+    padding-bottom: 1.3455em*0.75;
+  }
+
+  h5 {
+    margin-bottom: 1.45em*0.5;
+    padding-bottom: 1.45em*0.5;
+  }
+
+  h6 {
+    margin-bottom: 1.90253em*0.5;
+    padding-bottom: 1.90253em*0.5;
+  }
+
+  ul, ol {
+    list-style: disc inside;
+    margin-left: 0;
+    padding-left: $baseline*2;
+    text-indent: -$baseline*2 +3px;
+    overflow: hidden;
+  }
+
+  p + p > img {
+    padding-top: $baseline;
+  }
+
+  // Links in the content area
+  a {
+    text-decoration: underline;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    font-size: 65%;
+    font-family: monospace;
+    color: #666;
+  }
+
+  p kbd {
+    @include border;
+    box-shadow: 0 1px 1px rgba(#000, 0.1);
+    border-radius: $radius-base;
+    background-color: #F2F2F2;
+    padding: $baseline/2 $baseline;
+    white-space: nowrap;
+  }
+
+  code,
+  pre {
+    border-radius: $radius-base;
+    background-color: #999;
+  }
+
+  code {
+    padding: $baseline/2 $baseline;
+    position: relative;
+    top: -2px;
+    white-space: nowrap;
+  }
+
+  pre {
+    padding: $baseline $baseline*2;
+    max-width: 100%;
+    overflow: auto;
+
+    code {
+      padding: 0;
+      white-space: pre-wrap;
+    }
+  }
+
+  p,
+  > div {
+    margin: auto auto 1.5em;
+  }
+
+  .wp-caption {
+    @extend .thumb;
+  }
+
+  .wp-caption-text {
+    margin: $baseline 0 0 0;
+    text-transform: uppercase;
+    font-size: 0.75em; // 12px
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .alignleft,
+  .alignright,
+  .aligncenter,
+  .alignnone {
+    @extend .thumb;
+    margin-bottom: $baseline*1.5;
+    display: block;
+  }
+
+  @include breakpoint( $bp4 ) {
+    font-size: 112.5%;
+
+    .alignleft {
+      float: left;
+      margin-right: $baseline*2;
+    }
+
+    .alignright {
+      float: right;
+      margin-left: $baseline*2;
+    }
+
+  }
+
+
 }

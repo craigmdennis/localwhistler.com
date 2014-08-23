@@ -16,13 +16,18 @@
   @extend %btnshadow;
   border: 1px transparent;
   display: inline-block;
-  padding: $baseline $baseline*2;
+  padding: $baseline/2 $baseline;
   border-radius: $radius-base;
   text-align: center;
   background-clip: padding-box;
 
   &:active {
     @extend %insetshadow;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none !important;
   }
 }
 
@@ -101,14 +106,13 @@
   }
   .btn + .btn {
     border-radius: 0;
+    border-left: 0;
   }
   .btn:first-child {
     border-radius: $radius-base 0 0 $radius-base;
-    border-right: 0;
   }
   .btn:last-child {
     border-radius: 0 $radius-base $radius-base 0;
-    border-left: 0;
   }
 }
 

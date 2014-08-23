@@ -5,8 +5,11 @@
 <?php /* If there are no posts to display, such as an empty archive page */ ?>
   <?php if ( ! have_posts() ) : ?>
         <article role="main" class="the-content">
-            <h1><?php _e( '404 - I&#39;m sorry but the page can&#39;t be found' ); ?></h1>
-            <p>Please try searching again or head back to the homepage.</p>
+          <div class="content context__copy">
+            <h1 class="title--giant">Oops...</h1>
+            <h2>The page you're looking for can't be found</h3>
+            <p>Please check the url or go back to the <a href="<?php echo bloginfo('url'); ?>">homepage</a>.</p>
+          </div>
         </article>
     <?php endif; ?>
 <?php ?>
@@ -27,14 +30,16 @@
   <?php /* How to display standard posts and search results */ ?>
 
         <article class="article-archive <?php echo $firstClass; ?>" id="post-<?php the_ID(); ?>">
+          <div class="content context__copy">
       <?php $firstClass = ""; ?>
-      <?php ?>
-                <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( '%s' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
-                	<h2><?php the_title(); ?></h2>
-                </a>
-                <?php the_excerpt(); ?>
-                <p class="entry-meta"><time datetime="<?php the_time('l, F jS, Y') ?>" pubdate><?php the_time('l jS F Y') ?></time></p>
-    </article>
+            <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( '%s' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
+            	<h2><?php the_title(); ?></h2>
+            </a>
+            <?php the_excerpt(); ?>
+            <p class="entry-meta"><time datetime="<?php the_time('l, F jS, Y') ?>" pubdate><?php the_time('l jS F Y'); ?></time>
+            </p>
+          </div>
+        </article>
 
     <?php comments_template( '', true ); ?>
 

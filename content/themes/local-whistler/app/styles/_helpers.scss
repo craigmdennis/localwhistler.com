@@ -45,11 +45,6 @@
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-%overlay--primary {
-  @include inline-text-padding;
-  color: #FFF;
-}
-
 %overlay--secondary {
   background-color: #000;
   background-color: rgba(0,0,0,0.75);

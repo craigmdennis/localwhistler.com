@@ -15,10 +15,23 @@
   @include make-grid(sm);
 }
 
-@media (min-width: $bp4) {
+@media (min-width: $bp5) {
   @include make-grid(md);
 }
 
-@media (min-width: $bp5) {
+@media (min-width: $bp6) {
   @include make-grid(lg);
+}
+
+// Hide elements to fit the grid
+@media (min-width: $bp3) {
+  .row .last {
+    display: none;
+  }
+}
+
+@media (min-width: $bp5) {
+  .row .last {
+    display: block;
+  }
 }

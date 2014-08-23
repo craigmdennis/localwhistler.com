@@ -1,3 +1,9 @@
+<?php
+/*
+Template Name: Full Width
+*/
+?>
+
 <?php get_header(); ?>
 
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
@@ -9,7 +15,7 @@
     <?php endif; ?>
 
     <div class="row">
-      <div class="col-xs-12 col-lg-9">
+      <div class="col-xs-12">
         <div class="content context__copy" id="post-<?php the_ID(); ?>">
           <?php if ( !get_the_post_thumbnail() ) : ?>
             <h1 class="title--giant"><?php the_title(); ?></h1>
@@ -17,10 +23,7 @@
           <?php the_content(); ?>
         </div>
       </div>
-
-      <?php get_sidebar(); ?>
-
-  </div>
+    </div>
 
   </article>
 
