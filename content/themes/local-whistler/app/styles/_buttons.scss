@@ -101,14 +101,13 @@
   }
   .btn + .btn {
     border-radius: 0;
+    border-left: 0;
   }
   .btn:first-child {
     border-radius: $radius-base 0 0 $radius-base;
-    border-right: 0;
   }
   .btn:last-child {
     border-radius: 0 $radius-base $radius-base 0;
-    border-left: 0;
   }
 }
 
