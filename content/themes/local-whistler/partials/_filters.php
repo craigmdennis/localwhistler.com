@@ -41,10 +41,10 @@
           <!--  Skip the business filters -->
           <?php if ( $taxonomy->name == 'business_filter' ) : continue; endif; ?>
 
-            <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-12">
               <div class="form__group form__group--<?php echo $taxonomySlug; ?>">
                 <label for="filter<?php echo $taxonomySlugCapital; ?>" class="form__label"><?php echo $taxonomyName; ?></label>
-                <select id="filter<?php echo $taxonomySlugCapital; ?>" class="form__control js__chosen--block js__filter-<?php echo $taxonomySlug; ?>" name="business_<?php echo $taxonomySlug; ?>">
+                <select id="filter<?php echo $taxonomySlugCapital; ?>" class="form__control js__chosen js__filter-<?php echo $taxonomySlug; ?>" name="business_<?php echo $taxonomySlug; ?>">
                   <option value="">Any</option>
 
                   <?php foreach ( $terms as $term ) : ?>

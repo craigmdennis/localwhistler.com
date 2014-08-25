@@ -66,10 +66,9 @@
 
       </div>
 
-      <!-- Hard coded sort options -->
-      <div class="form__row--inline toolbar__actions">
-        <label for="filterOrder" class="form__label">Sort Order:</label>
-        <select id="filterOrder" class="form__control js__filter-sort js__chosen--inline" name="order">
+        <div class="form__row--inline">
+          <label for="filterOrder" class="form__label">Sort Order:</label>
+          <select id="filterOrder" class="form__control js__filter-sort js__chosen" name="order">
 
           <?php foreach ($orderOptions as $orderOption) : ?>
 
