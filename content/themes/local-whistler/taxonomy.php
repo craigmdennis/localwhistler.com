@@ -26,8 +26,10 @@
 
 <form id="filterForm" method="GET" action="/">
 
-  <?php require_once('partials/_filters.php'); ?>
-  <?php require_once('partials/_toolbar.php'); ?>
+      <div data-spy="affix" data-offset-top="98" data-offset-bottom="247">
+        <?php require_once('partials/_filters.php'); ?>
+        <?php require_once('partials/_toolbar.php'); ?>
+      </div>
 
 </form>
 

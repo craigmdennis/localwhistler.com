@@ -69,6 +69,36 @@ input[type="search"] {
   -webkit-appearance: none;
 }
 
+.affix {
+  @include breakpoint( $affix ) {
+    top: 0;
+    padding-top: $baseline*2;
+    position: fixed;
+    width: 255px;
+  }
+}
+
+.affix-bottom {
+  @include breakpoint( $affix ) {
+    padding-top: $baseline*2;
+    position: fixed;
+    width: 255px;
+  }
+}
+
+.admin-bar {
+  .affix {
+    @include breakpoint( $affix ) {
+      padding-top: $baseline*5 +2px;
+    }
+  }
+  .affix-bottom {
+    @include breakpoint( $affix ) {
+      padding-top: $baseline*5 +2px;
+    }
+  }
+}
+
 // Custom styles
 .form--filters {
   @include clearfix;
