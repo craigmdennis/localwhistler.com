@@ -400,19 +400,22 @@ filter = {};
     get_logo: function( post ) {
 
       var logo = post.acf.logo;
+      var height = logo.sizes['media--thumb-height'];
+      var width = logo.sizes['media--thumb-width'];
+      var style = 'style="margin-left:-' + width/2 + 'px;' + 'margin-top:-' + height/2 + 'px;"';
 
       if ( logo !== '' ) {
 
           // Make sure we get the logo and not any old attachment
-          return  '<a class="media__link--logo media__link--left media__thumb" href="' + post.url + '">' +
-                    '<img class="media__logo" src="' + logo.sizes['media--thumb'] + '" alt="' + logo.description + ' Logo" />' +
+          return  '<a class="media__link--logo media__link--left media__thumb js-color-target" href="' + post.url + '">' +
+                    '<img class="media__logo js-color-trigger" src="' + logo.sizes['media--thumb'] + '" alt="' + logo.description + ' Logo"' + style  + ' />' +
                   '</a>';
         }
     },
 
     get_tags: function( post ) {
 
-      var tags = ['<ul>'];
+      var tags = ['<ul class="tags">'];
       var elem;
 
       if ( post.taxonomy_business_filter !== '' ) {
