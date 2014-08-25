@@ -44,7 +44,7 @@
         'with_front' => false
       ),
   		'capability_type'    => 'page',
-  		'has_archive'        => true,
+  		'has_archive'        => 'local-products',
   		'hierarchical'       => false,
   		'menu_position'      => null,
   		'supports'           => array( 'title', 'editor', 'thumbnail' ),

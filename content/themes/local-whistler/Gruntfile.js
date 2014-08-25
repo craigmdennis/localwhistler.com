@@ -293,7 +293,8 @@ module.exports = function (grunt) {
             dot: true,
             cwd: '<%= config.app.scripts %>/',
             dest: '<%= config.tmp %>/scripts',
-            src: '{,*/}*.js'
+            src: '{,*/}*.js',
+            flatten: true
           },
           {
             // Copy any css files to the temp folder
@@ -322,6 +323,11 @@ module.exports = function (grunt) {
             // Copy BX Slider JS to the .tmp directory
             src: '<%= config.app.bower %>/bxslider-4/jquery.bxslider.js',
             dest: '<%= config.tmp %>/scripts/jquery.bxslider.js'
+          },
+          {
+            // Copy ImagesLoaded JS to the .tmp directory
+            src: '<%= config.app.bower %>/imagesloaded/imagesloaded.pkgd.js',
+            dest: '<%= config.tmp %>/scripts/imagesloaded.js'
           },
           {
             // Copy BX Slider CSS to the .tmp directory

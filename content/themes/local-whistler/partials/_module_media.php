@@ -1,33 +1,44 @@
-<li class="media hide-with-js">
+<?php // Need to make this more generic ?>
 
-  <?php $logo = get_field('logo'); ?>
-  <?php if ( !empty($logo) ) : ?>
+<?php $logo = get_field('logo'); ?>
+<?php if ( !empty($logo) ) : ?>
 
-  <div class="span-2">
-    <a class="media__link--logo media__link--left media__thumb" href="<?php the_permalink(); ?>">
-      <img class="media__logo" src="<?php echo $logo['sizes']['media--thumb']; ?>" alt="<?php echo $logo['alt']; ?>" />
-    </a>
+  <?php // echo '<pre>'; print_r( $logo ); echo '</pre>'; ?>
+
+  <?php $width =  $logo['sizes']['media--thumb-width']; ?>
+  <?php $height =  $logo['sizes']['media--thumb-height']; ?>
+
+  <a class="media__link--logo media__link--left media__thumb js-color-target" href="<?php the_permalink(); ?>">
+    <img
+      class="media__logo js-color-trigger"
+      src="<?php echo $logo['sizes']['media--thumb']; ?>"
+      alt="<?php echo $logo['alt']; ?>"
+      style="margin-top: -<?php echo $height/2; ?>px; margin-left: -<?php echo $width/2; ?>px;"
+    />
+  </a>
+
+<?php endif; ?>
+
+  <div class="media__heading">
+    <h2 class="media__title">
+      <a class="media__link--title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+    </h2>
   </div>
 
-  <?php endif; ?>
+  <div class="media__body">
 
-  <div class="span-10">
-    <div class="media__heading">
-      <h2 class="media__title">
-        <a class="media__link--title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-      </h2>
-    </div>
-
-    <div class="media__body context__copy">
+    <?php if ( 'product' == get_post_type() ) : ?>
+      <?php the_content(); ?>
+    <?php else: ?>
       <?php the_excerpt(); ?>
-    </div>
+    <?php endif; ?>
 
-    <div class="media__footer">
-      <time datetime="<?php the_time('c') ?>" class="media__date"><?php the_time('F j, Y'); ?></time>
-      <ul class="media__tags">
-        <?php the_terms($post->ID,'business_filter', '<li class="media__tag">','</li><li class="media__tag">','</li>'); ?>
-      </ul>
-    </div>
   </div>
 
-</li>
+  <div class="media__footer">
+    <time datetime="<?php the_time('c') ?>" class="media__date"><?php the_time('F j, Y'); ?></time>
+    <ul class="media__tags">
+      <?php the_terms($post->ID,'business_filter', '<li class="media__tag">','</li><li class="media__tag">','</li>'); ?>
+    </ul>
+  </div>
+</div>

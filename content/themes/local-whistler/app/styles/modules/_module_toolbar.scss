@@ -1,63 +1,81 @@
 .toolbar {
   @include clearfix;
-  @include border('-bottom');
 
   background-clip: padding-box;
   background-color: #FFF;
-  padding: $baseline*2;
 
   @include breakpoint( $bp5 ) {
+    @include border('-bottom');
     @include border('-left');
     @include border('-right');
+
     border-radius: $radius-bottom;
+  }
+
+  @include breakpoint( $bp5 $bp5-max) {
+    margin-bottom: $baseline*2;
+  }
+
+  @include breakpoint( $middle ) {
+    padding: $baseline $baseline*2;
   }
 
   .form__label {
     color: $body-copy-color;
-
-    @include breakpoint( $bp2 ) {
-      margin-bottom: 0;
-    }
   }
 
   .form__control {
     @include border;
   }
 
-  .show-with-js {
-    display: inline-block;
-  }
-
 }
 
-.toolbar__actions {
+.toolbar__action {
+  @include clearfix;
+  @include border('-top');
   @extend %unstyled;
-  float: left;
-  margin-right: 10px;
 
-  &.btn-group {
-    clear: left;
+  padding: $baseline*1.5 $baseline*2;
 
-    @include breakpoint( $bp2 ) {
-      clear: none;
-      margin-right: 0;
-    }
+  @include breakpoint( $middle ) {
+    border-top: 0;
   }
 
   .form__label {
-    display: none;
+    margin-bottom: 0;
+  }
 
-    @include breakpoint( $bp3 ) {
-      display: block;
+}
+
+.col-toolbar {
+
+  &:first-child {
+    .toolbar__action {
+      border: 0;
     }
   }
 
-  @include breakpoint( $bp2 ) {
-    float: right;
+  &.col-sm-auto {
+    @include breakpoint( $middle ) {
+      float: right;
+    }
+
+    .toolbar__action {
+      @include breakpoint( $middle ) {
+        padding: 0;
+      }
+    }
   }
+
 }
 
-.toolbar__count {
-  line-height: 35px;
-  float: left;
+.toolbar__action--count {
+  line-height: 34px;
+  background-color: #F2F2F2;
+  border-radius: $radius-bottom;
+
+  @include breakpoint( $middle ) {
+    background-color: #FFF;
+    float: left;
+  }
 }

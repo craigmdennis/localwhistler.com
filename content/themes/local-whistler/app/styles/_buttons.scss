@@ -99,21 +99,37 @@
 // ===================================================
 .btn-group {
   @include clearfix;
+  @include border;
+  display: block;
+  border-radius: $radius-base;
+  float: left;
+
+  @include breakpoint( $middle ) {
+    float: none;
+  }
 
   .btn {
     display: block;
     float: left;
-  }
-  .btn + .btn {
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
     border-radius: 0;
-    border-left: 0;
+
+    &:first-child {
+      border-left: 0;
+      border-radius: $radius-left;
+    }
+
+    &:last-child,
+    &.btn--last-visible {
+      border-radius: $radius-right;
+    }
   }
-  .btn:first-child {
-    border-radius: $radius-base 0 0 $radius-base;
-  }
-  .btn:last-child {
-    border-radius: 0 $radius-base $radius-base 0;
-  }
+}
+
+.js .btn-group .btn--last-visible:not(:last-child) {
+  border-radius: 0;
 }
 
 .btn-group--inline {

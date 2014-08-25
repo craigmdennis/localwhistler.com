@@ -41,10 +41,10 @@
           <!--  Skip the business filters -->
           <?php if ( $taxonomy->name == 'business_filter' ) : continue; endif; ?>
 
-            <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-12">
               <div class="form__group form__group--<?php echo $taxonomySlug; ?>">
                 <label for="filter<?php echo $taxonomySlugCapital; ?>" class="form__label"><?php echo $taxonomyName; ?></label>
-                <select id="filter<?php echo $taxonomySlugCapital; ?>" class="form__control js__chosen--block js__filter-<?php echo $taxonomySlug; ?>" name="business_<?php echo $taxonomySlug; ?>">
+                <select id="filter<?php echo $taxonomySlugCapital; ?>" class="form__control js__chosen js__filter-<?php echo $taxonomySlug; ?>" name="business_<?php echo $taxonomySlug; ?>">
                   <option value="">Any</option>
 
                   <?php foreach ( $terms as $term ) : ?>
@@ -75,25 +75,12 @@
       <?php endforeach; // END foreach $taxonomies as $taxonomy ?>
     <?php endif; // END if $taxonomies ?>
 
-    <div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-12">
       <div id="filterSearchArea" class="form__row">
         <label for="filterSearch" class="form__label form__label--search">Search by keyword</label>
         <input id="filterSearch" class="form__control form__control--inset" type="search" placeholder="e.g. Organic" name="s" value="<?php echo $searchFilter ?>">
       </div>
     </div>
 
-
-    <!-- todo: make sure filter form works with no js -->
-    <div class="col-xs-12">
-      <div class="form__row hide-with-js">
-        <input
-          id="filterSubmit"
-          class="form__submit btn btn--primary"
-          type="submit"
-          value="Filter results"
-          role="button" />
-      </div>
-    </div>
-  </div>
-
+  </div> <!-- END .row -->
 </div>

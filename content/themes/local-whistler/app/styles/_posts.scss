@@ -10,7 +10,6 @@
 
   @include breakpoint( $bp5 ) {
     @include border;
-
     border-radius: $radius-base;
   }
 }
@@ -18,7 +17,7 @@
 // Add padding to make the line length shorter for readbility
 .content.context__copy {
 
-  @include breakpoint( $bp3 ) {
+  @include breakpoint( $bp4 ) {
     padding: $baseline*4 $baseline*4 $baseline*2 $baseline*4;
   }
 

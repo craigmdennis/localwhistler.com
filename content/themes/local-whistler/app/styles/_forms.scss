@@ -69,6 +69,36 @@ input[type="search"] {
   -webkit-appearance: none;
 }
 
+.affix {
+  @include breakpoint( $affix ) {
+    top: 0;
+    padding-top: $baseline*2;
+    position: fixed;
+    width: 255px;
+  }
+}
+
+.affix-bottom {
+  @include breakpoint( $affix ) {
+    padding-top: $baseline*2;
+    position: fixed;
+    width: 255px;
+  }
+}
+
+.admin-bar {
+  .affix {
+    @include breakpoint( $affix ) {
+      padding-top: $baseline*5 +2px;
+    }
+  }
+  .affix-bottom {
+    @include breakpoint( $affix ) {
+      padding-top: $baseline*5 +2px;
+    }
+  }
+}
+
 // Custom styles
 .form--filters {
   @include clearfix;
@@ -110,25 +140,26 @@ select.form__control {
 }
 
 .form__row--inline {
-  display: inline-block;
-  margin-right: $baseline*2;
-  height: 34px;
 
   .chosen-container {
     display: inline-block;
   }
 
   .form__label {
-    float: left;
-    line-height: 35px;
-    margin-right: $baseline;
-    margin-bottom: 0;
+    @include breakpoint( $middle ) {
+      float: left;
+      line-height: 35px;
+      margin-right: $baseline;
+      margin-bottom: 0;
+    }
   }
 
   .form__label,
   .form__control {
-    width: auto;
-    display: inline-block;
+    @include breakpoint( $middle ) {
+      width: auto;
+      display: inline-block;
+    }
   }
 }
 

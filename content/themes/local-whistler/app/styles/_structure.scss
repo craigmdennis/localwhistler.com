@@ -21,7 +21,6 @@
   }
 
   @include breakpoint( $bp5 ) {
-    margin-top: $baseline*3;
     padding: 0;
   }
 
@@ -80,5 +79,11 @@
 
   @include breakpoint( $bp6 ) {
     margin-top: 0;
+  }
+}
+
+.sidebar + .sidebar {
+  @include breakpoint( $bp5 ) {
+    margin-top: $baseline*2;
   }
 }

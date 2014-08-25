@@ -14,7 +14,8 @@
   add_filter( 'teeny_mce_plugins', 'loadPasteInTeeny' );
   add_filter( 'mce_buttons_2', 'removePasteAsPlainTextButton' );
   add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
-  
+  add_filter( 'excerpt_more', 'new_excerpt_more' );
+
   remove_filter('the_excerpt', 'wpautop');
 
 
@@ -91,32 +92,41 @@
 
   }
 
-function my_toolbars( $toolbars ) {
-  // Uncomment to view format of $toolbars
-  /*
-  echo '< pre >';
-    print_r($toolbars);
-  echo '< /pre >';
-  die;
-  */
 
-  // Add a new toolbar called "Very Simple"
-  // - this toolbar has only 1 row of buttons
-  $toolbars['Very Simple' ] = array();
-  $toolbars['Very Simple' ][1] = array('bold', 'link', 'unlink', 'undo', 'redo' );
 
-  // Edit the "Full" toolbar and remove 'code'
-  // - delet from array code from http://stackoverflow.com/questions/7225070/php-array-delete-by-value-not-key
-  if( ($key = array_search('code' , $toolbars['Full' ][2])) !== false )
-  {
-      unset( $toolbars['Full' ][2][$key] );
+  // Add custom toolbar for ACF ---------------------------------------------- //
+
+  function my_toolbars( $toolbars ) {
+    // Uncomment to view format of $toolbars
+    /*
+    echo '< pre >';
+      print_r($toolbars);
+    echo '< /pre >';
+    die;
+    */
+
+    // Add a new toolbar called "Very Simple"
+    // - this toolbar has only 1 row of buttons
+    $toolbars['Very Simple' ] = array();
+    $toolbars['Very Simple' ][1] = array('bold', 'link', 'unlink', 'undo', 'redo' );
+
+    // Edit the "Full" toolbar and remove 'code'
+    // - delet from array code from http://stackoverflow.com/questions/7225070/php-array-delete-by-value-not-key
+    if( ($key = array_search('code' , $toolbars['Full' ][2])) !== false )
+    {
+        unset( $toolbars['Full' ][2][$key] );
+    }
+
+    return $toolbars;
   }
 
-  // remove the 'Basic' toolbar completely
-  // unset( $toolbars['Basic' ] );
 
-  // return $toolbars - IMPORTANT!
-  return $toolbars;
-}
+
+  // Add custom excerpt length ----------------------------------------------- //
+
+  function new_excerpt_more( $more ) {
+    return '...';
+  }
+
 
 ?>
