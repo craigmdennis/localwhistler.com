@@ -1,0 +1,30 @@
+.tags {
+  @include clearfix;
+  @extend %unstyled;
+
+  margin-bottom: $baseline*1.5;
+  margin-right: $baseline;
+}
+
+.tag__item {
+  float: left;
+  margin-right: $baseline/2;
+  margin-bottom: $baseline/2;
+}
+
+.tag__link {
+  @include border;
+  display: block;
+  color: #333;
+  font-weight: bold;
+  font-size: 0.75em;
+  padding: $baseline/2 $baseline;
+  text-transform: uppercase;
+  background-color: #F8F8F8;
+  border-radius: $radius-base;
+
+  &:hover,
+  &:focus {
+    background-color: #EEE;
+  }
+}

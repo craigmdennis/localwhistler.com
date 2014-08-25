@@ -24,33 +24,53 @@
 
 ?>
 
-<form id="filterForm" method="GET" action="/">
+<div class="row">
+  <div class="col-xs-12 col-lg-3">
+    <form id="filterForm" method="GET" action="/">
 
       <div data-spy="affix" data-offset-top="98" data-offset-bottom="247">
         <?php require_once('partials/_filters.php'); ?>
         <?php require_once('partials/_toolbar.php'); ?>
       </div>
 
-</form>
+    </form>
+  </div>
 
-<?php rewind_posts(); ?>
+  <?php rewind_posts(); ?>
 
-<div id="results" class="row">
+  <div class="col-xs-12 col-lg-9">
 
-  <?php if ( have_posts() ) : ?>
+      <?php if ( have_posts() ) : ?>
+        <div id="results">
 
-      <ol id="resultsList" class="media__list">
+          <ol id="resultsList" class="media media--list js-color-container">
 
-        <?php while ( have_posts() ) : the_post(); ?>
+            <?php while ( have_posts() ) : the_post(); ?>
 
-          <?php include('partials/_module_media.php'); ?>
+              <li class="media hide-with-js">
 
-        <?php endwhile; ?>
+                <?php include('partials/_module_media.php'); ?>
 
-      </ol>
+              </li>
 
-  <?php endif; ?>
+            <?php endwhile; ?>
 
-</div>
+          </ol>
+
+        </div>
+
+      <?php else: ?>
+
+        <div class="content context__body">
+
+          <h2>There are no local businesses that match your search</h2>
+          <p>Please select some different filters</p>
+
+        </div>
+
+      <?php endif; ?>
+
+  </div>
+</div> <!-- END .row -->
 
 <?php get_footer(); ?>
