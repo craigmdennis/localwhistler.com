@@ -485,7 +485,7 @@ filter = {};
       // todo: use Mustache templates
       return  '<li class="media">' +
                 filter.get_logo( post ) +
-                  '<div class="media__body context__copy">' +
+                  '<div class="media__body">' +
                   '<h2 class="media__title">' +
                     '<a class="media__link--title" href="' + post.url + '">' + post.title + '</a>' +
                   '</h2>' +
