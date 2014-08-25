@@ -140,25 +140,26 @@ select.form__control {
 }
 
 .form__row--inline {
-  display: inline-block;
-  margin-right: $baseline*2;
-  height: 34px;
 
   .chosen-container {
     display: inline-block;
   }
 
   .form__label {
-    float: left;
-    line-height: 35px;
-    margin-right: $baseline;
-    margin-bottom: 0;
+    @include breakpoint( $middle ) {
+      float: left;
+      line-height: 35px;
+      margin-right: $baseline;
+      margin-bottom: 0;
+    }
   }
 
   .form__label,
   .form__control {
-    width: auto;
-    display: inline-block;
+    @include breakpoint( $middle ) {
+      width: auto;
+      display: inline-block;
+    }
   }
 }
 

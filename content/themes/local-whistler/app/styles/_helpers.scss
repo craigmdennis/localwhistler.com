@@ -62,15 +62,15 @@
 // JavaScript Helpers
 // ===================================================
 .js .hide-with-js {
-  display: none;
+  display: none !important;
 }
 
 .show-with-js {
-  display: none;
+  display: none !important;
 }
 
 .js .show-with-js {
-  display: block;
+  display: block !important;
 }
 
 
