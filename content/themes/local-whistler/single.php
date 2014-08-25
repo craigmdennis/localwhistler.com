@@ -1,35 +1,43 @@
 <?php get_header(); ?>
 
-  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-      <article role="main">
-        <div class="content" id="post-<?php the_ID(); ?>">
-          <header>
-              <h1><?php the_title(); ?></h1>
-          </header>
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-    <?php the_post_thumbnail('full');?>
+  <article role="main">
 
-    <?php the_content(); ?>
+    <?php if ( get_the_post_thumbnail() ) : ?>
+      <?php include_once('partials/_module_media--featured.php'); ?>
+    <?php endif; ?>
 
-    <?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:' ), 'after' => '</div>' ) ); ?>
-
-          <footer class="entry-meta">
-          	<p>Posted <strong><?php echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago'; ?></strong> on <time datetime="<?php the_time('l, F jS, Y') ?>" pubdate><?php the_time('l, F jS, Y') ?></time> &middot; <a href="<?php the_permalink(); ?>">Permalink</a></p>
-          </footer>
-
-    <?php comments_template( '', true ); ?>
-
-          <ul class="navigation">
-              <li class="older">
-        <?php previous_post_link( '%link', '&larr; %title' ); ?>
-              </li>
-              <li class="newer">
-        <?php next_post_link( '%link', '%title &rarr;' ); ?>
-              </li>
-          </ul>
-
-          <?php endwhile; // end of the loop. ?>
+    <div class="row">
+      <div class="col-xs-12 col-lg-9">
+        <div class="content context__copy" id="post-<?php the_ID(); ?>">
+          <?php if ( !get_the_post_thumbnail() ) : ?>
+            <h1 class="title--giant"><?php the_title(); ?></h1>
+          <?php endif; ?>
+          <?php the_content(); ?>
         </div>
-      </article>
+      </div>
+
+      <div class="col-xs-12 col-lg-3">
+        <?php get_sidebar('meta'); ?>
+        <?php get_sidebar(); ?>
+      </div>
+
+  </article>
+
+<?php endwhile; ?>
+
+<?php comments_template( '', true ); ?>
+
+<ul class="navigation">
+    <li class="older">
+<?php previous_post_link( '%link', '&larr; %title' ); ?>
+    </li>
+    <li class="newer">
+<?php next_post_link( '%link', '%title &rarr;' ); ?>
+    </li>
+</ul>
+
+<?php endif; ?>
 
 <?php get_footer(); ?>

@@ -18,7 +18,9 @@
         </div>
       </div>
 
-      <?php get_sidebar(); ?>
+      <div class="col-xs-12 col-lg-3">
+        <?php get_sidebar(); ?>
+      </div>
 
   </div>
 
