@@ -1,7 +1,9 @@
-<?php if ( is_active_sidebar( 'main-sidebar' ) ) : ?>
-  <div class="sidebar">
-    <aside class="widget" role="complementary">
-      <?php dynamic_sidebar( 'main-sidebar' ); ?>
+<?php if ( is_active_sidebar( 'sidebar-main' ) ) : ?>
+  <div class="sidebar sidebar--main">
+    <aside role="complementary">
+      <div class="widget">
+        <?php dynamic_sidebar( 'sidebar-main' ); ?>
+      </div>
     </aside>
   </div>
 <?php endif; ?>
