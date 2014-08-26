@@ -28,9 +28,9 @@
   <div class="col-xs-12 col-lg-3">
     <form id="filterForm" method="GET" action="/">
 
-      <div data-spy="affix" data-offset-top="98" data-offset-bottom="247">
-        <?php require_once('partials/_filters.php'); ?>
-        <?php require_once('partials/_toolbar.php'); ?>
+      <div data-spy="affix" data-offset-top="98" data-offset-bottom="227">
+        <?php include_once('partials/_filters.php'); ?>
+        <?php include_once('partials/_toolbar.php'); ?>
       </div>
 
     </form>
@@ -41,15 +41,16 @@
   <div class="col-xs-12 col-lg-9">
 
       <?php if ( have_posts() ) : ?>
+
         <div id="results">
 
-          <ol id="resultsList" class="media media--list js-color-container">
+          <ol id="resultsList" class="media--list js-color-container">
 
             <?php while ( have_posts() ) : the_post(); ?>
 
               <li class="media hide-with-js">
 
-                <?php include('partials/_module_media.php'); ?>
+                <?php get_template_part('partials/_module_media'); ?>
 
               </li>
 
@@ -59,14 +60,9 @@
 
         </div>
 
-      <?php else: ?>
+      <?php else : ?>
 
-        <div class="content context__body">
-
-          <h2>There are no local businesses that match your search</h2>
-          <p>Please select some different filters</p>
-
-        </div>
+        <?php get_template_part('partials/_no-results'); ?>
 
       <?php endif; ?>
 

@@ -1,4 +1,16 @@
 <?php get_header(); ?>
+<?php $logo = get_field('logo'); ?>
+
+<?php
+
+  if ( !empty($logo) ) {
+    $width   = $logo['sizes']['media--thumb-width'];
+    $height  = $logo['sizes']['media--thumb-height'];
+    $alt     = $logo['alt'];
+    $src     = $logo['sizes']['media--thumb'];
+  }
+
+?>
 
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
@@ -10,7 +22,19 @@
 
     <div class="row">
       <div class="col-xs-12 col-lg-9">
+
         <div class="content context__copy" id="post-<?php the_ID(); ?>">
+          <?php if ( !empty($logo) ): ?>
+            <div class="media media--single js-color-container js-color-target">
+              <img
+                class="js-color-trigger"
+                src="<?php echo $src; ?>"
+                alt="<?php echo $alt; ?>"
+                width="<?php echo $width; ?>"
+                height="<?php echo $height; ?>"
+              />
+            </div>
+          <?php endif; ?>
           <?php if ( !get_the_post_thumbnail() ) : ?>
             <h1 class="title--giant"><?php the_title(); ?></h1>
           <?php endif; ?>
@@ -19,7 +43,9 @@
       </div>
 
       <div class="col-xs-12 col-lg-3">
-        <?php get_sidebar('meta'); ?>
+        <?php if ( 'post' == get_post_type() ) : ?>
+          <?php get_sidebar('meta'); ?>
+        <?php endif; ?>
         <?php get_sidebar(); ?>
       </div>
 
@@ -27,16 +53,9 @@
 
 <?php endwhile; ?>
 
-<?php comments_template( '', true ); ?>
+<?php // comments_template( '', true ); ?>
 
-<ul class="navigation">
-    <li class="older">
-<?php previous_post_link( '%link', '&larr; %title' ); ?>
-    </li>
-    <li class="newer">
-<?php next_post_link( '%link', '%title &rarr;' ); ?>
-    </li>
-</ul>
+<?php get_template_part('partials/_pagination'); ?>
 
 <?php endif; ?>
 

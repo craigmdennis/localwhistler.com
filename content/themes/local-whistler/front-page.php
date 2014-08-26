@@ -21,7 +21,7 @@
       <!-- WIP Predefined searches -->
 
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="media media--card has-thumbnail" data-url="<?php the_permalink(); ?>">
+        <div class="media media--card pseudo-link" data-url="/?s=Pizza&business_location=creekside&business_type=&order=date-desc">
           <div class="media__image">
             <?php the_post_thumbnail('media--card'); ?>
           </div>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="media media--card has-thumbnail" data-url="<?php the_permalink(); ?>">
+        <div class="media media--card pseudo-link" data-url="/?s=&business_location=village&business_type=shop&order=date-desc">
           <div class="media__image">
             <?php the_post_thumbnail('media--card'); ?>
           </div>
@@ -51,7 +51,7 @@
       </div>
 
       <div class="col-xs-12 col-sm-6 col-md-4 last">
-        <div class="media media--card has-thumbnail" data-url="<?php the_permalink(); ?>">
+        <div class="media media--card pseudo-link" data-url="/?s=&business_location=function&business_type=activity&order=date-desc">
           <div class="media__image">
             <?php the_post_thumbnail('media--card'); ?>
           </div>
@@ -99,8 +99,8 @@
             ?>
 
             <div class="col-xs-12 col-sm-6 col-md-4 <?php echo $last; ?>">
-              <div class="media media--card has-thumbnail" data-url="<?php the_permalink(); ?>">
-                <div class="media__image">
+              <div class="media media--card pseudo-link" data-url="<?php the_permalink(); ?>">
+                <div class="media__image media__image--top">
                   <?php the_post_thumbnail('media--card'); ?>
                 </div>
                 <div class="media__heading">

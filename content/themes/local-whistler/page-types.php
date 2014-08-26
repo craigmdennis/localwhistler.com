@@ -1,8 +1,6 @@
 <?php get_header(); ?>
 
 <!-- page-types.php -->
-<div class="container">
-
   <div class="content">
     <h1>Filter by business types</h1>
 
@@ -50,6 +48,5 @@
       </div>
     </div>
   </div>
-</div>
 
 <?php get_footer(); ?>

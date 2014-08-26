@@ -125,6 +125,7 @@
   // Add custom excerpt length ----------------------------------------------- //
 
   function new_excerpt_more( $more ) {
+    // return '... <a class="more-link" href="' . get_permalink() . '">Read more</a>';
     return '...';
   }
 

@@ -129,7 +129,7 @@
   function create_business_locations() {
 
     $labels = array(
-      'name'              => _x( 'Locations', 'locations' ), // Deliberately singular
+      'name'              => _x( 'Locations', 'locations' ),
       'singular_name'     => _x( 'Location', 'location' ),
       'search_items'      => __( 'Search Locations' ),
       'all_items'         => __( 'Location' ),
@@ -145,7 +145,7 @@
     $rewrite = array(
       'slug'              => 'location', // This controls the base slug that will display before each term
       'with_front'        => false, // Don't display the category base before "/locations/"
-      'hierarchical'      => false // This will allow URL's like "/locations/boston/cambridge/"
+      'hierarchical'      => false
     );
 
     $args = array(
@@ -179,7 +179,7 @@
     $rewrite = array(
       'slug'              => 'type',
       'with_front'        => false,
-      'hierarchical'      => true
+      'hierarchical'      => false
     );
 
     $args = array(

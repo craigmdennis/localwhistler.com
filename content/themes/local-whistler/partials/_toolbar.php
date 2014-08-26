@@ -63,7 +63,7 @@
 
     <div class="col-xs-12 col-sm-auto col-lg-12 col-toolbar">
       <div class="toolbar__action">
-        <div class="form__row--inline">
+        <div class="form__row--inline toolbar__action--sort">
           <label for="filterOrder" class="form__label">Sort Order:</label>
           <select id="filterOrder" class="form__control js__filter-sort js__chosen" name="order">
 
