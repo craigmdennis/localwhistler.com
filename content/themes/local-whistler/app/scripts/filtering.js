@@ -161,16 +161,18 @@ filter = {};
 
     update_styles: function(){
 
-      var $first = 'first',
-          $last = 'last',
-          $visible = 'visible',
+      var first = 'first',
+          last = 'last',
+          visible = 'visible',
           $media = $('.media');
 
-      $('.' + $first + '-' + $visible).removeClass( $first + '-' + $visible );
-      $('.' + $last + '-' + $visible).removeClass( $last + '-' + $visible );
+      console.log( $media.filter(':' + visible + ':' + first) );
 
-      $media.filter(':' + $visible + ':' + $first).addClass( $first + '-' + $visible );
-      $media.filter(':' + $visible + ':' + $last).addClass( $last + '-' + $visible );
+      $('.' + first + '-' + visible).removeClass( first + '-' + visible );
+      $('.' + last + '-' + visible).removeClass( last + '-' + visible );
+
+      $media.filter(':' +  visible + ':' + first).addClass( first + '-' + visible );
+      $media.filter(':' +  visible + ':' + last).addClass( last + '-' + visible );
 
     },
 
