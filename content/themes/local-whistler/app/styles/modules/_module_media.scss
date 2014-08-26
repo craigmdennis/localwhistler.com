@@ -27,6 +27,7 @@
 .media__heading {
   position: relative;
   z-index: 2;
+  padding: $baseline*2 $baseline*2 0;
 }
 
 .media__title__link {
@@ -70,6 +71,10 @@
   color: $heading-color;
 }
 
+.media__footer {
+  @include clearfix;
+}
+
 .title--overlay {
   @extend %overlay--position;
   display: inline;
@@ -91,12 +96,6 @@
 
 .media--featured {
 
-  .media__heading {
-    padding-top: $baseline*2;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
   .media__title {
     padding-top: $outline-width;
   }
@@ -106,8 +105,8 @@
   }
 
   .media__heading {
-    padding-left: $baseline*2;
-    padding-right: $baseline*2;
+    padding-top: $baseline*2 $baseline*2 0;
+    margin-bottom: 0;
     min-height: 300px;
 
     @include breakpoint( $bp5 ) {
@@ -157,13 +156,23 @@
 // Card Media
 // ===================================================
 .media--card {
-  margin-bottom: $baseline*2;
+  @include shadow;
+  border-radius: $radius-base;
+  margin-bottom: $baseline;
   position: relative;
 
+  @include breakpoint( $bp3 ) {
+    margin-bottom: $baseline*2;
+  }
+
   .media__image {
-    border-radius: $radius-top;
+    border-radius: $radius-base;
     position: relative;
     overflow: hidden;
+  }
+
+  .media__image--top {
+    border-radius: $radius-top;
   }
 
   .media__heading {
@@ -173,6 +182,7 @@
 
   .media__body {
     border-radius: $radius-bottom;
+    padding-bottom: $baseline*2;
 
     @include breakpoint( $bp3 ) {
       height: 200px;
@@ -190,17 +200,20 @@
   }
 }
 
-.js .media--card:hover,
-.js .media--card:focus {
+.js .pseudo-link:hover,
+.js .pseudo-link:focus {
   cursor: pointer;
+  border-color: #CCC;
+  border-color: rgba(0,0,0,0.25);
 
-  .media__image img {
-    transform: scale(1.1);
-  }
-
+  .has-logo .media__link--logo,
   .media__body {
     border-color: #CCC;
     border-color: rgba(0,0,0,0.25);
+  }
+
+  .media__image img {
+    transform: scale(1.1);
   }
 }
 
@@ -211,62 +224,132 @@
   @extend %unstyled;
 
   .media {
+    @include shadow;
     @include border;
     border-radius: $radius-base;
     background-color: #FFF;
-    background-clip: padding-box;
+    margin-left: $baseline;
+    margin-right: $baseline;
+    margin-bottom: $baseline;
+
+    @include breakpoint( $bp3 ) {
+      &.last-visible {
+        margin-bottom: 0;
+      }
+    }
+
+    @include breakpoint( $bp5 ) {
+      margin-bottom: $baseline*2;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .media__footer .btn {
+    @extend %sr-only;
     margin-bottom: $baseline*2;
   }
 
-  .media__body {
-    border: 0;
-    padding-bottom: $baseline*2;
+  .has-logo {
+    min-height: 170px;
+
+    .media__body {
+      margin-top: 180px;
+      border: 0;
+      padding-bottom: $baseline*2;
+    }
+
+    .media__heading,
+    .media__footer,
+    .media__body {
+      @include breakpoint( $bp3 ) {
+        margin-top: 0;
+        margin-left: 180px;
+      }
+    }
+
+    .media__link--logo {
+      @include border('-bottom');
+      width: 100%;
+      background-color: #FFF;
+      border-radius: $radius-top;
+      display: block;
+      left: 0;
+      top: 0;
+      height: 180px;
+      position: absolute;
+
+      @include breakpoint( $bp3 ) {
+        @include border;
+        border-radius: $radius-left;
+        top: -1px;
+        left: -1px;
+        bottom: -1px;
+        width: 181px;
+        height: auto;
+      }
+    }
+
+    .media__logo {
+      max-width: 150px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      // margins are added dynamically
+    }
+
+  }
+
+  .media__heading + .media__body {
+    padding-top: 0;
   }
 
   .media__date {
     @extend %sr-only;
   }
 
-  .media__link--logo {
-    @include border;
-    background-color: #FFF;
-    border-radius: $radius-left;
-    display: block;
-    top: -1px;
-    left: -1px;
-    bottom: -1px;
-    position: absolute;
-    width: 181px;
-  }
-
-  .media__logo {
-    max-width: 150px;
-  }
-
-  .media__heading,
-  .media__footer,
-  .media__body {
-    margin-left: 180px;
-  }
-
   .media__footer {
     padding-left: $baseline*2;
   }
 
-  .media__logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    // margins are added dynamically
-  }
 }
 
 .canvas {
-  .media__link--logo {
+  .has-logo .media__link--logo {
     opacity: 0;
     transition: opacity $timing $easing;
   }
-  .loaded .media__link--logo {
+  .loaded .has-logo .media__link--logo {
     opacity: 1;
+  }
+}
+
+.content .media--single {
+  @include border('-bottom');
+
+  margin-top: -11px;
+  margin-right: -$baseline*2-1px;
+  margin-bottom: $baseline*2;
+  margin-left: -$baseline*2-1px;
+
+  @include breakpoint( $bp4 ) {
+    @include border;
+    border-radius: $radius-top;
+    margin-top: -$baseline*4-1px;
+    margin-right: -$baseline*4-1px;
+    margin-bottom: $baseline*4;
+    margin-left: -$baseline*4-1px;
+  }
+
+  @include breakpoint( $bp5 ) {
+    margin-top: -$baseline*4-1px;
+    margin-right: -$baseline*6-1px;
+    margin-bottom: $baseline*6;
+    margin-left: -$baseline*6-1px;
+  }
+
+  img {
+    padding: $baseline*2 0;
+    margin: 0 auto;
   }
 }

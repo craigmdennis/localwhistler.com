@@ -13,7 +13,7 @@
 // Basic Button
 // ===================================================
 .btn {
-  @extend %btnshadow;
+  @include shadow;
   border: 1px transparent;
   display: inline-block;
   padding: $baseline/2 $baseline;

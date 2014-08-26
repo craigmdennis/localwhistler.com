@@ -6,6 +6,7 @@ $bp5: 56.25em; // 900px
 $bp6: 68.75em; // 1100px
 $bp7: 81.25em; // 1300px
 
+$bp4-max: 56.1875em; // 899px
 $bp5-max: 68.6875em; // 1099px
 
 $middle: $bp3 $bp5-max;
@@ -14,3 +15,37 @@ $affix: (min-height 687px) $bp6;
 $max-width: $bp6;
 $grid-gutter-width: $baseline*2;
 $grid-columns: 12;
+
+// body:before {
+//   content: 'Initial';
+//   position: fixed;
+//   top: 35px;
+//   left: 0;
+//   background: #000;
+//   color: $brand-orange;
+//   font-weight: bold;
+//   z-index: 999;
+//   padding: $baseline $baseline*2;
+//
+//   @include breakpoint( $bp1 ) {
+//     content: 'Breakpoint 1'
+//   }
+//   @include breakpoint( $bp2 ) {
+//     content: 'Breakpoint 2'
+//   }
+//   @include breakpoint( $bp3 ) {
+//     content: 'Breakpoint 3'
+//   }
+//   @include breakpoint( $bp4 ) {
+//     content: 'Breakpoint 4'
+//   }
+//   @include breakpoint( $bp5 ) {
+//     content: 'Breakpoint 5'
+//   }
+//   @include breakpoint( $bp6 ) {
+//     content: 'Breakpoint 6'
+//   }
+//   @include breakpoint( $bp7 ) {
+//     content: 'Breakpoint 7'
+//   }
+// }

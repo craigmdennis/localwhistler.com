@@ -7,9 +7,9 @@
 
           <div class="col-xs-12 col-md-3 widget-col">
 
-            <?php if ( is_active_sidebar( 'footer-sidebar-1' ) ) : ?>
+            <?php if ( is_active_sidebar( 'sidebar-footer-1' ) ) : ?>
               <div class="widget widget--inline" role="complementary">
-                <?php dynamic_sidebar( 'footer-sidebar-1' ); ?>
+                <?php dynamic_sidebar( 'sidebar-footer-1' ); ?>
                 <p>
                   &copy;<?php echo date("Y"); ?> <a href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a>
                   <br>
@@ -22,9 +22,9 @@
 
           <div class="col-xs-12 col-md-3 widget-col">
 
-            <?php if ( is_active_sidebar( 'footer-sidebar-2' ) ) : ?>
+            <?php if ( is_active_sidebar( 'sidebar-footer-2' ) ) : ?>
               <div class="widget widget--inline" role="complementary">
-                <?php dynamic_sidebar( 'footer-sidebar-2' ); ?>
+                <?php dynamic_sidebar( 'sidebar-footer-2' ); ?>
               </div>
             <?php endif; ?>
 
@@ -32,9 +32,9 @@
 
           <div class="col-xs-12 col-md-3 widget-col">
 
-            <?php if ( is_active_sidebar( 'footer-sidebar-3' ) ) : ?>
+            <?php if ( is_active_sidebar( 'sidebar-footer-3' ) ) : ?>
               <div class="widget widget--inline" role="complementary">
-                <?php dynamic_sidebar( 'footer-sidebar-3' ); ?>
+                <?php dynamic_sidebar( 'sidebar-footer-3' ); ?>
               </div>
             <?php endif; ?>
 
@@ -42,9 +42,9 @@
 
           <div class="col-xs-12 col-md-3 widget-col">
 
-            <?php if ( is_active_sidebar( 'footer-sidebar-4' ) ) : ?>
+            <?php if ( is_active_sidebar( 'sidebar-footer-4' ) ) : ?>
               <div class="widget widget--inline" role="complementary">
-                <?php dynamic_sidebar( 'footer-sidebar-4' ); ?>
+                <?php dynamic_sidebar( 'sidebar-footer-4' ); ?>
               </div>
             <?php endif; ?>
 

@@ -12,8 +12,39 @@
 .widget {
   @include single-direction-margins;
 
-  padding: $baseline*2 $baseline*2 $baseline/2 $baseline*2;
   position: relative;
+
+  .widget-title {
+    margin: $baseline*2;
+  }
+
+  ul {
+    @extend %unstyled;
+    box-shadow: none;
+  }
+}
+
+.sidebar .widget {
+  margin-bottom: $baseline/2;
+  @include border('-bottom');
+
+  ul {
+    margin-bottom: 0;
+
+    a {
+      @include border('-top');
+      @extend %menuhover;
+      color: $body-copy-color;
+      display: block;
+      padding: $baseline $baseline*2;
+    }
+  }
+}
+
+.footer .widget {
+  color: lighten( $wet-asphalt, 50%);
+  font-size: 0.875em;
+  padding: $baseline*2 $baseline*2 $baseline/2 $baseline*2;
 
   @include breakpoint( $bp3 ) {
     padding: $baseline*2 $baseline*4 $baseline/2 $baseline*4;
@@ -22,12 +53,6 @@
   @include breakpoint ( $bp5 ) {
     padding: $baseline*2 $baseline*2 $baseline/2  $baseline*2;
   }
-
-  ul {
-    @extend %unstyled;
-    box-shadow: none;
-  }
-
 }
 
 .page-template-full-php .widget {
@@ -59,15 +84,6 @@
   }
 }
 
-.widget-col:first-child .widget {
-  border-top: 0;
-
-  &:before {
-    @include breakpoint( $bp5 ) {
-      left: 0;
-    }
-  }
-}
 
 .widget-col:last-child .widget {
 
@@ -76,7 +92,7 @@
       content: '';
       position: absolute;
       top: 0;
-      right: 0;
+      right: -$baseline;
       @include border('-right');
       height: 99em;
     }

@@ -1,11 +1,8 @@
 <?php get_header(); ?>
 
 <!-- page-locations.php -->
-<div class="container">
   <div class="content">
-    <div class="content__header">
-      <h1 class="content__title">Filter by business types</h1>
-    </div>
+    <h1 class="content__title">Filter by business types</h1>
 
     <?php // todo: create fuction to iterate all taxonomies with map or image ?>
 
@@ -64,5 +61,4 @@
       </div>
     </div>
   </div>
-</div>
 <?php get_footer(); ?>

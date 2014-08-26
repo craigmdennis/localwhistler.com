@@ -161,16 +161,18 @@ filter = {};
 
     update_styles: function(){
 
-      var $first = 'first',
-          $last = 'last',
-          $visible = 'visible',
+      var first = 'first',
+          last = 'last',
+          visible = 'visible',
           $media = $('.media');
 
-      $('.' + $first + '-' + $visible).removeClass( $first + '-' + $visible );
-      $('.' + $last + '-' + $visible).removeClass( $last + '-' + $visible );
+      console.log( $media.filter(':' + visible + ':' + first) );
 
-      $media.filter(':' + $visible + ':' + $first).addClass( $first + '-' + $visible );
-      $media.filter(':' + $visible + ':' + $last).addClass( $last + '-' + $visible );
+      $('.' + first + '-' + visible).removeClass( first + '-' + visible );
+      $('.' + last + '-' + visible).removeClass( last + '-' + visible );
+
+      $media.filter(':' +  visible + ':' + first).addClass( first + '-' + visible );
+      $media.filter(':' +  visible + ':' + last).addClass( last + '-' + visible );
 
     },
 
@@ -483,17 +485,21 @@ filter = {};
       }
 
       // todo: use Mustache templates
-      return  '<li class="media">' +
-                filter.get_logo( post ) +
-                  '<div class="media__body">' +
-                  '<h2 class="media__title">' +
-                    '<a class="media__link--title" href="' + post.url + '">' + post.title + '</a>' +
-                  '</h2>' +
-                  post.excerpt +
-                '</div>' +
-                '<time class="media__date" datetime="' + datetime + '">' + prettyDate + '</time>' +
-                '<div class="media__footer">' +
-                  filter.get_tags( post ) +
+      return  '<li class="media" data-url="' + post.url + '">' +
+                '<div class="has-logo">' +
+                  filter.get_logo( post ) +
+                    '<div class="media__heading">' +
+                      '<h2 class="media__title">' +
+                        '<a class="media__link--title" href="' + post.url + '">' + post.title + '</a>' +
+                      '</h2>' +
+                    '</div>' +
+                    '<div class="media__body">' +
+                      '<p>' + post.excerpt + '</p>' +
+                    '</div>' +
+                  '<time class="media__date" datetime="' + datetime + '">' + prettyDate + '</time>' +
+                  '<div class="media__footer">' +
+                    filter.get_tags( post ) +
+                  '</div>' +
                 '</div>' +
               '</li>';
 

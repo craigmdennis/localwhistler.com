@@ -17,16 +17,16 @@
 
   @include breakpoint( $bp3 ) {
     padding-bottom: $baseline*2;
-    padding-top: $baseline*2;
+    margin-top: $baseline;
   }
 
   @include breakpoint( $bp5 ) {
     padding: 0;
+    margin-top: $baseline*2;
   }
 
-  .widget {
-    color: lighten( $wet-asphalt, 50%);
-    font-size: 0.875em;
+  @include breakpoint( $bp6 ) {
+    margin-top: $baseline*2;
   }
 
   a {
@@ -40,9 +40,32 @@
 }
 
 .sidebar {
+  @include border('-top');
+  @include clearfix;
+
   background-color: #FFF;
   position: relative;
   z-index: 2;
+
+  @include breakpoint( $bp3 ) {
+    @include border;
+    @include shadow;
+    border-radius: $radius-base;
+    background-clip: padding-box;
+  }
+
+  @include breakpoint( $bp3 $bp4-max ) {
+    margin-left: $baseline;
+    margin-right: $baseline;
+  }
+
+  @include breakpoint( $bp5 ) {
+    margin-top: $baseline*2;
+  }
+
+  @include breakpoint( $bp6 ) {
+    margin-top: 0;
+  }
 
   .sidebar__section {
     @include border('-top');
@@ -52,34 +75,6 @@
     }
   }
 
-  .widget {
-
-    @include breakpoint( $bp3 ) {
-      padding-left: $baseline*4;
-      padding-right: $baseline*4;
-    }
-
-    @include breakpoint( $bp5 ) {
-      padding-left: $baseline*6;
-      padding-right: $baseline*6;
-    }
-
-    @include breakpoint( $bp6 ) {
-      padding-left: $baseline*2;
-      padding-right: $baseline*2;
-    }
-  }
-
-  @include breakpoint( $bp5 ) {
-    @include border;
-    margin-top: $baseline*2;
-    border-radius: $radius-base;
-    background-clip: padding-box;
-  }
-
-  @include breakpoint( $bp6 ) {
-    margin-top: 0;
-  }
 }
 
 .sidebar + .sidebar {

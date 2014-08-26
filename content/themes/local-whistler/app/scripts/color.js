@@ -18,7 +18,7 @@ $(document).ready( function(){
             this.canvas.getContext('2d').drawImage(this, 0, 0, this.width, this.height);
         }
 
-        var pixelData = this.canvas.getContext('2d').getImageData(1, 1, 1, 1).data;
+        var pixelData = this.canvas.getContext('2d').getImageData(2, 2, 1, 1).data;
 
         var rgba = 'rgba(' +
           pixelData[0] + ',' +
@@ -26,8 +26,11 @@ $(document).ready( function(){
           pixelData[2] + ',' +
           pixelData[3] + ')';
 
-        // Set the parent background
-        $(this).closest('.js-color-target').css('background-color', rgba);
+        // If the colour is not transparent
+        if (rgba !== 'rgba(0,0,0,0)') {
+          // Set the parent background
+          $(this).parent().css('background-color', rgba);
+        }
 
       });
     }).progress( function( instance, image ) {

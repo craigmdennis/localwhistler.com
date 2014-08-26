@@ -1,30 +1,47 @@
 .content {
   @include clearfix;
+  @include shadow;
   @include border('-top');
 
   background-clip: padding-box;
   background-color: #FFF;
-  padding: $baseline*2 $baseline*2 0 $baseline*2;
+  padding: $baseline $baseline 0 $baseline;
   position: relative;
   z-index: 1;
 
-  @include breakpoint( $bp5 ) {
+  @include breakpoint( $bp3 ) {
     @include border;
+    padding: $baseline*2 $baseline*2 0 $baseline*2;
+    margin: $baseline;
     border-radius: $radius-base;
+  }
+
+  @include breakpoint( $bp5 ) {
+    margin: 0;
   }
 }
 
 // Add padding to make the line length shorter for readbility
 .content.context__copy {
 
+  padding: $baseline $baseline*2 0;
+
   @include breakpoint( $bp4 ) {
-    padding: $baseline*4 $baseline*4 $baseline*2 $baseline*4;
+    padding: $baseline*4 $baseline*4 $baseline $baseline*4;
   }
 
   @include breakpoint( $bp5 ) {
-    padding: $baseline*4 $baseline*6 $baseline*4 $baseline*6;
+    padding: $baseline*4 $baseline*6 $baseline*2 $baseline*6;
   }
 
+}
+
+.post-type-archive .content.context__copy {
+  margin-bottom: $baseline;
+
+  @include breakpoint( $bp5 ) {
+    margin-bottom: $baseline*2;
+  }
 }
 
 .page-template-full-php .content.context__copy {
