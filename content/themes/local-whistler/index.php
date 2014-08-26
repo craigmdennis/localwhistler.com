@@ -5,7 +5,7 @@
   <?php
 
     if ( isset( $_GET['business_type'] ) && isset( $_GET['business_location'] ) ) :
-      get_template_part( 'taxonomy', 'index' );
+      get_template_part( 'taxonomy' );
     else:
       get_template_part( 'partials/loop', 'index' );
     endif;
