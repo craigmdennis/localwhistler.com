@@ -1,8 +1,14 @@
 .toolbar {
   @include clearfix;
+  @include shadow;
 
   background-clip: padding-box;
   background-color: #FFF;
+  margin-bottom: $baseline;
+
+  @include breakpoint( $bp5 ) {
+    margin-bottom: $baseline*2;
+  }
 
   @include breakpoint( $bp5 ) {
     @include border('-bottom');
@@ -60,6 +66,12 @@
       float: right;
     }
 
+    &:last-child {
+      @include breakpoint( $middle ) {
+        float: left;
+      }
+    }
+
     .toolbar__action {
       @include breakpoint( $middle ) {
         padding: 0;
@@ -69,13 +81,29 @@
 
 }
 
+.toolbar__action--sort {
+  @include breakpoint( $middle ) {
+    width: 230px;
+  }
+}
+
 .toolbar__action--count {
-  line-height: 34px;
   background-color: #F2F2F2;
-  border-radius: $radius-bottom;
 
   @include breakpoint( $middle ) {
     background-color: #FFF;
-    float: left;
+  }
+
+  @include breakpoint( $bp6 ) {
+    border-radius: $radius-bottom;
+  }
+
+  .form__label {
+    line-height: 34px;
+
+    @include breakpoint( $middle ) {
+      float: left;
+      background-color: #FFF;
+    }
   }
 }

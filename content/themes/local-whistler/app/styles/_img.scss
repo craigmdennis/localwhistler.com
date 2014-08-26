@@ -12,7 +12,7 @@
 
 .thumb {
   @include border;
-  @extend %btnshadow;
+  @include shadow;
 
   border-radius: $radius-base;
   padding: $baseline;
