@@ -1,9 +1,38 @@
-.map--full {
-  width: 100%;
-  height: 600px;
-}
-
 .gmnoprint img,
 .gm-style img {
   max-width: none;
+}
+
+.map--full {
+  margin-bottom: -$baseline;
+  height: $map-height-small;
+  width: 100%;
+
+  @include breakpoint( $bp3 ) {
+    margin-bottom: -$baseline*2;
+  }
+
+  @include breakpoint( $bp3 ) {
+    margin-top: $baseline*2;
+  }
+
+  @include breakpoint( $bp6 ) {
+    position: absolute; // Set in mapping.js
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: $map-height-large;
+    margin-top: 0;
+  }
+}
+
+.admin-bar .map--full {
+  @include breakpoint( $bp6 ) {
+    top: 32px;
+  }
+}
+
+.view-map #resultsList {
+  display: none;
 }

@@ -28,10 +28,16 @@
   <div class="col-xs-12 col-lg-3">
     <form id="filterForm" method="GET" action="/">
 
-      <div data-spy="affix" data-offset-top="98" data-offset-bottom="227">
+      <?php if ( !isset($_GET['view']) ) : ?>
+        <div id="controls" data-spy="affix" data-offset-top="98" data-offset-bottom="227">
+      <?php endif; ?>
+
         <?php include_once('partials/_filters.php'); ?>
         <?php include_once('partials/_toolbar.php'); ?>
-      </div>
+
+      <?php if ( !isset($_GET['view']) ) : ?>
+        </div>
+      <?php endif; ?>
 
     </form>
   </div>
@@ -67,6 +73,7 @@
       <?php endif; ?>
 
   </div>
+
 </div> <!-- END .row -->
 
 <?php get_footer(); ?>

@@ -39,6 +39,14 @@
   }
 }
 
+.view-map .footer {
+  margin-top: $map-height-small;
+
+  @include breakpoint( $bp6 ) {
+    margin-top: 88px;
+  }
+}
+
 .sidebar {
   @include border('-top');
   @include clearfix;

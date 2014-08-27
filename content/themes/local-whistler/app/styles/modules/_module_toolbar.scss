@@ -5,6 +5,8 @@
   background-clip: padding-box;
   background-color: #FFF;
   margin-bottom: $baseline;
+  position: relative;
+  z-index: 2;
 
   @include breakpoint( $bp5 ) {
     margin-bottom: $baseline*2;
@@ -36,6 +38,14 @@
 
 }
 
+.view-map .toolbar {
+  margin-bottom: 0;
+
+  @include breakpoint( $bp6 ) {
+    margin-bottom: $baseline*2;
+  }
+}
+
 .toolbar__action {
   @include clearfix;
   @include border('-top');
@@ -51,6 +61,10 @@
     margin-bottom: 0;
   }
 
+}
+
+.view-map .toolbar__action--sort {
+  display: none;
 }
 
 .col-toolbar {

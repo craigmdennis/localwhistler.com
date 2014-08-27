@@ -1,7 +1,7 @@
 <?php $logo = get_field('logo'); ?>
 <?php $featured = wp_get_attachment( get_post_thumbnail_id( $post->ID ), 'media--thumb' ); ?>
 
-<?php if ( !empty($logo) || !empty($featured) ) : ?>
+<?php if ( !empty($logo) || get_the_post_thumbnail() != '' ) : ?>
 
     <?php // echo '<pre>'; print_r( $featured ); echo '</pre>'; ?>
 
@@ -13,13 +13,11 @@
         $width     = $image['sizes']['media--thumb-width'];
         $height    = $image['sizes']['media--thumb-height'];
         $style     = 'margin-top: -' . $height/2 . 'px; margin-left: -' . $width/2 . 'px;';
-        $classes   = ' js-color-target';
       }
       elseif ( !empty($featured) ) {
         $image     = $featured;
         $container = 'has-featured';
         $style     = '';
-        $classes   = '';
       }
 
       $alt = $image['alt'];
@@ -29,9 +27,9 @@
 
   <div class="<?php echo $container; ?>">
 
-    <a class="media__link--logo media__link--left <?php echo $classes; ?>" href="<?php the_permalink(); ?>">
+    <a class="media__link--logo media__link--left <?php if ( !empty($logo) ) : ?> js-color-target<?php endif; ?>" href="<?php the_permalink(); ?>">
       <img
-        class="media__logo js-color-trigger"
+        class="media__logo <?php if ( !empty($logo) ) : ?> js-color-trigger <?php endif; ?>"
         src="<?php echo $src; ?>"
         alt="<?php echo $alt; ?>"
         style="<?php echo $style; ?>"
