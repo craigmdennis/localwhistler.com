@@ -14,6 +14,7 @@
   @include border;
   @include shadow;
 
+  background-color: #FFF;
   border-radius: $radius-base;
   padding: $baseline;
 }

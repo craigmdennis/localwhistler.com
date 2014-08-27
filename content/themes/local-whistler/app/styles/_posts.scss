@@ -21,6 +21,28 @@
   }
 }
 
+.content-header {
+  @include shadow;
+
+  .media {
+    @include border;
+    border-radius: $radius-top;
+    background-color: #FFF;
+    background-clip: padding-box;
+  }
+
+  img {
+    padding: $baseline*2 0;
+    margin: 0 auto;
+  }
+}
+
+.content-header + .content {
+  border-top: 0;
+  border-radius: $radius-bottom;
+}
+
+
 // Add padding to make the line length shorter for readbility
 .content.context__copy {
 

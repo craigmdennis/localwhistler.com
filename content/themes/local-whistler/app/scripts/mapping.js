@@ -6,7 +6,7 @@ googleMap = {};
 
   'use strict';
 
-  return googleMap = {
+  googleMap = {
 
     center_lat_lng: [50.116320, -122.957356],
     map: null,
@@ -21,19 +21,27 @@ googleMap = {};
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         maxZoom: 17,
-        suppressInfoWindows: true
+        suppressInfoWindows: true,
+        panControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_CENTER
+        },
+        zoomControlOptions: {
+          style: google.maps.ZoomControlStyle.SMALL,
+          position: google.maps.ControlPosition.RIGHT_CENTER
+        }
       };
 
       this.create_map();
 
       this.map = new google.maps.Map(document.getElementById("resultsMap"), options);
       this.infowindow = new google.maps.InfoWindow({ maxWidth: 300 });
+      google.maps.event.trigger(googleMap, 'resize');
 
     },
 
     create_map: function() {
 
-      $('#results').prepend('<div id="resultsMap" class="map--full js-mapping"></div>');
+      $('<div id="resultsMap" class="map--full js-mapping"></div>').css('position', 'absolute').insertBefore('footer');
 
     },
 
@@ -56,12 +64,11 @@ googleMap = {};
       marker.setMap( this.map );
 
       // Set the info windows
-      marker.info_window_content = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">' + post.title + '</h1>'+
-        '<div id="bodyContent">'+ post.excerpt + ' <br><a href="' + post.url + '">More info</a></div>'+
-        '</div>'
+      marker.info_window_content = '<div id="content" class="context__copy">'+
+        '<h1 class="title--large">' + post.title + '</h1>'+
+          '<p>'+ post.excerpt + '</p>' +
+          '<a class="btn btn--default" href="' + post.url + '">More details</a></div>'+
+        '</div>';
 
       this.markers[post.id] = marker;
 
@@ -110,11 +117,26 @@ googleMap = {};
 
     set_center_point: function(){
 
+      if (window.matchMedia("(min-width: 68.75em)").matches) {
+
+        var increasePercentage = 1.30;  //10%
+        var pointNorthEast = this.bounds.getNorthEast();
+        var pointSouthWest = this.bounds.getSouthWest();
+        var latAdjustment = (pointNorthEast.lat() - pointSouthWest.lat()) * (increasePercentage - 1);
+        var lngAdjustment = (pointNorthEast.lng() - pointSouthWest.lng()) * (increasePercentage - 1);
+        var newPointNorthEast = new google.maps.LatLng(pointNorthEast.lat() + latAdjustment, pointNorthEast.lng() + lngAdjustment);
+        var newPointSouthWest = new google.maps.LatLng(pointSouthWest.lat() - latAdjustment, pointSouthWest.lng() - lngAdjustment);
+
+        this.bounds.extend(newPointNorthEast);
+        // this.bounds.extend(newPointSouthWest);
+
+      }
+
       this.map.setCenter( this.bounds.getCenter() );
       this.map.fitBounds( this.bounds );
 
     }
 
-  }
+  };
 
 })(jQuery, window, document);

@@ -23,18 +23,20 @@
     <div class="row">
       <div class="col-xs-12 col-lg-9">
 
+        <?php if ( !empty($logo) ): ?>
+        <div class="content-header">
+          <div class="media media--single js-color-container js-color-target">
+            <img
+              class="js-color-trigger"
+              src="<?php echo $src; ?>"
+              alt="<?php echo $alt; ?>"
+              width="<?php echo $width; ?>"
+              height="<?php echo $height; ?>"
+            />
+          </div>
+        </div>
+        <?php endif; ?>
         <div class="content context__copy" id="post-<?php the_ID(); ?>">
-          <?php if ( !empty($logo) ): ?>
-            <div class="media media--single js-color-container js-color-target">
-              <img
-                class="js-color-trigger"
-                src="<?php echo $src; ?>"
-                alt="<?php echo $alt; ?>"
-                width="<?php echo $width; ?>"
-                height="<?php echo $height; ?>"
-              />
-            </div>
-          <?php endif; ?>
           <?php if ( !get_the_post_thumbnail() ) : ?>
             <h1 class="title--giant"><?php the_title(); ?></h1>
           <?php endif; ?>

@@ -35,6 +35,10 @@ h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
     color: $heading-color;
   }
 
+  h1,h2,h3 {
+    margin-bottom: 0.875em;
+  }
+
   h4, h5, h6 {
     @include border('-bottom');
     clear: both;

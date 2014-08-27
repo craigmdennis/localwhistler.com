@@ -12,7 +12,7 @@
 <?php query_posts( $args ); ?>
 
 <?php if ( have_posts() ) :  while ( have_posts() ) : the_post(); ?>
-  <?php include_once('partials/_module_media--featured.php'); ?>
+  <?php get_template_part('partials/_module_media--featured'); ?>
 <?php endwhile; endif; ?>
 
   <div class="content" role="main">
