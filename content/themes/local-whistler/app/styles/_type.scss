@@ -60,6 +60,10 @@ h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
     padding-bottom: 1.90253em*0.5;
   }
 
+  hr {
+    border: 1px solid $brand-orange;
+  }
+
   ul, ol {
     list-style: disc inside;
     margin-left: 0;
