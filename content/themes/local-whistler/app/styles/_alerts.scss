@@ -2,11 +2,19 @@
   @include clearfix;
   @include shadow;
   @include border('-top');
-  @include border('-bottom');
 
   position: relative;
   padding: $baseline*2;
   background-clip: padding-box;
+
+
+
+  @include breakpoint( $bp3 ) {
+    @include border;
+    margin-top: auto;
+    margin-left: $baseline;
+    margin-right: $baseline;
+  }
 
   @include breakpoint( $bp5 ) {
     border-radius: $radius-base;
@@ -21,10 +29,6 @@
 .alert--warning {
   background-color: $warning-bg;
   color: $warning-color;
-
-  @include breakpoint( $bp5 ) {
-    @include border;
-  }
 
   a {
     color: inherit;
