@@ -7,6 +7,28 @@
   	'post__in'  => get_option( 'sticky_posts' )
   );
 
+  if ( function_exists( 'get_field' ) ) {
+
+    $cards = array(
+      array(
+        'title' => get_field('panel_1_title'),
+        'search' => get_field('panel_1_search_string'),
+        'image' => get_field('panel_1_image'),
+      ),
+      array(
+        'title' => get_field('panel_2_title'),
+        'search' => get_field('panel_2_search_string'),
+        'image' => get_field('panel_2_image'),
+      ),
+      array(
+        'title' => get_field('panel_3_title'),
+        'search' => get_field('panel_3_search_string'),
+        'image' => get_field('panel_3_image'),
+      )
+    );
+
+  };
+
 ?>
 
 <?php query_posts( $args ); ?>
@@ -20,11 +42,53 @@
 
       <!-- WIP Predefined searches -->
 
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="media media--card pseudo-link" data-url="/?s=Pizza&business_location=creekside&business_type=&order=date-desc">
-          <div class="media__image">
-            <?php the_post_thumbnail('media--card'); ?>
+      <?php if (!empty($cards)) : ?>
+        <?php for ($i = 0, $size = count($cards); $i < $size; $i++) : ?>
+
+          <?php
+            $card = $cards[$i];
+            $image = $card['image'];
+            $title = $card['title'];
+            $search = get_bloginfo('url') . '/' . $card['search'];
+          ?>
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div
+              class="media media--card pseudo-link"
+              data-url="<?php echo $search; ?>"
+            >
+              <div class="media__image">
+                <img
+                  src="<?php echo $image['sizes']['media--card']; ?>"
+                  alt="<?php echo $image['alt']; ?>"
+                />
+              </div>
+              <div class="media__heading">
+                <h2 class="media__title title--overlay">
+                  <a href="<?php echo $search; ?>">
+                    <span><?php echo $title; ?></span>
+                  </a>
+                </h2>
+              </div>
+            </div>
           </div>
+
+        <?php endfor; ?>
+      <?php endif; ?>
+
+      <!-- <div class="col-xs-12 col-sm-6 col-md-4">
+        <div
+          class="media media--card pseudo-link"
+          data-url="<?php // echo bloginfo('url') . '/' . echo // $panel_1_search_string; ?>"
+        >
+
+          <div class="media__image">
+            <img
+              src="<?php // echo $panel_1_image['sizes']['media--card']; ?>"
+              alt="<?php // echo $panel_1_image['alt']; ?>"
+            />
+          </div>
+
           <div class="media__heading">
             <h2 class="media__title title--overlay">
               <a href="/?s=Pizza&business_location=creekside&business_type=&order=date-desc">
@@ -33,37 +97,7 @@
             </h2>
           </div>
         </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="media media--card pseudo-link" data-url="/?s=&business_location=village&business_type=shop&order=date-desc">
-          <div class="media__image">
-            <?php the_post_thumbnail('media--card'); ?>
-          </div>
-          <div class="media__heading">
-            <h2 class="media__title title--overlay">
-              <a href="/?s=&business_location=village&business_type=shop&order=date-desc">
-                <span>Shopping in Whistler Village</span>
-              </a>
-            </h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-4 last">
-        <div class="media media--card pseudo-link" data-url="/?s=&business_location=function&business_type=activity&order=date-desc">
-          <div class="media__image">
-            <?php the_post_thumbnail('media--card'); ?>
-          </div>
-          <div class="media__heading">
-            <h2 class="media__title title--overlay">
-              <a href="/?s=&business_location=function&business_type=activity&order=date-desc">
-                <span>Activities in Function</span>
-              </a>
-            </h2>
-          </div>
-        </div>
-      </div>
+      </div> -->
 
       <?php
 
