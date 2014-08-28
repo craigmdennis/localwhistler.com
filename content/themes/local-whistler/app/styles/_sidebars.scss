@@ -1,6 +1,54 @@
 // ===================================================
-// Widgets
+// Sidebar
 // ===================================================
+
+.sidebar {
+  @include border('-top');
+  @include clearfix;
+
+  background-color: #FFF;
+  position: relative;
+  z-index: 2;
+
+  @include breakpoint( $bp3 ) {
+    @include border;
+    @include shadow;
+    border-radius: $radius-base;
+    background-clip: padding-box;
+  }
+
+  @include breakpoint( $bp3 $bp4-max ) {
+    margin-left: $baseline;
+    margin-right: $baseline;
+  }
+
+  @include breakpoint( $bp6 ) {
+    margin-top: 0;
+  }
+
+  .sidebar__section {
+    @include border('-top');
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+  .tags {
+    margin: 0;
+  }
+
+}
+
+.sidebar + .sidebar {
+  @include breakpoint( $bp3 ) {
+    margin-top: $baseline;
+  }
+
+  @include breakpoint( $bp5 ) {
+    margin-top: $baseline*2;
+  }
+}
 
 
 .fb_iframe_widget {
@@ -9,42 +57,62 @@
   margin-bottom: $baseline*1.5;
 }
 
-.widget {
-  @include single-direction-margins;
 
-  position: relative;
+.widget-title {
+  @include border('-bottom');
 
-  .widget-title {
-    margin: $baseline*2;
+  padding: $baseline*2;
+  margin: 0;
+}
+
+.widget__inner {
+  @include clearfix;
+  padding: $baseline*2;
+}
+
+.sidebar .widget {
+  @include breakpoint( $bp3 ) {
+    margin-bottom: $baseline/2;
   }
 
+  ul {
+    margin-bottom: 0;
+
+    a {
+      @include border('-bottom');
+      @extend %menuhover;
+      color: $body-copy-color;
+      display: block;
+      padding: $baseline $baseline*2;
+    }
+
+    li:last-child a {
+      border-bottom: 0;
+
+      @include breakpoint( $bp3 ) {
+        @include border('-bottom');
+      }
+    }
+  }
+}
+
+.sidebar,
+.widget {
   ul {
     @extend %unstyled;
     box-shadow: none;
   }
 }
 
-.sidebar .widget {
-  margin-bottom: $baseline/2;
-  @include border('-bottom');
-
-  ul {
-    margin-bottom: 0;
-
-    a {
-      @include border('-top');
-      @extend %menuhover;
-      color: $body-copy-color;
-      display: block;
-      padding: $baseline $baseline*2;
-    }
-  }
+.business__hours__day,
+.business__hours__time {
+  width: 50%;
+  display: block;
+  float: left;
 }
 
-.sidebar-meta .widget {
-  padding: 20px 20px 0;
-  margin-bottom: 0;
-  border-bottom: 0;
+.business__hours__time {
+  text-align: right;
 }
 
 .footer .widget {
