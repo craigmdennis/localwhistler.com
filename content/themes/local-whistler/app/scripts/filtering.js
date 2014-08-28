@@ -347,13 +347,15 @@ filter = {};
 
     push_analytics: function(){
 
-      ga('send', 'event', 'filters', 'filter', {
-        'type': filter.get_current_state.typeText,
-        'location': filter.get_current_state.locationText,
-        'order': filter.get_current_state.orderText,
-        'search': filter.get_current_state.search,
-        'nonInteraction': 1
+      ga('send', 'event', 'select', 'filter', {
+        'nonInteraction': 1 // So it doesn't affect bounce rate
       });
+
+      // Set custom analytics dimensions
+      ga('set', 'dimension1', filter.get_current_state.typeText);
+      ga('set', 'dimension2', filter.get_current_state.locationText);
+      ga('set', 'dimension4', filter.get_current_state.search);
+      ga('set', 'dimension3', filter.get_current_state.orderText);
 
     },
 
