@@ -126,7 +126,7 @@
 
     <?php if ( $video_url != '' ) : ?>
       <div class="content context__copy">
-        <div class="video">
+        <div class="video-embed">
           <?php echo wp_oembed_get('http://' . $video_url); ?>
         </div>
       </div>
