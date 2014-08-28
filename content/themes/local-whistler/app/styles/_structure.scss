@@ -11,6 +11,8 @@
 }
 
 .footer {
+  @include single-direction-margins;
+  
   clear: both;
   background-color: $wet-asphalt;
   overflow: hidden;
