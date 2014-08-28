@@ -64,7 +64,7 @@ googleMap = {};
       marker.setMap( this.map );
 
       // Set the info windows
-      marker.info_window_content = '<div id="content" class="context__copy">'+
+      marker.info_window_content = '<div id="content" class="context__map">'+
         '<h1 class="title--large">' + post.title + '</h1>'+
           '<p>'+ post.excerpt + '</p>' +
           '<a class="btn btn--default" href="' + post.url + '">More details</a></div>'+

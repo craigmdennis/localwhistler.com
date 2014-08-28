@@ -21,6 +21,16 @@ h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
   line-height: 1.125;
 }
 
+.context__map {
+  @include single-direction-margins;
+  font-family: $sans-font-family;
+  padding: 10px;
+
+  p, .btn {
+    font-size: 14px;
+  }
+}
+
 // Define contexts for adding margins back
 .context__copy {
 
