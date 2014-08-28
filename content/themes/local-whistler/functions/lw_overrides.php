@@ -15,9 +15,10 @@
   add_filter( 'mce_buttons_2', 'removePasteAsPlainTextButton' );
   add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
   add_filter( 'excerpt_more', 'new_excerpt_more' );
+  add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+  add_filter('embed_oembed_html', 'responsive_video_embed', 99, 4);
 
   remove_filter('the_excerpt', 'wpautop');
-  add_filter('embed_oembed_html', 'responsive_video_embed', 99, 4);
 
 
 
@@ -135,6 +136,13 @@
   // Wrap oembeds in responsive markup --------------------------------------- //
   function responsive_video_embed($html, $url, $attr, $post_id) {
     return '<div class="video-embed">' . $html . '</div>';
+  }
+
+
+
+  // Custom excerpt length --------------------------------------------------- //
+  function custom_excerpt_length( $length ) {
+    return 20;
   }
 
 
