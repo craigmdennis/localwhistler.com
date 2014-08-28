@@ -455,7 +455,7 @@ filter = {};
       }
 
       // todo: use Mustache templates
-      return  '<li class="media" data-url="' + post.url + '">' +
+      return  '<li class="media pseudo-link" data-url="' + post.url + '">' +
                 '<div class="has-logo">' +
                   filter.get_logo( post ) +
                     '<div class="media__heading">' +
