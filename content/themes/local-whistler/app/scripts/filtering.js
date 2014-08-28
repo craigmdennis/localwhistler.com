@@ -9,10 +9,10 @@ filter = {};
   filter = {
 
     filterCount: 0,
-    page: 2, // Start paging form page 2
 
-    apiLocation: '/api/get_posts/?post_type=business&count=-1',
-    // apiLocation: '/api/get_posts/?post_type=business',
+    include: 'title,date,url,excerpt,taxonomy_business_filter',
+
+    apiLocation: '/api/get_posts/?post_type=business&count=-1' + filter.include,
 
     settings: {
       filter_on_init: true,
