@@ -99,10 +99,19 @@
   }
 
   .media__heading {
-    position: absolute;
-    top: $baseline*4;
-    left: $baseline*2;
-    padding: 0;
+    @include clearfix;
+    background-color: #FFF;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    margin-top: -10px;
+
+    @include breakpoint( $bp3 ) {
+      background: none;
+      position: absolute;
+      top: $baseline*4;
+      left: $baseline*2;
+      padding: 0;
+    }
 
     @include breakpoint( $bp6 ) {
       top: $baseline*10;
