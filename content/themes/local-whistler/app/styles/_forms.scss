@@ -13,6 +13,11 @@ fieldset {
   min-width: 0;
 }
 
+textarea {
+  resize:vertical;
+  min-height: 200px;
+}
+
 legend {
   display: block;
   width: 100%;
