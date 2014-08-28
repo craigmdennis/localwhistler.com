@@ -12,19 +12,22 @@
   margin-bottom: $baseline/2;
 }
 
+.tag__item a,
 .tag__link {
   @include border;
+  font-size: 12px;
   display: block;
   color: #333;
   font-weight: bold;
-  font-size: 0.75em;
   padding: $baseline/2 $baseline;
   text-transform: uppercase;
+  text-decoration: none;
   background-color: #F8F8F8;
   border-radius: $radius-base;
 
   &:hover,
   &:focus {
     background-color: #EEE;
+    text-decoration: none;
   }
 }

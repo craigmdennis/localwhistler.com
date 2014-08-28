@@ -56,8 +56,8 @@
 
       <a class="btn btn--default" href="<?php the_permalink(); ?>">View details</a>
       <time datetime="<?php the_time('c') ?>" class="media__date"><?php the_time('F j, Y'); ?></time>
-      <ul class="media__tags">
-        <?php the_terms($post->ID, '', '<li class="media__tag">','</li><li class="media__tag">','</li>'); ?>
+      <ul class="tags">
+        <?php the_terms($post->ID, 'business_filter', '<li class="tag__item">','</li><li class="tag__item">','</li>'); ?>
       </ul>
   </div>
 

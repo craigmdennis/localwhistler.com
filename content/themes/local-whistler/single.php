@@ -16,9 +16,7 @@
 
   <article role="main">
 
-    <?php if ( get_the_post_thumbnail() ) : ?>
-      <?php include_once('partials/_module_media--featured.php'); ?>
-    <?php endif; ?>
+    <?php include_once('partials/_module_media--featured.php'); ?>
 
     <div class="row">
       <div class="col-xs-12 col-lg-9">

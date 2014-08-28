@@ -36,3 +36,18 @@
 .view-map #resultsList {
   display: none;
 }
+
+.map--static {
+  position: relative;
+
+  .btn {
+    position: absolute;
+    bottom: $baseline;
+    right: $baseline;
+
+    @include breakpoint($bp3) {
+      bottom: $baseline*2;
+      right: $baseline*2;
+    }
+  }
+}

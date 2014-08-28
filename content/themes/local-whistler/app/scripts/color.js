@@ -20,6 +20,9 @@ $(document).ready( function(){
 
         var pixelData = this.canvas.getContext('2d').getImageData(2, 2, 1, 1).data;
 
+        // Add class to show completion
+        $(this).closest('.media').addClass('color-attained');
+
         var rgba = 'rgba(' +
           pixelData[0] + ',' +
           pixelData[1] + ',' +

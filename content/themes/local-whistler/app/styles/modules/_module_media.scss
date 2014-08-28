@@ -46,13 +46,6 @@
 }
 
 .media__image {
-  left: 0;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-
   img {
     width: 100%;
     transition: transform $timing $easing;
@@ -84,10 +77,49 @@
   line-height: normal;
   margin-bottom: ($outline-width*2) + $baseline/2;
 
-  a, p {
+  .media__title__link {
+    padding: 0;
+  }
+
+  > span, a, p {
     color: #FFF;
     @include inline-text-padding;
   }
+}
+
+// Gallery Media
+// ===================================================
+
+.media--gallery {
+
+  @include breakpoint( $bp6 ) {
+    width: 1200px;
+    margin-left: -60px;
+    margin-top: -62px;
+  }
+
+  .media__heading {
+    position: absolute;
+    top: $baseline*4;
+    left: $baseline*2;
+    padding: 0;
+
+    @include breakpoint( $bp6 ) {
+      top: $baseline*10;
+      left: $baseline*8;
+    }
+  }
+
+  .media__title {
+    @include breakpoint( $bp5 ) {
+      max-width: 70%;
+    }
+
+    @include breakpoint( $bp6 ) {
+      max-width: 55%;
+    }
+  }
+
 }
 
 
@@ -98,6 +130,14 @@
 
   .media__title {
     padding-top: $outline-width;
+
+    @include breakpoint( $bp5 ) {
+      max-width: 70%;
+    }
+
+    @include breakpoint( $bp6 ) {
+      max-width: 55%;
+    }
   }
 
   .media__title__link {
@@ -105,17 +145,12 @@
   }
 
   .media__heading {
-    padding-top: $baseline*2 $baseline*2 0;
+    padding: $baseline*2 $baseline*2 0;
     margin-bottom: 0;
     min-height: 300px;
 
-    @include breakpoint( $bp5 ) {
-      max-width: 70%;
-    }
-
     @include breakpoint( $bp6 ) {
-      min-height: 362px;
-      max-width: 55%;
+      min-height: 400px;
     }
   }
 
@@ -253,8 +288,11 @@
   .has-logo {
     min-height: 170px;
 
-    .media__body {
+    .media__heading {
       margin-top: 180px;
+    }
+
+    .media__body {
       border: 0;
       padding-bottom: $baseline*2;
     }
@@ -303,16 +341,34 @@
   .has-featured {
     overflow: hidden;
 
+    .media__link--left {
+      float: none;
+      display: block;
+      margin: 0 auto;
+
+      @include breakpoint( $bp3 ) {
+        float: left;
+      }
+    }
+
     .media__logo {
       @extend .thumb;
-      margin: $baseline;
+      margin: $baseline*2 $baseline*2 0;
+
+      @include breakpoint( $bp3 ) {
+        margin-bottom: $baseline*2;
+      }
     }
 
     .media__body {
       overflow: hidden;
       border: 0;
-      padding-left: 0;
-      padding-bottom: $baseline*2; 
+      padding-left: $baseline*2;
+      padding-bottom: $baseline*2;
+
+      @include breakpoint( $bp5 ) {
+        padding-left: 0;
+      }
     }
 
   }
@@ -336,7 +392,7 @@
     opacity: 0;
     transition: opacity $timing $easing;
   }
-  .loaded .has-logo .media__link--logo {
+  .loaded.color-attained .has-logo .media__link--logo {
     opacity: 1;
   }
 }

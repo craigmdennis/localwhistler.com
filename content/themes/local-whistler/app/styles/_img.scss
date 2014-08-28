@@ -1,13 +1,39 @@
+.bxslider {
+  @extend %unstyled;
+}
+
 .bx-wrapper {
+  margin-bottom: -$baseline*6;
 
   .bx-viewport {
     left: 0;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .bx-pager {
+    bottom: 60px;
   }
 
   img {
     width: 100%; // Ensure the image is full width
   }
 
+}
+
+.has-alert {
+  .bx-wrapper {
+    margin-bottom: $baseline;
+
+    @include breakpoint( $bp5 ) {
+      margin-bottom: $baseline*2;
+    }
+
+    .bx-pager {
+      bottom: 20px;
+    }
+  }
 }
 
 .thumb {
