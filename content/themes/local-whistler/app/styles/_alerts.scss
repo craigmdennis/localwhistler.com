@@ -1,0 +1,38 @@
+.alert {
+  @include clearfix;
+  @include shadow;
+  @include border('-top');
+  @include border('-bottom');
+
+  position: relative;
+  padding: $baseline*2;
+  background-clip: padding-box;
+
+  @include breakpoint( $bp5 ) {
+    border-radius: $radius-base;
+    margin: 0 auto $baseline*2 auto;
+  }
+
+  i {
+    float: left;
+  }
+}
+
+.alert--warning {
+  background-color: $warning-bg;
+  color: $warning-color;
+
+  @include breakpoint( $bp5 ) {
+    @include border;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: #000;
+    }
+  }
+}
