@@ -6,7 +6,7 @@
   // Add custom thumbnail sizes
   add_image_size( 'media--featured', 1200, 800, 1 );
   add_image_size( 'media--card', 800, 600, 1 );
-  add_image_size( 'media--thumb', 150, 150, 1 );
+  add_image_size( 'media--thumb', 150, 150 );
 
 
   function wp_get_attachment( $attachment_id, $thumbnail_size = 'thumbnail' ) {
