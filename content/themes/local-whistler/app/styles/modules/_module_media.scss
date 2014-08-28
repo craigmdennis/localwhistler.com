@@ -48,7 +48,7 @@
 .media__image {
   img {
     width: 100%;
-    transition: transform $timing $easing;
+    // transition: opacity $timing $easing;
   }
 }
 
@@ -204,6 +204,11 @@
     border-radius: $radius-base;
     position: relative;
     overflow: hidden;
+    background-color: #000;
+
+    img {
+      opacity: 0.8;
+    }
   }
 
   .media__image--top {
@@ -247,8 +252,12 @@
     border-color: rgba(0,0,0,0.25);
   }
 
-  .media__image img {
-    transform: scale(1.1);
+  .media__image {
+    background-color: #000;
+    img {
+      opacity: 1;
+      // transform: scale(1.1);
+    }
   }
 }
 
