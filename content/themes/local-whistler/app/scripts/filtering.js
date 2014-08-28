@@ -86,9 +86,6 @@ filter = {};
       // Store filter object
       filter.fJS = filter.filter_init( data );
 
-      // Pass the first page data to the paging function
-      // filter.paging( filter.firstPage );
-
     },
 
     filter_init: function( data ){
@@ -96,35 +93,6 @@ filter = {};
       return FilterJS( data.posts, '#resultsList', filter.view, filter.settings );
 
     },
-
-    // paging: function( data ){
-    //
-    //   var count = parseInt(data.count);
-    //   var total = parseInt(data.count_total);
-    //
-    //   console.log('Count:', count);
-    //   console.log('Total:', total);
-    //   console.log('API call:', filter.apiLocation + '&page=' + filter.page);
-    //
-    //   // If the current (cumulative) count is less than the total number of results
-    //   if ( count <= total ) {
-    //
-    //     console.log('Count is less than total');
-    //
-    //     // Get the next page of data
-    //     var pagedData = filter.get_api_data( filter.apiLocation + '&page=' + filter.page );
-    //
-    //     console.log( pagedData.posts );
-    //
-    //     // Add the next page of data to the filter
-    //     filter.fJS.addData( pagedData.posts );
-    //
-    //   }
-    //
-    //   // Increment the page count
-    //   filter.page++;
-    //
-    // },
 
     bind: function(){
 
