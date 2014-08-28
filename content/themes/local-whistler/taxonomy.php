@@ -64,6 +64,10 @@
 
           </ol>
 
+          <div class="hide-with-js">
+            <?php get_template_part('partials/_pagination'); ?>
+          </div>
+
         </div>
 
       <?php else : ?>
