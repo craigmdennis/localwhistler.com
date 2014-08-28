@@ -68,6 +68,24 @@ h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
     overflow: hidden;
   }
 
+  blockquote {
+    border-left: 10px solid #EEE;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: $baseline*2;
+    position: relative;
+
+    // i {
+    //   position: absolute;
+    //   top: -55px;
+    //   left: -35px;
+    //   font-size: 10em;
+    //   color: #F2F2F2;
+    //   z-index: -1;
+    //   line-height: 0;
+    // }
+  }
+
   p + p > img {
     padding-top: $baseline;
   }
@@ -75,6 +93,12 @@ h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
   // Links in the content area
   a {
     text-decoration: underline;
+    color: inherit;
+
+    &:hover,
+    &:focus {
+      color: #000;
+    }
   }
 
   img {
@@ -144,9 +168,13 @@ h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
     @extend .thumb;
     margin-bottom: $baseline*1.5;
     display: block;
+
+    img {
+      margin: 0 auto;
+    }
   }
 
-  @include breakpoint( $bp4 ) {
+  @include breakpoint( $bp3 ) {
     font-size: 112.5%;
 
     .alignleft {

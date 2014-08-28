@@ -19,6 +19,8 @@
   "smarttabs": true,
   "jquery": true,
   "globals" : {
-    "Modernizr": true
+    "Modernizr": true,
+    "ga": true,
+    "google": true
   }
 }

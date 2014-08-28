@@ -20,6 +20,7 @@
   border-radius: $radius-base;
   text-align: center;
   background-clip: padding-box;
+  font-size: 16px;
 
   &:active {
     @extend %insetshadow;

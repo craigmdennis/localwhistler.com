@@ -70,7 +70,9 @@
     </div>
   <?php endif; ?>
 
-  <?php get_template_part('partials/_pagination'); ?>
+  <div class="col-xs-12">
+    <?php get_template_part('partials/_pagination'); ?>
+  </div>
 
 </div>
 

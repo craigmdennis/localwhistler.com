@@ -22,8 +22,9 @@
 }
 
 %unstyled {
-  list-style: none;
-  padding:0;
+  list-style: none !important;
+  padding: 0 !important;
+  text-indent: 0 !important;
 }
 
 %menuhover {

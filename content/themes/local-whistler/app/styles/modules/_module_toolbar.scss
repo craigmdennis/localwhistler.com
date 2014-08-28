@@ -51,7 +51,7 @@
   @include border('-top');
   @extend %unstyled;
 
-  padding: $baseline*1.5 $baseline*2;
+  padding: $baseline*1.5 $baseline*2 !important; // Can't trace inheritance
 
   @include breakpoint( $middle ) {
     border-top: 0;

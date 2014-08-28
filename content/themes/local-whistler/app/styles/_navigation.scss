@@ -11,6 +11,15 @@
   @include breakpoint( $bp5 ) {
     margin-bottom: $baseline*2;
     margin-top: $baseline*2;
+    border-radius: $radius-base;
+  }
+}
+
+.blog .menu {
+  margin-bottom: $baseline;
+
+  @include breakpoint( $bp5 ) {
+    margin-bottom: $baseline*2;
   }
 }
 

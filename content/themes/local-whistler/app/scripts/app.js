@@ -8,7 +8,10 @@ $(document).ready( function( ){
   }
 
   // Initialise slider on premium businesses
-  $('.bxslider').bxSlider();
+  $('.bxslider').bxSlider({
+    easing: 'ease-in-out',
+    adaptiveHeight: true
+  });
 
   // Initialise Chosen
   $('.js__chosen').chosen({

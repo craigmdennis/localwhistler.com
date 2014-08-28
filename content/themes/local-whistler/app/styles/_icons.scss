@@ -39,13 +39,61 @@
   vertical-align: middle;
 }
 
-.icon--before {
+.icon--fixed-left {
+  position: absolute;
+  left: $baseline*2;
+  top: 50%;
+  float: none;
+
+  &.icon--large {
+    line-height: 2em;
+    margin-top: -1.1em;
+    vertical-align: middle;
+  }
+
+  & + p {
+    margin-left: 3em;
+  }
+
+}
+
+.icon--sign:before {
+  width: 24px;
+  height: 24px;
+  border: 2px solid $body-copy-color;
+  background-color: #FFF;
+  border-radius: 50%;
+  display: block;
+  line-height: 24px;
+  text-align: center;
+  float: left;
+  position: relative;
+  top: -2px; // Offset the border
+}
+
+.icon--sign.icon--before:before {
+  margin-right: $baseline;
+  padding-right: 0;
+}
+
+.icon--sign.icon--after:before {
+  margin-left: $baseline;
+  padding-left: 0;
+}
+
+.icon--large {
+  font-size: 2em;
+}
+
+.icon--before:before {
   padding-right: $baseline/2;
 }
 
-.icon--after {
+.icon--after:before {
   padding-left: $baseline/2;
 }
+
+
 
 .icon-list:before {
   content: "\e000";
@@ -58,4 +106,52 @@
 }
 .icon-map:before {
   content: "\e003";
+}
+.icon-globe:before {
+  content: "\e004";
+}
+.icon-email:before {
+  content: "\e005";
+}
+.icon-clock:before {
+  content: "\e006";
+}
+.icon-attention:before {
+  content: "\e007";
+}
+.icon-phone:before {
+  content: "\e008";
+}
+.icon-pinterest:before {
+  content: "\e009";
+}
+.icon-twitter:before {
+  content: "\e00a";
+}
+.icon-flickr:before {
+  content: "\e00b";
+}
+.icon-vimeo:before {
+  content: "\e00c";
+}
+.icon-youtube:before {
+  content: "\e00d";
+}
+.icon-instagram:before {
+  content: "\e00e";
+}
+.icon-facebook:before {
+  content: "\e010";
+}
+.icon-signpost:before {
+  content: "\e00f";
+}
+.icon-external:before {
+  content: "\e011";
+}
+.icon-tags:before {
+  content: "\e012";
+}
+.icon-quotes:before {
+  content: "\e013";
 }

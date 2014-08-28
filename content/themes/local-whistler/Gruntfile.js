@@ -124,6 +124,7 @@ module.exports = function (grunt) {
           src: [
             '<%= config.tmp %>',
             '<%= config.dist.img %>/*',
+            '<%= config.dist %>/fonts/*',
             '<%= config.dist.scripts %>/*',
             'style.css'
           ]

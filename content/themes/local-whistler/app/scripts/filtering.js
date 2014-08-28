@@ -9,10 +9,10 @@ filter = {};
   filter = {
 
     filterCount: 0,
-    page: 2, // Start paging form page 2
 
-    apiLocation: '/api/get_posts/?post_type=business&count=-1',
-    // apiLocation: '/api/get_posts/?post_type=business',
+    include: 'title,date,url,excerpt,taxonomy_business_filter',
+
+    apiLocation: '/api/get_posts/?post_type=business&count=-1' + filter.include,
 
     settings: {
       filter_on_init: true,
@@ -86,9 +86,6 @@ filter = {};
       // Store filter object
       filter.fJS = filter.filter_init( data );
 
-      // Pass the first page data to the paging function
-      // filter.paging( filter.firstPage );
-
     },
 
     filter_init: function( data ){
@@ -96,35 +93,6 @@ filter = {};
       return FilterJS( data.posts, '#resultsList', filter.view, filter.settings );
 
     },
-
-    // paging: function( data ){
-    //
-    //   var count = parseInt(data.count);
-    //   var total = parseInt(data.count_total);
-    //
-    //   console.log('Count:', count);
-    //   console.log('Total:', total);
-    //   console.log('API call:', filter.apiLocation + '&page=' + filter.page);
-    //
-    //   // If the current (cumulative) count is less than the total number of results
-    //   if ( count <= total ) {
-    //
-    //     console.log('Count is less than total');
-    //
-    //     // Get the next page of data
-    //     var pagedData = filter.get_api_data( filter.apiLocation + '&page=' + filter.page );
-    //
-    //     console.log( pagedData.posts );
-    //
-    //     // Add the next page of data to the filter
-    //     filter.fJS.addData( pagedData.posts );
-    //
-    //   }
-    //
-    //   // Increment the page count
-    //   filter.page++;
-    //
-    // },
 
     bind: function(){
 
@@ -347,13 +315,15 @@ filter = {};
 
     push_analytics: function(){
 
-      ga('send', 'event', 'filters', 'filter', {
-        'type': filter.get_current_state.typeText,
-        'location': filter.get_current_state.locationText,
-        'order': filter.get_current_state.orderText,
-        'search': filter.get_current_state.search,
-        'nonInteraction': 1
+      ga('send', 'event', 'select', 'filter', {
+        'nonInteraction': 1 // So it doesn't affect bounce rate
       });
+
+      // Set custom analytics dimensions
+      ga('set', 'dimension1', filter.get_current_state.typeText);
+      ga('set', 'dimension2', filter.get_current_state.locationText);
+      ga('set', 'dimension4', filter.get_current_state.search);
+      ga('set', 'dimension3', filter.get_current_state.orderText);
 
     },
 
@@ -485,7 +455,7 @@ filter = {};
       }
 
       // todo: use Mustache templates
-      return  '<li class="media" data-url="' + post.url + '">' +
+      return  '<li class="media pseudo-link" data-url="' + post.url + '">' +
                 '<div class="has-logo">' +
                   filter.get_logo( post ) +
                     '<div class="media__heading">' +

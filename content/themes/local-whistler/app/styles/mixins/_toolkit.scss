@@ -41,6 +41,13 @@
   padding-bottom: percentage( $height / $width );
   position: relative;
   height: 0;
+
+  > div,
+  > iframe,
+  > embed,
+  > object {
+    @include fill;
+  }
 }
 
 @mixin inline-text-padding($bg: $brand-orange, $outline-width: $outline-width ) {

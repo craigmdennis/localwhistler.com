@@ -8,6 +8,10 @@ $clouds: #ecf0f1;
 $peter-river: #3498db;
 $carrot: #F98223;
 
+// Alerts
+$warning-bg: #FFF7CD;
+$warning-color: darken( $warning-bg, 60%);
+
 $map-height-large: 618px;
 $map-height-small: 500px;
 $background-blue: lighten($brand-blue, 42%);
@@ -21,5 +25,5 @@ $radius-bottom: 0 0 $radius-base $radius-base;
 $radius-left: $radius-base 0 0 $radius-base;
 $radius-right: 0 $radius-base $radius-base 0;
 
-$font-path: "fonts";
-$image-path: "images";
+$font-path: "./fonts";
+$image-path: "./images";

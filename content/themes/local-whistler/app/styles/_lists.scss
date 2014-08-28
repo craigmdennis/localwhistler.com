@@ -3,3 +3,11 @@
   float: left;
   margin-right: 0.5em;
 }
+
+.business__hours ul {
+  @extend %unstyled;
+}
+
+.business__hours__time {
+  font-weight: bold;
+}

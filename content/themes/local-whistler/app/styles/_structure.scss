@@ -11,6 +11,8 @@
 }
 
 .footer {
+  @include single-direction-margins;
+  
   clear: both;
   background-color: $wet-asphalt;
   overflow: hidden;
@@ -44,49 +46,5 @@
 
   @include breakpoint( $bp6 ) {
     margin-top: 88px;
-  }
-}
-
-.sidebar {
-  @include border('-top');
-  @include clearfix;
-
-  background-color: #FFF;
-  position: relative;
-  z-index: 2;
-
-  @include breakpoint( $bp3 ) {
-    @include border;
-    @include shadow;
-    border-radius: $radius-base;
-    background-clip: padding-box;
-  }
-
-  @include breakpoint( $bp3 $bp4-max ) {
-    margin-left: $baseline;
-    margin-right: $baseline;
-  }
-
-  @include breakpoint( $bp5 ) {
-    margin-top: $baseline*2;
-  }
-
-  @include breakpoint( $bp6 ) {
-    margin-top: 0;
-  }
-
-  .sidebar__section {
-    @include border('-top');
-
-    &:first-child {
-      border-top: 0;
-    }
-  }
-
-}
-
-.sidebar + .sidebar {
-  @include breakpoint( $bp5 ) {
-    margin-top: $baseline*2;
   }
 }
