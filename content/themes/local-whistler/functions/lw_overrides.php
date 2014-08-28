@@ -17,6 +17,8 @@
   add_filter( 'excerpt_more', 'new_excerpt_more' );
 
   remove_filter('the_excerpt', 'wpautop');
+  add_filter('embed_oembed_html', 'responsive_video_embed', 99, 4);
+
 
 
 
@@ -111,7 +113,7 @@
     $toolbars['Very Simple' ][1] = array('bold', 'link', 'unlink', 'undo', 'redo' );
 
     // Edit the "Full" toolbar and remove 'code'
-    // - delet from array code from http://stackoverflow.com/questions/7225070/php-array-delete-by-value-not-key
+    // Delete from array code http://stackoverflow.com/questions/7225070/php-array-delete-by-value-not-key
     if( ($key = array_search('code' , $toolbars['Full' ][2])) !== false )
     {
         unset( $toolbars['Full' ][2][$key] );
@@ -127,6 +129,12 @@
   function new_excerpt_more( $more ) {
     // return '... <a class="more-link" href="' . get_permalink() . '">Read more</a>';
     return '...';
+  }
+
+
+  // Wrap oembeds in responsive markup --------------------------------------- //
+  function responsive_video_embed($html, $url, $attr, $post_id) {
+    return '<div class="video-embed">' . $html . '</div>';
   }
 
 
