@@ -16,6 +16,11 @@
   position: relative;
 }
 
+
+.media__link {
+  display: block;
+}
+
 .media__body {
   @include border;
 
@@ -99,10 +104,19 @@
   }
 
   .media__heading {
-    position: absolute;
-    top: $baseline*4;
-    left: $baseline*2;
-    padding: 0;
+    @include clearfix;
+    background-color: #FFF;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    margin-top: -10px;
+
+    @include breakpoint( $bp3 ) {
+      background: none;
+      position: absolute;
+      top: $baseline*4;
+      left: $baseline*2;
+      padding: 0;
+    }
 
     @include breakpoint( $bp6 ) {
       top: $baseline*10;
@@ -207,7 +221,7 @@
     background-color: #000;
 
     img {
-      opacity: 0.8;
+      opacity: 0.9;
     }
   }
 
@@ -216,7 +230,9 @@
   }
 
   .media__heading {
-    @include fill;
+    position: absolute;
+    top: 0;
+    left: 0;
     padding-top: $baseline*2;
   }
 
@@ -231,12 +247,12 @@
   }
 
   .post-categories {
-    padding: 0 $baseline*2 $baseline/2;
+    padding: 0 0 $baseline/2;
   }
 
   .media__title,
   .media__subtitle, {
-    margin: $baseline $baseline*3;
+    margin: $baseline;
   }
 }
 

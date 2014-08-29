@@ -85,7 +85,7 @@
 
   <div class="col-xs-12 col-md-8 col-lg-9">
 
-    <div class="content context__copy">
+    <div id="details" class="content context__copy">
 
       <?php if ( !empty($logo) && $url_website != '' ) : ?>
         <a class="logo__link alignleft" href="http://<?php echo $url_website ?>" target="_blank">
@@ -98,7 +98,7 @@
     </div>
 
     <?php if ( $url_website != '' ) : ?>
-      <div class="content context__list">
+      <div id="website" class="content context__list">
         <a href="http://<?php echo $url_website; ?>" target="_blank">
           <i class="icon-globe icon--fixed-left icon--large"></i>
           http://<?php echo $url_website; ?>
@@ -107,7 +107,7 @@
     <?php endif; ?>
 
     <?php if ( $email != '' ) : ?>
-      <div class="content context__list">
+      <div id="email" class="content context__list">
         <a href="mailto:<?php echo $email; ?>" target="_blank">
           <i class="icon-email icon--fixed-left icon--large"></i>
           <?php echo $email; ?>
@@ -116,7 +116,7 @@
     <?php endif; ?>
 
     <?php if ( $phone != '' ) : ?>
-      <div class="content context__list">
+      <div id="phone" class="content context__list">
         <a href="tel:<?php echo $phone; ?>" target="_blank">
           <i class="icon-phone icon--fixed-left icon--large"></i>
           <?php echo $phone; ?>
@@ -125,7 +125,7 @@
     <?php endif; ?>
 
     <?php if ( $video_url != '' ) : ?>
-      <div class="content context__copy">
+      <div id="video" class="content context__copy">
         <div class="video-embed">
           <?php echo wp_oembed_get('http://' . $video_url); ?>
         </div>
@@ -133,7 +133,7 @@
     <?php endif; ?>
 
     <?php if ($message_title != '' || $message_content != '') : ?>
-      <div class="content context__copy">
+      <div id="message" class="content context__copy">
 
         <?php if ($message_title != '') : ?>
           <h3><?php echo $message_title; ?></h3>
@@ -150,7 +150,7 @@
     <?php endif; ?>
 
     <?php if ( $directions != '' || $address != '' ) : ?>
-      <div class="content context__copy">
+      <div id="location" class="content context__copy">
 
         <?php if( $address != '' ) : ?>
           <h3><i class="icon-signpost icon--before"></i>Address</h3>
@@ -187,9 +187,9 @@
       get_field('sunday') != ''
     ) : ?>
 
-      <div class="sidebar">
+      <div id="openinghours" class="sidebar">
         <div class="sidebar__section">
-          <h3 class="widget-title"><i class="icon-clock icon--before"></i>Business Hours</h3>
+          <h3 class="widget-title"><i class="icon-clock icon--before"></i>Opening Hours</h3>
           <div class="widget__inner">
             <ul>
             <?php foreach ( $opening_hours as $day => $time ) : ?>
@@ -216,7 +216,7 @@
       get_field('instagram_username') != ''
     ) : ?>
 
-      <div class="sidebar">
+      <div id="links" class="sidebar">
         <div class="widget business__links">
           <h3 class="widget-title">Social Links</h3>
           <ul>
@@ -239,7 +239,7 @@
     <?php endif; ?>
 
     <?php if ( get_the_terms($post->ID, 'business_filter' ) ) : ?>
-      <div class="sidebar">
+      <div id="tags" class="sidebar">
         <div class="sidebar__section">
           <h3 class="widget-title"><i class="icon-tags icon--before"></i>Business Tags</h3>
           <div class="widget__inner">

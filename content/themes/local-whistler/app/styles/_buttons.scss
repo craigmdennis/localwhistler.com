@@ -91,6 +91,10 @@
   }
 }
 
+.btn--lg {
+  padding: $baseline $baseline*2;
+}
+
 .btn--control {
   padding: 3px $baseline $baseline/2;
 }
