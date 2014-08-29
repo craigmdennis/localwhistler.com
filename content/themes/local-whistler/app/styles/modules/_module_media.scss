@@ -22,8 +22,6 @@
 }
 
 .media__body {
-  @include border;
-
   border-top: 0;
   padding: $baseline*2 $baseline*2 0;
   transition: border-color $timing $easing;
@@ -237,6 +235,7 @@
   }
 
   .media__body {
+    @include border;
     border-radius: $radius-bottom;
     padding-bottom: $baseline*2;
 
@@ -292,11 +291,11 @@
     margin-right: $baseline;
     margin-bottom: $baseline;
 
-    // @include breakpoint( $bp3 ) {
-    //   &.last-visible {
-    //     margin-bottom: 0;
-    //   }
-    // }
+    @include breakpoint( $bp3 ) {
+      &.last-visible {
+        margin-bottom: 0;
+      }
+    }
 
     @include breakpoint( $bp5 ) {
       margin-bottom: $baseline*2;
