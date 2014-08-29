@@ -240,7 +240,7 @@
     padding-bottom: $baseline*2;
 
     @include breakpoint( $bp3 ) {
-      height: 200px;
+      height: 130px;
       overflow: hidden;
     }
   }
