@@ -211,7 +211,9 @@ filter = {};
     set_current_state: function(){
 
       // Replace the current text to match the history state
-      $('#filterSearch').attr('value', history.state.search );
+      if ( history.state.search ) {
+        $('#filterSearch').attr('value', history.state.search );
+      }
 
       // Trigger tinysort
       filter.result_sort();
@@ -436,7 +438,7 @@ filter = {};
         monthName = monthNames[month];
 
       var dateArray = {
-        iso: date.toISOString(),
+        iso: date,
         pretty: monthName + ' ' + day + ', ' + year
       };
 
