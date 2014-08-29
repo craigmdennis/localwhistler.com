@@ -16,6 +16,11 @@
   position: relative;
 }
 
+
+.media__link {
+  display: block;
+}
+
 .media__body {
   @include border;
 
@@ -216,7 +221,7 @@
     background-color: #000;
 
     img {
-      opacity: 0.8;
+      opacity: 0.9;
     }
   }
 
@@ -225,7 +230,9 @@
   }
 
   .media__heading {
-    @include fill;
+    position: absolute;
+    top: 0;
+    left: 0;
     padding-top: $baseline*2;
   }
 
@@ -240,12 +247,12 @@
   }
 
   .post-categories {
-    padding: 0 $baseline*2 $baseline/2;
+    padding: 0 0 $baseline/2;
   }
 
   .media__title,
   .media__subtitle, {
-    margin: $baseline $baseline*3;
+    margin: $baseline;
   }
 }
 
