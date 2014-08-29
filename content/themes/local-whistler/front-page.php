@@ -58,10 +58,12 @@
               data-url="<?php echo $search; ?>"
             >
               <div class="media__image">
-                <img
-                  src="<?php echo $image['sizes']['media--card']; ?>"
-                  alt="<?php echo $image['alt']; ?>"
-                />
+                <a class="media__link" href="<?php echo $search; ?>">
+                  <img
+                    src="<?php echo $image['sizes']['media--card']; ?>"
+                    alt="<?php echo $image['alt']; ?>"
+                  />
+                </a>
               </div>
               <div class="media__heading">
                 <h2 class="media__title title--overlay">
@@ -75,29 +77,6 @@
 
         <?php endfor; ?>
       <?php endif; ?>
-
-      <!-- <div class="col-xs-12 col-sm-6 col-md-4">
-        <div
-          class="media media--card pseudo-link"
-          data-url="<?php // echo bloginfo('url') . '/' . echo // $panel_1_search_string; ?>"
-        >
-
-          <div class="media__image">
-            <img
-              src="<?php // echo $panel_1_image['sizes']['media--card']; ?>"
-              alt="<?php // echo $panel_1_image['alt']; ?>"
-            />
-          </div>
-
-          <div class="media__heading">
-            <h2 class="media__title title--overlay">
-              <a href="/?s=Pizza&business_location=creekside&business_type=&order=date-desc">
-                <span>Pizza in Creekside</span>
-              </a>
-            </h2>
-          </div>
-        </div>
-      </div> -->
 
       <?php
 
@@ -135,7 +114,9 @@
             <div class="col-xs-12 col-sm-6 col-md-4 <?php echo $last; ?>">
               <div class="media media--card pseudo-link" data-url="<?php the_permalink(); ?>">
                 <div class="media__image media__image--top">
-                  <?php the_post_thumbnail('media--card'); ?>
+                  <a class="media__link" href="<?php the_permalink(); ?>">
+                    <?php the_post_thumbnail('media--card'); ?>
+                  </a>
                 </div>
                 <div class="media__heading">
                   <?php the_category(); ?>
