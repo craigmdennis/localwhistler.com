@@ -338,6 +338,8 @@ filter = {};
 
       $('ol .media').tsort( sortBy, {order: sortOrder} );
 
+      filter.update_styles();
+
     },
 
     result_count: function( result ) {

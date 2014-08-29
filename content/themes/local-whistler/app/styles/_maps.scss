@@ -12,7 +12,7 @@
     margin-bottom: -$baseline*2;
   }
 
-  @include breakpoint( $bp3 ) {
+  @include breakpoint( $bp5 ) {
     margin-top: $baseline*2;
   }
 

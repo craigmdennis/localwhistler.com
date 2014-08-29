@@ -44,7 +44,7 @@
 
             <h1 class="media__title title--large title--overlay">
 
-              <?php if ( is_single() ) : ?>
+              <?php if ( is_single() || is_page() ) : ?>
                 <span><span><?php the_title(); ?></span></span>
               <?php else : ?>
                 <a class="media__title__link" href="<?php the_permalink(); ?>">
