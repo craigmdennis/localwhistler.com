@@ -416,7 +416,7 @@
     opacity: 0;
     transition: opacity $timing $easing;
   }
-  .loaded.color-attained .has-logo .media__link--logo {
+  .color-attained .has-logo .media__link--logo {
     opacity: 1;
   }
 }
