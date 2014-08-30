@@ -57,8 +57,6 @@
 
 </div> <!-- END .wrapper -->
 
-<?php wp_footer(); ?>
-
 <script>
 
   if('querySelector' in document
@@ -75,10 +73,15 @@
 
 <script>!window.jQuery && document.write(unescape('%3Cscript src="<?php echo bloginfo('template_directory'); ?>/assets/scripts/vendor/jquery.min.js"%3E%3C/script%3E'))</script>
 
-<script src="<?php echo bloginfo('template_directory'); ?>/scripts/script.js"></script>
+<script
+  src="<?php echo bloginfo('template_directory'); ?>/scripts/script.js"
+  type="text/javascript">
+</script>
 
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBWcRdeBybFQUpx5tyfIw1QbwskiRuFsdc&sensor=true"
-      type="text/javascript"></script>
+<script
+  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBWcRdeBybFQUpx5tyfIw1QbwskiRuFsdc&sensor=true"
+  type="text/javascript">
+</script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -109,7 +112,7 @@
 
 <script>ga('send', 'pageview');</script>
 
-</script>
+<?php wp_footer(); ?>
 
 </body>
 </html>
