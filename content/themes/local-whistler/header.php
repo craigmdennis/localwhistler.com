@@ -40,6 +40,8 @@
     <script src="<?php echo bloginfo('template_directory'); ?>/scripts/modernizr-custom.js"></script>
   <?php endif; ?>
 
+  <?php wp_head(); ?>
+
 </head>
 
 <?php global $deviceType; ?>

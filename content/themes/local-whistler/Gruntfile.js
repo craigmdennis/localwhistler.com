@@ -100,8 +100,8 @@ module.exports = function (grunt) {
         },
         files: [
           '{,*/}*.php',
-          '<%= config.tmp %>/styles/{,*/}*.css',
-          '<%= config.tmp %>/scripts/{,*/}*.js',
+          '.tmp/styles/{,*/}*.css',
+          '.tmp/scripts/{,*/}*.js',
           '<%= config.app %>/images/{,*/}*.*'
         ]
       }
@@ -122,10 +122,11 @@ module.exports = function (grunt) {
         files: [{
           dot: true,
           src: [
-            '<%= config.tmp %>',
-            '<%= config.dist.img %>/*',
-            '<%= config.dist %>/fonts/*',
-            '<%= config.dist.scripts %>/*',
+            '.tmp',
+            'img/*',
+            'fonts/*',
+            'scripts/*',
+            '!scripts/data',
             'style.css'
           ]
         }]
@@ -150,8 +151,8 @@ module.exports = function (grunt) {
           force: true
         },
         src: [
-          '<%= config.tmp %>/scripts/*.js',
-          '!<%= config.tmp %>/scripts/vendor/*.js'
+          '.tmp/scripts/*.js',
+          '!.tmp/scripts/vendor/*.js'
         ]
       },
 
@@ -171,7 +172,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= config.app.scripts %>/',
           src: '{,*/}*.{coffee,litcoffee,coffee.md}',
-          dest: '<%= config.tmp %>/scripts',
+          dest: '.tmp/scripts',
           ext: '.js'
         }]
       },
@@ -217,12 +218,34 @@ module.exports = function (grunt) {
         stripBanners: true
       },
       server: {
-        src: '<%= config.tmp %>/scripts/{,*/}*.js',
-        dest: '<%= config.dist.scripts %>/script.js'
+        files: [
+          {
+            src: [
+              '.tmp/scripts/{,*/}*.js',
+              '!.tmp/scripts/{filtering,mapping,filter}.js'
+            ],
+            dest: 'scripts/script.js'
+          },
+          {
+            src: '.tmp/scripts/{filtering,filter,mapping}.js',
+            dest: 'scripts/filtering.js'
+          }
+        ]
       },
       dist: {
-        src: '<%= config.tmp %>/scripts/{,*/}*.js',
-        dest: '<%= config.tmp %>/scripts/concat/script.js'
+        files: [
+          {
+            src: [
+              '.tmp/scripts/{,*/}*.js',
+              '!.tmp/scripts/{filtering,mapping,filter}.js'
+            ],
+            dest: '.tmp/scripts/concat/script.js'
+          },
+          {
+            src: '.tmp/scripts/{filtering,filter,mapping}.js',
+            dest: '.tmp/scripts/concat/filtering.js'
+          }
+        ]
       }
     },
 
@@ -233,8 +256,12 @@ module.exports = function (grunt) {
         sourceMap: false,
       },
       all: {
-        src: '<%= concat.dist.dest %>',
-        dest: '<%= config.dist.scripts %>/script.js'
+        files: [{
+          expand: true,
+          cwd: '.tmp/scripts/concat/',
+          src: '*.js',
+          dest: 'scripts/'
+        }]
       }
     },
 
@@ -246,7 +273,7 @@ module.exports = function (grunt) {
         report: 'min'
       },
       all: {
-        src: '<%= config.tmp %>/styles/{,*/}*.css',
+        src: '.tmp/styles/{,*/}*.css',
         dest: 'style.css'
       }
     },
@@ -293,7 +320,7 @@ module.exports = function (grunt) {
             expand: true,
             dot: true,
             cwd: '<%= config.app.scripts %>/',
-            dest: '<%= config.tmp %>/scripts',
+            dest: '.tmp/scripts',
             src: '{,*/}*.js',
             flatten: true
           },
@@ -302,7 +329,7 @@ module.exports = function (grunt) {
             expand: true,
             dot: true,
             cwd: '<%= config.app.styles %>/',
-            dest: '<%= config.tmp %>/styles',
+            dest: '.tmp/styles',
             src: '{,*/}*.css',
             flatten: true
           },
@@ -323,17 +350,17 @@ module.exports = function (grunt) {
           {
             // Copy BX Slider JS to the .tmp directory
             src: '<%= config.app.bower %>/bxslider-4/jquery.bxslider.js',
-            dest: '<%= config.tmp %>/scripts/jquery.bxslider.js'
+            dest: '.tmp/scripts/jquery.bxslider.js'
           },
           {
             // Copy ImagesLoaded JS to the .tmp directory
             src: '<%= config.app.bower %>/imagesloaded/imagesloaded.pkgd.js',
-            dest: '<%= config.tmp %>/scripts/imagesloaded.js'
+            dest: '.tmp/scripts/imagesloaded.js'
           },
           {
             // Copy BX Slider CSS to the .tmp directory
             src: '<%= config.app.bower %>/bxslider-4/jquery.bxslider.css',
-            dest: '<%= config.tmp %>/styles/jquery.bxslider.css'
+            dest: '.tmp/styles/jquery.bxslider.css'
           },
           {
             // Copy BX Slider Images to the .tmp directry
@@ -343,12 +370,12 @@ module.exports = function (grunt) {
           {
             // Copy tinysort to the .tmp directry
             src: '<%= config.app.bower %>/tinysort/dist/jquery.tinysort.js',
-            dest: '<%= config.tmp %>/scripts/jquery.tinysort.js'
+            dest: '.tmp/scripts/jquery.tinysort.js'
           },
           {
             // Copy BX Slider CSS to the .tmp directory
             src: '<%= config.app.bower %>/normalize-css/normalize.css',
-            dest: '<%= config.tmp %>/styles/normalize.css'
+            dest: '.tmp/styles/normalize.css'
           },
         ]
       },
@@ -383,9 +410,9 @@ module.exports = function (grunt) {
         outputFile: '<%= config.dist.scripts %>/modernizr-custom.js',
         files: {
           src: [
-            '<%= config.tmp %>/scripts/concat/script.js',
-            '<%= config.tmp %>/styles/{,*/}*.css',
-            '!<%= config.tmp %>/scripts/vendor/*'
+            '.tmp/scripts/concat/script.js',
+            '.tmp/styles/{,*/}*.css',
+            '!.tmp/scripts/vendor/*'
           ]
         },
         matchCommunityTests: true,

@@ -1,11 +1,15 @@
-<?php $attachments = new Attachments( 'premium_gallery' ); ?>
+<?php if ( class_exists('Attachments') ) : ?>
+  <?php $attachments = new Attachments( 'premium_gallery' ); ?>
+<?php else: ?>
+  <?php $attachments = ''; ?>
+<?php endif; ?>
 
 <?php if ( get_the_post_thumbnail() || $attachments->exist() ) : ?>
 
   <header>
     <div class="row">
       <div class="col-xs-12">
-        <?php if ( $attachments->exist() ) : ?>
+        <?php if ( $attachments != '' ) : ?>
           <div class="media media--gallery">
         <?php else : ?>
           <div class="media media--featured">
@@ -13,7 +17,7 @@
           <div class="media__image">
 
             <?php // If there are attachments in the gallery ?>
-            <?php if( $attachments->exist() ) : ?>
+            <?php if( $attachments ) : ?>
 
               <?php // Use a slider ?>
               <ul class="bxslider">

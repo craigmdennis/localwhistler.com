@@ -1,11 +1,7 @@
 'use strict';
 
-$(document).ready( function( ){
-
-  // Only initialise sorting when there are results
-  if ( $('#results').length ) {
-    window.filter.init();
-  }
+// No conflict
+$(document).ready( function(){
 
   // Initialise slider on premium businesses
   $('.bxslider').bxSlider({

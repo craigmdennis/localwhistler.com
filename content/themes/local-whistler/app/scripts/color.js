@@ -36,8 +36,6 @@ $(document).ready( function(){
         }
 
       });
-    }).progress( function( instance, image ) {
-      $(image.img).closest('.media').addClass('loaded');
     });
   }
 

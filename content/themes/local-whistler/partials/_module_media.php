@@ -1,4 +1,7 @@
+<?php if ( function_exists('get_field') ) : ?>
 <?php $logo = get_field('logo'); ?>
+<?php endif; ?>
+
 <?php $featured = wp_get_attachment( get_post_thumbnail_id( $post->ID ), 'media--thumb' ); ?>
 
 <?php if ( !empty($logo) || get_the_post_thumbnail() != '' ) : ?>
