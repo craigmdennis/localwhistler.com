@@ -60,6 +60,9 @@ filter = {};
           // Add styling hooks
           filter.update_styles();
 
+          // Check whether we need to affix
+          filter.affix();
+
           // Increment the count
           filter.filterCount++;
 
@@ -72,6 +75,7 @@ filter = {};
       // Get the first page data
       var data = filter.get_api_data( filter.apiLocation );
 
+      // Show the map if the body class is set correctly
       if ( $('body').hasClass('view-map') ) {
         window.googleMap.init();
       }
@@ -106,6 +110,47 @@ filter = {};
       $('#filterOrder').on('change', filter.result_sort );
 
       // $('.sub-menu').on('click.submenu', 'a', filter.override );
+
+    },
+
+    affix: function(){
+
+      var controlHeight = $('#controls').height();
+      var resultsHeight = $('#results').height();
+      var $controls = $('#controls');
+
+      console.log( 'controlHeight', controlHeight );
+      console.log( 'resultsHeight', resultsHeight );
+
+      if ( controlHeight < resultsHeight ) {
+
+        console.log( 'Control height is larger than Results height.' );
+
+        $controls.affix({
+          offset: {
+            top: function () {
+              return ( this.top = $controls.offset().top - 20 );
+            },
+            bottom: function () {
+              return ( this.bottom = $('.footer').outerHeight(true) + 41 );
+            }
+          }
+        });
+      }
+
+      else {
+
+        // Check if data exists on th element
+        if ( typeof $controls.data('bs.affix') !== 'undefined') {
+
+          console.log( 'Kill affixed plugin');
+
+          $(window).off('.affix');
+          $controls
+            .removeClass('affix affix-top affix-bottom')
+            .removeData('bs.affix');
+        }
+      }
 
     },
 
