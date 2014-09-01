@@ -62,21 +62,20 @@
   if('querySelector' in document
     && 'localStorage' in window
     && 'addEventListener' in window) {
+
+    // Add a class to say we're in a fancypants browser
+    document.querySelector('html').classList.add('mustard');
+
     // Add jQuery 2.0+
     document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"><\/script>')
 
     // Only give modern browsers full filtering
     document.write('<script src="<?php echo get_template_directory_uri(); ?>/scripts/filtering.js"><\/script>')
 
-    // Add a class to say we're in a fancypants browser
-    document.querySelector('html').classList.add('mustard');
-
   } else {
+
     // Add jQuery 1.9.0+
     document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"><\/script>');
-
-    // Add class to say we're old
-    document.querySelector('html').classList.add('no-mustard');
   }
 
 </script>
