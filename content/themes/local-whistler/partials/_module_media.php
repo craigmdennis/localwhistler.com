@@ -57,16 +57,18 @@
 
   <div class="media__footer">
 
-      <a class="btn btn--default" href="<?php the_permalink(); ?>">View details</a>
-      <time datetime="<?php the_time('c') ?>" class="media__date"><?php the_time('F j, Y'); ?></time>
+    <?php if (get_post_type() == 'business') : ?>
 
-      <?php if (get_post_type() == 'business_type') : ?>
+      <ul class="tags">
+        <?php the_terms($post->ID, 'business_filter', '<li class="tag__item">','</li><li class="tag__item">','</li>'); ?>
+      </ul>
 
-        <ul class="tags">
-          <?php the_terms($post->ID, 'business_filter', '<li class="tag__item">','</li><li class="tag__item">','</li>'); ?>
-        </ul>
+    <?php endif; ?>
 
-      <?php endif; ?>
+    <a class="btn btn--default" href="<?php the_permalink(); ?>">View details</a>
+
+    <time datetime="<?php the_time('c') ?>" class="media__date"><?php the_time('F j, Y'); ?></time>
+
   </div>
 
 <?php if ( !empty($logo) ) : ?>
