@@ -1,6 +1,6 @@
 'use strict';
 
-$(document).on('click', '.pseudo-link', function(){
+$(document).on('click touchstart', '.pseudo-link', function(){
 
   window.location = $(this).data('url');
 
