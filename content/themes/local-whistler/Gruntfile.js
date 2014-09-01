@@ -254,6 +254,7 @@ module.exports = function (grunt) {
         compress: true,
         mangle: true,
         sourceMap: false,
+        drop_console: true
       },
       all: {
         files: [{
