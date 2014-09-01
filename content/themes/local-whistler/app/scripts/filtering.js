@@ -565,6 +565,10 @@ $(document).ready( function(){
 
     var view = $(this).attr('id'),
         viewText = view.replace('view-', '');
+
+    // Drop a cookie to persist the view
+    $.cookie('view', viewText, { expires: 7 });
+
     // Update the body class
     $('body')
       .removeClass('view-gallery view-list view-map')
