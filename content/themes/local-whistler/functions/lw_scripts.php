@@ -9,7 +9,10 @@
   // Adding actions means they are only run on the front-end
   add_action( 'wp_enqueue_scripts', 'lw_deregister_scripts' );
   add_action( 'wp_enqueue_scripts', 'lw_enqueue_global' );
-  add_action( 'wp_enqueue_scripts', 'lw_enqueue_filtering' );
+
+  // Dynamically added if browser 'Cuts the mustard'
+  // Uncomment to load for all browsers
+  // add_action( 'wp_enqueue_scripts', 'lw_enqueue_filtering' );
 
 
 

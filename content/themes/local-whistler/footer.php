@@ -64,17 +64,27 @@
     && 'addEventListener' in window) {
     // Add jQuery 2.0+
     document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"><\/script>')
+
+    // Only give modern browsers full filtering
+    document.write('<script src="<?php echo get_template_directory_uri(); ?>/scripts/filtering.js"><\/script>')
+
+    // Add a class to say we're in a fancypants browser
+    document.querySelector('html').classList.add('mustard');
+
   } else {
     // Add jQuery 1.9.0+
-    document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"><\/script>')
+    document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"><\/script>');
+
+    // Add class to say we're old
+    document.querySelector('html').classList.add('no-mustard');
   }
 
 </script>
 
-<script>!window.jQuery && document.write(unescape('%3Cscript src="<?php echo bloginfo('template_directory'); ?>/assets/scripts/vendor/jquery.min.js"%3E%3C/script%3E'))</script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="<?php echo get_template_directory_uri(); ?>/assets/scripts/vendor/jquery.min.js"%3E%3C/script%3E'))</script>
 
 <script
-  src="<?php echo bloginfo('template_directory'); ?>/scripts/script.js"
+  src="<?php echo get_template_directory_uri() ?>/scripts/script.js"
   type="text/javascript">
 </script>
 

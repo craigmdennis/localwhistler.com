@@ -96,7 +96,7 @@
     </div>
 
     <div class="col-xs-12 col-sm-auto col-lg-12 col-toolbar">
-      <div class="toolbar__action hide-with-js">
+      <div class="toolbar__action hide-with-mustard">
         <input
           id="filterSubmit"
           class="form__submit btn btn--primary"
