@@ -302,6 +302,10 @@
     }
   }
 
+  .media__date {
+    display: none; // Doesn't need to be read by screenreaders
+  }
+
   .media__footer .btn {
     margin-bottom: $baseline*2;
   }
@@ -396,10 +400,6 @@
 
   .media__heading + .media__body {
     padding-top: 0;
-  }
-
-  .media__date {
-    @extend %sr-only;
   }
 
   .media__footer {
