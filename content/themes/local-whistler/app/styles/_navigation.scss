@@ -269,7 +269,18 @@
 }
 
 ul.navigation {
+  @include clearfix;
   @extend %unstyled;
+
+  margin: 0 $baseline $baseline;
+
+  @include breakpoint( $bp3 ) {
+    margin-bottom: 0;
+  }
+
+  @include breakpoint( $bp5 ) {
+    margin: 0;
+  }
 
   .next {
     float: right;

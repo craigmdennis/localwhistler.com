@@ -305,7 +305,6 @@
   }
 
   .media__footer .btn {
-    @extend %sr-only;
     margin-bottom: $baseline*2;
   }
 
@@ -409,6 +408,10 @@
     padding-left: $baseline*2;
   }
 
+}
+
+.js .media__footer .btn {
+  @extend %sr-only;
 }
 
 .canvas {

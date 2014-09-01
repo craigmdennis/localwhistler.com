@@ -63,18 +63,8 @@
 
     else :
 
-      // If ?order= isn't set
-      if ( $queryVar == 'order') :
-
-        // Set the default order to newest first
-        $result = 'date-desc';
-
-      else:
-
-        // Get the variable from Wordpress
-        $result = get_query_var( $queryVar );
-
-      endif;
+      // Get the variable from Wordpress
+      $result = get_query_var( $queryVar );
 
     endif;
 

@@ -5,27 +5,23 @@
   // when sorting by date
   $orderOptions = array(
     array(
-      'data-sort-target' => 'media__title',
-      'data-sort-order' => 'asc',
-      'value' => 'asc',
+      'data-sort-order' => 'ASC',
+      'data-sort-by' => 'title',
       'text' => 'A-Z'
     ),
     array(
-      'data-sort-target' => 'media__title',
-      'data-sort-order' => 'desc',
-      'value' => 'desc',
+      'data-sort-order' => 'DESC',
+      'data-sort-by' => 'title',
       'text' => 'Z-A'
     ),
     array(
-      'data-sort-target' => 'media__date',
-      'data-sort-order' => 'desc',
-      'value' => 'date-asc',
+      'data-sort-order' => 'ASC',
+      'data-sort-by' => 'date',
       'text' => 'Oldest First'
     ),
     array(
-      'data-sort-target' => 'media__date',
-      'data-sort-order' => 'asc',
-      'value' => 'date-desc',
+      'data-sort-order' => 'DESC',
+      'data-sort-by' => 'date',
       'text' => 'Newest First'
     ),
 
@@ -72,20 +68,28 @@
               <?php
 
                 $selected = '';
+                $new_order = $orderOption['data-sort-order'];
+                $new_orderBy = $orderOption['data-sort-by'];
+                $new_target = $orderOption['data-sort-target'];
 
-                switch ( $orderOption['data-sort-order'] ) :
-                  case $order_raw:
-                    $selected = 'selected';
-                    break;
-                endswitch;
+                if ( $new_order == $order && $new_orderBy == $orderBy ) {
+                  $selected = 'selected';
+                }
 
               ?>
 
-              <option data-sort-target="<?php echo $orderOption['data-sort-target']; ?>" data-sort-order="<?php echo $orderOption['data-sort-order']; ?>" value="<?php echo $orderOption['value']; ?>" <?php echo $selected ?>><?php echo $orderOption['text']; ?></option>
+              <option
+                data-sort-target="media__<?php echo $new_orderBy; ?>"
+                data-sort-order="<?php echo $new_order; ?>"
+                data-sort-by="<?php echo $new_orderBy; ?>"
+                value="<?php echo $new_orderBy . '-' . $new_order; ?>"
+                <?php echo $selected ?>><?php echo $orderOption['text']; ?>
+              </option>
+
+              <?php // Reset the selected value ?>
+              <?php $selected = ''; ?>
 
             <?php endforeach; ?>
-
-            <!-- <option value="">Popular</option> todo: work out how to sort popular -->
           </select>
         </div>
       </div>
@@ -107,7 +111,7 @@
       <div class="toolbar__action toolbar__action--count">
         <label for="filterSearch" class="form__label js__count">
           <?php if ( have_posts() ) : ?>
-            <?php echo $wp_query->found_posts; ?> businesses match
+            <?php echo $custom_query->found_posts; ?> businesses match
           <?php else : ?>
             No matches
           <?php endif; ?>

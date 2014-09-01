@@ -8,19 +8,44 @@
   $search_term = get_search_query();
   $business_location = get_taxonomy_from_url_or_wordpress('business_location');
   $business_type = get_taxonomy_from_url_or_wordpress('business_type');
-  $order_raw = get_taxonomy_from_url_or_wordpress('order');
-  $orderBy = 'title';
+  $order = get_taxonomy_from_url_or_wordpress('order');
+  $orderBy = 'date';
   $view = get_view_type();
 
   // Get the two parts of the order if they exist
-  if ( strpos( $order_raw, '-' ) ) {
-    $orderArray = explode( '-', $order_raw );
+  if ( strpos( $order, '-' ) ) {
+    $orderArray = explode( '-', $order );
     $order = $orderArray[1];
     $orderBy = $orderArray[0];
   }
 
-  // Add order to the generated query
-  query_posts( $query_string . '&order=' . $order . '&orderby=' . $orderBy . '&post_type=business' );
+  if ( $search_term == '' ) {
+    $search_term = get_taxonomy_from_url_or_wordpress('business_filter');
+  }
+
+  // Define custom query parameters
+  $custom_query_args = array(
+    's' => $search_term,
+    'order' => $order,
+    'orderBy' => $orderBy,
+    'paged' => $paged,
+    'post_type' => 'business',
+    'business_location' => $business_location,
+    'business_type' => $business_type
+  );
+
+  // print_r($custom_query_args);
+
+  // Get current page and append to custom query parameters array
+  $custom_query_args['paged'] = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+
+  // Instantiate custom query
+  $custom_query = new WP_Query( $custom_query_args );
+
+  // Pagination fix
+  $temp_query = $wp_query;
+  $wp_query   = NULL;
+  $wp_query   = $custom_query;
 
 ?>
 
@@ -28,31 +53,25 @@
   <div class="col-xs-12 col-lg-3">
     <form id="filterForm" method="GET" action="/">
 
-      <?php if ( !isset($_GET['view']) ) : ?>
-        <div id="controls" data-spy="affix" data-offset-top="98" data-offset-bottom="227">
-      <?php endif; ?>
+      <div id="controls" data-spy="affix" data-offset-top="98" data-offset-bottom="227">
 
         <?php include_once('partials/_filters.php'); ?>
         <?php include_once('partials/_toolbar.php'); ?>
 
-      <?php if ( !isset($_GET['view']) ) : ?>
-        </div>
-      <?php endif; ?>
+      </div>
 
     </form>
   </div>
 
-  <?php rewind_posts(); ?>
-
   <div class="col-xs-12 col-lg-9">
 
-      <?php if ( have_posts() ) : ?>
+      <?php if ( $custom_query->have_posts() ) : ?>
 
         <div id="results">
 
           <ol id="resultsList" class="media--list js-color-container">
 
-            <?php while ( have_posts() ) : the_post(); ?>
+            <?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
 
               <li class="media hide-with-js">
 
@@ -77,6 +96,16 @@
       <?php endif; ?>
 
   </div>
+
+  <?php
+
+    wp_reset_postdata();
+
+    // Reset main query object
+    $wp_query = NULL;
+    $wp_query = $temp_query;
+
+  ?>
 
 </div> <!-- END .row -->
 
