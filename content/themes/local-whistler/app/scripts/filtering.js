@@ -41,9 +41,9 @@ filter = {};
         after_filter: function( result ){
 
           // Update the map
-          if ( $('body').hasClass('view-map') ) {
-            window.googleMap.update_markers( result );
-          }
+          // if ( $('body').hasClass('view-map') ) {
+          window.googleMap.update_markers( result );
+          // }
 
           // Send custom analytics events
           filter.push_analytics();
@@ -56,6 +56,9 @@ filter = {};
 
           // Update the sort only on the first filter
           filter.result_sort();
+
+          // Update the view links to reflect new filters
+          filter.update_links();
 
           // Add styling hooks
           filter.update_styles();
@@ -76,9 +79,9 @@ filter = {};
       var data = filter.get_api_data( filter.apiLocation );
 
       // Show the map if the body class is set correctly
-      if ( $('body').hasClass('view-map') ) {
-        window.googleMap.init();
-      }
+      // if ( $('body').hasClass('view-map') ) {
+      window.googleMap.init();
+      // }
 
       // Bind the event handlers
       filter.bind();
@@ -140,16 +143,23 @@ filter = {};
 
       else {
 
-        // Check if data exists on th element
-        if ( typeof $controls.data('bs.affix') !== 'undefined') {
+        filter.kill_affix( $controls );
 
-          console.log( 'Kill affixed plugin');
+      }
 
-          $(window).off('.affix');
-          $controls
-            .removeClass('affix affix-top affix-bottom')
-            .removeData('bs.affix');
-        }
+    },
+
+    kill_affix: function( el ){
+
+      // Check if data exists on th element
+      if ( typeof el.data('bs.affix') !== 'undefined') {
+
+        console.log( 'Kill affixed plugin');
+
+        $(window).off('.affix');
+        el
+          .removeClass('affix affix-top affix-bottom')
+          .removeData('bs.affix');
       }
 
     },
@@ -305,14 +315,14 @@ filter = {};
           currentLocation = filter.get_current_state().location,
           currentOrder = filter.get_current_state().order,
           currentType = filter.get_current_state().type,
-          currentSearch = filter.get_current_state().search,
-          currentView = filter.get_current_state().view;
+          currentSearch = filter.get_current_state().search;
+          // currentView = filter.get_current_state().view;
 
         url += '?s=' + currentSearch;
         url += '&business_location=' + currentLocation;
         url += '&business_type=' + currentType;
         url += '&order=' + currentOrder;
-        url += '&view=' + currentView;
+        // url += '&view=' + currentView;
 
       return url;
 
@@ -462,6 +472,19 @@ filter = {};
 
     },
 
+    update_links: function(){
+
+      var url = filter.generate_url();
+
+      console.log( url + '&view=gallery' );
+
+      // Update the view change buttons
+      $('#view-gallery').attr('href', url + '&view=gallery');
+      $('#view-list').attr('href', url + '&view=list');
+      $('#view-map').attr('href', url + '&view=map');
+
+    },
+
     format_date: function( dateString ) {
 
       var monthNames = [
@@ -498,14 +521,11 @@ filter = {};
       var datetime = filter.format_date( post.date ).iso,
           prettyDate = filter.format_date( post.date ).pretty;
 
-          // Get todo
-          // If post is within the last week add a class of new
+      // Get todo
+      // If post is within the last week add a class of new
 
-      if ( $('body').hasClass('view-map') ) {
-        window.googleMap.add_marker( post );
-      }
+      window.googleMap.add_marker( post );
 
-      // todo: use Mustache templates
       return  '<li class="media pseudo-link" data-url="' + post.url + '">' +
                 '<div class="has-logo">' +
                   filter.get_logo( post ) +
@@ -532,10 +552,33 @@ filter = {};
 })(jQuery, window, document);
 
 $(document).ready( function(){
+
   'use strict';
+
   // Only initialise sorting when there are results
   if ( $('#results').length ) {
     window.filter.init();
   }
+
+  $(document).on('click', '.btn--control', function(e){
+    e.preventDefault();
+
+    var view = $(this).attr('id'),
+        viewText = view.replace('view-', '');
+    // Update the body class
+    $('body')
+      .removeClass('view-gallery view-list view-map')
+      .addClass( view );
+
+    // // If the button is for map and the body doesn't have a map class
+    if (view === 'view-map') {
+      console.log('Trigger reisze');
+      $(window).trigger('resize');
+      google.maps.event.trigger(window.googleMap.map, 'resize');
+      $('select').trigger('change');
+      window.filter.kill_affix( $('#controls') );
+    }
+
+  });
 
 });

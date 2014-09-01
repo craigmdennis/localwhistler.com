@@ -4,6 +4,7 @@
 }
 
 .map--full {
+  display: none;
   margin-bottom: -$baseline;
   height: $map-height-small;
   width: 100%;
@@ -29,6 +30,10 @@
 
 .view-map #resultsList {
   display: none;
+}
+
+.view-map .map--full {
+  display: block;
 }
 
 .map--static {

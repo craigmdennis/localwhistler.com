@@ -37,17 +37,29 @@
       <div class="toolbar__action">
         <div class="btn-group">
 
-        <a href="<?php echo add_query_arg( 'view', 'gallery' ); ?>" class="btn btn--default btn--icon-only btn--control" title="View as a gallery">
+        <a
+          id="view-gallery"
+          href="<?php echo add_query_arg( 'view', 'gallery' ); ?>"
+          class="btn btn--default btn--icon-only btn--control btn--gallery js__view-trigger"
+          title="View as a gallery">
           <span class="btn__text">Gallery</span>
           <i class="btn__icon icon-thumbnails"></i>
         </a>
 
-        <a href="<?php echo add_query_arg( 'view', 'list' ); ?>" class="btn btn--default btn--icon-only btn--control btn--last-visible" title="View as a list">
+        <a
+          id="view-list"
+          href="<?php echo add_query_arg( 'view', 'list' ); ?>"
+          class="btn btn--default btn--icon-only btn--control btn--list js__view-trigger"
+          title="View as a list">
           <span class="btn__text">List</span>
           <i class="btn__icon icon-list"></i>
         </a>
 
-        <a href="<?php echo add_query_arg( 'view', 'map' ); ?>" class="btn btn--default btn--icon-only btn--control show-with-js" title="View on a map">
+        <a
+          id="view-map"
+          href="<?php echo add_query_arg( 'view', 'map' ); ?>"
+          class="btn btn--default btn--icon-only btn--control btn--map show-with-js js__view-trigger"
+          title="View on a map">
           <span class="btn__text">Map</span>
           <i class="btn__icon icon-map"></i>
         </a>
