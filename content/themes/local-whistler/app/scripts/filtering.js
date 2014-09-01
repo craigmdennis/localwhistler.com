@@ -332,13 +332,15 @@ filter = {};
     result_sort: function(){
 
       var $this = $('#filterOrder').find('option:selected');
-      var sortBy = '.' + $this.attr('data-sort-target');
-      var sortOrder = $this.attr('data-sort-order');
+      var sortTarget = '.' + $this.attr('data-sort-target');
+      var sortOrder = $this.attr('data-sort-order').toLowerCase();
+      var sortBy = $this.attr('data-sort-by');
 
-      console.log(sortOrder);
-      console.log(sortBy);
+      console.log( 'Sort Target', sortTarget );
+      console.log( 'Sort Order', sortOrder );
+      console.log( 'Sort By', sortBy );
 
-      $('ol .media').tsort( sortBy, {order: sortOrder} );
+      $('ol .media').tsort( sortTarget, { order: sortOrder } );
 
       filter.update_styles();
 
@@ -438,7 +440,7 @@ filter = {};
         monthName = monthNames[month];
 
       var dateArray = {
-        iso: date,
+        iso: date.toUTCString(),
         pretty: monthName + ' ' + day + ', ' + year
       };
 
@@ -451,7 +453,7 @@ filter = {};
       var datetime = filter.format_date( post.date ).iso,
           prettyDate = filter.format_date( post.date ).pretty;
 
-          // Get todat
+          // Get todo
           // If post is within the last week add a class of new
 
       if ( $('body').hasClass('view-map') ) {
@@ -485,6 +487,7 @@ filter = {};
 })(jQuery, window, document);
 
 $(document).ready( function(){
+  'use strict';
   // Only initialise sorting when there are results
   if ( $('#results').length ) {
     window.filter.init();
