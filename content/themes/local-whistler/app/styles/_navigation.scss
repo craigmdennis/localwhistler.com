@@ -168,7 +168,7 @@
     }
 
     a {
-      padding-top: 70px;
+      padding-top: 80px;
 
       @include breakpoint( $bp4 ) {
         padding-top: 0;
@@ -264,7 +264,7 @@
 .backgroundsize {
   .menu-item-142 {
     background-image: url('images/logo-hdpi.png') !important;
-    background-size: 50px 50px;
+    background-size: 60px 60px;
   }
 }
 

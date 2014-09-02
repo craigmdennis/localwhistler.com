@@ -41,9 +41,7 @@ filter = {};
         after_filter: function( result ){
 
           // Update the map
-          if ( $('body').hasClass('view-map') ) {
-            window.googleMap.update_markers( result );
-          }
+          window.googleMap.update_markers( result );
 
           // Send custom analytics events
           filter.push_analytics();
@@ -57,8 +55,14 @@ filter = {};
           // Update the sort only on the first filter
           filter.result_sort();
 
+          // Update the view links to reflect new filters
+          filter.update_links();
+
           // Add styling hooks
           filter.update_styles();
+
+          // Check whether we need to affix
+          filter.affix();
 
           // Increment the count
           filter.filterCount++;
@@ -72,9 +76,10 @@ filter = {};
       // Get the first page data
       var data = filter.get_api_data( filter.apiLocation );
 
-      if ( $('body').hasClass('view-map') ) {
-        window.googleMap.init();
-      }
+      // Show the map if the body class is set correctly
+      // if ( $('body').hasClass('view-map') ) {
+      window.googleMap.init();
+      // }
 
       // Bind the event handlers
       filter.bind();
@@ -106,6 +111,58 @@ filter = {};
       $('#filterOrder').on('change', filter.result_sort );
 
       // $('.sub-menu').on('click.submenu', 'a', filter.override );
+
+    },
+
+    affix: function(){
+
+      var controlHeight = $('#controls').height();
+      var resultsHeight = $('#results').height();
+      var $controls = $('#controls');
+
+      console.log( 'controlHeight', controlHeight );
+      console.log( 'resultsHeight', resultsHeight );
+
+      if ( $(window).width() < 1100 ) {
+        return false;
+      }
+
+      if ( controlHeight < resultsHeight ) {
+
+        console.log( 'Control height is larger than Results height.' );
+
+        $controls.affix({
+          offset: {
+            top: function () {
+              return ( this.top = $controls.offset().top - 20 );
+            },
+            bottom: function () {
+              return ( this.bottom = $('.footer').outerHeight(true) + 47 );
+            }
+          }
+        });
+      }
+
+      else {
+
+        filter.kill_affix( $controls );
+
+      }
+
+    },
+
+    kill_affix: function( el ){
+
+      // Check if data exists on th element
+      if ( typeof el.data('bs.affix') !== 'undefined') {
+
+        console.log( 'Kill affixed plugin');
+
+        $(window).off('.affix');
+        el
+          .removeClass('affix affix-top affix-bottom')
+          .removeData('bs.affix');
+      }
 
     },
 
@@ -260,14 +317,14 @@ filter = {};
           currentLocation = filter.get_current_state().location,
           currentOrder = filter.get_current_state().order,
           currentType = filter.get_current_state().type,
-          currentSearch = filter.get_current_state().search,
-          currentView = filter.get_current_state().view;
+          currentSearch = filter.get_current_state().search;
+          // currentView = filter.get_current_state().view;
 
         url += '?s=' + currentSearch;
         url += '&business_location=' + currentLocation;
         url += '&business_type=' + currentType;
         url += '&order=' + currentOrder;
-        url += '&view=' + currentView;
+        // url += '&view=' + currentView;
 
       return url;
 
@@ -385,7 +442,7 @@ filter = {};
       if ( logo !== '' ) {
 
           // Make sure we get the logo and not any old attachment
-          return  '<a class="media__link--logo media__link--left media__thumb js-color-target" href="' + post.url + '">' +
+          return  '<a class="media__link--logo media__link--left media__thumb js-color-target" href="' + logo.url + '">' +
                     '<img class="media__logo js-color-trigger" src="' + logo.sizes['media--thumb'] + '" alt="' + logo.description + ' Logo"' + style  + ' />' +
                   '</a>';
         }
@@ -393,27 +450,43 @@ filter = {};
 
     get_tags: function( post ) {
 
-      var tags = ['<ul class="tags">'];
-      var elem;
+      var tags = '';
 
-      if ( post.taxonomy_business_filter !== '' ) {
+      if ( post.taxonomy_business_filter.length ) {
+
+        tags = ['<div class="media__footer"><ul class="tags">'];
+        var elem;
 
         // Iterate over each attachment in the array
         $.each( post.taxonomy_business_filter, function(){
 
           // Make sure we get the logo and not any old attachment
-          elem = '<li class="tag__item"><a class="tag__link" href="/filter/' + this.slug + '">' + this.title + '</a>';
+          elem = '<li class="tag__item"><a class="tag__link" href="/filter/' + this.slug + '">' + this.title + '</a></li>';
           tags.push( elem );
 
         });
 
-        elem = '</ul>';
+        elem = '</ul></div>';
         tags.push( elem );
         tags = tags.join(',') + '';
         tags = tags.replace(/,/g, '');
+
       }
 
       return tags;
+
+    },
+
+    update_links: function(){
+
+      var url = filter.generate_url();
+
+      console.log( url + '&view=gallery' );
+
+      // Update the view change buttons
+      $('#view-gallery').attr('href', url + '&view=gallery');
+      $('#view-list').attr('href', url + '&view=list');
+      $('#view-map').attr('href', url + '&view=map');
 
     },
 
@@ -453,29 +526,31 @@ filter = {};
       var datetime = filter.format_date( post.date ).iso,
           prettyDate = filter.format_date( post.date ).pretty;
 
-          // Get todo
-          // If post is within the last week add a class of new
+      var tags = filter.get_tags( post );
+      var bodyStyle = '';
 
-      if ( $('body').hasClass('view-map') ) {
-        window.googleMap.add_marker( post );
+      if ( tags === '') {
+        bodyStyle = 'min-height: 104px';
       }
 
-      // todo: use Mustache templates
-      return  '<li class="media pseudo-link" data-url="' + post.url + '">' +
+      // Get todo
+      // If post is within the last week add a class of new
+
+      window.googleMap.add_marker( post );
+
+      return  '<li class="media">' +
                 '<div class="has-logo">' +
                   filter.get_logo( post ) +
+                  '<a class="media__link--container" href="' + post.url + '">' +
                     '<div class="media__heading">' +
-                      '<h2 class="media__title">' +
-                        '<a class="media__link--title" href="' + post.url + '">' + post.title + '</a>' +
-                      '</h2>' +
+                      '<h2 class="media__title">' + post.title + '</h2>' +
                     '</div>' +
-                    '<div class="media__body">' +
+                    '<div class="media__body" style="' + bodyStyle + '">' +
                       '<p>' + post.excerpt + '</p>' +
                     '</div>' +
+                  '</a>' +
                   '<time class="media__date" datetime="' + datetime + '">' + prettyDate + '</time>' +
-                  '<div class="media__footer">' +
-                    filter.get_tags( post ) +
-                  '</div>' +
+                  tags +
                 '</div>' +
               '</li>';
 
@@ -487,10 +562,41 @@ filter = {};
 })(jQuery, window, document);
 
 $(document).ready( function(){
+
   'use strict';
+
   // Only initialise sorting when there are results
   if ( $('#results').length ) {
     window.filter.init();
   }
+
+  $(document).on('click', '.btn--control', function(e){
+    e.preventDefault();
+
+    var view = $(this).attr('id'),
+        viewText = view.replace('view-', '');
+
+    // Drop a cookie to persist the view
+    $.cookie('view', viewText, { expires: 7 });
+
+    // Update the body class
+    $('body')
+      .removeClass('view-gallery view-list view-map')
+      .addClass( view );
+
+    // // If the button is for map and the body doesn't have a map class
+    if (view === 'view-map') {
+      $(window).trigger('resize');
+      google.maps.event.trigger(window.googleMap.map, 'resize');
+      $('select').trigger('change');
+      window.filter.kill_affix( $('#controls') );
+    }
+
+    // Initialise afix if needed
+    if (view === 'view-list') {
+      window.filter.affix( $('#controls') );
+    }
+
+  });
 
 });

@@ -17,6 +17,7 @@
   add_filter( 'excerpt_more', 'new_excerpt_more' );
   add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
   add_filter('embed_oembed_html', 'responsive_video_embed', 99, 4);
+  add_action( 'admin_menu', 'remove_menus' );
 
   remove_filter('the_excerpt', 'wpautop');
 
@@ -143,6 +144,19 @@
   // Custom excerpt length --------------------------------------------------- //
   function custom_excerpt_length( $length ) {
     return 20;
+  }
+
+
+
+  // Remove menu items ------------------------------------------------------- //
+  function remove_menus() {
+    global $submenu;
+    unset($submenu['index.php'][10]); // Removes 'Updates'.
+    unset($submenu['themes.php'][5]); // Removes 'Themes'.
+    unset($submenu['customize.php'][1]); // Removes 'Themes'.
+    unset($submenu['options-general.php'][30]); // Removes 'Customize'.
+  	unset($submenu['options-general.php'][40]); // Removes 'Customize'.
+
   }
 
 

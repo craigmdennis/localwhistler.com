@@ -29,11 +29,23 @@ $(document).ready( function(){
           pixelData[2] + ',' +
           pixelData[3] + ')';
 
-        // If the colour is not transparent
-        if (rgba !== 'rgba(0,0,0,0)') {
-          // Set the parent background
-          $(this).parent().css('background-color', rgba);
+        var clip = '';
+        var border = '';
+
+        console.log(rgba);
+
+        if ( (pixelData[0] > 250 && pixelData[1] > 250 && pixelData[2] > 250) || (rgba === 'rgba(0,0,0,0)' || rgba === 'rgba(255,255,255,255)') ) {
+          rgba = '#FFF';
+          clip = 'padding-box';
+          border = '#C2C8D0';
         }
+
+        // Set the parent background
+        $(this).parent().css({
+          'background-color': rgba,
+          'background-clip': clip,
+          'border-color': border
+        });
 
       });
     });

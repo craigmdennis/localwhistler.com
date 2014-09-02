@@ -33,7 +33,7 @@ googleMap = {};
 
       this.create_map();
 
-      this.map = new google.maps.Map(document.getElementById("resultsMap"), options);
+      this.map = new google.maps.Map(document.getElementById('resultsMap'), options);
       this.infowindow = new google.maps.InfoWindow({ maxWidth: 300 });
       google.maps.event.trigger(googleMap, 'resize');
 
@@ -41,7 +41,8 @@ googleMap = {};
 
     create_map: function() {
 
-      $('<div id="resultsMap" class="map--full js-mapping"></div>').css('position', 'absolute').insertBefore('footer');
+      $('<div class="map--full"><div id="resultsMap" class="js-mapping" style="height:100%;"></div></div>')
+        .insertBefore('footer');
 
     },
 
@@ -67,7 +68,7 @@ googleMap = {};
       marker.info_window_content = '<div id="content" class="context__map">'+
         '<h1 class="title--large">' + post.title + '</h1>'+
           '<p>'+ post.excerpt + '</p>' +
-          '<a class="btn btn--default" href="' + post.url + '">More details</a></div>'+
+          '<a class="btn btn--primary" href="' + post.url + '">More details</a></div>'+
         '</div>';
 
       this.markers[post.id] = marker;

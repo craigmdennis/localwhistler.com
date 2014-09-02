@@ -34,9 +34,21 @@
 }
 
 .view-map .footer {
-  margin-top: $map-height-small;
+  // margin-top: $map-height-small;
 
   @include breakpoint( $bp6 ) {
     margin-top: 88px;
+  }
+}
+
+.browsehappy {
+  background-color: $brand-orange;
+  color: #FFF;
+  padding: $baseline*1.5;
+  text-align: center;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
   }
 }

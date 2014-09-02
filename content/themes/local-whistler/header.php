@@ -46,9 +46,37 @@
 
 <?php global $deviceType; ?>
 
-<body <?php body_class( 'device-' . $deviceType . ' view-' . get_view_type() ); ?> id="top">
+<?php
+
+  // Read the cookie
+  $cookieView = $_COOKIE['view'];
+
+  // If the cookie exists
+  if ( $cookieView != '' ) {
+    $view = $cookieView;
+  }
+
+  // If the cookie doesn't exist
+  else {
+    $view = get_view_type();
+    setcookie('view',$view,time() + (86400 * 7)); // Set for 7 days
+  };
+
+?>
+
+<body <?php body_class( 'device-' . $deviceType . ' view-' . $view ); ?> id="top">
 
   <div class="wrapper">
+
+      <!--[if lt IE 9]>
+        <div class="browsehappy">
+          <div class="container">
+            <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+          </div>
+        </div>
+      <![endif]-->
+
+
     <div class="container">
 
       <nav role="navigation">

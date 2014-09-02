@@ -23,7 +23,7 @@
   font-size: 16px;
 
   &:active {
-    @extend %insetshadow;
+    @extend .btn--active;
   }
 
   &:hover,
@@ -75,7 +75,7 @@
 // State Modifiers
 // ===================================================
 .btn--active {
-  font-weight: bold;
+  @extend %insetshadow;
 }
 
 
@@ -96,7 +96,19 @@
 }
 
 .btn--control {
-  padding: 3px $baseline $baseline/2;
+  padding: 4px $baseline 4px $baseline;
+
+  .btn__icon {
+    position: relative;
+    top: -1px;
+  }
+}
+
+.view-map .btn--map,
+.view-list .btn--list {
+  @extend .btn--active;
+  background-color: #F2F2F2;
+  color: #000;
 }
 
 
@@ -123,7 +135,7 @@
 
     &:first-child {
       border-left: 0;
-      border-radius: $radius-left;
+      // border-radius: $radius-left;
     }
 
     &:last-child,
@@ -133,8 +145,15 @@
   }
 }
 
-.js .btn-group .btn--last-visible:not(:last-child) {
-  border-radius: 0;
+.btn-group--switch {
+  float: none;
+
+  .btn {
+    width: 50%;
+    @include breakpoint( $middle ) {
+      width: auto;
+    }
+  }
 }
 
 .btn-group--inline {

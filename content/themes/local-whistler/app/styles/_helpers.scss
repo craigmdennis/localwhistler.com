@@ -70,6 +70,18 @@
   display: block !important;
 }
 
+.mustard .hide-with-mustard {
+  display: none !important;
+}
+
+.show-with-mustard {
+  display: none !important;
+}
+
+.mustard .show-with-mustard {
+  display: block !important;
+}
+
 
 // Positional Helpers
 // ===================================================

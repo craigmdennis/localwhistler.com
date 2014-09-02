@@ -62,19 +62,56 @@
   if('querySelector' in document
     && 'localStorage' in window
     && 'addEventListener' in window) {
+
+    // Add a class to say we're in a fancypants browser
+    document.querySelector('html').classList.add('mustard');
+
     // Add jQuery 2.0+
-    document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"><\/script>')
-  } else {
+    document.write(
+      unescape(
+        '%3Cscript  src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"%3E%3C/script%3E'
+      )
+    );
+
+    // Only give modern browsers javascript filtering
+    document.write(
+      unescape(
+        '%3Cscript  src="<?php echo get_template_directory_uri(); ?>/scripts/filtering.js"%3E%3C/script%3E'
+      )
+    );
+
+  }
+
+  else {
+
     // Add jQuery 1.9.0+
-    document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"><\/script>')
+    document.write(
+      unescape(
+        '%3Cscript src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"%3E%3C/script%3E'
+      )
+    );
+
+    // Add respond.js to older browser
+    document.write(
+      unescape(
+        '%3Cscript src="<?php echo get_template_directory_uri(); ?>/scripts/vendor/respond.js"%3E%3C/script%3E'
+      )
+    );
   }
 
 </script>
 
-<script>!window.jQuery && document.write(unescape('%3Cscript src="<?php echo bloginfo('template_directory'); ?>/assets/scripts/vendor/jquery.min.js"%3E%3C/script%3E'))</script>
+<script>
+// jQuery fallback in case unable to load from CDN
+!window.jQuery && document.write(
+  unescape(
+    '%3Cscript src="<?php echo get_template_directory_uri(); ?>/scripts/vendor/jquery.min.js"%3E%3C/script%3E'
+  )
+)
+</script>
 
 <script
-  src="<?php echo bloginfo('template_directory'); ?>/scripts/script.js"
+  src="<?php echo get_template_directory_uri() ?>/scripts/script.js"
   type="text/javascript">
 </script>
 

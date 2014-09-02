@@ -4,9 +4,16 @@
 }
 
 .map--full {
+  display: none;
   margin-bottom: -$baseline;
+  position: relative;
+  overflow: hidden;
   height: $map-height-small;
-  width: 100%;
+
+  > div {
+    height: $map-height-small;
+    width: 100%;
+  }
 
   @include breakpoint( $bp3 ) {
     margin-bottom: -$baseline*2;
@@ -22,13 +29,27 @@
     left: 0;
     right: 0;
     z-index: 1;
-    height: $map-height-large;
     margin-top: 0;
+    height: $map-height-large;
+
+    > div {
+      height: $map-height-large;
+    }
+  }
+}
+
+.admin-bar .map--full {
+  @include breakpoint( $bp6 ) {
+    top: 32px;
   }
 }
 
 .view-map #resultsList {
   display: none;
+}
+
+.view-map .map--full {
+  display: block;
 }
 
 .map--static {

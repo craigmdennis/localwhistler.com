@@ -53,7 +53,7 @@
   <div class="col-xs-12 col-lg-3">
     <form id="filterForm" method="GET" action="/">
 
-      <div id="controls" data-spy="affix" data-offset-top="98" data-offset-bottom="227">
+      <div id="controls">
 
         <?php include_once('partials/_filters.php'); ?>
         <?php include_once('partials/_toolbar.php'); ?>
