@@ -427,6 +427,11 @@
     @include breakpoint( $bp3 ) {
       margin-top: 0;
     }
+
+    &:hover,
+    &:focus {
+      background-color: #F8F8F8;
+    }
   }
 
   .media__link--container,
@@ -436,14 +441,9 @@
 
     &:hover,
     &:focus {
-      background-color: #F8F8F8;
       border-radius: $radius-right;
-
-      .media__image {
-        background-color: #000;
-        img {
-          opacity: 1;
-        }
+      img {
+        opacity: 1;
       }
     }
   }
