@@ -58,10 +58,10 @@
   }
 
   if ( !empty($logo) ) {
-    $logo_width   = $logo['sizes']['media--thumb-width'];
-    $logo_height  = $logo['sizes']['media--thumb-height'];
-    $logo_alt     = $logo['alt'];
-    $logo_src     = $logo['sizes']['media--thumb'];
+    $width   = $logo['sizes']['media--thumb-width'];
+    $height  = $logo['sizes']['media--thumb-height'];
+    $alt     = $logo['alt'];
+    $src     = $logo['sizes']['media--thumb'];
   }
 
 ?>
@@ -85,13 +85,21 @@
 
   <div class="col-xs-12 col-md-8 col-lg-9">
 
-    <div id="details" class="content context__copy">
+    <?php if ( !empty($logo) ): ?>
+    <div class="content-header">
+      <div class="media media--single js-color-container js-color-target">
+        <img
+          class="js-color-trigger"
+          src="<?php echo $src; ?>"
+          alt="<?php echo $alt; ?>"
+          width="<?php echo $width; ?>"
+          height="<?php echo $height; ?>"
+        />
+      </div>
+    </div>
+    <?php endif; ?>
 
-      <?php if ( !empty($logo) && $url_website != '' ) : ?>
-        <a class="logo__link alignleft" href="http://<?php echo $url_website ?>" target="_blank">
-          <img src="<?php echo $logo_src ?>" alt="<?php echo $logo_alt; ?>">
-        </a>
-      <?php endif; ?>
+    <div id="details" class="content context__copy">
 
       <?php the_content(); ?>
 
