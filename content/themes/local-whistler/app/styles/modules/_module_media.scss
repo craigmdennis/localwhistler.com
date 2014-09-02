@@ -14,10 +14,14 @@
 .media {
   @include clearfix;
   position: relative;
+  display: block;
+  background-color: #FFF;
+  background-clip: padding-box;
 }
 
 
 .media__link {
+  color: inherit;
   display: block;
 }
 
@@ -25,6 +29,10 @@
   border-top: 0;
   padding: $baseline*2 $baseline*2 0;
   transition: border-color $timing $easing;
+
+  p {
+    color: $body-copy-color;
+  }
 }
 
 .media__heading {
@@ -60,6 +68,7 @@
 }
 
 .media__title {
+  color: $heading-color;
   margin-bottom: $baseline;
 }
 .media__title a {
@@ -216,10 +225,6 @@
     position: relative;
     overflow: hidden;
     background-color: #000;
-
-    img {
-      opacity: 0.9;
-    }
   }
 
   .media__image--top {
@@ -254,24 +259,8 @@
   }
 }
 
-.js .pseudo-link:hover,
-.js .pseudo-link:focus {
-  cursor: pointer;
-  border-color: #CCC;
-  border-color: rgba(0,0,0,0.25);
-
-  .has-logo .media__link--logo,
-  .media__body {
-    border-color: #CCC;
-    border-color: rgba(0,0,0,0.25);
-  }
-
-  .media__image {
-    background-color: #000;
-    img {
-      opacity: 1;
-    }
-  }
+.no-touch .media--card .media__image img {
+  opacity: 0.9;
 }
 
 
@@ -280,11 +269,14 @@
 .media--list {
   @extend %unstyled;
 
+  li {
+    position: relative;
+  }
+
   .media {
     @include shadow;
     @include border;
     border-radius: $radius-base;
-    background-color: #FFF;
     margin-left: $baseline;
     margin-right: $baseline;
     margin-bottom: $baseline;
@@ -325,6 +317,8 @@
     .media__heading,
     .media__footer,
     .media__body {
+      overflow: hidden;
+
       @include breakpoint( $bp3 ) {
         margin-top: 0;
         margin-left: 180px;
@@ -332,22 +326,21 @@
     }
 
     .media__link--logo {
-      @include border('-bottom');
-      width: 100%;
-      background-color: #FFF;
+      margin-right: 0;
+      border: 1px solid #C2C8D0;
       border-radius: $radius-top;
       display: block;
-      left: 0;
-      top: 0;
+      left: -1px;
+      top: -1px;
+      right: -1px;
+      bottom: -1px;
       height: 180px;
       position: absolute;
 
       @include breakpoint( $bp3 ) {
-        @include border;
+        border-right: 0;
         border-radius: $radius-left;
-        top: -1px;
-        left: -1px;
-        bottom: -1px;
+        right: auto;
         width: 181px;
         height: auto;
       }
@@ -404,8 +397,56 @@
 
   .media__footer {
     padding-left: $baseline*2;
+    padding-right: $baseline*2;
   }
 
+}
+
+.mustard {
+  .media__footer {
+    @include border('-top');
+  }
+
+  .media--list .tags {
+    margin-top: $baseline*2;
+  }
+
+  .has-logo {
+    .media__heading,
+    .media__body,
+    .media__footer {
+      @include breakpoint( $bp3) {
+        @include border('-left');
+      }
+    }
+  }
+
+  .media__link--container {
+    margin-top: -2px;
+
+    @include breakpoint( $bp3 ) {
+      margin-top: 0;
+    }
+  }
+
+  .media__link--container,
+  .media__image a {
+    @include clearfix;
+    display: block;
+
+    &:hover,
+    &:focus {
+      background-color: #F8F8F8;
+      border-radius: $radius-right;
+
+      .media__image {
+        background-color: #000;
+        img {
+          opacity: 1;
+        }
+      }
+    }
+  }
 }
 
 .js .media__footer .btn {
@@ -413,11 +454,23 @@
 }
 
 .canvas {
+
   .has-logo .media__link--logo {
     opacity: 0;
     transition: opacity $timing $easing;
   }
-  .color-attained .has-logo .media__link--logo {
-    opacity: 1;
+
+  .color-attained .has-logo {
+
+    .media__body,
+    .media__heading,
+    .media__footer {
+      border-left: 0;
+    }
+
+    .media__link--logo {
+      @include border;
+      opacity: 1;
+    }
   }
 }

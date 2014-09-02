@@ -440,7 +440,7 @@ filter = {};
       if ( logo !== '' ) {
 
           // Make sure we get the logo and not any old attachment
-          return  '<a class="media__link--logo media__link--left media__thumb js-color-target" href="' + post.url + '">' +
+          return  '<a class="media__link--logo media__link--left media__thumb js-color-target" href="' + logo.url + '">' +
                     '<img class="media__logo js-color-trigger" src="' + logo.sizes['media--thumb'] + '" alt="' + logo.description + ' Logo"' + style  + ' />' +
                   '</a>';
         }
@@ -448,24 +448,27 @@ filter = {};
 
     get_tags: function( post ) {
 
-      var tags = ['<ul class="tags">'];
-      var elem;
+      var tags = '';
 
-      if ( post.taxonomy_business_filter !== '' ) {
+      if ( post.taxonomy_business_filter.length ) {
+
+        tags = ['<div class="media__footer"><ul class="tags">'];
+        var elem;
 
         // Iterate over each attachment in the array
         $.each( post.taxonomy_business_filter, function(){
 
           // Make sure we get the logo and not any old attachment
-          elem = '<li class="tag__item"><a class="tag__link" href="/filter/' + this.slug + '">' + this.title + '</a>';
+          elem = '<li class="tag__item"><a class="tag__link" href="/filter/' + this.slug + '">' + this.title + '</a></li>';
           tags.push( elem );
 
         });
 
-        elem = '</ul>';
+        elem = '</ul></div>';
         tags.push( elem );
         tags = tags.join(',') + '';
         tags = tags.replace(/,/g, '');
+
       }
 
       return tags;
@@ -521,26 +524,31 @@ filter = {};
       var datetime = filter.format_date( post.date ).iso,
           prettyDate = filter.format_date( post.date ).pretty;
 
+      var tags = filter.get_tags( post );
+      var bodyStyle = '';
+
+      if ( tags === '') {
+        bodyStyle = 'min-height: 104px';
+      }
+
       // Get todo
       // If post is within the last week add a class of new
 
       window.googleMap.add_marker( post );
 
-      return  '<li class="media pseudo-link" data-url="' + post.url + '">' +
+      return  '<li class="media">' +
                 '<div class="has-logo">' +
                   filter.get_logo( post ) +
+                  '<a class="media__link--container" href="' + post.url + '">' +
                     '<div class="media__heading">' +
-                      '<h2 class="media__title">' +
-                        '<a class="media__link--title" href="' + post.url + '">' + post.title + '</a>' +
-                      '</h2>' +
+                      '<h2 class="media__title">' + post.title + '</h2>' +
                     '</div>' +
-                    '<div class="media__body">' +
+                    '<div class="media__body" style="' + bodyStyle + '">' +
                       '<p>' + post.excerpt + '</p>' +
                     '</div>' +
+                  '</a>' +
                   '<time class="media__date" datetime="' + datetime + '">' + prettyDate + '</time>' +
-                  '<div class="media__footer">' +
-                    filter.get_tags( post ) +
-                  '</div>' +
+                  tags +
                 '</div>' +
               '</li>';
 
