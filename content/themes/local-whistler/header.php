@@ -1,11 +1,8 @@
 <?php
 
   // Read the cookie
-  $cookieView = $_COOKIE['view'];
-
-  // If the cookie exists
-  if ( $cookieView != '' ) {
-    $view = $cookieView;
+  if (isset($_COOKIE['view'])) {
+    $view = $_COOKIE['view'];
   }
 
   // If the cookie doesn't exist
