@@ -40,3 +40,15 @@
     margin-top: 88px;
   }
 }
+
+.browsehappy {
+  background-color: $brand-orange;
+  color: #FFF;
+  padding: $baseline*1.5;
+  text-align: center;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
