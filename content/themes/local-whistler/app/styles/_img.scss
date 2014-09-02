@@ -1,37 +1,35 @@
-.bxslider {
+.slider {
   @extend %unstyled;
-}
-
-.bx-wrapper {
-  margin-bottom: -$baseline*6;
-
-  .bx-viewport {
-    left: 0;
-    border: 0;
-    padding: 0;
-    box-shadow: none;
-  }
-
-  .bx-pager {
-    bottom: 60px;
-  }
 
   img {
     width: 100%; // Ensure the image is full width
   }
 
+  .owl-next,
+  .owl-prev {
+    position: absolute;
+    top: 50%;
+  }
+
+  .owl-next {
+    right: 0;
+  }
+
+  .owl-prev {
+    left: 0;
+  }
+
+  .grabbing {
+      cursor:url(images/grabbing.png) 8 8, move;
+  }
 }
 
 .has-alert {
-  .bx-wrapper {
+  .slider {
     margin-bottom: $baseline;
 
     @include breakpoint( $bp5 ) {
       margin-bottom: $baseline*2;
-    }
-
-    .bx-pager {
-      bottom: 20px;
     }
   }
 }
