@@ -396,8 +396,18 @@ module.exports = function (grunt) {
           },
           {
             // Copy jQuery as self-hosted fallback
-            src: '<%= config.bower %>/jquery/dist/jquery.min.js',
+            src: '<%= config.app.bower %>/jquery/dist/jquery.min.js',
             dest: '<%= config.dist.scripts %>/vendor/jquery.min.js'
+          },
+          {
+            // Copy jQuery as self-hosted fallback
+            src: '<%= config.app.bower %>/jquery/dist/jquery.min.map',
+            dest: '<%= config.dist.scripts %>/vendor/jquery.min.map'
+          },
+          {
+            // Copy jQuery as self-hosted fallback
+            src: '<%= config.app.bower %>/respond/dest/respond.min.js',
+            dest: '<%= config.dist.scripts %>/vendor/respond.min.js'
           }
         ]
       }
