@@ -35,33 +35,33 @@
 
     <div class="col-xs-12 col-sm-auto col-lg-12 col-toolbar">
       <div class="toolbar__action">
-        <div class="btn-group">
+        <div class="btn-group btn-group--switch">
 
-        <a
+        <!-- <a
           id="view-gallery"
           href="<?php echo add_query_arg( 'view', 'gallery' ); ?>"
           class="btn btn--default btn--icon-only btn--control btn--gallery js__view-trigger"
           title="View as a gallery">
           <span class="btn__text">Gallery</span>
           <i class="btn__icon icon-thumbnails"></i>
-        </a>
+        </a> -->
 
         <a
           id="view-list"
           href="<?php echo add_query_arg( 'view', 'list' ); ?>"
-          class="btn btn--default btn--icon-only btn--control btn--list js__view-trigger"
+          class="btn btn--default btn--control btn--list js__view-trigger"
           title="View as a list">
+          <i class="btn__icon icon-list icon--before"></i>
           <span class="btn__text">List</span>
-          <i class="btn__icon icon-list"></i>
         </a>
 
         <a
           id="view-map"
           href="<?php echo add_query_arg( 'view', 'map' ); ?>"
-          class="btn btn--default btn--icon-only btn--control btn--map show-with-js js__view-trigger"
+          class="btn btn--default btn--control btn--map show-with-js js__view-trigger"
           title="View on a map">
+          <i class="btn__icon icon-map icon--before"></i>
           <span class="btn__text">Map</span>
-          <i class="btn__icon icon-map"></i>
         </a>
 
       </div>

@@ -88,7 +88,7 @@
 
     .toolbar__action {
       @include breakpoint( $middle ) {
-        padding: 0;
+        padding: 0 !important; // Can't trace ingeritance
       }
     }
   }
