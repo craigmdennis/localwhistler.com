@@ -53,13 +53,29 @@
 }
 
 .content-header {
-  @include shadow;
+  position: relative;
+  z-index: 1;
+
+  @include breakpoint( $bp3 ) {
+    @include shadow;
+    margin: 0 $baseline;
+  }
+
+  @include breakpoint( $bp5 ) {
+    margin: 0;
+  }
 
   .media {
-    @include border;
-    border-radius: $radius-top;
+    @include border('-bottom');
+    @include border('-top');
     background-color: #FFF;
     background-clip: padding-box;
+    padding: $baseline*2;
+
+    @include breakpoint( $bp3 ) {
+      @include border;
+      border-radius: $radius-top;
+    }
   }
 
   img {
@@ -70,6 +86,7 @@
 
 .content-header + .content {
   border-top: 0;
+  margin-top: 0;
   border-radius: $radius-bottom;
 }
 

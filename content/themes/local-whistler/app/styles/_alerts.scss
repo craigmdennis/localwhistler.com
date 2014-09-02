@@ -7,13 +7,10 @@
   padding: $baseline*2;
   background-clip: padding-box;
 
-
-
   @include breakpoint( $bp3 ) {
     @include border;
-    margin-top: auto;
-    margin-left: $baseline;
-    margin-right: $baseline;
+    border-radius: $radius-base;
+    margin: $baseline;
   }
 
   @include breakpoint( $bp5 ) {

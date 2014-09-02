@@ -4,9 +4,12 @@
 $(document).ready( function(){
 
   // Initialise slider on premium businesses
-  $('.bxslider').bxSlider({
-    easing: 'ease-in-out',
-    adaptiveHeight: true
+  $('.slider').owlCarousel({
+      navigation : true, // Show next and prev buttons
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem:true,
+      transitionStyle: 'scaleUp'
   });
 
   // Initialise Chosen

@@ -286,12 +286,6 @@ module.exports = function (grunt) {
           cwd: '<%= config.app.img %>/',
           src: '{,*/}*.{gif,jpeg,jpg,png}',
           dest: '<%= config.dist.img %>'
-        },
-        {
-          expand: true,
-          cwd: '<%= config.app.bower %>/bxslider-4/images/',
-          src: '{,*/}*.{gif,jpeg,jpg,png}',
-          dest: '<%= config.dist.img %>'
         }]
       }
     },
@@ -343,30 +337,9 @@ module.exports = function (grunt) {
             src: '{,*/}*.*'
           },
           {
-            expand: true,
-            cwd: '<%= config.app.bower %>/bxslider-4/images',
-            src: '{,*/}*.{gif,jpeg,jpg,png}',
-            dest: '<%= config.dist.img %>'
-          },
-          {
-            // Copy BX Slider JS to the .tmp directory
-            src: '<%= config.app.bower %>/bxslider-4/jquery.bxslider.js',
-            dest: '.tmp/scripts/jquery.bxslider.js'
-          },
-          {
             // Copy ImagesLoaded JS to the .tmp directory
             src: '<%= config.app.bower %>/imagesloaded/imagesloaded.pkgd.js',
             dest: '.tmp/scripts/imagesloaded.js'
-          },
-          {
-            // Copy BX Slider CSS to the .tmp directory
-            src: '<%= config.app.bower %>/bxslider-4/jquery.bxslider.css',
-            dest: '.tmp/styles/jquery.bxslider.css'
-          },
-          {
-            // Copy BX Slider Images to the .tmp directry
-            src: '<%= config.app.bower %>/bxslider-4/images/',
-            dest: '<%= config.dist.img %>'
           },
           {
             // Copy tinysort to the .tmp directry

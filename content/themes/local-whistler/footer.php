@@ -69,7 +69,7 @@
     // Add jQuery 2.0+
     document.write(
       unescape(
-        '%3Cscript  src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"%3E%3C/script%3E'
+        '%3Cscript src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"%3E%3C/script%3E'
       )
     );
 

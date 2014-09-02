@@ -36,14 +36,16 @@
     $message_title  = get_field('premium_message_title');
 
     $opening_hours = array(
-      'monday'      => get_field('monday'),
-      'tuesday'     => get_field('tuesday'),
-      'wednesday'   => get_field('wednesday'),
-      'thursday'    => get_field('thursday'),
-      'friday'      => get_field('friday'),
-      'saturday'    => get_field('saturday'),
-      'sunday'      => get_field('sunday'),
+      'mon'      => get_field('monday'),
+      'tues'     => get_field('tuesday'),
+      'wed'   => get_field('wednesday'),
+      'thurs'    => get_field('thursday'),
+      'fri'      => get_field('friday'),
+      'sat'    => get_field('saturday'),
+      'sun'      => get_field('sunday'),
     );
+
+    $hoursColor = "";
 
     $social = array(
       'pinterest'    => get_field('pinterest_username'),
@@ -58,10 +60,10 @@
   }
 
   if ( !empty($logo) ) {
-    $logo_width   = $logo['sizes']['media--thumb-width'];
-    $logo_height  = $logo['sizes']['media--thumb-height'];
-    $logo_alt     = $logo['alt'];
-    $logo_src     = $logo['sizes']['media--thumb'];
+    $width   = $logo['sizes']['media--thumb-width'];
+    $height  = $logo['sizes']['media--thumb-height'];
+    $alt     = $logo['alt'];
+    $src     = $logo['sizes']['media--thumb'];
   }
 
 ?>
@@ -85,13 +87,21 @@
 
   <div class="col-xs-12 col-md-8 col-lg-9">
 
-    <div id="details" class="content context__copy">
+    <?php if ( !empty($logo) ): ?>
+    <div class="content-header">
+      <div class="media media--single js-color-container js-color-target">
+        <img
+          class="js-color-trigger"
+          src="<?php echo $src; ?>"
+          alt="<?php echo $alt; ?>"
+          width="<?php echo $width; ?>"
+          height="<?php echo $height; ?>"
+        />
+      </div>
+    </div>
+    <?php endif; ?>
 
-      <?php if ( !empty($logo) && $url_website != '' ) : ?>
-        <a class="logo__link alignleft" href="http://<?php echo $url_website ?>" target="_blank">
-          <img src="<?php echo $logo_src ?>" alt="<?php echo $logo_alt; ?>">
-        </a>
-      <?php endif; ?>
+    <div id="details" class="content context__copy">
 
       <?php the_content(); ?>
 
@@ -194,9 +204,12 @@
             <ul>
             <?php foreach ( $opening_hours as $day => $time ) : ?>
               <?php if ( empty( $time ) ) : continue; endif; ?>
+              <?php if ( strtolower( $time ) == "closed" ) {
+                $hoursColor = "#D83434";
+              } ?>
               <li>
                 <span class="business__hours__day"><?php echo ucfirst( $day ); ?>: </span>
-                <span class="business__hours__time"><?php echo $time; ?></span>
+                <span class="business__hours__time" style="color:<?php echo $hoursColor; ?>;"><?php echo ucFirst( $time ); ?></span>
               </li>
             <?php endforeach; ?>
             </ul>

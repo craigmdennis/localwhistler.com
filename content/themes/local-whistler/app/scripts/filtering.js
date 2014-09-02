@@ -137,7 +137,7 @@ filter = {};
               return ( this.top = $controls.offset().top - 20 );
             },
             bottom: function () {
-              return ( this.bottom = $('.footer').outerHeight(true) + 47 );
+              return ( this.bottom = $('.footer').height() + 63 );
             }
           }
         });
@@ -529,10 +529,6 @@ filter = {};
       var tags = filter.get_tags( post );
       var bodyStyle = '';
 
-      if ( tags === '') {
-        bodyStyle = 'min-height: 104px';
-      }
-
       // Get todo
       // If post is within the last week add a class of new
 
@@ -540,7 +536,9 @@ filter = {};
 
       return  '<li class="media">' +
                 '<div class="has-logo">' +
-                  filter.get_logo( post ) +
+                  '<div class="media__logo-container">' +
+                    filter.get_logo( post ) +
+                  '</div>' +
                   '<a class="media__link--container" href="' + post.url + '">' +
                     '<div class="media__heading">' +
                       '<h2 class="media__title">' + post.title + '</h2>' +

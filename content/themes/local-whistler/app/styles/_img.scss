@@ -1,37 +1,54 @@
-.bxslider {
+.slider {
   @extend %unstyled;
-}
-
-.bx-wrapper {
-  margin-bottom: -$baseline*6;
-
-  .bx-viewport {
-    left: 0;
-    border: 0;
-    padding: 0;
-    box-shadow: none;
-  }
-
-  .bx-pager {
-    bottom: 60px;
-  }
 
   img {
     width: 100%; // Ensure the image is full width
   }
 
+  .owl-controls .owl-buttons {
+    div {
+      color: #000;
+      background: #FFF;
+      position: absolute;
+      top: 50%;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: $baseline;
+    }
+
+    .owl-next {
+      right: 0;
+      border-radius: $radius-left;
+      margin-right: 0;
+    }
+
+    .owl-prev {
+      left: 0;
+      border-radius: $radius-right;
+      margin-left: 0;
+    }
+  }
+
+  .owl-controls .owl-page span {
+    background: #FFF;
+  }
+
+  .owl-pagination {
+    margin-top: -40px;
+    position: relative;
+    top: -10px;
+  }
+
+  .grabbing {
+      cursor:url(images/grabbing.png) 8 8, move;
+  }
 }
 
 .has-alert {
-  .bx-wrapper {
-    margin-bottom: $baseline;
+  .slider {
 
     @include breakpoint( $bp5 ) {
       margin-bottom: $baseline*2;
-    }
-
-    .bx-pager {
-      bottom: 20px;
     }
   }
 }
