@@ -5,18 +5,38 @@
     width: 100%; // Ensure the image is full width
   }
 
-  .owl-next,
-  .owl-prev {
-    position: absolute;
-    top: 50%;
+  .owl-controls .owl-buttons {
+    div {
+      color: #000;
+      background: #FFF;
+      position: absolute;
+      top: 50%;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: $baseline;
+    }
+
+    .owl-next {
+      right: 0;
+      border-radius: $radius-left;
+      margin-right: 0;
+    }
+
+    .owl-prev {
+      left: 0;
+      border-radius: $radius-right;
+      margin-left: 0;
+    }
   }
 
-  .owl-next {
-    right: 0;
+  .owl-controls .owl-page span {
+    background: #FFF;
   }
 
-  .owl-prev {
-    left: 0;
+  .owl-pagination {
+    margin-top: -40px;
+    position: relative;
+    top: -10px;
   }
 
   .grabbing {
@@ -26,7 +46,6 @@
 
 .has-alert {
   .slider {
-    margin-bottom: $baseline;
 
     @include breakpoint( $bp5 ) {
       margin-bottom: $baseline*2;
