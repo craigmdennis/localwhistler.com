@@ -36,13 +36,13 @@
     $message_title  = get_field('premium_message_title');
 
     $opening_hours = array(
-      'monday'      => get_field('monday'),
-      'tuesday'     => get_field('tuesday'),
-      'wednesday'   => get_field('wednesday'),
-      'thursday'    => get_field('thursday'),
-      'friday'      => get_field('friday'),
-      'saturday'    => get_field('saturday'),
-      'sunday'      => get_field('sunday'),
+      'mon'      => get_field('monday'),
+      'tues'     => get_field('tuesday'),
+      'wed'   => get_field('wednesday'),
+      'thurs'    => get_field('thursday'),
+      'fri'      => get_field('friday'),
+      'sat'    => get_field('saturday'),
+      'sun'      => get_field('sunday'),
     );
 
     $social = array(

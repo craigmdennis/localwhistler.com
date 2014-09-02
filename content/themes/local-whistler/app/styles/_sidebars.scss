@@ -106,13 +106,17 @@
 
 .business__hours__day,
 .business__hours__time {
-  width: 50%;
   display: block;
   float: left;
 }
 
+.business__hours__day {
+  width: 30%;
+}
+
 .business__hours__time {
   text-align: right;
+  width: 70%;
 }
 
 .footer .widget {
