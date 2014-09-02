@@ -67,6 +67,16 @@
 <body <?php body_class( 'device-' . $deviceType . ' view-' . $view ); ?> id="top">
 
   <div class="wrapper">
+
+      <!--[if lt IE 9]>
+        <div class="browsehappy">
+          <div class="container">
+            <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+          </div>
+        </div>
+      <![endif]-->
+
+
     <div class="container">
 
       <nav role="navigation">
