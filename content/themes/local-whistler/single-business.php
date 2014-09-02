@@ -45,6 +45,8 @@
       'sun'      => get_field('sunday'),
     );
 
+    $hoursColor = "";
+
     $social = array(
       'pinterest'    => get_field('pinterest_username'),
       'twitter'      => get_field('twitter_username'),
@@ -202,9 +204,12 @@
             <ul>
             <?php foreach ( $opening_hours as $day => $time ) : ?>
               <?php if ( empty( $time ) ) : continue; endif; ?>
+              <?php if ( strtolower( $time ) == "closed" ) {
+                $hoursColor = "#D83434";
+              } ?>
               <li>
                 <span class="business__hours__day"><?php echo ucfirst( $day ); ?>: </span>
-                <span class="business__hours__time"><?php echo $time; ?></span>
+                <span class="business__hours__time" style="color:<?php echo $hoursColor; ?>;"><?php echo ucFirst( $time ); ?></span>
               </li>
             <?php endforeach; ?>
             </ul>
