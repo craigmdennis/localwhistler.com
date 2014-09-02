@@ -128,9 +128,9 @@
   //   // padding: $baseline*2 $baseline*4 $baseline/2 $baseline*4;
   // }
   //
-  // @include breakpoint ( $bp5 ) {
-  //   // padding: $baseline*2 $baseline*2 $baseline/2  $baseline*2;
-  // }
+  @include breakpoint ( $bp5 ) {
+    padding: $baseline*2 $baseline $baseline/2  $baseline;
+  }
 }
 
 .page-template-full-php .widget {
