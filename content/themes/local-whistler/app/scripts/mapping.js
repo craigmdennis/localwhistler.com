@@ -67,7 +67,7 @@ googleMap = {};
       marker.info_window_content = '<div id="content" class="context__map">'+
         '<h1 class="title--large">' + post.title + '</h1>'+
           '<p>'+ post.excerpt + '</p>' +
-          '<a class="btn btn--default" href="' + post.url + '">More details</a></div>'+
+          '<a class="btn btn--primary" href="' + post.url + '">More details</a></div>'+
         '</div>';
 
       this.markers[post.id] = marker;

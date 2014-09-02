@@ -65,7 +65,7 @@
 
     <?php endif; ?>
 
-    <a class="btn btn--default" href="<?php the_permalink(); ?>">View details</a>
+    <a class="btn btn--primary" href="<?php the_permalink(); ?>">View details</a>
 
     <time datetime="<?php the_time('c') ?>" class="media__date"><?php the_time('F j, Y'); ?></time>
 
