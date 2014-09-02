@@ -44,7 +44,7 @@ filter = {};
           window.googleMap.update_markers( result );
 
           // Send custom analytics events
-          filter.push_analytics();
+          // filter.push_analytics();
 
           // Change the URL and store data
           filter.push_history();
@@ -106,7 +106,9 @@ filter = {};
       }
 
       // Stop the form from being manually submitted
-      $('form').on('submit', filter.override );
+      $('form').on('submit', function(e){
+          e.preventDefault();
+      });
 
       $('#filterOrder').on('change', filter.result_sort );
 
@@ -198,12 +200,6 @@ filter = {};
 
       $media.filter(':' +  visible + ':' + first).addClass( first + '-' + visible );
       $media.filter(':' +  visible + ':' + last).addClass( last + '-' + visible );
-
-    },
-
-    override: function(){
-
-      event.preventDefault();
 
     },
 
@@ -372,17 +368,11 @@ filter = {};
 
     },
 
-    push_analytics: function(){
+    push_analytics: function() {
 
       ga('send', 'event', 'select', 'filter', {
         'nonInteraction': 1 // So it doesn't affect bounce rate
       });
-
-      // Set custom analytics dimensions
-      ga('set', 'dimension1', filter.get_current_state.typeText);
-      ga('set', 'dimension2', filter.get_current_state.locationText);
-      ga('set', 'dimension4', filter.get_current_state.search);
-      ga('set', 'dimension3', filter.get_current_state.orderText);
 
     },
 
@@ -584,15 +574,28 @@ $(document).ready( function(){
 
     // // If the button is for map and the body doesn't have a map class
     if (view === 'view-map') {
+
+      // Tell google maps to resize
       $(window).trigger('resize');
       google.maps.event.trigger(window.googleMap.map, 'resize');
+
+      // Update the filtering for the view
       $('select').trigger('change');
+
+      // Kill the affix plugin
       window.filter.kill_affix( $('#controls') );
+
+      // Update Analitics
+      ga.push('send', 'event', 'button', 'click', 'Map View');
     }
 
-    // Initialise afix if needed
     if (view === 'view-list') {
+
+      // Initialise afix if needed
       window.filter.affix( $('#controls') );
+
+      // Update Analitics
+      ga.push('send', 'event', 'button', 'click', 'List View');
     }
 
   });
