@@ -119,14 +119,14 @@
   color: lighten( $wet-asphalt, 50%);
   font-size: 0.875em;
   padding: $baseline*2 $baseline*2 $baseline/2 $baseline*2;
-
-  @include breakpoint( $bp3 ) {
-    padding: $baseline*2 $baseline*4 $baseline/2 $baseline*4;
-  }
-
-  @include breakpoint ( $bp5 ) {
-    padding: $baseline*2 $baseline*2 $baseline/2  $baseline*2;
-  }
+  //
+  // @include breakpoint( $bp3 ) {
+  //   // padding: $baseline*2 $baseline*4 $baseline/2 $baseline*4;
+  // }
+  //
+  // @include breakpoint ( $bp5 ) {
+  //   // padding: $baseline*2 $baseline*2 $baseline/2  $baseline*2;
+  // }
 }
 
 .page-template-full-php .widget {
