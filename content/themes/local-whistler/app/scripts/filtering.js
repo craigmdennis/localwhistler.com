@@ -41,9 +41,7 @@ filter = {};
         after_filter: function( result ){
 
           // Update the map
-          // if ( $('body').hasClass('view-map') ) {
           window.googleMap.update_markers( result );
-          // }
 
           // Send custom analytics events
           filter.push_analytics();
@@ -125,6 +123,10 @@ filter = {};
       console.log( 'controlHeight', controlHeight );
       console.log( 'resultsHeight', resultsHeight );
 
+      if ( $(window).width() < 1100 ) {
+        return false;
+      }
+
       if ( controlHeight < resultsHeight ) {
 
         console.log( 'Control height is larger than Results height.' );
@@ -135,7 +137,7 @@ filter = {};
               return ( this.top = $controls.offset().top - 20 );
             },
             bottom: function () {
-              return ( this.bottom = $('.footer').outerHeight(true) + 41 );
+              return ( this.bottom = $('.footer').outerHeight(true) + 47 );
             }
           }
         });
@@ -584,11 +586,15 @@ $(document).ready( function(){
 
     // // If the button is for map and the body doesn't have a map class
     if (view === 'view-map') {
-      console.log('Trigger reisze');
       $(window).trigger('resize');
       google.maps.event.trigger(window.googleMap.map, 'resize');
       $('select').trigger('change');
       window.filter.kill_affix( $('#controls') );
+    }
+
+    // Initialise afix if needed
+    if (view === 'view-list') {
+      window.filter.affix( $('#controls') );
     }
 
   });
