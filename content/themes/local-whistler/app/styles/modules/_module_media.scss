@@ -102,6 +102,7 @@
 // ===================================================
 
 .media--gallery {
+  background: none;
 
   @include breakpoint( $bp6 ) {
     width: 1200px;
@@ -121,12 +122,14 @@
       position: absolute;
       top: $baseline*4;
       left: $baseline*2;
+      right: $baseline*2;
       padding: 0;
     }
 
     @include breakpoint( $bp6 ) {
       top: $baseline*10;
       left: $baseline*8;
+      right: $baseline*8;
     }
   }
 
@@ -147,6 +150,7 @@
 // ===================================================
 
 .media--featured {
+  background: none;
 
   .media__title {
     padding-top: $outline-width;
@@ -310,6 +314,7 @@
     }
 
     .media__body {
+      min-height: 104px;
       border: 0;
       padding-bottom: $baseline*2;
     }
@@ -325,24 +330,33 @@
       }
     }
 
-    .media__link--logo {
-      margin-right: 0;
+    .media__logo-container {
       border: 1px solid #C2C8D0;
-      border-radius: $radius-top;
-      display: block;
+      position: relative;
       left: -1px;
       top: -1px;
       right: -1px;
       bottom: -1px;
       height: 180px;
       position: absolute;
+      border-radius: $radius-top;
 
       @include breakpoint( $bp3 ) {
-        border-right: 0;
         border-radius: $radius-left;
         right: auto;
         width: 181px;
         height: auto;
+      }
+    }
+
+    .media__link--logo {
+      @include fill;
+      margin-right: 0;
+      display: block;
+      border-radius: $radius-top;
+
+      @include breakpoint( $bp3 ) {
+        border-radius: $radius-left;
       }
     }
 
@@ -411,16 +425,6 @@
     margin-top: $baseline*2;
   }
 
-  .has-logo {
-    .media__heading,
-    .media__body,
-    .media__footer {
-      @include breakpoint( $bp3) {
-        @include border('-left');
-      }
-    }
-  }
-
   .media__link--container {
     margin-top: -2px;
 
@@ -462,10 +466,8 @@
 
   .color-attained .has-logo {
 
-    .media__body,
-    .media__heading,
-    .media__footer {
-      border-left: 0;
+    .media__logo-container {
+      border: 0;
     }
 
     .media__link--logo {

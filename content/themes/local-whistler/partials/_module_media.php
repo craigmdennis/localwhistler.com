@@ -30,46 +30,52 @@
 
   <div class="<?php echo $container; ?>">
 
-    <a class="media__link--logo media__link--left <?php if ( !empty($logo) ) : ?> js-color-target<?php endif; ?>" href="<?php the_permalink(); ?>">
-      <img
-        class="media__logo <?php if ( !empty($logo) ) : ?> js-color-trigger <?php endif; ?>"
-        src="<?php echo $src; ?>"
-        alt="<?php echo $alt; ?>"
-        style="<?php echo $style; ?>"
-      />
-    </a>
+    <div class="media__logo-container">
+
+      <a class="media__link--logo media__link--left <?php if ( !empty($logo) ) : ?> js-color-target<?php endif; ?>" href="<?php the_permalink(); ?>">
+        <img
+          class="media__logo <?php if ( !empty($logo) ) : ?> js-color-trigger <?php endif; ?>"
+          src="<?php echo $src; ?>"
+          alt="<?php echo $alt; ?>"
+          style="<?php echo $style; ?>"
+        />
+      </a>
+
+    </div>
 
 <?php endif; ?>
 
-  <div class="media__heading">
-    <h2 class="media__title">
-      <?php if ( is_single() ) : ?>
+  <?php if ( !is_single() ) : ?>
+  <a class="media__link--container" href="<?php the_permalink(); ?>">
+  <?php endif; ?>
+
+    <div class="media__heading">
+      <h2 class="media__title">
         <?php the_title(); ?>
-      <?php else : ?>
-        <a class="media__link--title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-      <?php endif; ?>
-    </h2>
-  </div>
+      </h2>
+    </div>
 
-  <div class="media__body">
-    <p><?php the_excerpt(); ?></p>
-  </div>
+    <div class="media__body">
+      <p><?php the_excerpt(); ?></p>
+    </div>
 
-  <div class="media__footer">
+  <?php if ( !is_single() ) : ?>
+  </a>
+  <?php endif; ?>
 
-    <?php if (get_post_type() == 'business') : ?>
+  <?php if (get_post_type() == 'business') : ?>
+
+    <div class="media__footer">
 
       <ul class="tags">
         <?php the_terms($post->ID, 'business_filter', '<li class="tag__item">','</li><li class="tag__item">','</li>'); ?>
       </ul>
 
-    <?php endif; ?>
+      <time datetime="<?php the_time('c') ?>" class="media__date"><?php the_time('F j, Y'); ?></time>
 
-    <a class="btn btn--primary" href="<?php the_permalink(); ?>">View details</a>
+    </div>
 
-    <time datetime="<?php the_time('c') ?>" class="media__date"><?php the_time('F j, Y'); ?></time>
-
-  </div>
+  <?php endif; ?>
 
 <?php if ( !empty($logo) ) : ?>
 </div>
