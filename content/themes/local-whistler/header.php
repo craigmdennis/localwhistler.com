@@ -1,5 +1,23 @@
+<?php
+
+  // Read the cookie
+  $cookieView = $_COOKIE['view'];
+
+  // If the cookie exists
+  if ( $cookieView != '' ) {
+    $view = $cookieView;
+  }
+
+  // If the cookie doesn't exist
+  else {
+    $view = get_view_type();
+    setcookie('view',$view,time() + (86400 * 7)); // Set for 7 days
+  };
+
+?>
+
 <!DOCTYPE html>
-<html l<?php language_attributes(); ?>>
+<html <?php language_attributes(); ?>>
 <head>
   <title>
     <?php
@@ -45,24 +63,6 @@
 </head>
 
 <?php global $deviceType; ?>
-
-<?php
-
-  // Read the cookie
-  $cookieView = $_COOKIE['view'];
-
-  // If the cookie exists
-  if ( $cookieView != '' ) {
-    $view = $cookieView;
-  }
-
-  // If the cookie doesn't exist
-  else {
-    $view = get_view_type();
-    setcookie('view',$view,time() + (86400 * 7)); // Set for 7 days
-  };
-
-?>
 
 <body <?php body_class( 'device-' . $deviceType . ' view-' . $view ); ?> id="top">
 
