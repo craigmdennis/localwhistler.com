@@ -73,7 +73,7 @@
 
             <?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
 
-              <li class="media hide-with-js">
+              <li class="media hide-with-mustard">
 
                 <?php get_template_part('partials/_module_media'); ?>
 
@@ -83,7 +83,7 @@
 
           </ol>
 
-          <div class="hide-with-js">
+          <div class="hide-with-mustard">
             <?php get_template_part('partials/_pagination'); ?>
           </div>
 
