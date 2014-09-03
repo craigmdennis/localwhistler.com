@@ -32,8 +32,6 @@ $(document).ready( function(){
         var clip = '';
         var border = '';
 
-        console.log(rgba);
-
         if ( (pixelData[0] > 250 && pixelData[1] > 250 && pixelData[2] > 250) || (rgba === 'rgba(0,0,0,0)' || rgba === 'rgba(255,255,255,255)') ) {
           rgba = '#FFF';
           clip = 'padding-box';
