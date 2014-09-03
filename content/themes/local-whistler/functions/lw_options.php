@@ -20,47 +20,47 @@ function theme_options_add_page() {
 /**
  * Create arrays for our select and radio options
  */
-$select_options = array(
-  '0' => array(
-    'value' =>	'0',
-    'label' => __( 'Zero', 'localwhistler' )
-  ),
-  '1' => array(
-    'value' =>	'1',
-    'label' => __( 'One', 'localwhistler' )
-  ),
-  '2' => array(
-    'value' => '2',
-    'label' => __( 'Two', 'localwhistler' )
-  ),
-  '3' => array(
-    'value' => '3',
-    'label' => __( 'Three', 'localwhistler' )
-  ),
-  '4' => array(
-    'value' => '4',
-    'label' => __( 'Four', 'localwhistler' )
-  ),
-  '5' => array(
-    'value' => '3',
-    'label' => __( 'Five', 'localwhistler' )
-  )
-);
-
-$radio_options = array(
-  'yes' => array(
-    'value' => 'yes',
-    'label' => __( 'Yes', 'localwhistler' )
-  ),
-  'no' => array(
-    'value' => 'no',
-    'label' => __( 'No', 'localwhistler' )
-  ),
-  'maybe' => array(
-    'value' => 'maybe',
-    'label' => __( 'Maybe', 'localwhistler' )
-  )
-);
+// $select_options = array(
+//   '0' => array(
+//     'value' =>	'0',
+//     'label' => __( 'Zero', 'localwhistler' )
+//   ),
+//   '1' => array(
+//     'value' =>	'1',
+//     'label' => __( 'One', 'localwhistler' )
+//   ),
+//   '2' => array(
+//     'value' => '2',
+//     'label' => __( 'Two', 'localwhistler' )
+//   ),
+//   '3' => array(
+//     'value' => '3',
+//     'label' => __( 'Three', 'localwhistler' )
+//   ),
+//   '4' => array(
+//     'value' => '4',
+//     'label' => __( 'Four', 'localwhistler' )
+//   ),
+//   '5' => array(
+//     'value' => '3',
+//     'label' => __( 'Five', 'localwhistler' )
+//   )
+// );
+//
+// $radio_options = array(
+//   'yes' => array(
+//     'value' => 'yes',
+//     'label' => __( 'Yes', 'localwhistler' )
+//   ),
+//   'no' => array(
+//     'value' => 'no',
+//     'label' => __( 'No', 'localwhistler' )
+//   ),
+//   'maybe' => array(
+//     'value' => 'maybe',
+//     'label' => __( 'Maybe', 'localwhistler' )
+//   )
+// );
 
 /**
  * Create the options page
@@ -110,6 +110,16 @@ function theme_options_do_page() {
           </th>
           <td>
             <input id="lw_options[analytics]" class="regular-text" type="text" name="lw_options[analytics]" value="<?php esc_attr_e( $options['analytics'] ); ?>" />
+          </td>
+        </tr>
+        <tr valign="top">
+          <th scope="row">
+            <label class="description" for="lw_options[webmaster]">
+              <?php _e( 'Google Webmaster Code', 'localwhistler' ); ?>
+            </label>
+          </th>
+          <td>
+            <input id="lw_options[webmaster]" class="regular-text" type="text" name="lw_options[webmaster]" value="<?php esc_attr_e( $options['webmaster'] ); ?>" />
           </td>
         </tr>
 
