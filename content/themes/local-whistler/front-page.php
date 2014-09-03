@@ -40,8 +40,6 @@
   <div class="content" role="main">
     <div class="row">
 
-      <!-- WIP Predefined searches -->
-
       <?php if (!empty($cards)) : ?>
         <?php for ($i = 0, $size = count($cards); $i < $size; $i++) : ?>
 
@@ -53,26 +51,22 @@
           ?>
 
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <div
-              class="media media--card pseudo-link"
-              data-url="<?php echo $search; ?>"
+            <a
+              class="media media--card"
+              href="<?php echo $search; ?>"
             >
               <div class="media__image">
-                <a class="media__link" href="<?php echo $search; ?>">
-                  <img
-                    src="<?php echo $image['sizes']['media--card']; ?>"
-                    alt="<?php echo $image['alt']; ?>"
-                  />
-                </a>
+                <img
+                  src="<?php echo $image['sizes']['media--card']; ?>"
+                  alt="<?php echo $image['alt']; ?>"
+                />
               </div>
               <div class="media__heading">
                 <h2 class="media__title title--overlay">
-                  <a href="<?php echo $search; ?>">
-                    <span><?php echo $title; ?></span>
-                  </a>
+                    <span><span><?php echo $title; ?></span></span>
                 </h2>
               </div>
-            </div>
+            </a>
           </div>
 
         <?php endfor; ?>
@@ -112,23 +106,19 @@
             ?>
 
             <div class="col-xs-12 col-sm-6 col-md-4 <?php echo $last; ?>">
-              <div class="media media--card pseudo-link" data-url="<?php the_permalink(); ?>">
-                <div class="media__image media__image--top">
-                  <a class="media__link" href="<?php the_permalink(); ?>">
-                    <?php the_post_thumbnail('media--card'); ?>
-                  </a>
-                </div>
-                <div class="media__heading">
-                  <?php the_category(); ?>
+              <div class="media media--card">
+                <a class="media__image media__image--top" href="<?php the_permalink(); ?>">
+                  <?php the_post_thumbnail('media--card'); ?>
+                </a>
+                <a class="media__heading has-category" href="<?php the_permalink(); ?>">
                   <h2 class="media__title title--overlay">
-                    <a href="<?php the_permalink(); ?>">
-                      <span><?php the_title(); ?></span>
-                    </a>
+                      <span><span><?php the_title(); ?></span></span>
                   </h2>
-                </div>
-                <div class="media__body">
+                </a>
+                <?php the_category(); ?>
+                <a class="media__body" href="<?php the_permalink(); ?>">
                   <p><?php the_excerpt(); ?></p>
-                </div>
+                </a>
               </div>
             </div>
 

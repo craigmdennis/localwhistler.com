@@ -26,6 +26,7 @@
 }
 
 .media__body {
+  display: block; // For anchors
   border-top: 0;
   padding: $baseline*2 $baseline*2 0;
   transition: border-color $timing $easing;
@@ -36,6 +37,7 @@
 }
 
 .media__heading {
+  display: block; // For anchors
   position: relative;
   z-index: 2;
   padding: $baseline*2 $baseline*2 0;
@@ -57,6 +59,7 @@
 }
 
 .media__image {
+  display: block; // For anchors
   img {
     width: 100%;
   }
@@ -225,6 +228,7 @@
   }
 
   .media__image {
+    display: block;
     border-radius: $radius-base;
     position: relative;
     overflow: hidden;
@@ -239,7 +243,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding-top: $baseline*2;
+
+    &.has-category {
+      top: $baseline*4;
+    }
   }
 
   .media__body {
@@ -254,7 +261,10 @@
   }
 
   .post-categories {
-    padding: 0 0 $baseline/2;
+    position: absolute;
+    top: $baseline*2;
+    left: $baseline*2;
+    z-index: 2;
   }
 
   .media__title,
@@ -331,7 +341,6 @@
     }
 
     .media__logo-container {
-      border: 1px solid #C2C8D0;
       position: relative;
       left: -1px;
       top: -1px;
@@ -426,6 +435,7 @@
   }
 
   .media__link--container {
+    display: block;
     margin-top: -2px;
 
     @include breakpoint( $bp3 ) {
@@ -434,14 +444,12 @@
 
     &:hover,
     &:focus {
+      border-radius: 0 $radius-base 0 0;
       background-color: #F8F8F8;
     }
   }
 
-  .media__link--container,
-  .media__image a {
-    @include clearfix;
-    display: block;
+  .media {
 
     &:hover,
     &:focus {
@@ -460,19 +468,21 @@
 .canvas {
 
   .has-logo .media__link--logo {
-    opacity: 0;
-    transition: opacity $timing $easing;
+    border: 1px solid #C2C8D0;
+    transition: background-color $timing $easing;
+
+    img {
+      opacity: 0;
+      transition: opacity $timing $easing;
+    }
   }
 
   .color-attained .has-logo {
-
-    .media__logo-container {
-      border: 0;
-    }
-
     .media__link--logo {
-      @include border;
-      opacity: 1;
+      @include border;  
+      img {
+        opacity: 1;
+      }
     }
   }
 }

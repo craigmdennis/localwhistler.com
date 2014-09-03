@@ -36,16 +36,16 @@
     $message_title  = get_field('premium_message_title');
 
     $opening_hours = array(
-      'mon'      => get_field('monday'),
-      'tues'     => get_field('tuesday'),
-      'wed'   => get_field('wednesday'),
-      'thurs'    => get_field('thursday'),
-      'fri'      => get_field('friday'),
-      'sat'    => get_field('saturday'),
-      'sun'      => get_field('sunday'),
+      'monday'      => get_field('monday'),
+      'tuesday'     => get_field('tuesday'),
+      'wednesday'   => get_field('wednesday'),
+      'thursday'    => get_field('thursday'),
+      'friday'      => get_field('friday'),
+      'saturday'    => get_field('saturday'),
+      'sunday'      => get_field('sunday'),
     );
 
-    $hoursColor = "";
+    $hoursColor = "inherit";
 
     $social = array(
       'pinterest'    => get_field('pinterest_username'),
@@ -208,7 +208,7 @@
                 $hoursColor = "#D83434";
               } ?>
               <li>
-                <span class="business__hours__day"><?php echo ucfirst( $day ); ?>: </span>
+                <span class="business__hours__day"><?php echo ucfirst( $day ); ?></span>
                 <span class="business__hours__time" style="color:<?php echo $hoursColor; ?>;"><?php echo ucFirst( $time ); ?></span>
               </li>
             <?php endforeach; ?>

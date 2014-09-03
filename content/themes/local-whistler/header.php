@@ -1,11 +1,8 @@
 <?php
 
   // Read the cookie
-  $cookieView = $_COOKIE['view'];
-
-  // If the cookie exists
-  if ( $cookieView != '' ) {
-    $view = $cookieView;
+  if (isset($_COOKIE['view'])) {
+    $view = $_COOKIE['view'];
   }
 
   // If the cookie doesn't exist
@@ -13,6 +10,8 @@
     $view = get_view_type();
     setcookie('view',$view,time() + (86400 * 7)); // Set for 7 days
   };
+
+  $options = get_option('lw_options');
 
 ?>
 
@@ -40,6 +39,55 @@
   ?>" />
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <meta name="viewport" content="width=device-width" />
+
+  <meta name="google-site-verification" content="<?php echo $options['webmaster']; ?>" />
+
+  <!-- Apple Icons -->
+  <link
+    rel="apple-touch-icon"
+    href=""/>
+  <link
+    rel="apple-touch-icon"
+    sizes="76x76"
+    href="" />
+  <link
+    rel="apple-touch-icon"
+    sizes="120x120"
+    href="" />
+  <link
+    rel="apple-touch-icon"
+    sizes="152x152"
+    href="" />
+
+  <!-- Windows Icons  -->
+  <meta
+    name="application-name"
+    content="<?php echo bloginfo('name'); ?>"/>
+  <meta
+    name="msapplication-TileColor"
+    content="#FFFFFF"/>
+  <meta
+    name="msapplication-square70x70logo"
+    content=""/>
+  <meta
+    name="msapplication-square150x150logo"
+    content=""/>
+  <meta
+    name="msapplication-square310x310logo"
+    content=""/>
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon-32x32.png"
+    sizes="32x32"/>
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon-16x16.png"
+    sizes="16x16"/>
 
   <!-- The little things -->
     <link rel="profile" href="http://gmpg.org/xfn/11" />

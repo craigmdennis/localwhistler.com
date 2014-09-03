@@ -111,6 +111,7 @@
 }
 
 .business__hours__day {
+  @include ellipsis;
   width: 30%;
 }
 
