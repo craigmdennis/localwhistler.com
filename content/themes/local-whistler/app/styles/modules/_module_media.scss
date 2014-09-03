@@ -341,7 +341,6 @@
     }
 
     .media__logo-container {
-      border: 1px solid #C2C8D0;
       position: relative;
       left: -1px;
       top: -1px;
@@ -445,6 +444,7 @@
 
     &:hover,
     &:focus {
+      border-radius: 0 $radius-base 0 0;
       background-color: #F8F8F8;
     }
   }
@@ -468,19 +468,21 @@
 .canvas {
 
   .has-logo .media__link--logo {
-    opacity: 0;
-    transition: opacity $timing $easing;
+    border: 1px solid #C2C8D0;
+    transition: background-color $timing $easing;
+
+    img {
+      opacity: 0;
+      transition: opacity $timing $easing;
+    }
   }
 
   .color-attained .has-logo {
-
-    .media__logo-container {
-      border: 0;
-    }
-
     .media__link--logo {
-      @include border;
-      opacity: 1;
+      @include border;  
+      img {
+        opacity: 1;
+      }
     }
   }
 }
