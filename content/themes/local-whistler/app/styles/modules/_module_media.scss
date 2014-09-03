@@ -436,6 +436,7 @@
   }
 
   .media__link--container {
+    display: block;
     margin-top: -2px;
 
     @include breakpoint( $bp3 ) {
