@@ -11,6 +11,8 @@
     setcookie('view',$view,time() + (86400 * 7)); // Set for 7 days
   };
 
+  $options = get_option('lw_options');
+
 ?>
 
 <!DOCTYPE html>

@@ -141,8 +141,6 @@
 }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<?php $options = get_option('lw_options'); ?>
-
 <?php if (WP_ENV == 'production') : ?>
   <script>ga('create', '<?php echo $options['analytics']; ?>', 'auto');</script>
 <?php else : ?>
