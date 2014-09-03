@@ -37,7 +37,7 @@
 
         <?php while ( have_posts() ) : the_post(); ?>
 
-          <li class="media pseudo-link" data-url="<?php the_permalink(); ?>">
+          <li class="media">
 
             <?php get_template_part('partials/_module_media'); ?>
 
