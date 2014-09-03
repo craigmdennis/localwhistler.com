@@ -82,7 +82,6 @@
                 $selected = '';
                 $new_order = $orderOption['data-sort-order'];
                 $new_orderBy = $orderOption['data-sort-by'];
-                $new_target = $orderOption['data-sort-target'];
 
                 if ( $new_order == $order && $new_orderBy == $orderBy ) {
                   $selected = 'selected';
