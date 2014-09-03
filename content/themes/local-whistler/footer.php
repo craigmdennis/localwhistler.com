@@ -141,10 +141,12 @@
 }(document, 'script', 'facebook-jssdk'));
 </script>
 
+<?php $options = get_option('lw_options'); ?>
+
 <?php if (WP_ENV == 'production') : ?>
-  <script>ga('create', 'UA-52905442-1', 'auto');</script>
+  <script>ga('create', '<?php echo $options['analytics']; ?>', 'auto');</script>
 <?php else : ?>
-  <script>ga('create', 'UA-52905442-1', { 'cookieDomain': 'none' });</script>
+  <script>ga('create', '<?php echo $options['analytics']; ?>', { 'cookieDomain': 'none' });</script>
 <?php endif; ?>
 
 <script>ga('send', 'pageview');</script>
