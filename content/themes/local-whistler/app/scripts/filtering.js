@@ -10,7 +10,7 @@ filter = {};
 
     filterCount: 0,
 
-    include: 'title,date,url,excerpt,taxonomy_business_filter',
+    include: '&include=title,date,url,excerpt,taxonomy_business_filter',
 
     apiLocation: '/api/get_posts/?post_type=business&count=-1' + filter.include,
 
@@ -412,6 +412,7 @@ filter = {};
       $.ajax({
         async: false, //thats the trick
         url: api_location,
+        cache: true,
         dataType: 'json',
         success: function( response ){
            data = response;
