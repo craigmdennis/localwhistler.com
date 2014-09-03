@@ -139,7 +139,7 @@ filter = {};
               return ( this.top = $controls.offset().top - 20 );
             },
             bottom: function () {
-              return ( this.bottom = $('.footer').height() + 63 );
+              return ( this.bottom = $('.footer').height() + 46 );
             }
           }
         });
