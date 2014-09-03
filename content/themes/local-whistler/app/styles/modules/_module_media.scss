@@ -295,6 +295,11 @@
     margin-right: $baseline;
     margin-bottom: $baseline;
 
+    &:hover,
+    &:focus {
+      background-color: #F8F8F8;
+    }
+
     @include breakpoint( $bp3 ) {
       &.last-visible {
         margin-bottom: 0;
@@ -306,6 +311,10 @@
       margin-left: auto;
       margin-right: auto;
     }
+  }
+
+  .media__body {
+    padding-bottom: $baseline*2;
   }
 
   .media__date {
@@ -326,7 +335,7 @@
     .media__body {
       min-height: 104px;
       border: 0;
-      padding-bottom: $baseline*2;
+      // padding-bottom: $baseline*2;
     }
 
     .media__heading,
@@ -383,6 +392,7 @@
     overflow: hidden;
 
     .media__link--left {
+      overflow: hidden;
       float: none;
       display: block;
       margin: 0 auto;
@@ -401,11 +411,18 @@
       }
     }
 
+    .media__link--logo {
+      &:hover,
+      &:focus {
+        background-color: #F8F8F8;
+      }
+    }
+
     .media__body {
       overflow: hidden;
       border: 0;
       padding-left: $baseline*2;
-      padding-bottom: $baseline*2;
+      // padding-bottom: $baseline*2;
 
       @include breakpoint( $bp5 ) {
         padding-left: 0;
@@ -436,16 +453,44 @@
 
   .media__link--container {
     display: block;
-    margin-top: -2px;
+    // margin-top: -2px;
 
     @include breakpoint( $bp3 ) {
       margin-top: 0;
     }
 
-    &:hover,
-    &:focus {
-      border-radius: 0 $radius-base 0 0;
-      background-color: #F8F8F8;
+    // &:hover,
+    // &:focus {
+    //   border-radius: 0 $radius-base 0 0;
+    //   background-color: #F8F8F8;
+    // }
+  }
+
+  .has-featured {
+
+    .media__logo-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .media__body {
+      @include breakpoint( $bp5 ) {
+        padding-left: $baseline*2;
+      }
+    }
+
+    .media__link--container {
+      @include breakpoint( $bp5 ) {
+        min-height: 212px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        padding-left: 191px;
+        z-index:1;
+      }
     }
   }
 
@@ -479,7 +524,7 @@
 
   .color-attained .has-logo {
     .media__link--logo {
-      @include border;  
+      @include border;
       img {
         opacity: 1;
       }
