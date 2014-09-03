@@ -586,7 +586,7 @@ $(document).ready( function(){
       window.filter.kill_affix( $('#controls') );
 
       // Update Analitics
-      ga.push('send', 'event', 'button', 'click', 'Map View');
+      ga('send', 'event', 'button', 'click', 'Map View');
     }
 
     if (view === 'view-list') {
@@ -595,7 +595,7 @@ $(document).ready( function(){
       window.filter.affix( $('#controls') );
 
       // Update Analitics
-      ga.push('send', 'event', 'button', 'click', 'List View');
+      ga('send', 'event', 'button', 'click', 'List View');
     }
 
   });
