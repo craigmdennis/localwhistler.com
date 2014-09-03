@@ -45,8 +45,6 @@
       'sunday'      => get_field('sunday'),
     );
 
-    $hoursColor = "inherit";
-
     $social = array(
       'pinterest'    => get_field('pinterest_username'),
       'twitter'      => get_field('twitter_username'),
@@ -206,6 +204,8 @@
               <?php if ( empty( $time ) ) : continue; endif; ?>
               <?php if ( strtolower( $time ) == "closed" ) {
                 $hoursColor = "#D83434";
+              } else {
+                $hoursColor = "inherit";
               } ?>
               <li>
                 <span class="business__hours__day"><?php echo ucfirst( $day ); ?></span>

@@ -6,6 +6,9 @@
   // Include external libraries
   require_once(get_template_directory() . '/functions/vendor/mobile-detect.php');
 
+  // Performance
+  require_once(get_template_directory() . '/functions/lw_perf.php');
+
   // Browser sniffing
   require_once(get_template_directory() . '/functions/lw_devices.php');
 
