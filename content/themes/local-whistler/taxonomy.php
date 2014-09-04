@@ -65,9 +65,9 @@
 
   <div class="col-xs-12 col-lg-9">
 
-      <?php if ( $custom_query->have_posts() ) : ?>
+    <div id="results">
 
-        <div id="results">
+      <?php if ( $custom_query->have_posts() ) : ?>
 
           <ol id="resultsList" class="media--list js-color-container">
 
@@ -87,13 +87,19 @@
             <?php get_template_part('partials/_pagination'); ?>
           </div>
 
-        </div>
-
       <?php else : ?>
 
-        <?php get_template_part('partials/_no-results'); ?>
+        <div class="content context__copy">
+
+          <h2>There are no local businesses that match your search</h2>
+          <p>Please select some different filters</p>
+
+        </div>
+
 
       <?php endif; ?>
+
+    </div>
 
   </div>
 

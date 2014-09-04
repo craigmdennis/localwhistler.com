@@ -57,6 +57,9 @@
       background: $brand-blue;
     }
   }
+  &.chosen-with-dropup .chosen-drop {
+    bottom: 95%;
+  }
 }
 
 .chosen-container-active {

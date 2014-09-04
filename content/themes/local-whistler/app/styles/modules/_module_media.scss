@@ -79,6 +79,7 @@
 }
 
 .media__footer {
+  background: #FFF;
   @include clearfix;
 }
 
@@ -369,6 +370,7 @@
 
     .media__link--logo {
       @include fill;
+      background: #FFF;
       margin-right: 0;
       display: block;
       border-radius: $radius-top;
@@ -458,12 +460,6 @@
     @include breakpoint( $bp3 ) {
       margin-top: 0;
     }
-
-    // &:hover,
-    // &:focus {
-    //   border-radius: 0 $radius-base 0 0;
-    //   background-color: #F8F8F8;
-    // }
   }
 
   .has-featured {

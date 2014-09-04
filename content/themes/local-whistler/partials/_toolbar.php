@@ -33,7 +33,7 @@
 <div class="toolbar">
   <div class="row">
 
-    <div class="col-xs-12 col-sm-auto col-lg-12 col-toolbar">
+    <div class="col-xs-12 col-sm-auto col-lg-12 col-toolbar show-with-mustard">
       <div class="toolbar__action">
         <div class="btn-group btn-group--switch">
 

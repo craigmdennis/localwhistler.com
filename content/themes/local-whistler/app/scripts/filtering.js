@@ -43,12 +43,6 @@ filter = {};
           // Update the map
           window.googleMap.update_markers( result );
 
-          // Send custom analytics events
-          // filter.push_analytics();
-
-          // Change the URL and store data
-          filter.push_history();
-
           // Show the current count
           filter.result_count( result );
 
@@ -67,6 +61,27 @@ filter = {};
           // Increment the count
           filter.filterCount++;
 
+          // Show info if no results
+          if ( !result.length ) {
+
+            if ( !$('#noResults').length ) {
+              $('#resultsList').append('<div id="noResults" class="content context__copy">' +
+
+                '<h2>There are no local businesses that match your search</h2>' +
+                '<p>Please select some different filters</p>' +
+
+              '</div>');
+            }
+            else {
+              $('#noResults').show();
+            }
+
+          }
+          else {
+            if ( $('#noResults').length ) {
+              $('#noResults').hide();
+            }
+          }
         }
       }
     },
@@ -91,6 +106,9 @@ filter = {};
       // Store filter object
       filter.fJS = filter.filter_init( data );
 
+      // Upda the history on first page load
+      filter.push_history();
+
     },
 
     filter_init: function( data ){
@@ -102,7 +120,7 @@ filter = {};
     bind: function(){
 
       if (Modernizr.history) {
-        window.onpopstate = filter.set_current_state;
+        window.onpopstate = filter.update_from_history;
       }
 
       // Stop the form from being manually submitted
@@ -110,6 +128,10 @@ filter = {};
           e.preventDefault();
       });
 
+      // Change the URL and store data when a change event detected
+      $(document).on('change', '#filterForm', filter.push_history);
+
+      // Sort the results when select box changed
       $('#filterOrder').on('change', filter.result_sort );
 
       // $('.sub-menu').on('click.submenu', 'a', filter.override );
@@ -122,8 +144,8 @@ filter = {};
       var resultsHeight = $('#results').height();
       var $controls = $('#controls');
 
-      console.log( 'controlHeight', controlHeight );
-      console.log( 'resultsHeight', resultsHeight );
+      // console.log( 'controlHeight', controlHeight );
+      // console.log( 'resultsHeight', resultsHeight );
 
       if ( $(window).width() < 1100 ) {
         return false;
@@ -131,7 +153,7 @@ filter = {};
 
       if ( controlHeight < resultsHeight ) {
 
-        console.log( 'Control height is larger than Results height.' );
+        // console.log( 'Control height is larger than Results height.' );
 
         $controls.affix({
           offset: {
@@ -158,7 +180,7 @@ filter = {};
       // Check if data exists on th element
       if ( typeof el.data('bs.affix') !== 'undefined') {
 
-        console.log( 'Kill affixed plugin');
+        // console.log( 'Kill affixed plugin');
 
         $(window).off('.affix');
         el
@@ -174,7 +196,7 @@ filter = {};
       if ( !$('#resultsList ').length ) {
 
         $('#results').html(
-          '<ol id="resultsList" class="media__list"></ol>'
+          '<ol id="resultsList" class="media--list js-color-container"></ol>'
         );
 
       }
@@ -193,7 +215,7 @@ filter = {};
           visible = 'visible',
           $media = $('.media');
 
-      console.log( $media.filter(':' + visible + ':' + first) );
+      // console.log( $media.filter(':' + visible + ':' + first) );
 
       $('.' + first + '-' + visible).removeClass( first + '-' + visible );
       $('.' + last + '-' + visible).removeClass( last + '-' + visible );
@@ -261,16 +283,17 @@ filter = {};
 
     },
 
-    set_current_state: function(){
-
+    // On Popstate
+    update_from_history: function(){
       // Replace the current text to match the history state
-      if ( history.state.search ) {
-        $('#filterSearch').attr('value', history.state.search );
+      if ( history.state ) {
+        $('#filterSearch').val( history.state.search );
+      }
+      else {
+        $('#filterSearch').val('');
       }
 
-      // Trigger tinysort
-      filter.result_sort();
-
+      // Update Filters to match state options
       // Get all the select boxes
       var $selects = $('#filterForm').find('select');
 
@@ -283,6 +306,7 @@ filter = {};
         // Get all the options in the selects
         var $options = $(this).find('option');
 
+        // For each option in the select
         $options.each( function(){
 
           // Get the value
@@ -292,18 +316,22 @@ filter = {};
           if ( (value === history.state.location) || (value === history.state.type) || (value === history.state.order ) ) {
 
             // Set this as the selected option
-            $(this).attr('selected', 'selected');
+            $(this).prop('selected', true);
 
             // Tell chosen to update
             $(this).trigger('chosen:updated');
 
-            // // Tell the filter that something has changed
-            // $(this).trigger('change');
           }
 
         });
 
       });
+
+      // Tell the filter that something has changed
+      filter.fJS.filter();
+
+      // Trigger tinysort
+      filter.result_sort();
 
     },
 
@@ -383,9 +411,9 @@ filter = {};
       var sortOrder = $this.attr('data-sort-order').toLowerCase();
       var sortBy = $this.attr('data-sort-by');
 
-      console.log( 'Sort Target', sortTarget );
-      console.log( 'Sort Order', sortOrder );
-      console.log( 'Sort By', sortBy );
+      // console.log( 'Sort Target', sortTarget );
+      // console.log( 'Sort Order', sortOrder );
+      // console.log( 'Sort By', sortBy );
 
       $('ol .media').tsort( sortTarget, { order: sortOrder } );
 
@@ -472,7 +500,7 @@ filter = {};
 
       var url = filter.generate_url();
 
-      console.log( url + '&view=gallery' );
+      // console.log( url + '&view=gallery' );
 
       // Update the view change buttons
       $('#view-gallery').attr('href', url + '&view=gallery');
