@@ -361,21 +361,22 @@ filter = {};
 
       var currentLocationText = filter.get_current_state().locationText,
           currentTypeText = filter.get_current_state().typeText,
+          currentSearchText = filter.get_current_state().search,
           title;
 
-      if ( filter.is_location() ) {
+      if ( currentLocationText !== 'Any' ) {
         title = currentLocationText;
       }
 
-      else if ( filter.is_type() ) {
+      else if ( currentTypeText !== 'Any' ) {
         title = currentTypeText;
       }
 
-      else if ( filter.is_search() ) {
-        title = currentTypeText;
+      else if ( currentSearchText !== '' ) {
+        title = currentSearchText;
       }
 
-      else if ( currentTypeText == 'Any' && currentLocationText == 'Any') {
+      else if ( currentTypeText === 'Any' && currentLocationText === 'Any') {
         title = 'All Businesses';
       }
 
@@ -390,7 +391,7 @@ filter = {};
     },
 
     push_history: function(){
-      console.log( history.state );
+      document.title = filter.generate_title();
 
       if ( Modernizr.history) {
         if ( ($('#filterSearch').is(':focus')) || ( filter.filterCount === 0 ) ) {
