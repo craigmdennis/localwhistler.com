@@ -9,7 +9,7 @@
   z-index: 2;
 
   @include breakpoint( $bp5 ) {
-    margin-bottom: $baseline*2;
+    margin-bottom: 0;
   }
 
   @include breakpoint( $bp5 ) {

@@ -163,8 +163,9 @@ filter = {};
             top: function () {
               return ( this.top = $controls.offset().top - 20 );
             },
+
             bottom: function () {
-              return ( this.bottom = $('.footer').height() + 46 );
+              return ( this.bottom = $('.footer').outerHeight(true) + 41 );
             }
           }
         });
@@ -336,6 +337,9 @@ filter = {};
       // Trigger tinysort
       filter.result_sort();
 
+      // Make sure the filters are back where they should be
+      $(window).trigger('scroll');
+
     },
 
     generate_url: function(){
@@ -361,21 +365,22 @@ filter = {};
 
       var currentLocationText = filter.get_current_state().locationText,
           currentTypeText = filter.get_current_state().typeText,
+          currentSearchText = filter.get_current_state().search,
           title;
 
-      if ( filter.is_location() ) {
+      if ( currentLocationText !== 'Any' ) {
         title = currentLocationText;
       }
 
-      else if ( filter.is_type() ) {
+      else if ( currentTypeText !== 'Any' ) {
         title = currentTypeText;
       }
 
-      else if ( filter.is_search() ) {
-        title = currentTypeText;
+      else if ( currentSearchText !== '' ) {
+        title = currentSearchText;
       }
 
-      else if ( currentTypeText == 'Any' && currentLocationText == 'Any') {
+      else if ( currentTypeText === 'Any' && currentLocationText === 'Any') {
         title = 'All Businesses';
       }
 
@@ -390,7 +395,7 @@ filter = {};
     },
 
     push_history: function(){
-      console.log( history.state );
+      document.title = filter.generate_title();
 
       if ( Modernizr.history) {
         if ( ($('#filterSearch').is(':focus')) || ( filter.filterCount === 0 ) ) {
@@ -406,8 +411,8 @@ filter = {};
 
     push_analytics: function() {
 
-      console.log('URL for analytics', filter.generate_url() );
-      console.log('Title for analytics', filter.generate_title() );
+      // console.log('URL for analytics', filter.generate_url() );
+      // console.log('Title for analytics', filter.generate_title() );
 
       ga('send', {
         'hitType': 'pageview',
@@ -603,6 +608,22 @@ $(document).ready( function(){
   if ( $('#results').length ) {
     window.filter.init();
   }
+
+
+  // When clicking on a tag
+  $(document).on('click', '.tag__link', function(e){
+    e.preventDefault();
+
+    // Change the search value without loading a new page
+    $('#filterSearch').val( $(this).text() );
+
+    // Trigger filtering
+    filter.fJS.filter();
+
+    // Create new history state
+    filter.push_history();
+
+  });
 
   $(document).on('click', '.btn--control', function(e){
     e.preventDefault();
