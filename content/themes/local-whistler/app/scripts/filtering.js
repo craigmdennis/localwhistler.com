@@ -65,12 +65,12 @@ filter = {};
           if ( !result.length ) {
 
             if ( !$('#noResults').length ) {
-              $('#resultsList').append('<div id="noResults" class="content context__copy">' +
+              $('<div id="noResults" class="content context__copy">' +
 
                 '<h2>There are no local businesses that match your search</h2>' +
                 '<p>Please select some different filters</p>' +
 
-              '</div>');
+              '</div>').insertAfter('#resultsList');
             }
             else {
               $('#noResults').show();
