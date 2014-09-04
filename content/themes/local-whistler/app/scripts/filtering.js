@@ -61,9 +61,6 @@ filter = {};
           // Check whether we need to affix
           filter.affix();
 
-          // Increment the count
-          filter.filterCount++;
-
           // Show info if no results
           if ( !result.length ) {
 
@@ -111,6 +108,9 @@ filter = {};
 
       // Upda the history on first page load
       filter.push_history();
+
+      // Increment the count
+      filter.filterCount++;
 
     },
 
