@@ -336,6 +336,9 @@ filter = {};
       // Trigger tinysort
       filter.result_sort();
 
+      // Make sure the filters are back where they should be
+      $(window).trigger('scroll');
+
     },
 
     generate_url: function(){
@@ -407,8 +410,8 @@ filter = {};
 
     push_analytics: function() {
 
-      console.log('URL for analytics', filter.generate_url() );
-      console.log('Title for analytics', filter.generate_title() );
+      // console.log('URL for analytics', filter.generate_url() );
+      // console.log('Title for analytics', filter.generate_title() );
 
       ga('send', {
         'hitType': 'pageview',
@@ -604,6 +607,22 @@ $(document).ready( function(){
   if ( $('#results').length ) {
     window.filter.init();
   }
+
+
+  // When clicking on a tag
+  $(document).on('click', '.tag__link', function(e){
+    e.preventDefault();
+
+    // Change the search value without loading a new page
+    $('#filterSearch').val( $(this).text() );
+
+    // Trigger filtering
+    filter.fJS.filter();
+
+    // Create new history state
+    filter.push_history();
+
+  });
 
   $(document).on('click', '.btn--control', function(e){
     e.preventDefault();
