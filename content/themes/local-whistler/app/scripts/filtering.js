@@ -61,6 +61,27 @@ filter = {};
           // Increment the count
           filter.filterCount++;
 
+          // Show info if no results
+          if ( !result.length ) {
+
+            if ( !$('#noResults').length ) {
+              $('#resultsList').append('<div id="noResults" class="content context__copy">' +
+
+                '<h2>There are no local businesses that match your search</h2>' +
+                '<p>Please select some different filters</p>' +
+
+              '</div>');
+            }
+            else {
+              $('#noResults').show();
+            }
+
+          }
+          else {
+            if ( $('#noResults').length ) {
+              $('#noResults').hide();
+            }
+          }
         }
       }
     },
@@ -81,12 +102,12 @@ filter = {};
       // Create the empty results markup
       filter.create_results();
 
-      // Upda the history on first page load
-      filter.push_history();
-
       // Pass the data and initialiase the filtering
       // Store filter object
       filter.fJS = filter.filter_init( data );
+
+      // Upda the history on first page load
+      filter.push_history();
 
     },
 
@@ -175,7 +196,7 @@ filter = {};
       if ( !$('#resultsList ').length ) {
 
         $('#results').html(
-          '<ol id="resultsList" class="media__list"></ol>'
+          '<ol id="resultsList" class="media--list js-color-container"></ol>'
         );
 
       }
