@@ -5,8 +5,12 @@
 .menu {
   @include shadow;
   position: relative;
-  z-index: 4;
+  z-index: 2;
   border-bottom: 0;
+
+  &:hover {
+    z-index: 4;
+  }
 
   @include breakpoint( $bp5 ) {
     margin-bottom: $baseline*2;
