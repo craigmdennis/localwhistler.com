@@ -10,9 +10,9 @@ filter = {};
 
     filterCount: 0,
 
-    include: '&include=title,date,url,excerpt,taxonomy_business_filter',
-
-    apiLocation: '/api/get_posts/?post_type=business&count=-1' + filter.include,
+    apiLocation:  '/api/get_posts/?post_type=business&count=-1' +
+                  '&include=title,date,url,excerpt,taxonomy_business_filter,' +
+                  'taxonomy_business_location,taxonomy_business_type,custom_fields',
 
     settings: {
       filter_on_init: true,
