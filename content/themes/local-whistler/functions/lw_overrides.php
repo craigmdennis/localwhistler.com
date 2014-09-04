@@ -18,6 +18,7 @@
   add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
   add_filter( 'embed_oembed_html', 'responsive_video_embed', 99, 4);
   add_action( 'admin_menu', 'remove_menus' );
+  add_action( 'admin_menu', 'rename_posts_menu' );
 
   remove_filter('the_excerpt', 'wpautop');
 
@@ -174,6 +175,13 @@
 
 
 
+  // Rename post menu item --------------------------------------------------- //
+  function rename_posts_menu() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = 'News';
+    $submenu['edit.php'][5][0] = 'News Items';
+    $submenu['edit.php'][10][0] = 'Add News Item';
   }
 
 
