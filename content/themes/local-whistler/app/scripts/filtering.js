@@ -316,7 +316,7 @@ filter = {};
           if ( (value === history.state.location) || (value === history.state.type) || (value === history.state.order ) ) {
 
             // Set this as the selected option
-            $(this).attr('selected', 'selected');
+            $(this).prop('selected', true);
 
             // Tell chosen to update
             $(this).trigger('chosen:updated');
