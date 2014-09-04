@@ -52,6 +52,9 @@ filter = {};
           // Update the view links to reflect new filters
           filter.update_links();
 
+          // Push custom analytics
+          filter.push_analytics();
+
           // Add styling hooks
           filter.update_styles();
 
@@ -372,8 +375,12 @@ filter = {};
         title = currentTypeText;
       }
 
+      else if ( currentTypeText == 'Any' && currentLocationText == 'Any') {
+        title = 'All Businesses';
+      }
+
       else {
-        title = 'Filtering:' + currentTypeText + ' in ' + currentLocationText;
+        title = 'Filtering: ' + currentTypeText + ' in ' + currentLocationText;
       }
 
       title += ' | Local Whistler';
@@ -399,8 +406,14 @@ filter = {};
 
     push_analytics: function() {
 
-      ga('send', 'event', 'select', 'filter', {
-        'nonInteraction': 1 // So it doesn't affect bounce rate
+      console.log('URL for analytics', filter.generate_url() );
+      console.log('Title for analytics', filter.generate_title() );
+
+      ga('send', {
+        'hitType': 'pageview',
+        'page': filter.generate_url(),
+        'title': filter.generate_title()
+        // 'nonInteraction': 1
       });
 
     },
