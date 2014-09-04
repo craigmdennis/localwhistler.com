@@ -16,7 +16,7 @@
   add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
   add_filter( 'excerpt_more', 'new_excerpt_more' );
   add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
-  add_filter('embed_oembed_html', 'responsive_video_embed', 99, 4);
+  add_filter( 'embed_oembed_html', 'responsive_video_embed', 99, 4);
   add_action( 'admin_menu', 'remove_menus' );
 
   remove_filter('the_excerpt', 'wpautop');
@@ -150,12 +150,29 @@
 
   // Remove menu items ------------------------------------------------------- //
   function remove_menus() {
+    global $menu;
     global $submenu;
-    unset($submenu['index.php'][10]); // Removes 'Updates'.
-    unset($submenu['themes.php'][5]); // Removes 'Themes'.
-    unset($submenu['customize.php'][1]); // Removes 'Themes'.
-    unset($submenu['options-general.php'][30]); // Removes 'Customize'.
-  	unset($submenu['options-general.php'][40]); // Removes 'Customize'.
+
+    // echo '<pre>';
+    // print_r($menu);
+    // print_r($submenu);
+    // echo '</pre>';
+
+    // If you're not the site creator
+    // Hide some menus
+    if ( wp_get_current_user()->ID != 1 ) {
+      unset($menu[25]); // Removes 'Comments'.
+      unset($menu[65]); // Removes 'Plugins'.
+      unset($submenu['index.php'][10]); // Removes 'Updates'.
+      unset($submenu['themes.php'][5]); // Removes 'Themes'.
+      unset($submenu['themes.php'][6]); // Removes 'Customize'.
+      unset($submenu['themes.php'][11]); // Removes 'Editor'.
+      unset($submenu['options-general.php'][41]); // Removes 'Geocoder'.
+      unset($submenu['options-general.php'][42]); // Removes 'Super Cache'.
+    }
+  }
+
+
 
   }
 
