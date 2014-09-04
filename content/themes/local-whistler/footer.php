@@ -74,19 +74,17 @@
     );
 
     // Turn off pointer events when scrolling
-    (function(){
-      var body = document.body,
-          timer;
+    var body = document.body,
+        timer;
 
-      window.addEventListener('scroll', function() {
-        clearTimeout(timer);
-        document.body.style.pointerEvents='none';
+    window.addEventListener('scroll', function() {
+      clearTimeout(timer);
+      document.body.style.pointerEvents='none';
 
-        timer = setTimeout(function(){
-          document.body.style.pointerEvents='auto';
-        },100);
-      }, false);
-    });
+      timer = setTimeout(function(){
+        document.body.style.pointerEvents='auto';
+      },100);
+    }, false);
 
     // Only give modern browsers javascript filtering
     document.write(

@@ -15,7 +15,7 @@
         $container = 'has-logo';
         $width     = $image['sizes']['media--thumb-width'];
         $height    = $image['sizes']['media--thumb-height'];
-        $style     = 'margin-top: -' . $height/2 . 'px; margin-left: -' . $width/2 . 'px;';
+        $style     = 'margin-top: -' . $height/4 . 'px; margin-left: -' . $width/4 . 'px;';
       }
       elseif ( !empty($featured) ) {
         $image     = $featured;
@@ -28,7 +28,7 @@
 
     ?>
 
-  
+
   <div class="<?php echo $container; ?>">
 
     <div class="media__logo-container">

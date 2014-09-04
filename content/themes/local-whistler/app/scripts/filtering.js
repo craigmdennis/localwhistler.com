@@ -52,6 +52,9 @@ filter = {};
           // Update the view links to reflect new filters
           filter.update_links();
 
+          // Push custom analytics
+          filter.push_analytics();
+
           // Add styling hooks
           filter.update_styles();
 
@@ -372,8 +375,12 @@ filter = {};
         title = currentTypeText;
       }
 
+      else if ( currentTypeText == 'Any' && currentLocationText == 'Any') {
+        title = 'All Businesses';
+      }
+
       else {
-        title = 'Filtering:' + currentTypeText + ' in ' + currentLocationText;
+        title = 'Filtering: ' + currentTypeText + ' in ' + currentLocationText;
       }
 
       title += ' | Local Whistler';
@@ -399,8 +406,14 @@ filter = {};
 
     push_analytics: function() {
 
-      ga('send', 'event', 'select', 'filter', {
-        'nonInteraction': 1 // So it doesn't affect bounce rate
+      console.log('URL for analytics', filter.generate_url() );
+      console.log('Title for analytics', filter.generate_title() );
+
+      ga('send', {
+        'hitType': 'pageview',
+        'page': filter.generate_url(),
+        'title': filter.generate_title()
+        // 'nonInteraction': 1
       });
 
     },
@@ -450,17 +463,25 @@ filter = {};
     get_logo: function( post ) {
 
       var logo = post.acf.logo;
-      var height = logo.sizes['media--thumb-height'];
-      var width = logo.sizes['media--thumb-width'];
-      var style = 'style="margin-left:-' + width/2 + 'px;' + 'margin-top:-' + height/2 + 'px;"';
+      var height = logo.sizes['media--thumb-retina-height'];
+      var width = logo.sizes['media--thumb-retina-width'];
+      var src = logo.sizes['media--thumb-retina'];
+      var style = 'style="margin-left:-' + width/4 + 'px;' + 'margin-top:-' + height/4 + 'px;"';
+
+      if ( width <= 300 && height <= 300) {
+        height = logo.sizes['media--thumb-height'];
+        width = logo.sizes['media--thumb-width'];
+        src = logo.sizes['media--thumb'];
+        style = 'style="margin-left:-' + width/2 + 'px;' + 'margin-top:-' + height/2 + 'px;"';
+      }
 
       if ( logo !== '' ) {
 
-          // Make sure we get the logo and not any old attachment
-          return  '<a class="media__link--logo media__link--left media__thumb js-color-target" href="' + logo.url + '">' +
-                    '<img class="media__logo js-color-trigger" src="' + logo.sizes['media--thumb'] + '" alt="' + logo.description + ' Logo"' + style  + ' />' +
-                  '</a>';
-        }
+        // Make sure we get the logo and not any old attachment
+        return  '<a class="media__link--logo media__link--left media__thumb js-color-target" href="' + logo.url + '">' +
+                  '<img class="media__logo js-color-trigger" src="' + src + '" alt="' + logo.description + ' Logo"' + style  + ' />' +
+                '</a>';
+      }
     },
 
     get_tags: function( post ) {
