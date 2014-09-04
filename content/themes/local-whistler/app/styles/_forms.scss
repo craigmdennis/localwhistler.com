@@ -97,18 +97,18 @@ input[type="search"] {
   }
 }
 
-.admin-bar {
-  .affix {
-    @include breakpoint( $affix ) {
-      padding-top: $baseline*5 +2px;
-    }
-  }
-  .affix-bottom {
-    @include breakpoint( $affix ) {
-      padding-top: $baseline*5 +2px;
-    }
-  }
-}
+// .admin-bar {
+//   .affix {
+//     @include breakpoint( $affix ) {
+//       padding-top: $baseline*5 +2px;
+//     }
+//   }
+//   .affix-bottom {
+//     @include breakpoint( $affix ) {
+//       padding-top: $baseline*5 +2px;
+//     }
+//   }
+// }
 
 // Custom styles
 .form--filters {

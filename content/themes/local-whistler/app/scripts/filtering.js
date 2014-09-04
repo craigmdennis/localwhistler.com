@@ -163,8 +163,9 @@ filter = {};
             top: function () {
               return ( this.top = $controls.offset().top - 20 );
             },
+
             bottom: function () {
-              return ( this.bottom = $('.footer').height() + 46 );
+              return ( this.bottom = $('.footer').outerHeight(true) + 41 );
             }
           }
         });
