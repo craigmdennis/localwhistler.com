@@ -29,9 +29,6 @@ if ( file_exists( $domain_dir . '/local-config.php') ) {
     /* For developers: WordPress debugging mode. */
     define('WP_DEBUG', true);
 
-    /* Super Cache */
-    define('WP_CACHE', false);
-
 }
 
 else if ( file_exists( $domain_dir . '/staging-config.php') ) {
@@ -44,9 +41,6 @@ else if ( file_exists( $domain_dir . '/staging-config.php') ) {
 
     /* For developers: WordPress debugging mode. */
     define('WP_DEBUG', false);
-
-    /* Super Cache */
-    define('WP_CACHE', true);
 
 }
 
@@ -76,18 +70,12 @@ else {
     /* For developers: WordPress debugging mode. */
     define('WP_DEBUG', false);
 
-    /* Super Cache */
-    define('WP_CACHE', true);
-
 }
 
 define('WP_SITEURL', $domain_name . '/wp');
 define('WP_HOME', $domain_name);
 define('WP_CONTENT_URL', $domain_name . '/content');
 define('WP_CONTENT_DIR', $domain_dir . '/content');
-
-/* Define caching plugin location */
-define('WPCACHEHOME', WP_CONTENT_DIR . '/plugins/wp-super-cache/');
 
 /** Set the database table prefix */
 $table_prefix  = 'wp_';
@@ -100,6 +88,9 @@ define('DB_COLLATE', '');
 
 /** WordPress Localized Language, defaults to English. */
 define('WPLANG', '');
+
+/* W3 Total Cache */
+define('WP_CACHE', true);
 
 /**#@+
  * Authentication Unique Keys and Salts.
