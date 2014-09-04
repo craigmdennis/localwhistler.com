@@ -383,6 +383,7 @@ filter = {};
     },
 
     push_history: function(){
+      console.log( history.state );
 
       if ( Modernizr.history) {
         if ( ($('#filterSearch').is(':focus')) || ( filter.filterCount === 0 ) ) {
@@ -409,11 +410,6 @@ filter = {};
       var $this = $('#filterOrder').find('option:selected');
       var sortTarget = '.' + $this.attr('data-sort-target');
       var sortOrder = $this.attr('data-sort-order').toLowerCase();
-      var sortBy = $this.attr('data-sort-by');
-
-      // console.log( 'Sort Target', sortTarget );
-      // console.log( 'Sort Order', sortOrder );
-      // console.log( 'Sort By', sortBy );
 
       $('ol .media').tsort( sortTarget, { order: sortOrder } );
 
