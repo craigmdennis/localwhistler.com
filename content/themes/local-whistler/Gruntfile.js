@@ -394,7 +394,7 @@ module.exports = function (grunt) {
         outputFile: '<%= config.dist.scripts %>/modernizr-custom.js',
         files: {
           src: [
-            '.tmp/scripts/concat/script.js',
+            '.tmp/scripts/concat/*.js',
             '.tmp/styles/{,*/}*.css',
             '!.tmp/scripts/vendor/*'
           ]
