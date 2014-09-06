@@ -123,7 +123,7 @@ filter = {};
     bind: function(){
 
       if (Modernizr.history) {
-        window.onpopstate = filter.update_from_history;
+        window.onpopstate = filter.set_state;
       }
 
       // Stop the form from being manually submitted
@@ -240,31 +240,7 @@ filter = {};
 
     },
 
-    is_location: function(){
-
-      if ( filter.get_current_state().location !== '' ) { return true; }
-      else { return false; }
-
-    },
-
-    is_type: function(){
-
-      if ( filter.get_current_state().type !== '' ) { return true; }
-      else { return false; }
-
-    },
-
-    is_search: function(){
-      if ( filter.get_current_state().search !== '' ) { return true; }
-      else { return false; }
-    },
-
-    is_order: function(){
-      if ( filter.get_current_state().order !== '' ) { return true; }
-      else { return false; }
-    },
-
-    get_current_state: function(){
+    get_state: function(){
 
       var $type = $('#filterType :selected'),
           $location = $('#filterLocation :selected'),
@@ -288,10 +264,24 @@ filter = {};
     },
 
     // On Popstate
-    update_from_history: function(){
+    set_state: function( e ) {
+
+      var state;
+
+      if ( e.type === 'popstate' ) {
+        state = e.state;
+        console.log('Popstate:',state);
+      }
+
+      // It's an object
+      else {
+        state = e;
+        console.log('Object:', state );
+      }
+
       // Replace the current text to match the history state
-      if ( history.state ) {
-        $('#filterSearch').val( history.state.search );
+      if ( state ) {
+        $('#filterSearch').val( state.search );
       }
       else {
         $('#filterSearch').val('');
@@ -317,7 +307,7 @@ filter = {};
           var value = $(this).val();
 
           // if option value matches history state value
-          if ( (value === history.state.location) || (value === history.state.type) || (value === history.state.order ) ) {
+          if ( (value === state.location) || (value === state.type) || (value === state.order ) ) {
 
             // Set this as the selected option
             $(this).prop('selected', true);
@@ -345,11 +335,11 @@ filter = {};
     generate_url: function(){
 
       var url = filter.get_url(),
-          currentLocation = filter.get_current_state().location,
-          currentOrder = filter.get_current_state().order,
-          currentType = filter.get_current_state().type,
-          currentSearch = filter.get_current_state().search;
-          // currentView = filter.get_current_state().view;
+          currentLocation = filter.get_state().location,
+          currentOrder = filter.get_state().order,
+          currentType = filter.get_state().type,
+          currentSearch = filter.get_state().search;
+          // currentView = filter.get_state().view;
 
         url += '?s=' + currentSearch;
         url += '&business_location=' + currentLocation;
@@ -363,9 +353,9 @@ filter = {};
 
     generate_title: function(){
 
-      var currentLocationText = filter.get_current_state().locationText,
-          currentTypeText = filter.get_current_state().typeText,
-          currentSearchText = filter.get_current_state().search,
+      var currentLocationText = filter.get_state().locationText,
+          currentTypeText = filter.get_state().typeText,
+          currentSearchText = filter.get_state().search,
           title;
 
       if ( currentLocationText !== 'Any' ) {
@@ -400,10 +390,10 @@ filter = {};
       if ( Modernizr.history) {
         if ( ($('#filterSearch').is(':focus')) || ( filter.filterCount === 0 ) ) {
           // Replace current history state
-          window.history.replaceState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
+          window.history.replaceState( filter.get_state(), filter.generate_title(), filter.generate_url() );
         } else {
           // Add a new history state
-          window.history.pushState( filter.get_current_state(), filter.generate_title(), filter.generate_url() );
+          window.history.pushState( filter.get_state(), filter.generate_title(), filter.generate_url() );
         }
       }
 
@@ -614,11 +604,19 @@ $(document).ready( function(){
   $(document).on('click', '.tag__link', function(e){
     e.preventDefault();
 
-    // Change the search value without loading a new page
-    $('#filterSearch').val( $(this).text() );
+    var state = filter.get_state();
 
-    // Trigger filtering
-    filter.fJS.filter();
+    filter.set_state({
+      'type' : '',
+      'location' : '',
+      'search' : $(this).text()
+    });
+
+    // Change the search value without loading a new page
+    // $('#filterSearch').val( $(this).text() );
+    //
+    // // Trigger filtering
+    // filter.fJS.filter();
 
     // Create new history state
     filter.push_history();
