@@ -91,25 +91,24 @@ filter = {};
       // Get the first page data
       var data = filter.get_api_data( filter.apiLocation );
 
-      // Show the map if the body class is set correctly
-      // if ( $('body').hasClass('view-map') ) {
-      window.googleMap.init();
-      // }
-
-      // Bind the event handlers
-      filter.bind();
-
       // Create the empty results markup
       filter.create_results();
+
+      // Generate the map regardless of if it is needed
+      window.googleMap.init();
 
       // Pass the data and initialiase the filtering
       // Store filter object
       filter.fJS = filter.filter_init( data );
 
-      // Upda the history on first page load
+      // Bind the event handlers
+      filter.bind();
+
+      // Update the history on first page load (uses replaceState)
       filter.push_history();
 
-      // Increment the count
+      // Increment the count so subsequent history updates
+      // use pushState instead of replaceState
       filter.filterCount++;
 
     },
@@ -122,9 +121,8 @@ filter = {};
 
     bind: function(){
 
-      if (Modernizr.history) {
-        window.onpopstate = filter.set_state;
-      }
+      // Histoy event
+      window.onpopstate = filter.set_state;
 
       // Stop the form from being manually submitted
       $('form').on('submit', function(e){
@@ -137,7 +135,33 @@ filter = {};
       // Sort the results when select box changed
       $('#filterOrder').on('change', filter.result_sort );
 
-      // $('.sub-menu').on('click.submenu', 'a', filter.override );
+      // Filter, Location and Type event handlers
+      $('#menu-item-69').on('click', 'a', filter.set_filters_from_href );
+      $('#menu-item-143').on('click', 'a', filter.set_filters_from_href );
+      $('.tags').on('click', 'a', filter.set_filters_from_href );
+
+    },
+
+    set_filters_from_href: function( event ){
+
+      // Get the event
+      var e = event || window.event;
+
+      // Don't follow the link
+      e.preventDefault();
+
+      console.log(e);
+
+      var $target = $(e.target),
+          newState = filter.generate_state_object_from_href( $target.attr('href') ); // Generate a state object
+
+      // Set the filters to match the new object
+      filter.set_state( newState );
+
+      // console.log( newState );
+
+      // Create new history state
+      filter.push_history();
 
     },
 
@@ -229,7 +253,39 @@ filter = {};
 
     },
 
-    get_url: function(){
+    generate_state_object_from_href: function( href ){
+
+      var urlArray = href.split( '/' ),
+          locationString = '',
+          typeString = '',
+          searchString = '',
+          test = urlArray[1],
+          result = urlArray[2];
+
+      // console.log(urlArray);
+
+      switch( test ) {
+        case 'location':
+          locationString = result;
+          break;
+        case 'type':
+          typeString = result;
+          break;
+        case 'filter':
+          searchString = result;
+          break;
+      }
+
+      // Return the object
+      return {
+        'type' : typeString,
+        'location' : locationString,
+        'search' : searchString
+      };
+
+    },
+
+    get_base_url: function(){
 
       var location = window.location,
           pathArray = location.pathname.split( '/' ),
@@ -270,13 +326,13 @@ filter = {};
 
       if ( e.type === 'popstate' ) {
         state = e.state;
-        console.log('Popstate:',state);
+        // console.log('Popstate:',state);
       }
 
       // It's an object
       else {
         state = e;
-        console.log('Object:', state );
+        // console.log('State:', state );
       }
 
       // Replace the current text to match the history state
@@ -334,7 +390,7 @@ filter = {};
 
     generate_url: function(){
 
-      var url = filter.get_url(),
+      var url = filter.get_base_url(),
           currentLocation = filter.get_state().location,
           currentOrder = filter.get_state().order,
           currentType = filter.get_state().type,
@@ -492,7 +548,7 @@ filter = {};
         $.each( post.taxonomy_business_filter, function(){
 
           // Make sure we get the logo and not any old attachment
-          elem = '<li class="tag__item"><a class="tag__link" href="/filter/' + this.slug + '">' + this.title + '</a></li>';
+          elem = '<li class="tag__item"><a class="tag__link" href="/filter/' + this.slug + '/">' + this.title + '</a></li>';
           tags.push( elem );
 
         });
@@ -590,6 +646,7 @@ filter = {};
 
 })(jQuery, window, document);
 
+// When the DOM is ready
 $(document).ready( function(){
 
   'use strict';
@@ -598,30 +655,6 @@ $(document).ready( function(){
   if ( $('#results').length ) {
     window.filter.init();
   }
-
-
-  // When clicking on a tag
-  $(document).on('click', '.tag__link', function(e){
-    e.preventDefault();
-
-    var state = filter.get_state();
-
-    filter.set_state({
-      'type' : '',
-      'location' : '',
-      'search' : $(this).text()
-    });
-
-    // Change the search value without loading a new page
-    // $('#filterSearch').val( $(this).text() );
-    //
-    // // Trigger filtering
-    // filter.fJS.filter();
-
-    // Create new history state
-    filter.push_history();
-
-  });
 
   $(document).on('click', '.btn--control', function(e){
     e.preventDefault();
