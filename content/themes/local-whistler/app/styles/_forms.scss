@@ -45,6 +45,16 @@ input[type="search"] {
   box-sizing: border-box;
 }
 
+input[type="search"],
+input[type="text"],
+input[type="email"],
+textarea {
+  &:focus {
+    border-color: #999;
+    border-color: rgba(0,0,0,0.5);
+  }
+}
+
 // Position radios and checkboxes better
 input[type="radio"],
 input[type="checkbox"] {
@@ -96,19 +106,6 @@ input[type="search"] {
     z-index: 2;
   }
 }
-
-// .admin-bar {
-//   .affix {
-//     @include breakpoint( $affix ) {
-//       padding-top: $baseline*5 +2px;
-//     }
-//   }
-//   .affix-bottom {
-//     @include breakpoint( $affix ) {
-//       padding-top: $baseline*5 +2px;
-//     }
-//   }
-// }
 
 // Custom styles
 .form--filters {
