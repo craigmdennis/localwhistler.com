@@ -272,7 +272,7 @@ filter = {};
           typeString = result;
           break;
         case 'filter':
-          searchString = result;
+          searchString = result.replace('-',' ');
           break;
       }
 
