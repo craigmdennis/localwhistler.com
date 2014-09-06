@@ -692,6 +692,9 @@ $(document).ready( function(){
       // Initialise afix if needed
       window.filter.affix( $('#controls') );
 
+      // Add styling hooks
+      filter.update_styles();
+
       // Update Analitics
       ga('send', 'event', 'button', 'click', 'List View');
     }
