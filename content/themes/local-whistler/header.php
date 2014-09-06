@@ -133,7 +133,7 @@
             <?php
 
               $navArgs = array(
-                'menu' => 'mainnav',
+                'menu' => 'Main Menu',
                 'container' => 'div',
                 'container_class' => 'menu',
                 'menu_id' => false,
