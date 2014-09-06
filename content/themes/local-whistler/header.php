@@ -1,15 +1,22 @@
 <?php
 
-  // Read the cookie
-  if (isset($_COOKIE['view'])) {
-    $view = $_COOKIE['view'];
-  }
+  $view = '';
 
-  // If the cookie doesn't exist
-  else {
-    $view = get_view_type();
-    setcookie('view',$view,time() + (86400 * 7)); // Set for 7 days
-  };
+  // If we're on a page capable of showing a map
+  if ( isset( $_GET['business_type'] ) || isset( $_GET['business_location'] ) || is_search() || taxonomy_exists('business_location') || taxonomy_exists('business_type') || taxonomy_exists('business_filter') ) {
+
+    // Read the cookie
+    if (isset($_COOKIE['view'])) {
+      $view = $_COOKIE['view'];
+    }
+
+    // If the cookie doesn't exist
+    else {
+      $view = get_view_type();
+      setcookie('view',$view,time() + (86400 * 7)); // Set for 7 days
+    };
+
+  }
 
   $options = get_option('lw_options');
 
