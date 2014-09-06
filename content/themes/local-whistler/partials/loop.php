@@ -2,6 +2,8 @@
 
 <?php // If there is a page with the same slug, pull in the content; ?>
 
+<?php global $page, $paged; ?>
+
 <?php if ( 'product' == get_post_type() ) : ?>
   <?php query_posts('page_id=116'); ?>
 
@@ -12,7 +14,9 @@
       <div class="col-xs-12">
 
         <?php while ( have_posts()) : the_post(); ?>
-          <?php get_template_part('partials/_module_post'); ?>
+          <?php if ( $page == 1 && $paged < 2 ) : ?>
+            <?php get_template_part('partials/_module_post'); ?>
+          <?php endif; ?>
         <?php endwhile; ?>
 
       </div>

@@ -13,9 +13,17 @@
       if ( !empty($logo) ) {
         $image     = $logo;
         $container = 'has-logo';
-        $width     = $image['sizes']['media--thumb-width'];
-        $height    = $image['sizes']['media--thumb-height'];
+        $width     = $image['sizes']['media--thumb-retina-width'];
+        $height    = $image['sizes']['media--thumb-retina-height'];
+        $src       = $image['sizes']['media--thumb-retina'];
         $style     = 'margin-top: -' . $height/4 . 'px; margin-left: -' . $width/4 . 'px;';
+
+        if ( $width <= 300 && $height <= 300) {
+          $width     = $image['sizes']['media--thumb-width'];
+          $height    = $image['sizes']['media--thumb-height'];
+          $src       = $image['sizes']['media--thumb'];
+          $style     = 'margin-top: -' . $height/2 . 'px; margin-left: -' . $width/2 . 'px;';
+        }
       }
       elseif ( !empty($featured) ) {
         $image     = $featured;

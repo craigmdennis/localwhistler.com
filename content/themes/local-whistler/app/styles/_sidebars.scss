@@ -124,11 +124,7 @@
   color: lighten( $wet-asphalt, 50%);
   font-size: 0.875em;
   padding: $baseline*2 $baseline*2 $baseline/2 $baseline*2;
-  //
-  // @include breakpoint( $bp3 ) {
-  //   // padding: $baseline*2 $baseline*4 $baseline/2 $baseline*4;
-  // }
-  //
+
   @include breakpoint ( $bp5 ) {
     padding: $baseline*2 $baseline $baseline/2  $baseline;
   }
@@ -144,21 +140,24 @@
   }
 }
 
-.widget--inline {
-  @include border('-top');
+.footer {
+  .widget--inline {
+    @include border('-top', #2C3D4F);
 
-  @include breakpoint ( $bp5 ) {
-    border-top: 0;
-  }
+    @include breakpoint ( $bp5 ) {
+      border-top: 0;
+    }
 
-  &:before {
-    @include breakpoint( $bp5 ) {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -$baseline;
-      @include border('-left');
-      height: 99em;
+    &:before {
+      @include breakpoint( $bp5 ) {
+        @include border('-left', #2C3D4F);
+
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -$baseline;
+        height: 99em;
+      }
     }
   }
 }

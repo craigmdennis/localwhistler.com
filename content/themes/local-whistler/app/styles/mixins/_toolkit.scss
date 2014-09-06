@@ -32,8 +32,8 @@
   @return rgba(white, $opacity);
 }
 
-@mixin border($pos: '') {
-  border#{$pos}: 1px solid #DDD;
+@mixin border($pos: '', $fallback: #DDD) {
+  border#{$pos}: 1px solid $fallback;
   border#{$pos}: 1px solid rgba(#000 ,0.15);
 }
 
