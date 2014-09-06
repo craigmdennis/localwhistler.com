@@ -21,7 +21,13 @@ h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
   line-height: 1.125;
 }
 
+.title--map {
+  font-size: 1.5em;
+  line-height: 1.125;
+}
+
 .context__map {
+  @include clearfix;
   @include single-direction-margins;
   font-family: $sans-font-family;
   padding: 10px;

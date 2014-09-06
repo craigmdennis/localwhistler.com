@@ -20,7 +20,7 @@ googleMap = {};
         center: new google.maps.LatLng(this.center_lat_lng[0], this.center_lat_lng[1]),
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        maxZoom: 17,
+        maxZoom: 18,
         suppressInfoWindows: true,
         panControlOptions: {
           position: google.maps.ControlPosition.RIGHT_CENTER
@@ -66,7 +66,7 @@ googleMap = {};
 
       // Set the info windows
       marker.info_window_content = '<div id="content" class="context__map">'+
-        '<h1 class="title--large">' + post.title + '</h1>'+
+        '<h1 class="title--map">' + post.title + '</h1>'+
           '<p>'+ post.excerpt + '</p>' +
           '<a class="btn btn--primary" href="' + post.url + '">More details</a></div>'+
         '</div>';
