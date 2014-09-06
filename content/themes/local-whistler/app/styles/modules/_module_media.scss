@@ -318,8 +318,9 @@
     padding-bottom: $baseline*2;
   }
 
-  .media__date {
-    display: none; // Doesn't need to be read by screenreaders
+  .media__date,
+  time {
+    display: none !important; // Doesn't need to be read by screenreaders
   }
 
   .media__footer .btn {
