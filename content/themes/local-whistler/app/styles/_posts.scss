@@ -183,3 +183,12 @@
     }
   }
 }
+
+.post__heading {
+  @include border('-bottom');
+  margin-bottom: $baseline;
+
+  @include breakpoint( $bp5 ) {
+    margin-bottom: $baseline*2;
+  }
+}
