@@ -259,8 +259,8 @@ filter = {};
           locationString = '',
           typeString = '',
           searchString = '',
-          test = urlArray[1],
-          result = urlArray[2];
+          test = urlArray[3],
+          result = urlArray[4];
 
       // console.log(urlArray);
 
@@ -548,7 +548,7 @@ filter = {};
         $.each( post.taxonomy_business_filter, function(){
 
           // Make sure we get the logo and not any old attachment
-          elem = '<li class="tag__item"><a class="tag__link" href="/filter/' + this.slug + '/">' + this.title + '</a></li>';
+          elem = '<li class="tag__item"><a class="tag__link" href="' + filter.get_base_url() + 'filter/' + this.slug + '/">' + this.title + '</a></li>';
           tags.push( elem );
 
         });
