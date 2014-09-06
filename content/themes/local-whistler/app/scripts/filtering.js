@@ -189,7 +189,7 @@ filter = {};
             },
 
             bottom: function () {
-              return ( this.bottom = $('.footer').outerHeight(true) + 41 );
+              return ( this.bottom = $('.footer').outerHeight(true) + 47 );
             }
           }
         });
