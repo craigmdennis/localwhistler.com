@@ -529,7 +529,7 @@ filter = {};
       if ( logo !== '' ) {
 
         // Make sure we get the logo and not any old attachment
-        return  '<a class="media__link--logo media__link--left media__thumb js-color-target" href="' + logo.url + '">' +
+        return  '<a class="media__link--logo media__link--left media__thumb js-color-target" href="' + post.url + '">' +
                   '<img class="media__logo js-color-trigger" src="' + src + '" alt="' + logo.description + ' Logo"' + style  + ' />' +
                 '</a>';
       }
