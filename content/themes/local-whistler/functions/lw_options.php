@@ -63,16 +63,6 @@ function theme_options_do_page() {
             <input id="lw_options[analytics]" class="regular-text" type="text" name="lw_options[analytics]" value="<?php esc_attr_e( $options['analytics'] ); ?>" />
           </td>
         </tr>
-        <tr valign="top">
-          <th scope="row">
-            <label class="description" for="lw_options[webmaster]">
-              <?php _e( 'Google Webmaster Code', 'localwhistler' ); ?>
-            </label>
-          </th>
-          <td>
-            <input id="lw_options[webmaster]" class="regular-text" type="text" name="lw_options[webmaster]" value="<?php esc_attr_e( $options['webmaster'] ); ?>" />
-          </td>
-        </tr>
 
         <?php global $social_links; ?>
         <?php foreach ( $social_links as $social) : ?>
@@ -105,7 +95,6 @@ function theme_options_validate( $input ) {
 
   // Say our text option must be safe text with no HTML tags
   $input['analytics'] = wp_filter_nohtml_kses( $input['analytics'] );
-  $input['webmaster'] = wp_filter_nohtml_kses( $input['webmaster'] );
 
   foreach ( $social_links as $social) :
     $input[$social] = wp_filter_nohtml_kses( $input[$social] );
