@@ -335,7 +335,6 @@
     }
 
     .media__body {
-      min-height: 104px;
       border: 0;
       // padding-bottom: $baseline*2;
     }
@@ -444,6 +443,14 @@
     padding-right: $baseline*2;
   }
 
+}
+
+.post-type-archive-product {
+  .media--list {
+    .media__body {
+      min-height: 104px;
+    }
+  }
 }
 
 .mustard {
