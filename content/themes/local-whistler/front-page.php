@@ -130,6 +130,12 @@
 
       <?php endif; ?>
 
+      <?php // Instagram Feed ?>
+      <div class="col-xs-12">
+        <ul class="row instagram">
+          <?php require_once("partials/_instagram.php"); ?>
+        </ul>
+      </div>
 
     </div> <!-- END .row -->
   </div>

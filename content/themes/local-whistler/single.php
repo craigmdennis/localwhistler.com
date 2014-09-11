@@ -1,6 +1,8 @@
 <?php get_header(); ?>
 <?php $logo = get_field('logo'); ?>
 
+<!-- single.php -->
+
 <?php
 
   if ( !empty($logo) ) {
@@ -19,7 +21,7 @@
     <?php include_once('partials/_module_media--featured.php'); ?>
 
     <div class="row">
-      <div class="col-xs-12 col-lg-9">
+      <div class="col-xs-12 col-md-8 col-lg-9">
 
         <?php if ( !empty($logo) ): ?>
         <div class="content-header">
@@ -40,9 +42,12 @@
           <?php endif; ?>
           <?php the_content(); ?>
         </div>
+
+      <?php get_template_part('partials/_pagination'); ?>
+
       </div>
 
-      <div class="col-xs-12 col-lg-3">
+      <div class="col-xs-12 col-md-4 col-lg-3">
         <?php if ( 'post' == get_post_type() ) : ?>
           <?php get_sidebar('meta'); ?>
         <?php endif; ?>
@@ -54,8 +59,6 @@
 <?php endwhile; ?>
 
 <?php // comments_template( '', true ); ?>
-
-<?php get_template_part('partials/_pagination'); ?>
 
 <?php endif; ?>
 

@@ -335,7 +335,6 @@
     }
 
     .media__body {
-      min-height: 104px;
       border: 0;
       // padding-bottom: $baseline*2;
     }
@@ -446,6 +445,14 @@
 
 }
 
+.post-type-archive-product {
+  .media--list {
+    .media__body {
+      min-height: 104px;
+    }
+  }
+}
+
 .mustard {
   .media__footer {
     @include border('-top');
@@ -492,11 +499,15 @@
     }
   }
 
+  .media--single {
+    background-clip: border-box;
+  }
+
   .media {
 
     &:hover,
     &:focus {
-      border-radius: $radius-right;
+      // border-radius: $radius-right;
       img {
         opacity: 1;
       }

@@ -105,33 +105,6 @@
 
     </div>
 
-    <?php if ( $url_website != '' ) : ?>
-      <div id="website" class="content context__list">
-        <a href="http://<?php echo $url_website; ?>" target="_blank">
-          <i class="icon-globe icon--fixed-left icon--large"></i>
-          http://<?php echo $url_website; ?>
-        </a>
-      </div>
-    <?php endif; ?>
-
-    <?php if ( $email != '' ) : ?>
-      <div id="email" class="content context__list">
-        <a href="mailto:<?php echo $email; ?>" target="_blank">
-          <i class="icon-email icon--fixed-left icon--large"></i>
-          <?php echo $email; ?>
-        </a>
-      </div>
-    <?php endif; ?>
-
-    <?php if ( $phone != '' ) : ?>
-      <div id="phone" class="content context__list">
-        <a href="tel:<?php echo $phone; ?>" target="_blank">
-          <i class="icon-phone icon--fixed-left icon--large"></i>
-          <?php echo $phone; ?>
-        </a>
-      </div>
-    <?php endif; ?>
-
     <?php if ( $video_url != '' ) : ?>
       <div id="video" class="content context__copy">
         <div class="video-embed">
@@ -184,6 +157,40 @@
   </div>
 
   <div class="col-xs-12 col-md-4 col-lg-3">
+
+    <div class="sidebar">
+      <div class="widget">
+        <h3 class="widget-title">Contact Info</h3>
+        <ul>
+          <?php if ( $url_website != '' ) : ?>
+            <li id="website">
+              <a href="http://<?php echo $url_website; ?>" target="_blank">
+                <i class="icon-globe icon--before"></i>
+                Visit their website
+              </a>
+            </li>
+          <?php endif; ?>
+
+          <?php if ( $email != '' ) : ?>
+            <li id="email">
+              <a href="mailto:<?php echo $email; ?>" target="_blank">
+                <i class="icon-email icon--before"></i>
+                Send an email
+              </a>
+            </li>
+          <?php endif; ?>
+
+          <?php if ( $phone != '' ) : ?>
+            <li id="phone">
+              <a href="tel:<?php echo $phone; ?>" target="_blank">
+                <i class="icon-phone icon--before"></i>
+                <?php echo $phone; ?>
+              </a>
+            </li>
+          <?php endif; ?>
+        </ul>
+      </div>
+    </div>
 
     <?php if (
       get_field('monday') != '' ||

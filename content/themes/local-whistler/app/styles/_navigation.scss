@@ -289,14 +289,36 @@ ul.navigation {
 
   .next {
     float: right;
+    a {
+      &:after {
+        content: ' →';
+      }
+    }
   }
 
   .prev {
     float: left;
+    a {
+      &:before {
+        content: '← ';
+      }
+    }
   }
 
   li a {
     @extend .btn;
     @extend .btn--default;
+  }
+}
+
+.single-product .navigation {
+  margin-bottom: $baseline;
+
+  @include breakpoint( $bp5 ) {
+    margin-bottom: $baseline*2;
+  }
+
+  @include breakpoint( $bp6 ) {
+    margin-bottom: 0;
   }
 }

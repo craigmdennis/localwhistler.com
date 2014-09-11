@@ -11,3 +11,21 @@
 .business__hours__time {
   font-weight: bold;
 }
+
+.instagram {
+  @extend %unstyled;
+}
+
+.instagram__item {
+  margin-bottom: $baseline*2;
+
+  a {
+    display: block;
+    &:hover,
+    &:focus {
+      img {
+        background-color: #F8F8F8;
+      }
+    }
+  }
+}
