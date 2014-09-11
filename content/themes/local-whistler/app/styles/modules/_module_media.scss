@@ -499,11 +499,15 @@
     }
   }
 
+  .media--single {
+    background-clip: border-box;
+  }
+
   .media {
 
     &:hover,
     &:focus {
-      border-radius: $radius-right;
+      // border-radius: $radius-right;
       img {
         opacity: 1;
       }
