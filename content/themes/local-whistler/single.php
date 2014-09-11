@@ -21,7 +21,7 @@
     <?php include_once('partials/_module_media--featured.php'); ?>
 
     <div class="row">
-      <div class="col-xs-12 col-lg-9">
+      <div class="col-xs-12 col-md-8 col-lg-9">
 
         <?php if ( !empty($logo) ): ?>
         <div class="content-header">
@@ -47,7 +47,7 @@
 
       </div>
 
-      <div class="col-xs-12 col-lg-3">
+      <div class="col-xs-12 col-md-4 col-lg-3">
         <?php if ( 'post' == get_post_type() ) : ?>
           <?php get_sidebar('meta'); ?>
         <?php endif; ?>
