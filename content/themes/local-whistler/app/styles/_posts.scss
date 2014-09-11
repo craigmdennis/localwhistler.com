@@ -33,11 +33,11 @@
 
   }
 
-  @include breakpoint( $bp3 ) {
+  // @include breakpoint( $bp3 ) {
     @include border;
     padding: $baseline*2 $baseline*2 0 $baseline*2;
     margin: $baseline;
-  }
+  // }
 
   @include breakpoint( $bp5 ) {
     margin: 0 0 $baseline*2 0;
@@ -56,10 +56,10 @@
   position: relative;
   z-index: 1;
 
-  @include breakpoint( $bp3 ) {
+  // @include breakpoint( $bp3 ) {
     @include shadow;
-    margin: 0 $baseline;
-  }
+    margin: $baseline $baseline 0 $baseline;
+  // }
 
   @include breakpoint( $bp5 ) {
     margin: 0;

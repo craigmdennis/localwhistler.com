@@ -1,6 +1,8 @@
 <?php get_header(); ?>
 <?php $logo = get_field('logo'); ?>
 
+<!-- single.php -->
+
 <?php
 
   if ( !empty($logo) ) {
@@ -40,6 +42,9 @@
           <?php endif; ?>
           <?php the_content(); ?>
         </div>
+
+      <?php get_template_part('partials/_pagination'); ?>
+
       </div>
 
       <div class="col-xs-12 col-lg-3">
@@ -54,8 +59,6 @@
 <?php endwhile; ?>
 
 <?php // comments_template( '', true ); ?>
-
-<?php get_template_part('partials/_pagination'); ?>
 
 <?php endif; ?>
 
