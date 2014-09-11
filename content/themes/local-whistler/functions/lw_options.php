@@ -92,6 +92,7 @@ function theme_options_do_page() {
  * Sanitize and validate input. Accepts an array, return a sanitized array.
  */
 function theme_options_validate( $input ) {
+  global $social_links;
 
   // Say our text option must be safe text with no HTML tags
   $input['analytics'] = wp_filter_nohtml_kses( $input['analytics'] );
