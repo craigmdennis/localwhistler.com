@@ -1,6 +1,8 @@
 <?php if ( is_active_sidebar( 'sidebar-main' ) ) : ?>
 
-  <?php get_sidebar('social'); ?>
+  <?php if ( !is_singular('product') ) : ?>
+    <?php get_sidebar('social'); ?>
+  <?php endif; ?>
 
   <div class="sidebar sidebar--main">
     <aside role="complementary">
