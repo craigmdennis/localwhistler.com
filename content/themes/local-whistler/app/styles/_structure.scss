@@ -55,9 +55,9 @@
 
 .home {
   .media__body {
-    display: none;
-    @include breakpoint( $bp3 ) {
-      display: block;
+
+    @include breakpoint( $bp3 $bp4-max ) {
+      display: none;
     }
   }
 
