@@ -15,7 +15,7 @@
   @include breakpoint( $bp5 ) {
     margin-bottom: $baseline*2;
     margin-top: $baseline*2;
-    border-radius: $radius-base;
+    border-radius: $radius-top;
   }
 }
 
@@ -30,20 +30,18 @@
 .menu__list {
   @extend %unstyled;
   background-color: #FFF;
+  border-bottom: 3px solid $brand-orange;
   margin: 0;
   padding: 0;
   width: 100%;
 
   @include breakpoint( $bp4 ) {
     @include border('-top');
-    @include border('-bottom');
-
-    border-bottom: 0;
     display: table;
   }
 
   @include breakpoint( $bp5 ) {
-    border-radius: $radius-base;
+    border-radius: $radius-top;
   }
 
   .menu-item {
@@ -83,7 +81,6 @@
     background-color: #FFF;
 
     @include breakpoint($bp4) {
-      border-bottom: 3px solid $brand-orange;
       display: table-cell;
       width: 2%; /* Safari 6 bug */
     }
@@ -91,7 +88,7 @@
     &:first-child {
       @include breakpoint( $bp5 ) {
         @include border('-left');
-        border-radius: $radius-left;
+        border-radius: $radius-base 0 0 0;
       }
 
       a {
@@ -110,7 +107,7 @@
 
       &:last-child {
         @include border('-right');
-        border-radius: $radius-right;
+        border-radius: 0 $radius-base 0 0;
 
         a {
           border-radius: 0 $radius-base 0 0;
