@@ -81,11 +81,18 @@ h1,h2,h3,h4,h5,h6,ul,ol,dl,p {
   }
 
   ul, ol {
-    list-style: disc inside;
     margin-left: 0;
-    padding-left: $baseline*2;
-    text-indent: -$baseline*2 +3px;
+    // padding-left: $baseline*2;
+    // text-indent: -$baseline*2 +3px;
     overflow: hidden;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
   }
 
   blockquote {

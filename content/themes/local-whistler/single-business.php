@@ -52,7 +52,9 @@
       'youtube'      => get_field('youtube_username'),
       'flickr'       => get_field('flickr_username'),
       'vimeo'        => get_field('vimeo_username'),
-      'instagram'    => get_field('instagram_username')
+      'instagram'    => get_field('instagram_username'),
+      'trip-advisor'  => get_field('trip_advisor_url'),
+      'yelp'         => get_field('yelp_url')
     );
 
   }
@@ -154,6 +156,8 @@
       </div>
     <?php endif; ?>
 
+    <?php get_template_part('partials/_pagination'); ?>
+
   </div>
 
   <div class="col-xs-12 col-md-4 col-lg-3">
@@ -233,7 +237,9 @@
       get_field('youtube_username') != '' ||
       get_field('flickr_username') != '' ||
       get_field('vimeo_username') != '' ||
-      get_field('instagram_username') != ''
+      get_field('instagram_username') != '' ||
+      get_field('trip_advisor_url') != '' ||
+      get_field('yelp_url') != ''
     ) : ?>
 
       <div id="links" class="sidebar">
@@ -244,11 +250,11 @@
             <?php if ( empty( $username ) ) : continue; endif; ?>
             <li>
               <a
-                href="http://<?php echo $site . '.com/' . $username; ?>"
+                href="http://<?php echo str_replace('-', '', $site) . '.com/' . $username; ?>"
                 target="blank"
                 class="business__social__item">
                 <i class="icon-<?php echo $site; ?> icon--before icon--sign"></i>
-                <?php echo ucfirst( $site ); ?>
+                <?php echo ucwords( str_replace('-', ' ', $site) ); ?>
               </a>
             </li>
           <?php endforeach; ?>

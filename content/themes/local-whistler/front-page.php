@@ -130,14 +130,24 @@
 
       <?php endif; ?>
 
-      <?php // Instagram Feed ?>
-      <div class="col-xs-12">
-        <ul class="row instagram">
-          <?php require_once("partials/_instagram.php"); ?>
-        </ul>
-      </div>
-
     </div> <!-- END .row -->
   </div>
+
+  <div class="content">
+    <?php // Instagram Feed ?>
+    <div class="row">
+      <div class="col-xs-12 context__copy">
+        <h3 class="pull-left">Local Whistler on Instagram</h3>
+        <a href="http://instagram.com/localwhistler?ref=badge" class="ig-b- ig-b-v-24"><img src="//badges.instagram.com/static/images/ig-badge-view-24.png" alt="Instagram" /><span>View on Instagram</span></a>
+      </div>
+    </div>
+
+    <ul class="row instagram">
+      <?php require_once("partials/_instagram.php"); ?>
+    </ul>
+    </div>
+  </div>
+
+  <script>(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="http://instagramfollowbutton.com/components/instagram/v2/js/ig-follow.js";s.parentNode.insertBefore(g,s);}(document,"script"));</script>
 
 <?php get_footer(); ?>
