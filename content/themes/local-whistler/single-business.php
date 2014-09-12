@@ -156,6 +156,8 @@
       </div>
     <?php endif; ?>
 
+    <?php get_template_part('partials/_pagination'); ?>
+
   </div>
 
   <div class="col-xs-12 col-md-4 col-lg-3">
