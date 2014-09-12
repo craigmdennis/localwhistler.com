@@ -13,19 +13,18 @@
 // Basic Button
 // ===================================================
 .btn {
-  @include shadow;
   border: 1px transparent;
   display: inline-block;
   padding: $baseline/2 $baseline;
-  border-radius: $radius-base;
+  font-size: 16px;
   text-align: center;
   background-clip: padding-box;
-  font-size: 16px;
+  border-radius: $radius-base;
 
+  @include shadow;
   &:active {
     @extend .btn--active;
   }
-
   &:hover,
   &:focus {
     text-decoration: none !important;
@@ -36,29 +35,26 @@
 // Colour modifiers
 // ===================================================
 .btn--default {
-  @include border;
-
-  background-color: #FFF;
   color: $body-copy-color;
+  background-color: #FFFFFF;
 
+  @include border;
   &:hover,
   &:focus {
     background-color: #F8F8F8;
   }
-
   &:active,
   &.btn--active {
+    color: #000000;
     background-color: #F2F2F2;
-    color: #000;
   }
 }
 
 
 .btn--primary {
-  background-color: $brand-blue;
-  color: #FFF;
   border: 1px solid darken( $brand-blue, 20% );
-
+  color: #FFFFFF;
+  background-color: $brand-blue;
   &:hover,
   &:focus {
     background-color: lighten( $brand-blue, 5% );
@@ -67,8 +63,8 @@
 
 
 .btn--secondary {
+  color: #FFFFFF;
   background-color: $brand-orange;
-  color: #FFF;
 }
 
 
@@ -97,7 +93,6 @@
 
 .btn--control {
   padding: 4px $baseline 4px $baseline;
-
   .btn__icon {
     position: relative;
     top: -1px;
@@ -106,38 +101,36 @@
 
 .view-map .btn--map,
 .view-list .btn--list {
-  @extend .btn--active;
+  color: #000000;
   background-color: #F2F2F2;
-  color: #000;
+
+  @extend .btn--active;
 }
 
 
 // Grouping
 // ===================================================
 .btn-group {
-  @include clearfix;
-  @include border;
   display: block;
-  border-radius: $radius-base;
   float: left;
+  border-radius: $radius-base;
 
   @include breakpoint( $middle ) {
     float: none;
   }
-
+  @include border;
+  @include clearfix;
   .btn {
-    display: block;
-    float: left;
     border-top: 0;
     border-right: 0;
     border-bottom: 0;
+    display: block;
+    float: left;
     border-radius: 0;
-
     &:first-child {
       border-left: 0;
       // border-radius: $radius-left;
     }
-
     &:last-child,
     &.btn--last-visible {
       border-radius: $radius-right;
@@ -147,9 +140,9 @@
 
 .btn-group--switch {
   float: none;
-
   .btn {
     width: 50%;
+
     @include breakpoint( $middle ) {
       width: auto;
     }
@@ -158,4 +151,33 @@
 
 .btn-group--inline {
   display: inline-block;
+}
+
+// Instagram Buttons
+
+.ig-b- {
+  display: inline-block;
+  span {
+    @extend %sr-only;
+  }
+}
+.ig-b- img {
+  visibility: hidden;
+}
+.ig-b-:hover {
+  background-position: 0 -60px;
+} .ig-b-:active {
+  background-position: 0 -120px;
+}
+.ig-b-v-24 {
+  width: 137px;
+  height: 24px;
+  background: url(//badges.instagram.com/static/images/ig-badge-view-sprite-24.png) no-repeat 0 0;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .ig-b-v-24 {
+    background-image: url(//badges.instagram.com/static/images/ig-badge-view-sprite-24@2x.png);
+    background-size: 160px 178px;
+  }
 }
