@@ -259,6 +259,10 @@
       height: 133px;
       overflow: hidden;
     }
+
+    @include breakpoint( $bp5 ) {
+      height: 133px;
+    }
   }
 
   .post-categories {
