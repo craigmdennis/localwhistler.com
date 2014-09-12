@@ -4,9 +4,7 @@ $social_links = array(
   'twitter',
   'instagram',
   'facebook',
-  'google-plus',
-  'yelp',
-  'trip-advisor'
+  'google-plus'
 );
 
 add_action( 'admin_init', 'theme_options_init' );
