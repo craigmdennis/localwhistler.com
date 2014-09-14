@@ -537,7 +537,8 @@ filter = {};
 
     get_tags: function( post ) {
 
-      var tags = '';
+      var tags = '',
+          green = false;
 
       if ( post.taxonomy_business_filter.length ) {
 
@@ -546,6 +547,10 @@ filter = {};
 
         // Iterate over each attachment in the array
         $.each( post.taxonomy_business_filter, function(){
+
+          if ( this.slug === 'green' ) {
+            green = true;
+          }
 
           // Make sure we get the logo and not any old attachment
           elem = '<li class="tag__item"><a class="tag__link" href="' + filter.get_base_url() + 'filter/' + this.slug + '/">' + this.title + '</a></li>';
@@ -560,7 +565,10 @@ filter = {};
 
       }
 
-      return tags;
+      return {
+        tags: tags,
+        green: green
+      };
 
     },
 
@@ -613,15 +621,25 @@ filter = {};
       var datetime = filter.format_date( post.date ).iso,
           prettyDate = filter.format_date( post.date ).pretty;
 
-      var tags = filter.get_tags( post );
+      var tagObject = filter.get_tags( post );
+      var tags = tagObject.tags;
+      var green = tagObject.green;
       var bodyStyle = '';
+      var greenClass;
+
+      if (green) {
+        greenClass = 'is-green';
+      }
+      else {
+        greenClass = 'not-green';
+      }
 
       // Get todo
       // If post is within the last week add a class of new
 
       window.googleMap.add_marker( post );
 
-      return  '<li class="media">' +
+      return  '<li class="media ' + greenClass + '">' +
                 '<div class="has-logo">' +
                   '<div class="media__logo-container">' +
                     filter.get_logo( post ) +
