@@ -34,7 +34,7 @@ if ( ! class_exists( 'WPSEO_Meta' ) ) {
 	 * for get_post_meta(), get_post_custom() and the likes. That would have been the preferred solution.
 	 *
 	 * @internal all WP native get_meta() results get cached internally, so no need to cache locally.
-	 * @internal use $key when the key is the WPSEO internal name (without prefix), $meta_key when it 
+	 * @internal use $key when the key is the WPSEO internal name (without prefix), $meta_key when it
 	 *           includes the prefix
 	 */
 	class WPSEO_Meta {
@@ -448,7 +448,7 @@ if ( ! class_exists( 'WPSEO_Meta' ) ) {
 					}
 
 					/* Adjust the authorship 'default for post type' text string based on the post type */
-					$field_defs['authorship']['options']['-'] = sprintf( $field_defs['authorship']['options']['-'], ( ( isset( $options[ 'noauthorship-' . $post_type ] ) && $options[ 'noauthorship-' . $post_type ] === true ) ? __( 'don\'t show', 'wordpress-seo' ) : __( 'show', 'wordpress-seo' ) ) );
+					// $field_defs['authorship']['options']['-'] = sprintf( $field_defs['authorship']['options']['-'], ( ( isset( $options[ 'noauthorship-' . $post_type ] ) && $options[ 'noauthorship-' . $post_type ] === true ) ? __( 'don\'t show', 'wordpress-seo' ) : __( 'show', 'wordpress-seo' ) ) );
 
 					break;
 			}
