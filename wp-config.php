@@ -52,16 +52,16 @@ else {
     define('WP_ENV', 'production');
 
     /** The name of the database for WordPress */
-    define('DB_NAME', '');
+    define('DB_NAME', 'lw_wordpress');
 
     /** MySQL database username */
-    define('DB_USER', '');
+    define('DB_USER', 'lw_admin');
 
     /** MySQL database password */
-    define('DB_PASSWORD', '');
+    define('DB_PASSWORD', 'meV2kUj0Bep6ha');
 
     /** MySQL hostname */
-    define('DB_HOST', '');
+    define('DB_HOST', 'localhost');
 
     //** Set the custom content structure */
     /** Server name (your url) */

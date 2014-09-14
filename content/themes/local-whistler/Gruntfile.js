@@ -423,7 +423,7 @@ module.exports = function (grunt) {
 
     changelog: {
       options: {
-        editor: 'atom -w'
+        editor: 'sublime -w'
       }
     },
 
