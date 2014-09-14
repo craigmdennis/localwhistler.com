@@ -51,6 +51,16 @@ namespace :localwhister do
     end
   end
 
+  desc 'Point cache directory to shared folder'
+  task :symlink do
+    on roles(:app), in: :groups do
+      execute "cd '#{release_path}/content' && ln -nfs '../../../shared/cache' 'cache'"
+    end
+  end
+
 end
 
 after 'deploy:symlink:release', 'localwhister:symlink'
+
+# Change abolute symlinks to relative
+after 'deploy:publishing', 'gridserver:create_relative_symlinks'
