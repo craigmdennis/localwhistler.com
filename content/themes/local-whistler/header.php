@@ -1,9 +1,7 @@
 <?php
 
-  $view = '';
-
   // If we're on a page capable of showing a map
-  if ( isset( $_GET['business_type'] ) || isset( $_GET['business_location'] ) || is_search() || taxonomy_exists('business_location') || taxonomy_exists('business_type') || taxonomy_exists('business_filter') ) {
+  if ( (isset( $_GET['business_type'] ) || isset( $_GET['business_location'] ) || is_search() || taxonomy_exists('business_location') || taxonomy_exists('business_type') || taxonomy_exists('business_filter') || is_post_type_archive( 'business' ) ) && !is_single() ) {
 
     // Read the cookie
     if (isset($_COOKIE['view'])) {
@@ -16,6 +14,10 @@
       setcookie('view',$view,time() + (86400 * 7)); // Set for 7 days
     };
 
+  }
+
+  else {
+    $view = '';
   }
 
   $options = get_option('lw_options');
