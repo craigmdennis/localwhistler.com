@@ -1,3 +1,12 @@
+<a name="1.0.5-1"></a>
+### 1.0.5-1 (2014-09-16)
+
+
+#### Bug Fixes
+
+* change the way database credentials are handled ([cdb8f3cb](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/cdb8f3cbf2da81b2acb843bdcbd3f09e2a5add28))
+
+
 <a name="1.0.4"></a>
 ### 1.0.4 (2014-09-16)
 

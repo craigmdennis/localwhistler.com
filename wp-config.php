@@ -31,10 +31,25 @@ if ( file_exists( $domain_dir . '/local-config.php') ) {
 
 }
 
-else if ( file_exists( $domain_dir . '/staging-config.php') ) {
+else if ( file_exists( $domain_dir . '/env_staging') ) {
 
-    /** If it does exist, then use it */
-    include( $domain_dir . '/staging-config.php');
+    /** Environment variable */
+    define('WP_ENV', 'production');
+
+    /** The name of the database for WordPress */
+    define('DB_NAME', 'db152547_localwhistler_dev');
+
+    /** MySQL database username */
+    define('DB_USER', 'db152547_dev');
+
+    /** MySQL database password */
+    define('DB_PASSWORD', '4P999>H3i)3#3747');
+
+    /** MySQL hostname */
+    define('DB_HOST', $_ENV['DATABASE_SERVER']);
+
+    /** Server name (your url) */
+    $domain_name = 'http://lw-dev.simplebitdesign.com';
 
     /** Environment variable */
     define('WP_ENV', 'staging');
@@ -63,9 +78,8 @@ else {
     /** MySQL hostname */
     define('DB_HOST', 'localhost');
 
-    //** Set the custom content structure */
     /** Server name (your url) */
-    $domain_name = 'http://localwhistler.com';
+    $domain_name = 'http://localwhistler.net';
 
     /* For developers: WordPress debugging mode. */
     define('WP_DEBUG', false);
