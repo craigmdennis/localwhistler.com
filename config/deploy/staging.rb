@@ -4,8 +4,6 @@ set :branch, 'develop'
 
 server 'simplebitdesign.com', user: 'simplebitdesign.com', roles: %w{web app}
 
-after :publishing, :localwhister:staging
-
 # Local Whistler specific tasks namespaced to reduce conflict
 namespace :localwhister do
 
@@ -17,3 +15,5 @@ namespace :localwhister do
   end
 
 end
+
+after 'deploy:updated', 'localwhister:staging'
