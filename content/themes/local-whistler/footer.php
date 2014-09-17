@@ -67,11 +67,11 @@
     document.querySelector('html').classList.add('mustard');
 
     // Add jQuery 2.0+
-    document.write(
-      unescape(
-        '%3Cscript src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"%3E%3C/script%3E'
-      )
-    );
+    // document.write(
+    //   unescape(
+    //     '%3Cscript src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"%3E%3C/script%3E'
+    //   )
+    // );
 
     // Turn off pointer events when scrolling
     // var body = document.body,
@@ -87,41 +87,28 @@
     // }, false);
 
     // Only give modern browsers javascript filtering
-    document.write(
-      unescape(
-        '%3Cscript  src="<?php echo get_template_directory_uri(); ?>/scripts/filtering.js"%3E%3C/script%3E'
-      )
-    );
+    // document.write(
+    //   unescape(
+    //     '%3Cscript  src="<?php echo get_template_directory_uri(); ?>/scripts/filtering.js"%3E%3C/script%3E'
+    //   )
+    // );
 
   }
 
-  else {
+  // else {
 
-    // Add jQuery 1.9.0+
-    document.write(
-      unescape(
-        '%3Cscript src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"%3E%3C/script%3E'
-      )
-    );
+  //   // Add jQuery 1.9.0+
+  //   document.write(
+  //     unescape(
+  //       '%3Cscript src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"%3E%3C/script%3E'
+  //     )
+  //   );
 
-    // Add respond.js to older browser
-    document.write(
-      unescape(
-        '%3Cscript src="<?php echo get_template_directory_uri(); ?>/scripts/vendor/respond.js"%3E%3C/script%3E'
-      )
-    );
-  }
+  // }
 
 </script>
 
-<script>
-// jQuery fallback in case unable to load from CDN
-!window.jQuery && document.write(
-  unescape(
-    '%3Cscript src="<?php echo get_template_directory_uri(); ?>/scripts/vendor/jquery.min.js"%3E%3C/script%3E'
-  )
-)
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
 
 <script
   src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBWcRdeBybFQUpx5tyfIw1QbwskiRuFsdc&sensor=true"

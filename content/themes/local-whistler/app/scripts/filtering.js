@@ -1,3 +1,5 @@
+// console.log( JSON.parse( lw_post_data));
+
 var filter;
 
 filter = {};
@@ -10,15 +12,15 @@ filter = {};
 
     filterCount: 0,
 
-    apiLocation:  '/api/get_posts/?post_type=business&count=-1' +
-                  '&include=title,date,url,excerpt,taxonomy_business_filter,' +
-                  'taxonomy_business_location,taxonomy_business_type,custom_fields',
+    // apiLocation:  '/api/get_posts/?post_type=business&count=-1' +
+    //               '&include=title,date,url,excerpt,taxonomy_business_filter,' +
+    //               'taxonomy_business_location,taxonomy_business_type,custom_fields',
 
     settings: {
       filter_on_init: true,
       filter_criteria: {
-        location: ['.js__filter-location .TYPE.any', 'taxonomy_business_location.ARRAY.slug'],
-        type: ['.js__filter-type .TYPE.any', 'taxonomy_business_type.ARRAY.slug']
+        location: ['.js__filter-location .TYPE.any', 'ARRAY.taxonomy_business_location.slug'],
+        // type: ['.js__filter-type .TYPE.any', 'taxonomy_business_type.slug']
       },
       search: {
         input: '#filterSearch',
@@ -31,11 +33,11 @@ filter = {};
         }
       },
 
-      streaming: {
-        data_url: filter.apiLocation,
-        stream_after: 1,
-        batch_size: 10
-      },
+      // streaming: {
+      //   data_url: filter.apiLocation,
+      //   stream_after: 1,
+      //   batch_size: 10
+      // },
 
       callbacks: {
         after_filter: function( result ){
@@ -82,11 +84,14 @@ filter = {};
               $('#noResults').hide();
             }
           }
+
         }
       }
     },
 
     init: function(){
+
+      // console.log( filter.get_api_data( filter.apiLocation ) );
 
       // Get the first page data
       var data = filter.get_api_data( filter.apiLocation );
@@ -99,7 +104,7 @@ filter = {};
 
       // Pass the data and initialiase the filtering
       // Store filter object
-      filter.fJS = filter.filter_init( data );
+      filter.fJS = filter.filter_init();
 
       // Bind the event handlers
       filter.bind();
@@ -113,9 +118,9 @@ filter = {};
 
     },
 
-    filter_init: function( data ){
+    filter_init: function(){
 
-      return FilterJS( data.posts, '#resultsList', filter.view, filter.settings );
+      return FilterJS( JSON.parse(lw_post_data) , '#resultsList', filter.view, filter.settings );
 
     },
 
@@ -150,7 +155,7 @@ filter = {};
       // Don't follow the link
       e.preventDefault();
 
-      console.log(e);
+      // console.log(e);
 
       var $target = $(e.target),
           newState = filter.generate_state_object_from_href( $target.attr('href') ); // Generate a state object
@@ -618,6 +623,8 @@ filter = {};
 
     view: function( post ){
 
+      // console.log(post);
+
       var datetime = filter.format_date( post.date ).iso,
           prettyDate = filter.format_date( post.date ).pretty;
 
@@ -638,6 +645,8 @@ filter = {};
       // If post is within the last week add a class of new
 
       window.googleMap.add_marker( post );
+
+      // console.log( tagObject );
 
       return  '<li class="media ' + greenClass + '">' +
                 '<div class="has-logo">' +
