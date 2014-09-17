@@ -190,7 +190,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.app.styles %>/',
-          src: '{,*/}*.scss',
+          src: '*.scss',
           dest: '.tmp/styles',
           ext: '.css'
         }]
@@ -274,8 +274,10 @@ module.exports = function (grunt) {
         report: 'min'
       },
       all: {
-        src: '.tmp/styles/{,*/}*.css',
-        dest: 'style.css'
+        files: {
+          'style.css': ['.tmp/styles/{,*/}*.css', '!.tmp/styles/old-ie.css'],
+          'old-ie.css': ['.tmp/styles/{,*/}*.css', '!.tmp/styles/style.css']
+        }
       }
     },
 
@@ -376,11 +378,6 @@ module.exports = function (grunt) {
             // Copy jQuery as self-hosted fallback
             src: '<%= config.app.bower %>/jquery/dist/jquery.min.map',
             dest: '<%= config.dist.scripts %>/vendor/jquery.min.map'
-          },
-          {
-            // Copy jQuery as self-hosted fallback
-            src: '<%= config.app.bower %>/respond/dest/respond.min.js',
-            dest: '<%= config.dist.scripts %>/vendor/respond.min.js'
           }
         ]
       }

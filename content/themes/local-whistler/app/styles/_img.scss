@@ -62,3 +62,33 @@
   border-radius: $radius-base;
   padding: $baseline;
 }
+
+.green-content {
+  @include shadow;
+  @include border;
+  text-indent: -999em;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 80px;
+  height: 80px;
+  background: #FFF url(images/green.png) no-repeat center center;
+  z-index: 10;
+  transform: rotate(15deg);
+  padding: 5px;
+  border-radius: 40px;
+
+
+  .backgroundsize & {
+    background: #FFF url(images/green-hdpi.png) no-repeat center center;
+    background-size: 90px;
+  }
+}
+
+.media--list {
+  .is-green {
+    .media__heading {
+      padding-right: 100px;
+    }
+  }
+}

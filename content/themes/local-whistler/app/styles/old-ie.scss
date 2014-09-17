@@ -1,0 +1,19 @@
+// ===================================================
+// Old IE
+// ===================================================
+// Support for no media queries
+// ===================================================
+
+// Use pixels
+$old-ie: true;
+$no-mq: 'no-query' true;
+
+$bp3: 37.5em, $no-mq; // 600px
+$bp4: 48em, $no-mq; // 768px
+$bp5: 56.25em, $no-mq; // 900px
+
+// Media query fallbacks
+$breakpoint-no-queries: true;
+$breakpoint-no-query-fallbacks: true;
+
+@import "style";

@@ -18,4 +18,6 @@ $(document).ready( function(){
     width: '100%'
   });
 
+  window.setBackgroundColorToImage.init();
+
 });

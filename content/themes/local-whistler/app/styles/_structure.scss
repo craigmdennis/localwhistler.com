@@ -33,13 +33,13 @@
   }
 }
 
-.view-map .footer {
-  // margin-top: $map-height-small;
+// .view-map .footer {
+//   // margin-top: $map-height-small;
 
-  @include breakpoint( $bp6 ) {
-    margin-top: 88px;
-  }
-}
+//   @include breakpoint( $bp6 ) {
+//     margin-top: 88px;
+//   }
+// }
 
 .browsehappy {
   background-color: $brand-orange;
@@ -72,5 +72,8 @@
 #results {
   background: url(images/loading.gif) center center no-repeat;
   background-size: 35px;
-  min-height: 460px;
+
+  @include breakpoint( $bp5 ) {
+    min-height: 460px;
+  }
 }

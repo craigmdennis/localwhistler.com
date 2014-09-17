@@ -1,9 +1,7 @@
 <?php
 
-  $view = '';
-
   // If we're on a page capable of showing a map
-  if ( isset( $_GET['business_type'] ) || isset( $_GET['business_location'] ) || is_search() || taxonomy_exists('business_location') || taxonomy_exists('business_type') || taxonomy_exists('business_filter') ) {
+  if ( (isset( $_GET['business_type'] ) || isset( $_GET['business_location'] ) || is_search() || taxonomy_exists('business_location') || taxonomy_exists('business_type') || taxonomy_exists('business_filter') || is_post_type_archive( 'business' ) ) && !is_single() ) {
 
     // Read the cookie
     if (isset($_COOKIE['view'])) {
@@ -18,6 +16,10 @@
 
   }
 
+  else {
+    $view = '';
+  }
+
   $options = get_option('lw_options');
 
 ?>
@@ -25,25 +27,8 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-  <title>
-    <?php
-      global $page, $paged;
-
-      wp_title( '|', true, 'right' );
-      bloginfo( 'name' );
-      $site_description = get_bloginfo( 'description', 'display' );
-      if ( $site_description && ( is_home() || is_front_page() ) )
-        echo " | $site_description";
-      if ( $paged >= 2 || $page >= 2 )
-        echo ' | ' . sprintf( __( 'Page %s' ), max( $paged, $page ) );
-    ?>
-  </title>
-  <meta name="description" content="<?php if ( is_single() ) {
-    single_post_title('', true);
-    } else {
-    bloginfo('name'); echo " - "; bloginfo('description');
-    }
-  ?>" />
+  <title><?php wp_title(''); ?></title>
+  <meta name="description" content="<?php bloginfo('description'); ?>" />
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <meta name="viewport" content="width=device-width" />
 
@@ -72,7 +57,14 @@
   <link rel="author" type="text/plain" href="<?php echo bloginfo('template_directory'); ?>/humans.txt" />
   <!-- The little things -->
 
+  <!--[if !IE]> -->
   <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
+  <!-- <![endif]-->
+
+  <!--[if lt IE 9]>
+    <link rel="stylesheet" href="<?php echo bloginfo('template_directory'); ?>/old-ie.css">
+  <![endif]-->
+
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 
   <?php if (WP_ENV == 'local') : ?>
