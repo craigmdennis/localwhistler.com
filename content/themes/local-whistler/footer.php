@@ -104,23 +104,6 @@
       )
     );
 
-    // Add respond.js to older browser
-    document.write(
-      unescape(
-        '%3Cscript src="<?php echo get_template_directory_uri(); ?>/scripts/vendor/respond.js"%3E%3C/script%3E'
-      )
-    );
-  }
-
-</script>
-
-<script>
-// jQuery fallback in case unable to load from CDN
-!window.jQuery && document.write(
-  unescape(
-    '%3Cscript src="<?php echo get_template_directory_uri(); ?>/scripts/vendor/jquery.min.js"%3E%3C/script%3E'
-  )
-)
 </script>
 
 <script
