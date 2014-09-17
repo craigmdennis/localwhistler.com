@@ -10,7 +10,7 @@
 
         <li>
           <a
-            href="http://<?php echo $options[$social]; ?>"
+            href="<?php echo $options[$social]; ?>"
             target="blank"
             class="business__social__item">
             <i class="icon-<?php echo $social; ?> icon--before icon--sign"></i>
