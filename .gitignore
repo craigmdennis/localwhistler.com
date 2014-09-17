@@ -1,4 +1,6 @@
 content/uploads/
+content/cache/
+content/upgrade/
 shared/
 staging-config.php
 wp-content/uploads/
