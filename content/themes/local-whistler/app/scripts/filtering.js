@@ -61,6 +61,17 @@ filter = {};
           // Check whether we need to affix
           filter.affix();
 
+          if (filter.filterCount === 0 ) {
+            window.setBackgroundColorToImage.init();
+          }
+
+          // Remove the loading gif
+          $('#results').css('background', 'none');
+
+          // Increment the count so subsequent history updates
+          // use pushState instead of replaceState
+          filter.filterCount++;
+
           // Show info if no results
           if ( !result.length ) {
 
@@ -106,10 +117,6 @@ filter = {};
 
       // Update the history on first page load (uses replaceState)
       filter.push_history();
-
-      // Increment the count so subsequent history updates
-      // use pushState instead of replaceState
-      filter.filterCount++;
 
     },
 
@@ -174,7 +181,7 @@ filter = {};
       // console.log( 'controlHeight', controlHeight );
       // console.log( 'resultsHeight', resultsHeight );
 
-      if ( $(window).width() < 1100 ) {
+      if ( $(window).width() < 1100 || $('body').hasClass('view-map') ) {
         return false;
       }
 
@@ -664,8 +671,8 @@ filter = {};
 
 })(jQuery, window, document);
 
-// When the DOM is ready
-$(document).ready( function(){
+// When everything else has loaded
+$(window).load( function(){
 
   'use strict';
 
@@ -674,49 +681,52 @@ $(document).ready( function(){
     window.filter.init();
   }
 
-  $(document).on('click', '.btn--control', function(e){
-    e.preventDefault();
+});
 
-    var view = $(this).attr('id'),
-        viewText = view.replace('view-', '');
+$(document).on('click', '.btn--control', function(e){
 
-    // Drop a cookie to persist the view
-    $.cookie('view', viewText, { expires: 7 });
+  'use strict';
 
-    // Update the body class
-    $('body')
-      .removeClass('view-gallery view-list view-map')
-      .addClass( view );
+  e.preventDefault();
 
-    // // If the button is for map and the body doesn't have a map class
-    if (view === 'view-map') {
+  var view = $(this).attr('id'),
+      viewText = view.replace('view-', '');
 
-      // Tell google maps to resize
-      $(window).trigger('resize');
-      google.maps.event.trigger(window.googleMap.map, 'resize');
+  // Drop a cookie to persist the view
+  $.cookie('view', viewText, { expires: 7 });
 
-      // Update the filtering for the view
-      $('select').trigger('change');
+  // Update the body class
+  $('body')
+    .removeClass('view-gallery view-list view-map')
+    .addClass( view );
 
-      // Kill the affix plugin
-      window.filter.kill_affix( $('#controls') );
+  // // If the button is for map and the body doesn't have a map class
+  if (view === 'view-map') {
 
-      // Update Analitics
-      ga('send', 'event', 'button', 'click', 'Map View');
-    }
+    // Tell google maps to resize
+    $(window).trigger('resize');
+    google.maps.event.trigger(window.googleMap.map, 'resize');
 
-    if (view === 'view-list') {
+    // Update the filtering for the view
+    $('select').trigger('change');
 
-      // Initialise afix if needed
-      window.filter.affix( $('#controls') );
+    // Kill the affix plugin
+    window.filter.kill_affix( $('#controls') );
 
-      // Add styling hooks
-      filter.update_styles();
+    // Update Analitics
+    ga('send', 'event', 'button', 'click', 'Map View');
+  }
 
-      // Update Analitics
-      ga('send', 'event', 'button', 'click', 'List View');
-    }
+  if (view === 'view-list') {
 
-  });
+    // Initialise afix if needed
+    window.filter.affix( $('#controls') );
+
+    // Add styling hooks
+    filter.update_styles();
+
+    // Update Analitics
+    ga('send', 'event', 'button', 'click', 'List View');
+  }
 
 });
