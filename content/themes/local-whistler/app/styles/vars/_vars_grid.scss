@@ -1,10 +1,11 @@
-$bp1: 20em; // 320px
-$bp2: 30em; // 480px
-$bp3: 37.5em; // 600px
-$bp4: 48em; // 768px
-$bp5: 56.25em; // 900px
-$bp6: 68.75em; // 1100px
-$bp7: 81.25em; // 1300px
+// Allow them to be overridden in old-ie.scss
+$bp1: 20em    !default; // 320px
+$bp2: 30em    !default; // 480px
+$bp3: 37.5em  !default; // 600px
+$bp4: 48em    !default; // 768px
+$bp5: 56.25em !default; // 900px
+$bp6: 68.75em !default; // 1100px
+$bp7: 81.25em !default; // 1300px
 
 $bp4-max: 56.1875em; // 899px
 $bp5-max: 68.6875em; // 1099px
@@ -15,6 +16,8 @@ $affix: (min-height 687px) $bp6;
 $max-width: $bp6;
 $grid-gutter-width: $baseline*2;
 $grid-columns: 12;
+
+$old-ie: false !default;
 
 // body:before {
 //   content: 'Initial';

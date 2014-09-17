@@ -103,6 +103,7 @@
         '%3Cscript src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"%3E%3C/script%3E'
       )
     );
+  }
 
 </script>
 

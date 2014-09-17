@@ -632,13 +632,15 @@ filter = {};
       var tags = tagObject.tags;
       var green = tagObject.green;
       var bodyStyle = '';
-      var greenClass;
+      var greenClass, greenLogo;
 
       if (green) {
         greenClass = 'is-green';
+        greenLogo = '<div class="green-content">Environmentally Conscious</div>';
       }
       else {
         greenClass = 'not-green';
+        greenLogo = '';
       }
 
       // Get todo
@@ -651,6 +653,7 @@ filter = {};
                   '<div class="media__logo-container">' +
                     filter.get_logo( post ) +
                   '</div>' +
+                  greenLogo +
                   '<a class="media__link--container" href="' + post.url + '">' +
                     '<div class="media__heading">' +
                       '<h2 class="media__title">' + post.title + '</h2>' +

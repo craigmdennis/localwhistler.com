@@ -190,7 +190,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.app.styles %>/',
-          src: '{,*/}*.scss',
+          src: '*.scss',
           dest: '.tmp/styles',
           ext: '.css'
         }]
@@ -274,8 +274,10 @@ module.exports = function (grunt) {
         report: 'min'
       },
       all: {
-        src: '.tmp/styles/{,*/}*.css',
-        dest: 'style.css'
+        files: {
+          'style.css': ['.tmp/styles/{,*/}*.css', '!.tmp/styles/old-ie.css'],
+          'old-ie.css': ['.tmp/styles/{,*/}*.css', '!.tmp/styles/style.css']
+        }
       }
     },
 

@@ -74,7 +74,14 @@
   <link rel="author" type="text/plain" href="<?php echo bloginfo('template_directory'); ?>/humans.txt" />
   <!-- The little things -->
 
+  <!--[if !IE]> -->
   <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
+  <!-- <![endif]-->
+
+  <!--[if lt IE 9]>
+    <link rel="stylesheet" href="<?php echo bloginfo('template_directory'); ?>/old-ie.css">
+  <![endif]-->
+
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 
   <?php if (WP_ENV == 'local') : ?>
