@@ -441,7 +441,7 @@ filter = {};
         title = 'Filtering: ' + currentTypeText + ' in ' + currentLocationText;
       }
 
-      title += ' | Local Whistler';
+      title += ' - Local Whistler';
 
       return title;
 
