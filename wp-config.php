@@ -37,7 +37,7 @@ if ( file_exists( $domain_dir . '/local-config.php') ) {
 else if ( file_exists( $domain_dir . '/env_staging') ) {
 
     /** Environment variable */
-    define('WP_ENV', 'production');
+    define('WP_ENV', 'staging');
 
     /** The name of the database for WordPress */
     define('DB_NAME', 'db152547_localwhistler_dev');
@@ -85,7 +85,7 @@ else {
     define('DB_HOST', 'localhost');
 
     /** Server name (your url) */
-    $domain_name = 'http://localwhistler.net';
+    $domain_name = 'http://localwhistler.com';
 
     /* For developers: WordPress debugging mode. */
     define('WP_DEBUG', false);
