@@ -21,12 +21,12 @@ namespace :localwhister do
     end
   end
 
-  desc 'Point cache directory to shared folder'
-  task :symlink do
-    on roles(:app), in: :groups do
-      execute "cd '#{release_path}/content' && ln -nfs '../../../shared/cache' 'cache'"
-    end
-  end
+  # desc 'Point cache directory to shared folder'
+  # task :symlink do
+  #   on roles(:app), in: :groups do
+  #     execute "cd '#{release_path}/content' && ln -nfs '../../../shared/cache' 'cache'"
+  #   end
+  # end
 
 end
 
