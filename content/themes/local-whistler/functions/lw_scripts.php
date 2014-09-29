@@ -126,25 +126,43 @@
 
         if ( !empty( $locations ) ) {
           foreach ($locations as $location ) {
-            array_push($locationArray, $location->slug);
+
+            $tmpLocArray = array(
+              'slug' => $location->slug
+            );
+
+            array_push($locationArray, $tmpLocArray);
           }
         }
 
         if ( !empty( $types ) ) {
           foreach ($types as $type ) {
-            array_push($typeArray, $type->slug);
+
+            $tmpTypeArray = array(
+              'slug' => $type->slug
+            );
+
+            array_push($typeArray, $tmpTypeArray);
           }
         }
 
         if ( function_exists('get_field') ) {
           $logo = get_field('logo');
+          $sizes = $logo['sizes'];
+
+          // echo '<pre>';
+          // print_r( $sizes );
+          // echo '</pre>';
 
           $logoArray = array(
             'alt' => $logo['alt'],
             'sizes' => array(
-              'media--thumb' => $logo['sizes']['media--thumb'],
-              'media--thumb-width' => $logo['sizes']['media--thumb-width'],
-              'media--thumb-height' => $logo['sizes']['media--thumb-height']
+              'media--thumb' => $sizes['media--thumb'],
+              'media--thumb-width' => $sizes['media--thumb-width'],
+              'media--thumb-height' => $sizes['media--thumb-height'],
+              'media--thumb-retina' => $sizes['media--thumb-retina'],
+              'media--thumb-retina-width' => $sizes['media--thumb-retina-width'],
+              'media--thumb-retina-height' => $sizes['media--thumb-retina-height']
             )
           );
         }
@@ -175,18 +193,14 @@
 
       endwhile;
 
-      // $posts = array();
-      // array_push($posts, array(
-      //   'posts' => $postsArray,
-      //   'status' => 'ok'
-      // ));
-
       $data = json_encode( $postsArray );
       // $fp = fopen('results.json', 'w');
       // fwrite($fp, $data);
       // fclose($fp);
 
-      // set_transient( $transient_key, $data, 60 * 60 * 24 ); // one day
+      wp_reset_query();
+
+      // set_transient( $transient_key, $data, 60 * 60 * 24 * 14 ); // two weeks
       // need to hook into post_update, post_delete, post_publish to destroy the transient
 
     };

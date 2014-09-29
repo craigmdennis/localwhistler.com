@@ -1,5 +1,3 @@
-// console.log( JSON.parse( lw_post_data));
-
 var filter;
 
 filter = {};
@@ -12,15 +10,11 @@ filter = {};
 
     filterCount: 0,
 
-    // apiLocation:  '/api/get_posts/?post_type=business&count=-1' +
-    //               '&include=title,date,url,excerpt,taxonomy_business_filter,' +
-    //               'taxonomy_business_location,taxonomy_business_type,custom_fields',
-
     settings: {
       filter_on_init: true,
       filter_criteria: {
-        location: ['.js__filter-location .TYPE.any', 'ARRAY.taxonomy_business_location.slug'],
-        // type: ['.js__filter-type .TYPE.any', 'taxonomy_business_type.slug']
+        location: ['.js__filter-location .TYPE.any', 'taxonomy_business_location.ARRAY.slug'],
+        type: ['.js__filter-type .TYPE.any', 'taxonomy_business_type.ARRAY.slug']
       },
       search: {
         input: '#filterSearch',
@@ -33,17 +27,10 @@ filter = {};
         }
       },
 
-      // streaming: {
-      //   data_url: filter.apiLocation,
-      //   stream_after: 1,
-      //   batch_size: 10
-      // },
+      streaming: false,
 
       callbacks: {
         after_filter: function( result ){
-
-          // Update the map
-          window.googleMap.update_markers( result );
 
           // Show the current count
           filter.result_count( result );
@@ -96,16 +83,16 @@ filter = {};
             }
           }
 
+          // Update the map
+          // if ( $('body').hasClass('view-map') ) {
+            window.googleMap.update_markers( result );
+          // }
+
         }
       }
     },
 
     init: function(){
-
-      // console.log( filter.get_api_data( filter.apiLocation ) );
-
-      // Get the first page data
-      var data = filter.get_api_data( filter.apiLocation );
 
       // Create the empty results markup
       filter.create_results();
@@ -113,7 +100,7 @@ filter = {};
       // Generate the map regardless of if it is needed
       window.googleMap.init();
 
-      // Pass the data and initialiase the filtering
+      // Pass the data and initialise the filtering
       // Store filter object
       filter.fJS = filter.filter_init();
 
@@ -148,8 +135,8 @@ filter = {};
       $('#filterOrder').on('change', filter.result_sort );
 
       // Filter, Location and Type event handlers
-      $('#menu-item-69').on('click', 'a', filter.set_filters_from_href );
-      $('#menu-item-143').on('click', 'a', filter.set_filters_from_href );
+      $('#menu-item-69 .sub-menu').on('click', 'a', filter.set_filters_from_href );
+      $('#menu-item-143 .sub-menu').on('click', 'a', filter.set_filters_from_href );
       $('.tags').on('click', 'a', filter.set_filters_from_href );
 
     },
@@ -338,13 +325,13 @@ filter = {};
 
       if ( e.type === 'popstate' ) {
         state = e.state;
-        // console.log('Popstate:',state);
+        console.log('Popstate:',state);
       }
 
       // It's an object
       else {
         state = e;
-        // console.log('State:', state );
+        console.log('State:', state );
       }
 
       // Replace the current text to match the history state
@@ -458,6 +445,7 @@ filter = {};
       if ( Modernizr.history) {
         if ( ($('#filterSearch').is(':focus')) || ( filter.filterCount === 0 ) ) {
           // Replace current history state
+          console.log('Replace State');
           window.history.replaceState( filter.get_state(), filter.generate_title(), filter.generate_url() );
         } else {
           // Add a new history state
@@ -505,24 +493,6 @@ filter = {};
 
     },
 
-    get_api_data: function( api_location ){
-
-      var data;
-
-      $.ajax({
-        async: false, //thats the trick
-        url: api_location,
-        cache: true,
-        dataType: 'json',
-        success: function( response ){
-           data = response;
-        }
-      });
-
-      return data;
-
-    },
-
     get_logo: function( post ) {
 
       var logo = post.acf.logo;
@@ -531,7 +501,7 @@ filter = {};
       var src = logo.sizes['media--thumb-retina'];
       var style = 'style="margin-left:-' + width/4 + 'px;' + 'margin-top:-' + height/4 + 'px;"';
 
-      if ( width <= 300 && height <= 300) {
+      if ( (width < 300 || width == undefined) && (height < 300 || height == undefined) ) {
         height = logo.sizes['media--thumb-height'];
         width = logo.sizes['media--thumb-width'];
         src = logo.sizes['media--thumb'];
