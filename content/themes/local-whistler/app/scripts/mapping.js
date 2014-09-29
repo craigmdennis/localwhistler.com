@@ -95,8 +95,6 @@ googleMap = {};
         // Add new markers
         $.each( result, function(i, id){
 
-          console.log( id );
-
           // Update the map with new pins
           googleMap.markers[id].setMap( googleMap.map );
 
