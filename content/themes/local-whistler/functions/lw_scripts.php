@@ -200,7 +200,7 @@
 
       wp_reset_query();
 
-      // set_transient( $transient_key, $data, 60 * 60 * 24 * 14 ); // two weeks
+      set_transient( $transient_key, $data, 60 * 60 * 24 * 14 ); // two weeks
       // need to hook into post_update, post_delete, post_publish to destroy the transient
 
     };
