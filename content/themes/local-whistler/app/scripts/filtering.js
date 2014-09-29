@@ -8,7 +8,7 @@ filter = {};
 
   filter = {
 
-    filterCount: 0,
+    loaded: false,
 
     settings: {
       filter_on_init: true,
@@ -50,16 +50,12 @@ filter = {};
           // Check whether we need to affix
           filter.affix();
 
-          if (filter.filterCount === 0 ) {
+          if (filter.loaded === false ) {
             window.setBackgroundColorToImage.init();
           }
 
           // Remove the loading gif
           $('#results').css('background', 'none');
-
-          // Increment the count so subsequent history updates
-          // use pushState instead of replaceState
-          filter.filterCount++;
 
           // Show info if no results
           if ( !result.length ) {
@@ -84,9 +80,7 @@ filter = {};
           }
 
           // Update the map
-          // if ( $('body').hasClass('view-map') ) {
-            window.googleMap.update_markers( result );
-          // }
+          window.googleMap.update_markers( result );
 
         }
       }
@@ -325,13 +319,13 @@ filter = {};
 
       if ( e.type === 'popstate' ) {
         state = e.state;
-        console.log('Popstate:',state);
+        // console.log('Popstate:',state);
       }
 
       // It's an object
       else {
         state = e;
-        console.log('State:', state );
+        // console.log('State:', state );
       }
 
       // Replace the current text to match the history state
@@ -443,15 +437,20 @@ filter = {};
       document.title = filter.generate_title();
 
       if ( Modernizr.history) {
-        if ( ($('#filterSearch').is(':focus')) || ( filter.filterCount === 0 ) ) {
+        if ( ($('#filterSearch').is(':focus')) || ( filter.loaded === false ) ) {
           // Replace current history state
-          console.log('Replace State');
+          // console.log('Replace State');
           window.history.replaceState( filter.get_state(), filter.generate_title(), filter.generate_url() );
         } else {
+          // console.log('Push State');
           // Add a new history state
           window.history.pushState( filter.get_state(), filter.generate_title(), filter.generate_url() );
         }
       }
+
+      // Increment the count so subsequent history updates
+      // use pushState instead of replaceState
+      filter.loaded = true;
 
     },
 
