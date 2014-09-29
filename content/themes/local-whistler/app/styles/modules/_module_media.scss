@@ -275,6 +275,7 @@
   .media__title,
   .media__subtitle, {
     margin: $baseline;
+    max-width: 100%;
   }
 }
 
