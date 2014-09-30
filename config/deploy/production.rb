@@ -3,7 +3,7 @@ set :deploy_to, '/home/localwhistler/'
 set :branch, 'master'
 set :tmp_dir, "/home/localwhistler/tmp"
 
-server '23.229.194.226', user: 'localwhistler', roles: %w{web app}
+server 'localwhistler.com', user: 'localwhistler', roles: %w{web app}
 
 # Local Whistler specific tasks namespaced to reduce conflict
 namespace :localwhister do
