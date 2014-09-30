@@ -1,3 +1,12 @@
+<a name="1.1.2-0"></a>
+### 1.1.2-0 (2014-09-29)
+
+
+#### Bug Fixes
+
+* issue with paged results while specifying sort order on products ([451c6390](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/451c6390f8853a71bd3d59f5c342f7a423b82ac5))
+
+
 <a name="1.1.1-0"></a>
 ### 1.1.1-0 (2014-09-29)
 
