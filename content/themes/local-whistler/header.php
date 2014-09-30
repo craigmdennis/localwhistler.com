@@ -25,7 +25,7 @@
 ?>
 
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="no-js">
 <head>
   <title><?php wp_title(''); ?></title>
   <meta name="description" content="<?php bloginfo('description'); ?>" />

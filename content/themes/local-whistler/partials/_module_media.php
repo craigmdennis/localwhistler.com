@@ -52,6 +52,8 @@
 
     </div>
 
+    <?php echo $greenLogo; ?>
+
 <?php endif; ?>
 
   <?php if ( !is_single() ) : ?>

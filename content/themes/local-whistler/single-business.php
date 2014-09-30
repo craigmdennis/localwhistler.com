@@ -53,7 +53,7 @@
       'flickr'       => get_field('flickr_username'),
       'vimeo'        => get_field('vimeo_username'),
       'instagram'    => get_field('instagram_username'),
-      'trip-advisor'  => get_field('trip_advisor_url'),
+      'trip-advisor' => get_field('trip_advisor_url'),
       'yelp'         => get_field('yelp_url')
     );
 
@@ -65,6 +65,14 @@
     $alt     = $logo['alt'];
     $src     = $logo['sizes']['media--thumb'];
   }
+
+  if ( has_term('green', 'business_filter', $post->ID) ):
+    $greenClass = 'is-green';
+    $greenLogo = '<div class="green-content">Environmentally Conscious</div>';
+  else:
+    $greenClass = 'not-green';
+    $greenLogo = '';
+  endif;
 
 ?>
 
@@ -85,7 +93,7 @@
 
 <div class="row">
 
-  <div class="col-xs-12 col-md-8 col-lg-9">
+  <div class="col-xs-12 col-md-8 col-lg-9 <?php echo $greenClass; ?>">
 
     <?php if ( !empty($logo) ): ?>
     <div class="content-header">
@@ -98,6 +106,7 @@
           height="<?php echo $height; ?>"
         />
       </div>
+      <?php echo $greenLogo; ?>
     </div>
     <?php endif; ?>
 

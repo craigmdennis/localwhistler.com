@@ -328,8 +328,15 @@
     display: none !important; // Doesn't need to be read by screenreaders
   }
 
-  .media__footer .btn {
-    margin-bottom: $baseline*2;
+  .media__footer {
+    .no-js & {
+      padding-top: $baseline*2;
+      @include border('-top');
+    }
+
+    .btn {
+      margin-bottom: $baseline*2;
+    }
   }
 
   .has-logo {
@@ -382,6 +389,10 @@
 
       @include breakpoint( $bp3 ) {
         border-radius: $radius-left;
+      }
+
+      .no-js & {
+        border: 1px solid #CCC;
       }
     }
 
@@ -446,6 +457,7 @@
   .media__footer {
     padding-left: $baseline*2;
     padding-right: $baseline*2;
+    border-radius: 0 0 $radius-base 0;
   }
 
 }
