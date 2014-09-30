@@ -103,9 +103,6 @@ define('DB_COLLATE', '');
 /** WordPress Localized Language, defaults to English. */
 define('WPLANG', '');
 
-/* W3 Total Cache */
-define('WP_CACHE', true);
-
 /**#@+
  * Authentication Unique Keys and Salts.
  *

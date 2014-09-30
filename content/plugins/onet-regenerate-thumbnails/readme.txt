@@ -3,8 +3,8 @@ Contributors: orosznyet
 Donate link: http://onetdev.com/repo/onet-regen-thumbnails
 Tags: thumbnail, regenerate, advanced
 Requires at least: 3.5
-Tested up to: 3.8.1
-Stable tag: 1.4
+Tested up to: 4.0
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ You can find a big blue button under the statics, click on that button.
 3. /assets/screenshot-3.png
 
 == Changelog ==
+
+= 1.5 =
+* Updated for Wordpress 4.0
 
 = 1.4 =
 * Fixes for developers in debug mode

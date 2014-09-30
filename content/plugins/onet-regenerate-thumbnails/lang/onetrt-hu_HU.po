@@ -1,29 +1,29 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ONet Regen Thumbs\n"
-"POT-Creation-Date: 2014-03-11 09:17+0100\n"
-"PO-Revision-Date: 2014-03-11 09:17+0100\n"
+"POT-Creation-Date: 2014-09-24 11:18+0100\n"
+"PO-Revision-Date: 2014-09-24 11:18+0100\n"
 "Last-Translator: Jozsef Koller <orosznyet@gmail.com>\n"
 "Language-Team: József Koller <orosznyet@gmail.com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: c:\\XAMPP\\htdocs\\wp_multisite\\wp-content\\plugins"
-"\\onet-regen-thumbnails\n"
+"X-Poedit-Basepath: c:\\XAMPP\\htdocs\\wp_latest\\wp-content\\plugins\\onet-"
+"regenerate-thumbnails\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: onet-regen-thumbnails.php:128 view/main_ui.php:4
+#: onet-regen-thumbnails.php:129 view/main_ui.php:4
 msgid "Regenerate Thumbnails"
 msgstr "Bélyegképek újragenerálása"
 
-#: onet-regen-thumbnails.php:128
+#: onet-regen-thumbnails.php:129
 msgid "Regen. Thumbnails"
 msgstr "Bélyegkép újragen."
 
-#: onet-regen-thumbnails.php:148
+#: onet-regen-thumbnails.php:149
 msgid ""
 "You are about to leave the page which means that the remaining thumbnail "
 "will not be processed. Do you really want to leave?"
@@ -32,7 +32,7 @@ msgstr ""
 "lévő bélyegkép generálás meg fog szakadni. Valóban el akarod hagyni az "
 "oldalt?"
 
-#: onet-regen-thumbnails.php:149
+#: onet-regen-thumbnails.php:150
 msgid ""
 "There were some problems with your server or your internet connection. "
 "Please try again later."
@@ -40,139 +40,139 @@ msgstr ""
 "Problémák adódtak az internet kapcsolatoddal vagy a szerverrel. Kérlek "
 "próbáld újra később."
 
-#: onet-regen-thumbnails.php:150
+#: onet-regen-thumbnails.php:151
 msgid "You have no images. Sorry, I can't help you at the moment."
 msgstr "Nincs egyetlen képed sem. Sajnálom, most nem segíthetek."
 
-#: onet-regen-thumbnails.php:151
+#: onet-regen-thumbnails.php:152
 msgid "There was a connection issue. {retryNum} more retries left."
 msgstr "Probléma volt a kapcsolattal. Még {retryNum} próbálkozás maradt hátra."
 
-#: onet-regen-thumbnails.php:152
+#: onet-regen-thumbnails.php:153
 msgid "The script encountered a fatal error. The process has been terminated."
 msgstr "A folyamat végzetes hibába ütközött. A folyamat félbeszakadt."
 
-#: onet-regen-thumbnails.php:153
+#: onet-regen-thumbnails.php:154
 msgid "Fatal error. Code {errorCode}."
 msgstr "Végzetes hiba. Kód {errorCode}."
 
-#: onet-regen-thumbnails.php:154
+#: onet-regen-thumbnails.php:155
 msgid "The server does not answered in time but the process will go on."
 msgstr "A szerver nem válaszolt időben de feldolgozás folytatódik."
 
-#: onet-regen-thumbnails.php:155
+#: onet-regen-thumbnails.php:156
 msgid "The process is done. You can leave the page."
 msgstr "A folyamat sikeresen véget ért. Most már elhagyhatod az oldalt."
 
-#: onet-regen-thumbnails.php:156
+#: onet-regen-thumbnails.php:157
 msgid "The following thumbnails were generated: {imageList}."
 msgstr "Az alábbi képek kerültek újragenerálásra: {imageList}."
 
-#: onet-regen-thumbnails.php:157
+#: onet-regen-thumbnails.php:158
 msgid "{fileNum} images were updated."
 msgstr "{fileNum} kép lett frissítve."
 
-#: onet-regen-thumbnails.php:158
+#: onet-regen-thumbnails.php:159
 msgid "Connection issue resolved."
 msgstr "Kapcsolat probléma megoldódott."
 
-#: onet-regen-thumbnails.php:159
+#: onet-regen-thumbnails.php:160
 msgid "Process started."
 msgstr "A folyamat elindult."
 
-#: onet-regen-thumbnails.php:160
+#: onet-regen-thumbnails.php:161
 msgid "infinity"
 msgstr "végtelen"
 
-#: onet-regen-thumbnails.php:161
+#: onet-regen-thumbnails.php:162
 msgid "y"
 msgstr "é"
 
-#: onet-regen-thumbnails.php:162 onet-regen-thumbnails.php:165
+#: onet-regen-thumbnails.php:163 onet-regen-thumbnails.php:166
 msgid "m"
 msgstr "h"
 
-#: onet-regen-thumbnails.php:163
+#: onet-regen-thumbnails.php:164
 msgid "d"
 msgstr "n"
 
-#: onet-regen-thumbnails.php:164
+#: onet-regen-thumbnails.php:165
 msgid "h"
 msgstr "ó"
 
-#: onet-regen-thumbnails.php:166
+#: onet-regen-thumbnails.php:167
 msgid "s"
 msgstr "m"
 
-#: onet-regen-thumbnails.php:183
+#: onet-regen-thumbnails.php:184
 msgid "Regen. thumbnails"
 msgstr "Bélyegkép újragen."
 
-#: onet-regen-thumbnails.php:184
+#: onet-regen-thumbnails.php:185
 msgid "This action may take a while. Do you want to continue? "
 msgstr "Ez a folyamat el tarthat egy ideig. Folytatod?"
 
-#: onet-regen-thumbnails.php:185
+#: onet-regen-thumbnails.php:186
 msgid "Select at least one entry to perform this action."
 msgstr "Válassz ki legalább egy elemet a művelet végrehajtásához."
 
-#: onet-regen-thumbnails.php:213 onet-regen-thumbnails.php:304
+#: onet-regen-thumbnails.php:214 onet-regen-thumbnails.php:305
 msgid "Settings"
 msgstr "Beállítások"
 
-#: onet-regen-thumbnails.php:227
+#: onet-regen-thumbnails.php:228
 msgid "Regenerate thumbnail for related images"
 msgstr "Bélyegképek újragenerálása a kapcsolódó képekhez"
 
-#: onet-regen-thumbnails.php:227
+#: onet-regen-thumbnails.php:228
 msgid "Regenerate thumbnails"
 msgstr "Bélyegképek újragenerálása"
 
-#: onet-regen-thumbnails.php:238
+#: onet-regen-thumbnails.php:239
 msgid "This will redirect you to regeneration page. Do you want to continue?"
 msgstr "Ez a művelet átirányít tége az import oldalra. Folytatod?"
 
-#: onet-regen-thumbnails.php:238
+#: onet-regen-thumbnails.php:239
 msgid "Regenerate thumbs"
 msgstr "Bélyegképek újragenerálása"
 
-#: onet-regen-thumbnails.php:308
+#: onet-regen-thumbnails.php:309
 msgid "Custom dimension manager"
 msgstr "Egyedi méret kezelő"
 
-#: onet-regen-thumbnails.php:312
+#: onet-regen-thumbnails.php:313
 msgid "Dashboard"
 msgstr "Vezérlőpult"
 
-#: onet-regen-thumbnails.php:318
+#: onet-regen-thumbnails.php:319
 msgid "Process was terminated manually."
 msgstr "A folyamat kézileg le lett állítva."
 
-#: onet-regen-thumbnails.php:319
+#: onet-regen-thumbnails.php:320
 msgid "Regenerate was successful."
 msgstr "Az újragenerálás sikeres."
 
-#: onet-regen-thumbnails.php:334
-msgid "Thumbnail saved."
-msgstr "Képméret elmentve."
-
-#: onet-regen-thumbnails.php:334
-msgid "Thumbnail updated."
-msgstr "Képméret frissítve."
-
-#: onet-regen-thumbnails.php:344
-msgid "Thumbnail removed."
-msgstr "Képméret eltávolítva."
-
-#: onet-regen-thumbnails.php:374
+#: onet-regen-thumbnails.php:321
 msgid "Changes has been saved."
 msgstr "A változások mentésre kerültek."
 
-#: onet-regen-thumbnails.php:471
+#: onet-regen-thumbnails.php:336
+msgid "Thumbnail saved."
+msgstr "Képméret elmentve."
+
+#: onet-regen-thumbnails.php:336
+msgid "Thumbnail updated."
+msgstr "Képméret frissítve."
+
+#: onet-regen-thumbnails.php:346
+msgid "Thumbnail removed."
+msgstr "Képméret eltávolítva."
+
+#: onet-regen-thumbnails.php:478
 msgid "Contact and Support"
 msgstr "Kapcsolat és Támogatás"
 
-#: onet-regen-thumbnails.php:472
+#: onet-regen-thumbnails.php:479
 #, php-format
 msgid ""
 "If you have any question, problem or suggestion please check out the %s and "
@@ -182,15 +182,15 @@ msgstr ""
 "Amennyiben nem találsz számodra megfelelő információt tedd fel kérdésed "
 "bártan."
 
-#: onet-regen-thumbnails.php:473
+#: onet-regen-thumbnails.php:480
 msgid "official support page"
 msgstr "hovatalos támogatási oldalra"
 
-#: onet-regen-thumbnails.php:474
+#: onet-regen-thumbnails.php:481
 msgid "Premium Support"
 msgstr "Prémium támogatás"
 
-#: onet-regen-thumbnails.php:475
+#: onet-regen-thumbnails.php:482
 #, php-format
 msgid ""
 "The developer provides premium support for low hourly rate. If you want to "
@@ -199,7 +199,7 @@ msgstr ""
 "A fejlesztő prémium támogatás biztosít alacsony órabér mellett. Amennyiben "
 "közvetlen támogatásra van szükséged írj a fejlesztőnek a %s címre."
 
-#: onet-regen-thumbnails.php:475
+#: onet-regen-thumbnails.php:482
 msgid "[PREMIUM SUPPORT] ONet Regen Thumbnails"
 msgstr "[PRÉMIUM TÁMOGATÁS] ONet Regenerate Thumbnails"
 

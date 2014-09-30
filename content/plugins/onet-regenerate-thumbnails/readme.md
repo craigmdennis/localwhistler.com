@@ -34,6 +34,9 @@ You can read the most recent FAQ list on the wordpress plugin page also if you a
 ## Changelog
 
 ### 1.4
+* Updated for Wordpress 4.0
+
+### 1.4
 * Fixes for developers in debug mode
 
 ### 1.35
