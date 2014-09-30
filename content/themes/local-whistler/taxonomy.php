@@ -9,7 +9,7 @@
   $business_location = get_taxonomy_from_url_or_wordpress('business_location');
   $business_type = get_taxonomy_from_url_or_wordpress('business_type');
   $order = get_taxonomy_from_url_or_wordpress('order');
-  $orderBy = 'date';
+  $orderBy = get_taxonomy_from_url_or_wordpress('orderBy');
   $view = get_view_type();
 
   // Get the two parts of the order if they exist
@@ -73,9 +73,17 @@
 
             <?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
 
-              <li class="media hide-with-mustard">
+              <?php if ( has_term('green', 'business_filter', $post->ID) ): ?>
+                <?php $greenClass = 'is-green'; ?>
+                <?php $greenLogo = '<div class="green-content">Environmentally Conscious</div>'; ?>
+              <?php else: ?>
+                <?php $greenClass = 'not-green'; ?>
+                <?php $greenLogo = ''; ?>
+              <?php endif; ?>
 
-                <?php get_template_part('partials/_module_media'); ?>
+              <li class="media hide-with-mustard <?php echo $greenClass; ?>">
+
+                <?php include('partials/_module_media.php'); ?>
 
               </li>
 
