@@ -2,6 +2,12 @@
 	"folders":
 	[
 		{
+			"folder_exclude_patterns":
+			[
+				"content/themes/local-whistler/.sass-cache",
+				"content/w3tc-config",
+				"content/themes/local-whistler/node_modules"
+			],
 			"follow_symlinks": true,
 			"path": "."
 		}

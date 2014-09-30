@@ -45,12 +45,10 @@
   }
 }
 
-.has-alert {
-  .slider {
+.slider {
 
-    @include breakpoint( $bp5 ) {
-      margin-bottom: $baseline*2;
-    }
+  @include breakpoint( $bp5 ) {
+    margin-bottom: $baseline*2;
   }
 }
 

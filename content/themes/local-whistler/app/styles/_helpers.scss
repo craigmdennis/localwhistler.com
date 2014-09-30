@@ -53,6 +53,10 @@
   float: left;
   position: relative;
   z-index: 3;
+
+  @include breakpoint( $bp5 ) {
+    max-width: 60%;
+  }
 }
 
 

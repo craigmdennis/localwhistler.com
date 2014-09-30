@@ -49,10 +49,10 @@ googleMap = {};
     add_marker: function( post ){
 
       // Get the coords from Wordpress
-      var latlng = post.custom_fields.martygeocoderlatlng[0].slice(1, - 1);
+      var latlng = post.custom_fields.martygeocoderlatlng;
 
-      // Create an array from the string
-      var coords = latlng.split(', ');
+      // Remove brackets and create an array from the string
+      var coords = latlng.replace(/[()]/g,'').split(', ');
 
       var that = this;
       var marker = new google.maps.Marker({

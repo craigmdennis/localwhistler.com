@@ -1,12 +1,5 @@
 <?php
 
-$social_links = array(
-  'twitter',
-  'instagram',
-  'facebook',
-  'google-plus'
-);
-
 add_action( 'admin_init', 'theme_options_init' );
 add_action( 'admin_menu', 'theme_options_add_page' );
 
@@ -25,9 +18,42 @@ function theme_options_add_page() {
 }
 
 /**
+ * Create array for social links
+ */
+$social_links = array(
+  'twitter',
+  'instagram',
+  'facebook',
+  'google-plus'
+);
+
+/**
+ * Create array for sort options
+ */
+$select_options = array(
+  '0' => array(
+    'value' =>  'title-ASC',
+    'label' => __( 'A-Z', 'localwhistler' )
+  ),
+  '1' => array(
+    'value' =>  'title-DESC',
+    'label' => __( 'Z-A', 'localwhistler' )
+  ),
+  '2' => array(
+    'value' => 'date-ASC',
+    'label' => __( 'Oldest First', 'localwhistler' )
+  ),
+  '3' => array(
+    'value' => 'date-DESC',
+    'label' => __( 'Newest First', 'localwhistler' )
+  )
+);
+
+/**
  * Create the options page
  */
 function theme_options_do_page() {
+  global $select_options;
 
   if ( ! isset( $_REQUEST['settings-updated'] ) )
     $_REQUEST['settings-updated'] = false;
@@ -45,6 +71,32 @@ function theme_options_do_page() {
       <?php $options = get_option( 'lw_options' ); ?>
 
       <table class="form-table">
+
+        <?php
+        /**
+         * Business Order
+         */
+        ?>
+        <tr valign="top"><th scope="row"><?php _e( 'Default business order', 'localwhistler' ); ?></th>
+          <td>
+            <select name="lw_options[selectinput]">
+              <?php
+                $selected = $options['selectinput'];
+                $p = '';
+                $r = '';
+
+                foreach ( $select_options as $option ) {
+                  $label = $option['label'];
+                  if ( $selected == $option['value'] ) // Make default first in list
+                    $p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
+                  else
+                    $r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
+                }
+                echo $p . $r;
+              ?>
+            </select>
+          </td>
+        </tr>
 
         <?php
         /**
@@ -90,7 +142,7 @@ function theme_options_do_page() {
  * Sanitize and validate input. Accepts an array, return a sanitized array.
  */
 function theme_options_validate( $input ) {
-  global $social_links;
+  global $social_links, $select_options;
 
   // Say our text option must be safe text with no HTML tags
   $input['analytics'] = wp_filter_nohtml_kses( $input['analytics'] );

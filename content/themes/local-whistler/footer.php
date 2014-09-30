@@ -87,11 +87,11 @@
     // }, false);
 
     // Only give modern browsers javascript filtering
-    document.write(
-      unescape(
-        '%3Cscript  src="<?php echo get_template_directory_uri(); ?>/scripts/filtering.js"%3E%3C/script%3E'
-      )
-    );
+    // document.write(
+    //   unescape(
+    //     '%3Cscript  src="<?php echo get_template_directory_uri(); ?>/scripts/filtering.js"%3E%3C/script%3E'
+    //   )
+    // );
 
   }
 

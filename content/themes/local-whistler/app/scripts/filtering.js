@@ -8,11 +8,7 @@ filter = {};
 
   filter = {
 
-    filterCount: 0,
-
-    apiLocation:  '/api/get_posts/?post_type=business&count=-1' +
-                  '&include=title,date,url,excerpt,taxonomy_business_filter,' +
-                  'taxonomy_business_location,taxonomy_business_type,custom_fields',
+    loaded: false,
 
     settings: {
       filter_on_init: true,
@@ -31,17 +27,10 @@ filter = {};
         }
       },
 
-      streaming: {
-        data_url: filter.apiLocation,
-        stream_after: 1,
-        batch_size: 10
-      },
+      streaming: false,
 
       callbacks: {
         after_filter: function( result ){
-
-          // Update the map
-          window.googleMap.update_markers( result );
 
           // Show the current count
           filter.result_count( result );
@@ -61,16 +50,12 @@ filter = {};
           // Check whether we need to affix
           filter.affix();
 
-          if (filter.filterCount === 0 ) {
+          if (filter.loaded === false ) {
             window.setBackgroundColorToImage.init();
           }
 
           // Remove the loading gif
           $('#results').css('background', 'none');
-
-          // Increment the count so subsequent history updates
-          // use pushState instead of replaceState
-          filter.filterCount++;
 
           // Show info if no results
           if ( !result.length ) {
@@ -93,14 +78,15 @@ filter = {};
               $('#noResults').hide();
             }
           }
+
+          // Update the map
+          window.googleMap.update_markers( result );
+
         }
       }
     },
 
     init: function(){
-
-      // Get the first page data
-      var data = filter.get_api_data( filter.apiLocation );
 
       // Create the empty results markup
       filter.create_results();
@@ -108,9 +94,9 @@ filter = {};
       // Generate the map regardless of if it is needed
       window.googleMap.init();
 
-      // Pass the data and initialiase the filtering
+      // Pass the data and initialise the filtering
       // Store filter object
-      filter.fJS = filter.filter_init( data );
+      filter.fJS = filter.filter_init();
 
       // Bind the event handlers
       filter.bind();
@@ -120,9 +106,9 @@ filter = {};
 
     },
 
-    filter_init: function( data ){
+    filter_init: function(){
 
-      return FilterJS( data.posts, '#resultsList', filter.view, filter.settings );
+      return FilterJS( JSON.parse(lw_post_data) , '#resultsList', filter.view, filter.settings );
 
     },
 
@@ -143,8 +129,8 @@ filter = {};
       $('#filterOrder').on('change', filter.result_sort );
 
       // Filter, Location and Type event handlers
-      $('#menu-item-69').on('click', 'a', filter.set_filters_from_href );
-      $('#menu-item-143').on('click', 'a', filter.set_filters_from_href );
+      $('#menu-item-69 .sub-menu').on('click', 'a', filter.set_filters_from_href );
+      $('#menu-item-143 .sub-menu').on('click', 'a', filter.set_filters_from_href );
       $('.tags').on('click', 'a', filter.set_filters_from_href );
 
     },
@@ -157,7 +143,7 @@ filter = {};
       // Don't follow the link
       e.preventDefault();
 
-      console.log(e);
+      // console.log(e);
 
       var $target = $(e.target),
           newState = filter.generate_state_object_from_href( $target.attr('href') ); // Generate a state object
@@ -441,7 +427,7 @@ filter = {};
         title = 'Filtering: ' + currentTypeText + ' in ' + currentLocationText;
       }
 
-      title += ' | Local Whistler';
+      title += ' - Local Whistler';
 
       return title;
 
@@ -451,14 +437,20 @@ filter = {};
       document.title = filter.generate_title();
 
       if ( Modernizr.history) {
-        if ( ($('#filterSearch').is(':focus')) || ( filter.filterCount === 0 ) ) {
+        if ( ($('#filterSearch').is(':focus')) || ( filter.loaded === false ) ) {
           // Replace current history state
+          // console.log('Replace State');
           window.history.replaceState( filter.get_state(), filter.generate_title(), filter.generate_url() );
         } else {
+          // console.log('Push State');
           // Add a new history state
           window.history.pushState( filter.get_state(), filter.generate_title(), filter.generate_url() );
         }
       }
+
+      // Increment the count so subsequent history updates
+      // use pushState instead of replaceState
+      filter.loaded = true;
 
     },
 
@@ -500,24 +492,6 @@ filter = {};
 
     },
 
-    get_api_data: function( api_location ){
-
-      var data;
-
-      $.ajax({
-        async: false, //thats the trick
-        url: api_location,
-        cache: true,
-        dataType: 'json',
-        success: function( response ){
-           data = response;
-        }
-      });
-
-      return data;
-
-    },
-
     get_logo: function( post ) {
 
       var logo = post.acf.logo;
@@ -526,7 +500,7 @@ filter = {};
       var src = logo.sizes['media--thumb-retina'];
       var style = 'style="margin-left:-' + width/4 + 'px;' + 'margin-top:-' + height/4 + 'px;"';
 
-      if ( width <= 300 && height <= 300) {
+      if ( (width < 300 || width == undefined) && (height < 300 || height == undefined) ) {
         height = logo.sizes['media--thumb-height'];
         width = logo.sizes['media--thumb-width'];
         src = logo.sizes['media--thumb'];
@@ -625,6 +599,8 @@ filter = {};
 
     view: function( post ){
 
+      // console.log(post);
+
       var datetime = filter.format_date( post.date ).iso,
           prettyDate = filter.format_date( post.date ).pretty;
 
@@ -647,6 +623,8 @@ filter = {};
       // If post is within the last week add a class of new
 
       window.googleMap.add_marker( post );
+
+      // console.log( tagObject );
 
       return  '<li class="media ' + greenClass + '">' +
                 '<div class="has-logo">' +
