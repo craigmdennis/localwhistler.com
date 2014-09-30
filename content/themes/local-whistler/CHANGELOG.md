@@ -1,3 +1,27 @@
+<a name="1.1.0"></a>
+## 1.1.0 (2014-09-29)
+
+
+#### Bug Fixes
+
+* issues #77 ([0b4a65c9](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/0b4a65c99b61c60f4597567abbb665cc9a81b7aa))
+* replace state now works correctly ([7cb884be](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/7cb884be5c615a0879aba43c309a1ff86f3b24d5))
+* subtitle line length on featured image now constrained ([04bfc6b1](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/04bfc6b171d0f4c90ca04c9367b3b1db939c31c7))
+* correct deployment hooks ([3021565f](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/3021565fbbfed2264409268040743ec0abfe8ad8))
+* social links now working ([cfaffc32](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/cfaffc32a623bcb236d4d5ed52f5948ea440e08f))
+* simplify title and description ([23ca2ba2](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/23ca2ba271b8eb828191d765f43ad848f272dce2))
+* change title seperator to match no-js ([02add22d](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/02add22d2b0be6f4eb4f11a58df57c0139e9e09e))
+* deployment script syntax error ([87d6285f](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/87d6285f7dd0d9e4d27e667ed8c00e9dde51cbaf))
+
+
+#### Features
+
+* control default business sorting by theme option ([ceca58d7](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/ceca58d7fde6678f79e85167a49d43a7bf7eff35))
+* add caching with transients ([4999eb87](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/4999eb8750169772d7fad91ee0aee79932fb444f))
+* massive performance improvement ([edfc5ff9](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/edfc5ff93841fece6096c30b33703c0fb03980de))
+* add W3 total cache ([96a42116](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/96a4211615739a1b18fb11a091bf73f033552fa3))
+
+
 <a name="1.0.6"></a>
 ### 1.0.6 (2014-09-17)
 
