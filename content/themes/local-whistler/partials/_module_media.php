@@ -52,7 +52,9 @@
 
     </div>
 
-    <?php echo $greenLogo; ?>
+    <?php if (isset( $greenLogo )) : ?>
+      <?php echo $greenLogo; ?>
+    <?php endif; ?>
 
 <?php endif; ?>
 
