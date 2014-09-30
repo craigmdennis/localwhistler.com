@@ -1,3 +1,13 @@
+<a name="1.1.1-0"></a>
+### 1.1.1-0 (2014-09-29)
+
+
+#### Bug Fixes
+
+* #issue 79 ([a9bc45e8](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/a9bc45e87c73f59dbaf3e99b6f8762b0b3b959d2))
+* check to see if $greenLogo is set before calling ([587dc822](https://craigmdennis@bitbucket.org/simplebitdesign/localwhistler.com/commit/587dc822f339d0249d04e62de8211a6b32177bff))
+
+
 <a name="1.1.0"></a>
 ## 1.1.0 (2014-09-29)
 
