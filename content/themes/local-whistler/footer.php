@@ -73,26 +73,6 @@
       )
     );
 
-    // Turn off pointer events when scrolling
-    // var body = document.body,
-    //     timer;
-    //
-    // window.addEventListener('scroll', function() {
-    //   clearTimeout(timer);
-    //   document.body.style.pointerEvents='none';
-    //
-    //   timer = setTimeout(function(){
-    //     document.body.style.pointerEvents='auto';
-    //   },100);
-    // }, false);
-
-    // Only give modern browsers javascript filtering
-    // document.write(
-    //   unescape(
-    //     '%3Cscript  src="<?php echo get_template_directory_uri(); ?>/scripts/filtering.js"%3E%3C/script%3E'
-    //   )
-    // );
-
   }
 
   else {

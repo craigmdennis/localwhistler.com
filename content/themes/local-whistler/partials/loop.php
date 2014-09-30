@@ -2,7 +2,7 @@
 
 <?php // If there is a page with the same slug, pull in the content; ?>
 
-<?php global $page, $paged; ?>
+<?php global $page, $paged, $query_string ?>
 
 <?php if ( 'product' == get_post_type() ) : ?>
   <?php query_posts('page_id=116'); ?>
@@ -36,7 +36,7 @@
     <?php endif; ?>
 
     <?php if ( 'product' == get_post_type() ) : ?>
-      <?php query_posts('post_type=product&order=ASC&orderby=title'); ?>
+      <?php query_posts($query_string . '&post_type=product&order=ASC&orderby=title'); ?>
     <?php endif; ?>
 
     <?php if ( have_posts() ) : ?>
