@@ -37,14 +37,14 @@
       <div class="toolbar__action">
         <div class="btn-group btn-group--switch">
 
-        <!-- <a
+        <?php /* <a
           id="view-gallery"
           href="<?php echo add_query_arg( 'view', 'gallery' ); ?>"
           class="btn btn--default btn--icon-only btn--control btn--gallery js__view-trigger"
           title="View as a gallery">
           <span class="btn__text">Gallery</span>
           <i class="btn__icon icon-thumbnails"></i>
-        </a> -->
+        </a> */ ?>
 
         <a
           id="view-list"

@@ -55,6 +55,9 @@
 
   function get_taxonomy_from_url_or_wordpress( $queryVar ) {
 
+    $options = get_option('lw_options');
+    $raw = explode('-', $options['selectinput']);
+
     // If the $_GET is set
     if ( isset( $_GET[ $queryVar ] ) ) :
 
@@ -63,8 +66,14 @@
 
     else :
 
-      // Get the variable from Wordpress
-      $result = get_query_var( $queryVar );
+      if ( $queryVar === 'order' ) :
+        $result = $raw[1];
+      elseif ( $queryVar === 'orderBy' ) :
+        $result = $raw[0];
+      else :
+        // Get the variable from Wordpress
+        $result = get_query_var( $queryVar );
+      endif;
 
     endif;
 
