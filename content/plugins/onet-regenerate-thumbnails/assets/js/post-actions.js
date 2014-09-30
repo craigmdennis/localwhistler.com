@@ -9,7 +9,7 @@ jQuery(document).ready(function () {
 		$("#doaction,#doaction2").click(function (e) {
 			var ruri = "", ids = [], checked = null;
 			if ( (this.id == "doaction" && $("select[name='action']").val() == "onetrt") || (this.id == "doaction2" && $("select[name='action2']").val() == "onetrt") ) {
-				checked = $("input[name='"+(onetrt_postaction.is_imageatt == "1" ? "media" : "post")+"[]']:checked");
+				checked = $("input[name='"+( onetrt_postaction.is_imageatt == "1" ? "media" : "post")+"[]']:checked");
 				if (checked.length < 1) {
 					alert(onetrt_postaction.labels.bulk_noselected);
 				} else if (confirm(onetrt_postaction.labels.bulk_confirm)) {
@@ -19,7 +19,7 @@ jQuery(document).ready(function () {
 				}
 				e.preventDefault();
 			}
-			
+
 		});
 	}
 	

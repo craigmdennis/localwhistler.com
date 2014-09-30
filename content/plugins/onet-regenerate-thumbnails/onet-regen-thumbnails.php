@@ -5,7 +5,7 @@ Plugin Name:  ONet Regenerate Thumbnails
 Plugin URI:   http://onetdev.com/repo/onet-regen-thumbnails
 Description:  This plugin helps you to fix any missing thumbnail issue in a fairly short time. The only thing you need to do is just few simple click and the plugin does the rest. It can be really helpful if you have thousands of images in your database.
 Git:          https://bitbucket.org/orosznyet/onet-regen-thumbs
-Version:      1.4
+Version:      1.5
 Author:       József Koller
 Author URI:   http://www.onetdev.com
 Text Domain:  onetrt
@@ -36,6 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 add_action( 'init', 'ONetRegenThumbs_wrap' );
 function ONetRegenThumbs_wrap() {
 global $ONetRegenThumbs_inst;
+	ob_start();
 	$ONetRegenThumbs_inst = new ONetRegenThumbs();
 }
 
@@ -96,15 +97,15 @@ class ONetRegenThumbs {
 	function load_opts ( $force_update = 0, $return_defaults = 0 ) {
 		// Load options
 		$default_opts = array(
-			"after_media_btn" => false,         // Display button after "upload media" in post editor
-			"only_complement" => true,          // Regenerate every thumbnail or only the missing ones.
-			"bulk_action" => true,              // Bulk action in post listers.
-			"advanced" => false,                // Display advanced settings
-			"massgen" => false,                 // "Speed" mode for image processing. So called "unlimited images / query"
-			"success_redir" => false,            // Redirect user after success process.
-			"quality_overwrite" => false,       // Overwrite default WP JPG quality
-			"quality" => 90,                    // Quality of saved images (useg for JPGs)
-			"thumbs" => array()
+			"after_media_btn"   => false,         // Display button after "upload media" in post editor
+			"only_complement"   => true,          // Regenerate every thumbnail or only the missing ones.
+			"bulk_action"       => true,          // Bulk action in post listers.
+			"advanced"          => false,         // Display advanced settings
+			"massgen"           => false,         // "Speed" mode for image processing. So called "unlimited images / query"
+			"success_redir"     => false,         // Redirect user after success process.
+			"quality_overwrite" => false,         // Overwrite default WP JPG quality
+			"quality"           => 90,            // Quality of saved images (useg for JPGs)
+			"thumbs"            => array()
 		);
 
 		// Return with the default options
@@ -145,25 +146,25 @@ class ONetRegenThumbs {
 		$opts = $this->load_opts();
 
 		$lang = array(
-			"unload_confirm" => __("You are about to leave the page which means that the remaining thumbnail will not be processed. Do you really want to leave?","onetrt"),
-			"error_terminated" => __('There were some problems with your server or your internet connection. Please try again later.','onetrt'),
-			"error_noimage" => __('You have no images. Sorry, I can\'t help you at the moment.','onetrt'),
-			"error_retrissue" => __('There was a connection issue. {retryNum} more retries left.','onetrt'),
-			"error_serverside" => __('The script encountered a fatal error. The process has been terminated.','onetrt'),
-			"error_ecode" => __('Fatal error. Code {errorCode}.','onetrt'),
-			"error_intended" => __('The server does not answered in time but the process will go on.','onetrt'),
-			"success_done" => __('The process is done. You can leave the page.','onetrt'),
-			"success_thumbs_done" => __('The following thumbnails were generated: {imageList}.','onetrt'),
+			"unload_confirm"           => __("You are about to leave the page which means that the remaining thumbnail will not be processed. Do you really want to leave?","onetrt"),
+			"error_terminated"         => __('There were some problems with your server or your internet connection. Please try again later.','onetrt'),
+			"error_noimage"            => __('You have no images. Sorry, I can\'t help you at the moment.','onetrt'),
+			"error_retrissue"          => __('There was a connection issue. {retryNum} more retries left.','onetrt'),
+			"error_serverside"         => __('The script encountered a fatal error. The process has been terminated.','onetrt'),
+			"error_ecode"              => __('Fatal error. Code {errorCode}.','onetrt'),
+			"error_intended"           => __('The server does not answered in time but the process will go on.','onetrt'),
+			"success_done"             => __('The process is done. You can leave the page.','onetrt'),
+			"success_thumbs_done"      => __('The following thumbnails were generated: {imageList}.','onetrt'),
 			"success_update_itemsdone" => __('{fileNum} images were updated.'),
-			"notice_issueresolved" => __('Connection issue resolved.','onetrt'),
-			"notice_started" => __("Process started.","onetrt"),
-			"time_infinity" => __('infinity','onetrt'),
-			"time_year" => __('y','onetrt'),
-			"time_month" => __('m','onetrt'),
-			"time_day" => __('d','onetrt'),
-			"time_hour" => __('h','onetrt'),
-			"time_min" => __('m','onetrt'),
-			"time_sec" => __('s','onetrt')
+			"notice_issueresolved"     => __('Connection issue resolved.','onetrt'),
+			"notice_started"           => __("Process started.","onetrt"),
+			"time_infinity"            => __('infinity','onetrt'),
+			"time_year"                => __('y','onetrt'),
+			"time_month"               => __('m','onetrt'),
+			"time_day"                 => __('d','onetrt'),
+			"time_hour"                => __('h','onetrt'),
+			"time_min"                 => __('m','onetrt'),
+			"time_sec"                 => __('s','onetrt')
 			);
 		wp_localize_script("onet-regenthumb-main", "onetrt_optspage", $lang );
 		wp_localize_script("onet-regenthumb-main", "onetrt_opts", (array)$opts );
@@ -177,18 +178,18 @@ class ONetRegenThumbs {
 			wp_enqueue_style('jquery-ui-theme-flick');
 
 		// Script for post editor/lister
-		} else if ( in_array($current_screen->post_type,get_post_types( '', 'names' )) || ($current_screen->base == "upload" && $postMime == "image") ) {
+		} else if ( in_array( $current_screen->post_type, get_post_types( '', 'names' ) ) || ($current_screen->base == "upload" && $postMime == "image") || $current_screen->base == "upload" ) {
 			$lang = array(
 				"labels" => array(
-					"bulk_action" => __("Regen. thumbnails","onetrt"),
-					"bulk_confirm" => __("This action may take a while. Do you want to continue? ","onetrt"),
+					"bulk_action"     => __("Regen. thumbnails","onetrt"),
+					"bulk_confirm"    => __("This action may take a while. Do you want to continue? ","onetrt"),
 					"bulk_noselected" => __("Select at least one entry to perform this action.","onetrt")
 				),
-				"is_lister" => in_array($current_screen->base, array("edit","upload")) ? 1 : 0,
-				"is_imageatt" => ($current_screen->base == "upload" && $postMime == "image") ? 1 : 0,
-				"media_btn" => $opts->after_media_btn ? 1 : 0,
+				"is_lister"   => in_array($current_screen->base, array("edit","upload")) ? 1 : 0,
+				"is_imageatt" => ($current_screen->base == "upload" && $postMime == "image") || $current_screen->base == "upload" ? 1 : 0,
+				"media_btn"   => $opts->after_media_btn ? 1 : 0,
 				"bulk_action" => $opts->bulk_action ? 1 : 0,
-				"refresh_uri" => $this->admin_uri(array("refresh_byid"=>""))
+				"refresh_uri" => $this->admin_uri( array("refresh_byid"=>"") )
 				);
 			wp_localize_script("onet-regenthumb-postactions-main", "onetrt_postaction", $lang );
 			wp_enqueue_script("onet-regenthumb-postactions-main");
@@ -283,16 +284,16 @@ class ONetRegenThumbs {
 	global $wpdb, $_wp_additional_image_sizes, $onetrt_edit_thumb, $onetrt_admin_meta_boxes, $onetrt_dashboard_vars;
 
 		# Basic variables
-		$own = $this;                           // make sure that view can access instance variables.
-		$update_msg = array();                  // blank variable for notification
-		$nonce = wp_create_nonce( "onetrt" );   // used for ajax validation
-		$custom_dims = count($_wp_additional_image_sizes); // Number of custom dimensions
-		$ids = array();                         // Contains each queued IDs
-		$ids_count = 0;                         // Number of actual images in task
+		$own            = $this;                           // make sure that view can access instance variables.
+		$update_msg     = array();                  // blank variable for notification
+		$nonce          = wp_create_nonce( "onetrt" );   // used for ajax validation
+		$custom_dims    = count($_wp_additional_image_sizes); // Number of custom dimensions
+		$ids            = array();                         // Contains each queued IDs
+		$ids_count      = 0;                         // Number of actual images in task
 		$is_total_regen = true;                 // Basicly regen process is "total" (if this is false it means partial regen)
-		$update_url = false;                    // If true it will put task ID to the URL so it won't be "double stored"
-		$task_id = 0;                           // Task ID for regenerating
-		$opts = $this->load_opts();
+		$update_url     = false;                    // If true it will put task ID to the URL so it won't be "double stored"
+		$task_id        = 0;                           // Task ID for regenerating
+		$opts           = $this->load_opts();
 		
 		# Clean tasks before doing anything.
 		$this->clean_tasks();
@@ -300,33 +301,34 @@ class ONetRegenThumbs {
 		# Define admin metabox überdatas
 		$onetrt_admin_meta_boxes = array(
 			"settings" => array(
-				"file" => "admin.meta.settings.php",
+				"file"  => "admin.meta.settings.php",
 				"title" => __("Settings", "onetrt")
 			),
 			"customdim" => array(
-				"file" => "admin.meta.customdim.php",
+				"file"  => "admin.meta.customdim.php",
 				"title" => __("Custom dimension manager", "onetrt")
 			),
 			"dashboard" => array(
-				"file" => "admin.meta.dashboard.php",
+				"file"  => "admin.meta.dashboard.php",
 				"title" => __("Dashboard", "onetrt")
 			)
 		);
 
 
 		# Default notifications
-		if (isset($_GET['cancel'])) $update_msg[] = __('Process was terminated manually.','onetrt');
-		if (isset($_GET['success'])) $update_msg[] = __('Regenerate was successful.','onetrt');
+		if ( isset($_GET['cancel']) ) $update_msg[] = __('Process was terminated manually.','onetrt');
+		if ( isset($_GET['success']) ) $update_msg[] = __('Regenerate was successful.','onetrt');
+		if ( isset($_GET['settings_updated']) ) $update_msg[] = __( 'Changes has been saved.', 'onetrt' );
 
 
 		# Thumbnail editor save code:
 		# Save custom thumbnail dimensions
 		if (isset($_POST['save_thumb']) || isset($_POST['update_thumb'])) {
 			$thumb_meta = array(
-				"name" => sanitize_title_with_dashes(remove_accents($_POST['thumb_name'])),
-				"width" => (int)$_POST['thumb_width'],
+				"name"   => sanitize_title_with_dashes(remove_accents($_POST['thumb_name'])),
+				"width"  => (int)$_POST['thumb_width'],
 				"height" => (int)$_POST['thumb_height'],
-				"crop" => isset($_POST['thumb_crop'])
+				"crop"   => isset($_POST['thumb_crop'])
 				);
 			if (!empty($_POST['ename'])) unset($opts->thumbs[$_POST['ename']]); // remove previous instance if ename is exists
 			$opts->thumbs[$thumb_meta['name']] = $thumb_meta;
@@ -353,17 +355,17 @@ class ONetRegenThumbs {
 
 
 		# Save incoming settings
-		if (isset($_POST['save_settings'])) {
+		if ( isset($_POST['save_settings']) ) {
 			$new_opts = array(
-				"after_media_btn" =>     isset($_POST['after_media_btn']),
-				"only_complement" =>     isset($_POST['only_complement']),
-				"bulk_action" =>         isset($_POST['bulk_action']),
-				"advanced" =>            isset($_POST['advanced']),
-				"massgen" =>             isset($_POST['massgen']),
-				"success_redir" =>       isset($_POST['success_redir']),
-				"quality_overwrite" =>   isset($_POST['quality_overwrite']),
-				"quality" =>             isset($_POST['quality']) ? (int)$_POST['quality'] : 90,
-				"thumbs" =>              $opts->thumbs
+				"after_media_btn"   => isset($_POST['after_media_btn']),
+				"only_complement"   => isset($_POST['only_complement']),
+				"bulk_action"       => isset($_POST['bulk_action']),
+				"advanced"          => isset($_POST['advanced']),
+				"massgen"           => isset($_POST['massgen']),
+				"success_redir"     => isset($_POST['success_redir']),
+				"quality_overwrite" => isset($_POST['quality_overwrite']),
+				"quality"           => isset($_POST['quality']) ? (int)$_POST['quality'] : 90,
+				"thumbs"            => $opts->thumbs
 				);
 			$new_opts = array_merge( (array)$opts, $new_opts );
 			update_option("onetrt_opts", $new_opts );
@@ -371,7 +373,12 @@ class ONetRegenThumbs {
 
 			// Remopve another notifications.
 			$update_msg = array();
-			$update_msg[] = __('Changes has been saved.','onetrt');
+
+			// Redirect user on save
+			// Added in 1.5 because there was some problems with "old settings data"
+			ob_end_clean();
+			wp_redirect( 'tools.php?page=onet-regen-thumbs&settings_updated' );
+			exit;
 		}
 
 
@@ -384,7 +391,7 @@ class ONetRegenThumbs {
 			$ids_count = count($task->items);
 			$task_id = $task->meta->id;
 
-			var_dump($task);
+			// var_dump($task);
 
 		# Fetch specific IDs if it's provided in the URL
 		} else if (!empty($_GET['refresh_byid']) && preg_match("/^[0-9\;]*$/i",$_GET['refresh_byid'])) {
@@ -396,12 +403,12 @@ class ONetRegenThumbs {
 				// Fetch related attachments if the element is not a attachment
 				if ($item->post_type != "attachment") {
 					$related_atts = get_children(array(
-						'numberposts' =>     1000,
-						'order' =>           'ASC',
-						'post_mime_type' =>  'image',
-						'post_parent' =>     $item->ID,
-						'post_status' =>     null,
-						'post_type' => 'attachment',
+						'numberposts'    => 1000,
+						'order'          => 'ASC',
+						'post_mime_type' => 'image',
+						'post_parent'    => $item->ID,
+						'post_status'    => null,
+						'post_type'      => 'attachment',
 						));
 					foreach ($related_atts AS $rel_att) $ids[] = $rel_att->ID;
 
@@ -427,15 +434,15 @@ class ONetRegenThumbs {
 		# Pass variables to Dashboard
 		$onetrt_dashboard_vars = array(
 			"media_image_list_uri" => admin_url( "upload.php?post_mime_type=image" ),     // link to Wordpress's media manager
-			"cancel_uri" =>           $this->admin_uri(array("cancel"=>1)),               // Cancel URL which displays a "terminated" notification
-			"reset_uri" =>            $this->admin_uri(),                                 // This will be visible if custom regen set is provided
-			"success_uri" =>          $this->admin_uri(array("success"=>1)),              // success redirect ID
-			"custom_dims" =>          $custom_dims,                                       // Actual custom dimensions
-			"ids_count" =>            $ids_count,                                         // Number of items relate to current task
-			"task_id" =>              $task_id,                                           // Task ID to resume
-			"update_url" =>           $update_url,                                        // Update URL which is a simple url or blank or false
-			"atts_count" =>           $atts_count,                                        // Total attachments
-			"is_total_regen" =>       $is_total_regen                                     // True is the the session is based on the whole library
+			"cancel_uri"           => $this->admin_uri(array("cancel"=>1)),               // Cancel URL which displays a "terminated" notification
+			"reset_uri"            => $this->admin_uri(),                                 // This will be visible if custom regen set is provided
+			"success_uri"          => $this->admin_uri(array("success"=>1)),              // success redirect ID
+			"custom_dims"          => $custom_dims,                                       // Actual custom dimensions
+			"ids_count"            => $ids_count,                                         // Number of items relate to current task
+			"task_id"              => $task_id,                                           // Task ID to resume
+			"update_url"           => $update_url,                                        // Update URL which is a simple url or blank or false
+			"atts_count"           => $atts_count,                                        // Total attachments
+			"is_total_regen"       => $is_total_regen                                     // True is the the session is based on the whole library
 			);
 
 		# Give the variables to view and render it instantly.
@@ -500,8 +507,8 @@ class ONetRegenThumbs {
 	**/
 	public function generate_thumb_all ( $att_id ) {
 		$att_raw = get_posts( array(
-			"include" => $att_id,
-			"post_type" => "attachment",
+			'include'        => $att_id,
+			'post_type'      => 'attachment',
 			'post_mime_type' => 'image'
 		));
 		if (!count($att_raw)) return null;
@@ -522,8 +529,8 @@ class ONetRegenThumbs {
 	public function generate_thumb_missing ( $att_id ) {
 		// Fetch the attachment
 		$att_raw = get_posts( array(
-			"include" => $att_id,
-			"post_type" => "attachment",
+			'include'        => $att_id,
+			'post_type'      => 'attachment',
 			'post_mime_type' => 'image'
 		));
 		$att = $att_raw[0];
@@ -727,13 +734,13 @@ class ONetRegenThumbs {
 
 		# Otherwise add a new tasklist
 		$task_meta = array(
-			"id"=>$id,
-			"created"=>time(),
-			"updated"=>time(),
-			"finished"=>0,
-			"items_total"=>count($items),
-			"items_left"=>count($items),
-			"items_done"=>0
+			"id"          => $id,
+			"created"     => time(),
+			"updated"     => time(),
+			"finished"    => 0,
+			"items_total" => count($items),
+			"items_left"  => count($items),
+			"items_done"  => 0
 			);
 
 		# Update task array

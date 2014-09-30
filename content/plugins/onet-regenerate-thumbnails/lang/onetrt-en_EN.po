@@ -1,195 +1,195 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ONet Regen Thumbs\n"
-"POT-Creation-Date: 2013-10-28 16:39+0100\n"
-"PO-Revision-Date: 2013-10-28 16:48+0100\n"
-"Last-Translator: OroszNyet <orosznyet@gmail.com>\n"
+"POT-Creation-Date: 2014-09-24 11:18+0100\n"
+"PO-Revision-Date: 2014-09-24 11:18+0100\n"
+"Last-Translator: Jozsef Koller <orosznyet@gmail.com>\n"
 "Language-Team: József Koller <orosznyet@gmail.com>\n"
-"Language: English\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: c:\\XAMPP\\htdocs\\ONETdev\\wp-content\\plugins\\onet-"
-"regen-thumbnails\\\n"
+"X-Poedit-Basepath: c:\\XAMPP\\htdocs\\wp_latest\\wp-content\\plugins\\onet-"
+"regenerate-thumbnails\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: onet-regen-thumbnails.php:107 view/main_ui.php:4
+#: onet-regen-thumbnails.php:129 view/main_ui.php:4
 msgid "Regenerate Thumbnails"
 msgstr ""
 
-#: onet-regen-thumbnails.php:107
+#: onet-regen-thumbnails.php:129
 msgid "Regen. Thumbnails"
 msgstr ""
 
-#: onet-regen-thumbnails.php:126
+#: onet-regen-thumbnails.php:149
 msgid ""
 "You are about to leave the page which means that the remaining thumbnail "
 "will not be processed. Do you really want to leave?"
 msgstr ""
 
-#: onet-regen-thumbnails.php:127
+#: onet-regen-thumbnails.php:150
 msgid ""
 "There were some problems with your server or your internet connection. "
 "Please try again later."
 msgstr ""
 
-#: onet-regen-thumbnails.php:128
+#: onet-regen-thumbnails.php:151
 msgid "You have no images. Sorry, I can't help you at the moment."
 msgstr ""
 
-#: onet-regen-thumbnails.php:129
+#: onet-regen-thumbnails.php:152
 msgid "There was a connection issue. {retryNum} more retries left."
 msgstr ""
 
-#: onet-regen-thumbnails.php:130
+#: onet-regen-thumbnails.php:153
 msgid "The script encountered a fatal error. The process has been terminated."
 msgstr ""
 
-#: onet-regen-thumbnails.php:131
+#: onet-regen-thumbnails.php:154
 msgid "Fatal error. Code {errorCode}."
 msgstr ""
 
-#: onet-regen-thumbnails.php:132
+#: onet-regen-thumbnails.php:155
 msgid "The server does not answered in time but the process will go on."
 msgstr ""
 
-#: onet-regen-thumbnails.php:133
+#: onet-regen-thumbnails.php:156
 msgid "The process is done. You can leave the page."
 msgstr ""
 
-#: onet-regen-thumbnails.php:134
+#: onet-regen-thumbnails.php:157
 msgid "The following thumbnails were generated: {imageList}."
 msgstr ""
 
-#: onet-regen-thumbnails.php:135
+#: onet-regen-thumbnails.php:158
 msgid "{fileNum} images were updated."
 msgstr ""
 
-#: onet-regen-thumbnails.php:136
+#: onet-regen-thumbnails.php:159
 msgid "Connection issue resolved."
 msgstr ""
 
-#: onet-regen-thumbnails.php:137
+#: onet-regen-thumbnails.php:160
 msgid "Process started."
 msgstr ""
 
-#: onet-regen-thumbnails.php:138
+#: onet-regen-thumbnails.php:161
 msgid "infinity"
 msgstr ""
 
-#: onet-regen-thumbnails.php:139
+#: onet-regen-thumbnails.php:162
 msgid "y"
 msgstr ""
 
-#: onet-regen-thumbnails.php:140 onet-regen-thumbnails.php:143
+#: onet-regen-thumbnails.php:163 onet-regen-thumbnails.php:166
 msgid "m"
 msgstr ""
 
-#: onet-regen-thumbnails.php:141
+#: onet-regen-thumbnails.php:164
 msgid "d"
 msgstr ""
 
-#: onet-regen-thumbnails.php:142
+#: onet-regen-thumbnails.php:165
 msgid "h"
 msgstr ""
 
-#: onet-regen-thumbnails.php:144
+#: onet-regen-thumbnails.php:167
 msgid "s"
 msgstr ""
 
-#: onet-regen-thumbnails.php:161
+#: onet-regen-thumbnails.php:184
 msgid "Regen. thumbnails"
 msgstr ""
 
-#: onet-regen-thumbnails.php:162
+#: onet-regen-thumbnails.php:185
 msgid "This action may take a while. Do you want to continue? "
 msgstr ""
 
-#: onet-regen-thumbnails.php:163
+#: onet-regen-thumbnails.php:186
 msgid "Select at least one entry to perform this action."
 msgstr ""
 
-#: onet-regen-thumbnails.php:191 onet-regen-thumbnails.php:279
+#: onet-regen-thumbnails.php:214 onet-regen-thumbnails.php:305
 msgid "Settings"
 msgstr ""
 
-#: onet-regen-thumbnails.php:204
+#: onet-regen-thumbnails.php:228
 msgid "Regenerate thumbnail for related images"
 msgstr ""
 
-#: onet-regen-thumbnails.php:204
+#: onet-regen-thumbnails.php:228
 msgid "Regenerate thumbnails"
 msgstr ""
 
-#: onet-regen-thumbnails.php:215
+#: onet-regen-thumbnails.php:239
 msgid "This will redirect you to regeneration page. Do you want to continue?"
 msgstr ""
 
-#: onet-regen-thumbnails.php:215
+#: onet-regen-thumbnails.php:239
 msgid "Regenerate thumbs"
 msgstr ""
 
-#: onet-regen-thumbnails.php:283
+#: onet-regen-thumbnails.php:309
 msgid "Custom dimension manager"
 msgstr ""
 
-#: onet-regen-thumbnails.php:287
+#: onet-regen-thumbnails.php:313
 msgid "Dashboard"
 msgstr ""
 
-#: onet-regen-thumbnails.php:293
+#: onet-regen-thumbnails.php:319
 msgid "Process was terminated manually."
 msgstr ""
 
-#: onet-regen-thumbnails.php:294
+#: onet-regen-thumbnails.php:320
 msgid "Regenerate was successful."
 msgstr ""
 
-#: onet-regen-thumbnails.php:309
-msgid "Thumbnail saved."
-msgstr ""
-
-#: onet-regen-thumbnails.php:309
-msgid "Thumbnail updated."
-msgstr ""
-
-#: onet-regen-thumbnails.php:319
-msgid "Thumbnail removed."
-msgstr ""
-
-#: onet-regen-thumbnails.php:348
+#: onet-regen-thumbnails.php:321
 msgid "Changes has been saved."
 msgstr ""
 
-#: onet-regen-thumbnails.php:444
+#: onet-regen-thumbnails.php:336
+msgid "Thumbnail saved."
+msgstr ""
+
+#: onet-regen-thumbnails.php:336
+msgid "Thumbnail updated."
+msgstr ""
+
+#: onet-regen-thumbnails.php:346
+msgid "Thumbnail removed."
+msgstr ""
+
+#: onet-regen-thumbnails.php:478
 msgid "Contact and Support"
 msgstr ""
 
-#: onet-regen-thumbnails.php:445
+#: onet-regen-thumbnails.php:479
 #, php-format
 msgid ""
 "If you have any question, problem or suggestion please check out the %s and "
 "if you can't find the answer for your question please do not hesitate to ask."
 msgstr ""
 
-#: onet-regen-thumbnails.php:446
+#: onet-regen-thumbnails.php:480
 msgid "official support page"
 msgstr ""
 
-#: onet-regen-thumbnails.php:447
+#: onet-regen-thumbnails.php:481
 msgid "Premium Support"
 msgstr ""
 
-#: onet-regen-thumbnails.php:448
+#: onet-regen-thumbnails.php:482
 #, php-format
 msgid ""
 "The developer provides premium support for low hourly rate. If you want to "
 "get exclusive support directly from the developer please write to %s. "
 msgstr ""
 
-#: onet-regen-thumbnails.php:448
+#: onet-regen-thumbnails.php:482
 msgid "[PREMIUM SUPPORT] ONet Regen Thumbnails"
 msgstr ""
 
