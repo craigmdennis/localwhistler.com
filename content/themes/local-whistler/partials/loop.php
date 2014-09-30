@@ -35,6 +35,10 @@
     <div class="col-xs-12">
     <?php endif; ?>
 
+    <?php if ( 'product' == get_post_type() ) : ?>
+      <?php query_posts('post_type=product&order=ASC&orderby=title'); ?>
+    <?php endif; ?>
+
     <?php if ( have_posts() ) : ?>
 
       <ol class="media--list js-color-container">
