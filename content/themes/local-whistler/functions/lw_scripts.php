@@ -9,6 +9,9 @@
   // Adding actions means they are only run on the front-end
   add_action( 'wp_enqueue_scripts', 'lw_deregister_scripts' );
   add_action( 'wp_enqueue_scripts', 'lw_enqueue_global' );
+  add_action( 'save_post', 'lw_delete_post_data' );
+  add_action( 'publish_post', 'lw_delete_post_data' );
+  add_action( 'delete_post', 'lw_delete_post_data' );
 
   // Dynamically added if browser 'Cuts the mustard'
   // Uncomment to load for all browsers
@@ -207,6 +210,12 @@
 
     return $data;
 
+  }
+
+  // Delete transient
+
+  function lw_delete_post_data( ) {
+    delete_transient( 'filter_data' );
   }
 
 ?>
