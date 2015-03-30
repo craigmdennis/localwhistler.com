@@ -4,7 +4,7 @@
   add_theme_support( 'post-thumbnails' );
 
   // Add custom thumbnail sizes
-  add_image_size( 'media--featured', 1200, 800, 1 );
+  add_image_size( 'media--featured', 1200);
   add_image_size( 'media--card', 800, 600, 1 );
   add_image_size( 'media--thumb', 150, 150 );
   add_image_size( 'media--thumb-retina', 300, 300 );

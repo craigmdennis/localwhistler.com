@@ -156,6 +156,11 @@
 .media--featured {
   background: none;
 
+  @include breakpoint( $bp5 ) {
+    margin-bottom: -62px;
+    margin-top: -62px;
+  }
+
   .media__title {
     padding-top: $outline-width;
 
@@ -175,31 +180,32 @@
   .media__heading {
     padding: $baseline*2 $baseline*2 0;
     margin-bottom: 0;
-    min-height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 
-    @include breakpoint( $bp6 ) {
-      min-height: 400px;
+    @include breakpoint( $bp5 ) {
+      top: 62px;
     }
   }
 
   .media__image {
-    height: 450px;
+    height: auto;
     left: 50%;
     margin-left: -300px;
     overflow: hidden;
-    position: absolute;
+    position: relative;
     top: 0;
     width:600px;
     z-index: 1;
 
     @include breakpoint( $bp3 ) {
-      height: 550px;
       margin-left: -400px;
       width:800px;
     }
 
     @include breakpoint( $bp4 ) {
-      top: -62px;
       width:1200px;
       margin-left: -600px;
     }
