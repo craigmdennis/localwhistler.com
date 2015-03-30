@@ -12,6 +12,9 @@
   /** MySQL hostname */
   define('DB_HOST', 'localhost');
 
+  /** Allow plugin installs on local machines **/
+  define('FS_METHOD','direct');
+
   /** Server name (your url) */
   $domain_name = 'http://localwhistler.local';
 
