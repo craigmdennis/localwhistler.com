@@ -16,7 +16,7 @@ You will need:
 ## Developing
 - Make sure you have Apache running
 - Set up a virtul host for localwhistler.local
-- Run `grunt serve` to compile templates
+- Run `grunt serve` to compile templates 
 
 ## GIT
 - Files are stored in a git repository. Contact support@simplebitdesign.com for access.
@@ -39,6 +39,10 @@ You will need:
 ## Building
 - Run `grunt build` to compile templates, minify and concat as well as other cool stuff.
 
+## Updating Wordpress
+- Update the `wp` submodule and then commit that using GIT
+- Update plugins locally (of you have issues then consult http://www.smashingmagazine.com/2014/05/08/proper-wordpress-filesystem-permissions-ownerships/ )
+
 ## Releasing
 Please use the [changelog syntax][1] in commit messages
 - Run `grunt bump-only:minor` to version the new release
@@ -49,7 +53,6 @@ Please use the [changelog syntax][1] in commit messages
 - Update your development server credentials in `/config/deploy.rb`
 - Run `bundle exec cap staging deploy` to deploy a version to staging server
 - Run `bundle exec cap production deploy` to deploy to production server
-
 
 ## Rolling Back
 You can roll back a version if you make a mistake
