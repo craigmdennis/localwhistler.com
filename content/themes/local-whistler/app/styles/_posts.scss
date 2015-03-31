@@ -5,7 +5,6 @@
 
   background-clip: padding-box;
   background-color: #FFF;
-  padding: $baseline $baseline 0 $baseline;
   position: relative;
   z-index: 2; // So it appears above the map
 
@@ -33,11 +32,9 @@
 
   }
 
-  // @include breakpoint( $bp3 ) {
-    @include border;
-    padding: $baseline*2 $baseline*2 0 $baseline*2;
-    margin: $baseline;
-  // }
+  @include border;
+  padding: $baseline*2 $baseline*2 0 $baseline*2;
+  margin: $baseline;
 
   @include breakpoint( $bp5 ) {
     margin: 0 0 $baseline*2 0;

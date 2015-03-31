@@ -9,7 +9,8 @@ $(document).ready( function(){
       slideSpeed : 300,
       paginationSpeed : 400,
       singleItem:true,
-      transitionStyle: 'scaleUp'
+      transitionStyle: 'scaleUp',
+      autoHeight: true
   });
 
   // Initialise Chosen
