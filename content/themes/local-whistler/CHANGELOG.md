@@ -1,3 +1,10 @@
+<a name="1.1.5"></a>
+### 1.1.5 (2015-04-03)
+
+#### Changed
+* Increased hero image sizes
+
+
 <a name="1.1.4"></a>
 ### 1.1.4 (2015-03-30)
 
